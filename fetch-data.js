@@ -77,11 +77,18 @@ async function fetchTickerData(ticker, retries = 2) {
 
       for (let i = 0; i < timestamps.length; i++) {
         const ts = timestamps[i];
-        const c = closes[i];
-        const o = opens[i] ?? c;
-        const h = highs[i] ?? c;
-        const l = lows[i] ?? c;
-        const v = volumes[i] ?? 0;
+        const isLastBar = (i === timestamps.length - 1);
+        let c = closes[i];
+        
+        // Seans sırasındaki son mumda close henüz null ise o anki canlı fiyatı kullan
+        if ((c === null || c === undefined || isNaN(c)) && isLastBar && meta.regularMarketPrice) {
+          c = meta.regularMarketPrice;
+        }
+
+        const o = opens[i] ?? (isLastBar ? (meta.regularMarketOpen ?? c) : c);
+        const h = highs[i] ?? (isLastBar ? (meta.regularMarketDayHigh ?? c) : c);
+        const l = lows[i] ?? (isLastBar ? (meta.regularMarketDayLow ?? c) : c);
+        const v = volumes[i] ?? (isLastBar ? (meta.regularMarketVolume ?? 0) : 0);
 
         if (c !== null && c !== undefined && !isNaN(c) && c > 0) {
           const formattedDate = formatDateTR(new Date(ts * 1000));
@@ -91,24 +98,46 @@ async function fetchTickerData(ticker, retries = 2) {
           history.push({
             timestamp: ts,
             date: formattedDate,
-            open: Number(o.toFixed(2)),
-            high: Number(h.toFixed(2)),
-            low: Number(l.toFixed(2)),
+            open: Number(Number(o).toFixed(2)),
+            high: Number(Number(h).toFixed(2)),
+            low: Number(Number(l).toFixed(2)),
             close: roundedClose,
             volume: Math.round(v)
           });
         }
       }
 
+      if (history.length === 0 && !meta.regularMarketPrice) return null;
+
+      // Eğer bugünün mumu timestamps içinde yoksa ve seans açıkken canlı fiyat varsa bugünün mumunu ekle
+      const todayDateStr = formatDateTR(new Date());
+      const hasTodayBar = history.length > 0 && history[history.length - 1].date === todayDateStr;
+      if (!hasTodayBar && meta.regularMarketPrice && meta.regularMarketPrice > 0) {
+        const livePrice = Number(meta.regularMarketPrice.toFixed(2));
+        const liveTs = meta.regularMarketTime || Math.floor(Date.now() / 1000);
+        validCloses.push(livePrice);
+        history.push({
+          timestamp: liveTs,
+          date: todayDateStr,
+          open: Number((meta.regularMarketOpen || livePrice).toFixed(2)),
+          high: Number((meta.regularMarketDayHigh || livePrice).toFixed(2)),
+          low: Number((meta.regularMarketDayLow || livePrice).toFixed(2)),
+          close: livePrice,
+          volume: Math.round(meta.regularMarketVolume || 0)
+        });
+      }
+
       if (history.length === 0) return null;
 
-      const latestOfficialPrice = Number((meta.regularMarketPrice ?? history[history.length - 1].close).toFixed(2));
+      // O anki canlı piyasa fiyatı (regularMarketPrice)
+      const currentPrice = Number((meta.regularMarketPrice ?? history[history.length - 1].close).toFixed(2));
       const lastBar = history[history.length - 1];
-      lastBar.close = latestOfficialPrice;
-      validCloses[validCloses.length - 1] = latestOfficialPrice;
+      lastBar.close = currentPrice;
+      validCloses[validCloses.length - 1] = currentPrice;
 
-      const currentPrice = lastBar.close;
-      const previousClosePrice = history.length > 1 ? history[history.length - 2].close : (meta.chartPreviousClose || currentPrice);
+      // Önceki günün kapanışı:
+      // Eğer son mum bugüne aitse, dünün kapanışı bir önceki mumdur (history[history.length - 2])
+      const previousClosePrice = history.length > 1 ? history[history.length - 2].close : currentPrice;
       
       const change = Number((currentPrice - previousClosePrice).toFixed(2));
       const changePercent = previousClosePrice > 0 ? Number(((change / previousClosePrice) * 100).toFixed(2)) : 0;
@@ -119,8 +148,8 @@ async function fetchTickerData(ticker, retries = 2) {
       const sma50 = calculateSMA(validCloses, 50);
       const returns = calculateReturns(history);
 
-      const dayHigh = meta.regularMarketDayHigh || lastBar.high || currentPrice;
-      const dayLow = meta.regularMarketDayLow || lastBar.low || currentPrice;
+      const dayHigh = Number((meta.regularMarketDayHigh || lastBar.high || currentPrice).toFixed(2));
+      const dayLow = Number((meta.regularMarketDayLow || lastBar.low || currentPrice).toFixed(2));
       const pivots = calculatePivotPoints(dayHigh, dayLow, currentPrice);
 
       // Mini sparkline (last 12 closes)

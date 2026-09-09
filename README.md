@@ -42,8 +42,8 @@ Borsa İstanbul (**BIST 100, BIST 30, BIST Banka, BIST Sınai, BIST Bilişim**) 
 - 💱 **Canlı Döviz & Kıymetli Maden Çevirici:** TL, USD, EUR, GBP, Gram Altın (24K), Çeyrek Altın ve Gram Gümüş arasında anlık kur dönüşümü.
 - 🌱 **Bileşik Getiri & Temettü Büyüme Simülatörü:** Düzenli aylık tasarruf ve bileşik faiz getiri projeksiyon grafiği.
 
-### ✉️ 5. Sabah Piyasa Bülteni (`send-newsletter.js` & `abone.html`)
-- ☕ **Hafta İçi Her Sabah 09:00'da (TSİ):** Seans açılışından 1 saat önce dünün resmi seans kapanışları, döviz kurları, altın fiyatları ve günün en çok hareket eden hisseleri e-posta kutunuza otomatik iletilir.
+### ✉️ 5. Canlı Piyasa Bülteni (`send-newsletter.js` & `abone.html`)
+- ☕ **Hafta İçi Her Gün 10:30'da (TSİ):** Seans açılışı sonrasında o anki canlı piyasa verileri, BIST endeksleri, döviz kurları, altın fiyatları ve seansın en çok yükselen/düşen hisseleri e-posta kutunuza otomatik iletilir.
 
 ### 💻 6. Zengin Terminal CLI Arayüzü (`index.js`)
 - Konsol üzerinden renkli ANSI tabloları, ASCII mini sparkline grafikleri ve anlık piyasa durumu.

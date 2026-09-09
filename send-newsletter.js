@@ -47,7 +47,7 @@ export function generateNewsletterHtml(data) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIST Sabah Bülteni</title>
+    <title>BIST 10:30 Canlı Piyasa Bülteni</title>
   </head>
   <body style="margin: 0; padding: 20px 10px; background-color: #030712; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #f3f4f6;">
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid #1e293b; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
@@ -56,11 +56,11 @@ export function generateNewsletterHtml(data) {
       <tr>
         <td style="padding: 28px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border-bottom: 1px solid #334155; text-align: center;">
           <div style="display: inline-block; width: 44px; height: 44px; background: linear-gradient(135deg, #0284c7, #6366f1); border-radius: 12px; line-height: 44px; font-size: 22px; font-weight: 900; color: #ffffff; margin-bottom: 12px;">₺</div>
-          <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Borsa İstanbul Günlük Bülten</h1>
-          <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 13px;">${dateStr} • Seans Öncesi Piyasa Özeti</p>
+          <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Borsa İstanbul Canlı Bülten</h1>
+          <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 13px;">${dateStr} • 10:30 Canlı Piyasa ve Seans Özeti</p>
           <div style="margin-top: 12px;">
-            <span style="display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background-color: rgba(14, 165, 233, 0.15); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.3);">
-              ${session.sessionName || 'Resmi Seans Kapanışları'}
+            <span style="display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">
+              🟢 ${session.status || 'Canlı Seans Açık'} • ${session.timeStr?.slice(0, 5) || '10:30'}
             </span>
           </div>
         </td>
@@ -142,12 +142,24 @@ export function generateNewsletterHtml(data) {
 
           <!-- En Çok Hareket Edenler -->
           ${topGainers.length > 0 ? `
-          <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: #cbd5e1;">🚀 Günün En Çok Yükselenleri</h3>
-          <div style="background-color: #131d31; border-radius: 12px; padding: 10px 14px; margin-bottom: 24px;">
+          <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: #cbd5e1;">🚀 Seansın En Çok Yükselenleri</h3>
+          <div style="background-color: #131d31; border-radius: 12px; padding: 10px 14px; margin-bottom: 20px;">
             ${topGainers.slice(0, 3).map(g => `
               <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1e293b;">
                 <span style="font-weight: 700; color: #ffffff;">${g.symbol} <span style="font-weight: normal; color: #64748b; font-size: 11px;">(${g.name})</span></span>
                 <span style="color: #34d399; font-weight: 700;">₺${formatNum(g.price)} (+%${g.changePercent.toFixed(2)})</span>
+              </div>
+            `).join('')}
+          </div>
+          ` : ''}
+
+          ${topLosers.length > 0 ? `
+          <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: #cbd5e1;">🔻 Seansın En Çok Düşenleri</h3>
+          <div style="background-color: #131d31; border-radius: 12px; padding: 10px 14px; margin-bottom: 24px;">
+            ${topLosers.slice(0, 3).map(l => `
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1e293b;">
+                <span style="font-weight: 700; color: #ffffff;">${l.symbol} <span style="font-weight: normal; color: #64748b; font-size: 11px;">(${l.name})</span></span>
+                <span style="color: #f43f5e; font-weight: 700;">₺${formatNum(l.price)} (%${l.changePercent.toFixed(2)})</span>
               </div>
             `).join('')}
           </div>
@@ -198,13 +210,20 @@ async function main() {
   }
 
   const resend = new Resend(RESEND_API_KEY);
-  console.log(`✉️ Sabah bülteni ${RECIPIENT_EMAIL} adresine gönderiliyor...`);
+  console.log(`✉️ Canlı piyasa bülteni ${RECIPIENT_EMAIL} adresine gönderiliyor...`);
+
+  const timeLabel = data.marketSession?.timeStr?.slice(0, 5) || '10:30';
+  const dateStr = new Date().toLocaleDateString('tr-TR', {
+    day: '2-digit',
+    month: 'long',
+    timeZone: 'Europe/Istanbul'
+  });
 
   try {
     const res = await resend.emails.send({
       from: 'BIST Takip <onboarding@resend.dev>',
       to: RECIPIENT_EMAIL,
-      subject: `📈 BIST & Piyasa Sabah Bülteni (${data.marketSession?.timeStr || 'Güncel'})`,
+      subject: `📈 BIST Canlı Piyasa Bülteni (${timeLabel}) • ${dateStr}`,
       html: html
     });
 
@@ -212,7 +231,7 @@ async function main() {
       console.error('✕ Resend Hatası:', res.error.message);
       process.exit(1);
     } else {
-      console.log('✓ Sabah bülteni başarıyla iletildi! ID:', res.data?.id);
+      console.log('✓ Canlı piyasa bülteni başarıyla iletildi! ID:', res.data?.id);
     }
   } catch (err) {
     console.error('✕ Gönderim Hatası:', err.message);
