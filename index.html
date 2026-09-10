@@ -288,169 +288,348 @@
       </div>
     </div>
 
-    <!-- ================= CONTROLS, SEARCH & VIEW SWITCHER ================= -->
-    <div class="space-y-3.5 pt-2">
-      
-      <!-- Top Filters & Actions Bar -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+    <!-- ================= MAIN SEGMENT BAR (HISSE vs FONLAR) ================= -->
+    <div class="flex items-center justify-between flex-wrap gap-3 border-b border-slate-800/80 pb-3 pt-1">
+      <div class="flex items-center gap-2">
+        <button id="mainTabStocksBtn" onclick="switchMainTab('stocks')" class="px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/25">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          <span>Hisse Senetleri (BIST)</span>
+          <span id="tabStockCountBadge" class="bg-white/20 text-white text-[10px] font-mono font-black px-2 py-0.5 rounded-full">108</span>
+        </button>
+
+        <button id="mainTabFundsBtn" onclick="switchMainTab('funds')" class="px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-[#0c121e] border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+          <span>TEFAS Yatırım Fonları</span>
+          <span id="tabFundCountBadge" class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">20 Fon</span>
+        </button>
+      </div>
+
+      <!-- Quick Search Bar (Common to both) -->
+      <div class="relative w-full sm:w-80">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Hisse veya fon ara (THYAO, THF, IPJ)..." 
+          class="w-full bg-[#0c121e] border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all font-sans uppercase"
+          oninput="handleSearchInput()"
+        />
+        <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <span class="absolute right-3 top-2.5 text-[10px] text-slate-500 border border-slate-800 px-1.5 py-0.5 rounded font-mono hidden sm:inline-block">/ tuşu</span>
+      </div>
+    </div>
+
+    <!-- ================= SECTION 1: STOCKS (BIST) ================= -->
+    <div id="stocksMainSection" class="space-y-6">
+
+      <!-- Sorting & View Switches & Sector Filter -->
+      <div class="space-y-3.5">
         
-        <!-- Live Instant Search -->
-        <div class="relative w-full md:w-80">
-          <input 
-            type="text" 
-            id="searchInput" 
-            placeholder="Hisse sembolü veya şirket ara (örn: THYAO, Garanti)..." 
-            class="w-full bg-[#0c121e] border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all font-sans uppercase"
-            oninput="applyAllFilters()"
-          />
-          <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          <span class="absolute right-3 top-2.5 text-[10px] text-slate-500 border border-slate-800 px-1.5 py-0.5 rounded font-mono hidden sm:inline-block">/ tuşu</span>
+        <!-- Top Filters & Actions Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          
+          <div class="text-xs text-slate-400 font-sans flex items-center gap-2">
+            <span>Listelenen: <strong id="filteredStockCount" class="text-white font-bold font-mono">0</strong> hisse</span>
+            <span class="text-slate-600">•</span>
+            <span class="text-slate-400">100+ BIST Şirketi (Hafifletilmiş Statik Mimari)</span>
+          </div>
+
+          <!-- Sorting & View Switches -->
+          <div class="flex flex-wrap items-center gap-2">
+            
+            <!-- Sort Dropdown -->
+            <div class="relative">
+              <select id="sortSelect" onchange="applyAllFilters()" class="bg-[#0c121e] border border-slate-800 text-slate-300 text-xs font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-sky-500 transition-all appearance-none pr-8 cursor-pointer">
+                <option value="default">Sıralama: Varsayılan</option>
+                <option value="gain_desc">En Çok Yükselenler (% ↑)</option>
+                <option value="gain_asc">En Çok Düşenler (% ↓)</option>
+                <option value="volume_desc">En Yüksek Hacim (TL)</option>
+                <option value="price_desc">Fiyat: Yüksekten Düşüğe</option>
+                <option value="price_asc">Fiyat: Düşükten Yükseğe</option>
+                <option value="rsi_asc">RSI: Aşırı Satım (Ucuz)</option>
+                <option value="rsi_desc">RSI: Aşırı Alım (Pahalı)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
+            </div>
+
+            <!-- View Mode Switcher -->
+            <div class="flex items-center bg-[#0c121e] border border-slate-800 p-1 rounded-xl">
+              <button id="viewBtnGrid" onclick="switchViewMode('grid')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition-all flex items-center gap-1.5" title="Kart Görünümü">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <span>Kartlar</span>
+              </button>
+              <button id="viewBtnTable" onclick="switchViewMode('table')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5" title="Tablo Görünümü">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <span>Tablo</span>
+              </button>
+              <button id="viewBtnHeat" onclick="switchViewMode('heat')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5" title="Isı Haritası">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                <span>Isı Haritası</span>
+              </button>
+            </div>
+
+          </div>
+
         </div>
 
-        <!-- Sorting & View Switches -->
-        <div class="flex flex-wrap items-center gap-2">
+        <!-- Sector Filter Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="sectorFilterTabs">
+          <button onclick="setSectorFilter('ALL', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-bold bg-sky-600 text-white shrink-0 transition-all">
+            Tüm Hisseler (<span id="totalStocksCount">0</span>)
+          </button>
+          <button onclick="setSectorFilter('FAVORITES', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 shrink-0 transition-all flex items-center gap-1">
+            ⭐ Takip Listem (<span id="favCount">0</span>)
+          </button>
+          <button onclick="setSectorFilter('BIST30', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            BIST 30
+          </button>
+          <button onclick="setSectorFilter('Bankacılık & Finans', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Bankacılık & Finans
+          </button>
+          <button onclick="setSectorFilter('Ulaştırma & Havacılık', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Havacılık & Ulaştırma
+          </button>
+          <button onclick="setSectorFilter('Holdingler', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Holdingler
+          </button>
+          <button onclick="setSectorFilter('Sanayi & Metal', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Sanayi & Metal
+          </button>
+          <button onclick="setSectorFilter('Enerji & Altyapı', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Enerji & Altyapı
+          </button>
+          <button onclick="setSectorFilter('Teknoloji & Savunma', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Teknoloji & Savunma
+          </button>
+          <button onclick="setSectorFilter('Perakende & Tüketim', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Perakende & Gıda
+          </button>
+          <button onclick="setSectorFilter('Gayrimenkul (GYO)', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            GYO
+          </button>
+          <button onclick="setSectorFilter('DIVIDEND', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+            Temettü Şirketleri
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= VIEW 1: CARDS (GRID) ================= -->
+      <div id="viewContainerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Pagination / Load More Bar -->
+      <div id="stockPaginationContainer" class="hidden text-center pt-3 pb-2">
+        <button id="loadMoreStocksBtn" onclick="loadMoreStocks()" class="bg-[#0e1626] hover:bg-sky-600 hover:text-white border border-slate-700 hover:border-sky-500 text-sky-400 font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl transition-all shadow-md inline-flex items-center gap-2 cursor-pointer">
+          <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+          <span>Daha Fazla Göster (+36 Hisse)</span>
+          <span id="stockPaginationInfo" class="text-slate-400 text-xs font-mono font-normal"></span>
+        </button>
+      </div>
+
+      <!-- ================= VIEW 2: FINANCIAL TABLE ================= -->
+      <div id="viewContainerTable" class="hidden glass-card rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-[#0c121e] text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Sembol</th>
+                <th class="py-3 px-4">Şirket Ünvanı</th>
+                <th class="py-3 px-4">Sektör</th>
+                <th class="py-3 px-4 text-right">Fiyat (₺)</th>
+                <th class="py-3 px-4 text-right">Günlük %</th>
+                <th class="py-3 px-4 text-right">1 Hafta %</th>
+                <th class="py-3 px-4 text-right">1 Ay %</th>
+                <th class="py-3 px-4 text-right">Günün Aralığı</th>
+                <th class="py-3 px-4 text-right">RSI (14)</th>
+                <th class="py-3 px-4 text-right">Hacim (TL)</th>
+                <th class="py-3 px-4 text-center">İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-800/60 font-mono">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= VIEW 3: MARKET HEATMAP ================= -->
+      <div id="viewContainerHeat" class="hidden space-y-4">
+        <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
+            <div>
+              <h2 class="text-lg font-bold font-display text-white">BIST Piyasa Isı Haritası (Heatmap)</h2>
+              <p class="text-xs text-slate-400">Sektör ağırlıkları ve anlık fiyat değişim performansları</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-rose-600 inline-block"></span> &lt; -3%</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-rose-800 inline-block"></span> -1%</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-slate-800 inline-block"></span> 0%</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-800 inline-block"></span> +1%</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> &gt; +3%</span>
+            </div>
+          </div>
+          <div id="heatmapGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SECTOR BENCHMARK CARDS ================= -->
+      <section class="mt-8 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+          <h2 class="text-base font-bold font-display text-slate-200">Sektörel Piyasa Analizi</h2>
+          <span class="text-xs text-slate-500 font-mono">Canlı Sektör Ortalamaları</span>
+        </div>
+        <div id="sectorBreakdownGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs">
+          <!-- Injected by JS -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= SECTION 2: TEFAS FUNDS ================= -->
+    <div id="fundsMainSection" class="hidden space-y-6">
+      
+      <!-- Fund Highlights Banner -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
+          <div class="text-[11px] text-slate-400 font-sans">Takip Edilen Fon Sayısı</div>
+          <div class="text-2xl font-black font-num text-white mt-1" id="fundStatTotalCount">20 Fon</div>
+          <div class="text-[10px] text-sky-400 mt-0.5">TEFAS Veri Entegrasyonu</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
+          <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
+            <span>Hisse Senedi Lideri</span>
+            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-500/10 text-emerald-400 rounded">PTO / THF</span>
+          </div>
+          <div class="text-xl font-black font-num text-emerald-400 mt-1">+112.40%</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">1 Yıllık Şampiyon Getiri</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
+          <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
+            <span>Emtia & Teknoloji</span>
+            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-sky-500/10 text-sky-400 rounded">TGE / IPJ</span>
+          </div>
+          <div class="text-xl font-black font-num text-sky-400 mt-1">+78.40%</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">Elektrikli Araçlar & Emtia</div>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
+          <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
+            <span>Likit Para Piyasası</span>
+            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-purple-500/10 text-purple-400 rounded">TP2 / PPZ</span>
+          </div>
+          <div class="text-xl font-black font-num text-purple-400 mt-1">+55.40%</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">Yıllık Bileşik Getiri</div>
+        </div>
+      </div>
+
+      <!-- Controls & Quick Featured Fund Chips -->
+      <div class="space-y-3.5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
           
-          <!-- Sort Dropdown -->
-          <div class="relative">
-            <select id="sortSelect" onchange="applyAllFilters()" class="bg-[#0c121e] border border-slate-800 text-slate-300 text-xs font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-sky-500 transition-all appearance-none pr-8 cursor-pointer">
-              <option value="default">Sıralama: Varsayılan</option>
-              <option value="gain_desc">En Çok Yükselenler (% ↑)</option>
-              <option value="gain_asc">En Çok Düşenler (% ↓)</option>
-              <option value="volume_desc">En Yüksek Hacim (TL)</option>
-              <option value="price_desc">Fiyat: Yüksekten Düşüğe</option>
-              <option value="price_asc">Fiyat: Düşükten Yükseğe</option>
-              <option value="rsi_asc">RSI: Aşırı Satım (Ucuz)</option>
-              <option value="rsi_desc">RSI: Aşırı Alım (Pahalı)</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          <!-- Category Pills -->
+          <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="fundCategoryTabs">
+            <button onclick="setFundCategoryFilter('ALL', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-bold bg-amber-600 text-white shrink-0 transition-all">
+              Tüm Fonlar (20)
+            </button>
+            <button onclick="setFundCategoryFilter('Hisse Senedi', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+              Hisse Senedi (6)
+            </button>
+            <button onclick="setFundCategoryFilter('Yabancı & Teknoloji', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+              Yabancı & Teknoloji (5)
+            </button>
+            <button onclick="setFundCategoryFilter('Para Piyasası', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+              Para Piyasası (3)
+            </button>
+            <button onclick="setFundCategoryFilter('Kıymetli Madenler', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+              Altın & Maden (3)
+            </button>
+            <button onclick="setFundCategoryFilter('Değişken & Karma', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
+              Değişken & Karma (3)
+            </button>
+          </div>
+
+          <!-- Fund Sorting & View Switcher -->
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="relative">
+              <select id="fundSortSelect" onchange="applyFundFilters()" class="bg-[#0c121e] border border-slate-800 text-slate-300 text-xs font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-amber-500 transition-all appearance-none pr-8 cursor-pointer">
+                <option value="monthly_desc">Sıralama: Aylık Getiri (% ↑)</option>
+                <option value="yearly_desc">Yıllık Getiri (% ↑)</option>
+                <option value="daily_desc">Günlük Getiri (% ↑)</option>
+                <option value="size_desc">Fon Büyüklüğü (TL)</option>
+                <option value="price_desc">Birim Fiyat (₺)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
+            </div>
+
+            <div class="flex items-center bg-[#0c121e] border border-slate-800 p-1 rounded-xl">
+              <button id="fundViewBtnGrid" onclick="switchFundViewMode('grid')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-600 text-white transition-all flex items-center gap-1.5" title="Kart Görünümü">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <span>Kartlar</span>
+              </button>
+              <button id="fundViewBtnTable" onclick="switchFundViewMode('table')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5" title="Tablo Görünümü">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <span>Tablo</span>
+              </button>
             </div>
           </div>
 
-          <!-- View Mode Switcher -->
-          <div class="flex items-center bg-[#0c121e] border border-slate-800 p-1 rounded-xl">
-            <button id="viewBtnGrid" onclick="switchViewMode('grid')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition-all flex items-center gap-1.5" title="Kart Görünümü">
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-              <span>Kartlar</span>
-            </button>
-            <button id="viewBtnTable" onclick="switchViewMode('table')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5" title="Tablo Görünümü">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
-              <span>Tablo</span>
-            </button>
-            <button id="viewBtnHeat" onclick="switchViewMode('heat')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5" title="Isı Haritası">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-              <span>Isı Haritası</span>
-            </button>
-          </div>
+        </div>
 
+        <!-- Featured Funds Quick Chips -->
+        <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1 text-xs">
+          <span class="text-slate-500 font-sans shrink-0 font-medium">Önemli Fonlar:</span>
+          <button onclick="filterBySpecificFund('THF')" class="px-2.5 py-1 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20 font-mono font-bold hover:bg-sky-500/20 transition-all shrink-0">THF (TEB Hisse)</button>
+          <button onclick="filterBySpecificFund('PTO')" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono font-bold hover:bg-emerald-500/20 transition-all shrink-0">PTO (Tera Hisse)</button>
+          <button onclick="filterBySpecificFund('TGE')" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold hover:bg-amber-500/20 transition-all shrink-0">TGE (İş Emtia)</button>
+          <button onclick="filterBySpecificFund('IPJ')" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono font-bold hover:bg-indigo-500/20 transition-all shrink-0">IPJ (Elektrikli Araçlar)</button>
+          <button onclick="filterBySpecificFund('TP2')" class="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono font-bold hover:bg-purple-500/20 transition-all shrink-0">TP2 (Tera Para Piyasası)</button>
+          <button onclick="filterBySpecificFund('MAC')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">MAC</button>
+          <button onclick="filterBySpecificFund('AFT')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">AFT</button>
+          <button onclick="filterBySpecificFund('PPZ')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">PPZ</button>
         </div>
 
       </div>
 
-      <!-- Sector Filter Tabs -->
-      <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="sectorFilterTabs">
-        <button onclick="setSectorFilter('ALL', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-bold bg-sky-600 text-white shrink-0 transition-all">
-          Tüm Hisseler (<span id="totalStocksCount">0</span>)
-        </button>
-        <button onclick="setSectorFilter('FAVORITES', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 shrink-0 transition-all flex items-center gap-1">
-          ⭐ Takip Listem (<span id="favCount">0</span>)
-        </button>
-        <button onclick="setSectorFilter('BIST30', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          BIST 30
-        </button>
-        <button onclick="setSectorFilter('Bankacılık & Finans', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Bankacılık
-        </button>
-        <button onclick="setSectorFilter('Ulaştırma & Havacılık', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Havacılık & Ulaştırma
-        </button>
-        <button onclick="setSectorFilter('Holdingler', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Holdingler
-        </button>
-        <button onclick="setSectorFilter('Sanayi & Metal', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Sanayi & Metal
-        </button>
-        <button onclick="setSectorFilter('Enerji & Altyapı', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Enerji & Altyapı
-        </button>
-        <button onclick="setSectorFilter('Teknoloji & Savunma', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Teknoloji & Savunma
-        </button>
-        <button onclick="setSectorFilter('Perakende & Tüketim', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Perakende & Tüketim
-        </button>
-        <button onclick="setSectorFilter('DIVIDEND', this)" class="sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-          Temettü Şirketleri
-        </button>
-      </div>
-
-    </div>
-
-    <!-- ================= VIEW 1: CARDS (GRID) ================= -->
-    <div id="viewContainerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
-      <!-- Injected by JS -->
-    </div>
-
-    <!-- ================= VIEW 2: FINANCIAL TABLE ================= -->
-    <div id="viewContainerTable" class="hidden glass-card rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
-      <div class="overflow-x-auto custom-scrollbar">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-[#0c121e] text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-800">
-            <tr>
-              <th class="py-3 px-4">Sembol</th>
-              <th class="py-3 px-4">Şirket Ünvanı</th>
-              <th class="py-3 px-4">Sektör</th>
-              <th class="py-3 px-4 text-right">Fiyat (₺)</th>
-              <th class="py-3 px-4 text-right">Günlük %</th>
-              <th class="py-3 px-4 text-right">1 Hafta %</th>
-              <th class="py-3 px-4 text-right">1 Ay %</th>
-              <th class="py-3 px-4 text-right">Günün Aralığı</th>
-              <th class="py-3 px-4 text-right">RSI (14)</th>
-              <th class="py-3 px-4 text-right">Hacim (TL)</th>
-              <th class="py-3 px-4 text-center">İşlem</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody" class="divide-y divide-slate-800/60 font-mono">
-            <!-- Injected by JS -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ================= VIEW 3: MARKET HEATMAP ================= -->
-    <div id="viewContainerHeat" class="hidden space-y-4">
-      <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
-          <div>
-            <h2 class="text-lg font-bold font-display text-white">BIST Piyasa Isı Haritası (Heatmap)</h2>
-            <p class="text-xs text-slate-400">Sektör ağırlıkları ve anlık fiyat değişim performansları</p>
-          </div>
-          <div class="flex items-center gap-3 text-xs font-mono">
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-rose-600 inline-block"></span> &lt; -3%</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-rose-800 inline-block"></span> -1%</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-slate-800 inline-block"></span> 0%</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-800 inline-block"></span> +1%</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> &gt; +3%</span>
-          </div>
-        </div>
-        <div id="heatmapGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
-          <!-- Injected by JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= SECTOR BENCHMARK CARDS ================= -->
-    <section class="mt-8 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
-        <h2 class="text-base font-bold font-display text-slate-200">Sektörel Piyasa Analizi</h2>
-        <span class="text-xs text-slate-500 font-mono">Canlı Sektör Ortalamaları</span>
-      </div>
-      <div id="sectorBreakdownGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs">
+      <!-- Fund Grid View -->
+      <div id="fundContainerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
         <!-- Injected by JS -->
       </div>
-    </section>
+
+      <!-- Fund Table View -->
+      <div id="fundContainerTable" class="hidden glass-card rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-[#0c121e] text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Fon Kodu</th>
+                <th class="py-3 px-4">Fon Ünvanı & Yönetici</th>
+                <th class="py-3 px-4">Kategori</th>
+                <th class="py-3 px-4 text-right">Birim Fiyat (₺)</th>
+                <th class="py-3 px-4 text-right">Günlük %</th>
+                <th class="py-3 px-4 text-right">Haftalık %</th>
+                <th class="py-3 px-4 text-right">Aylık %</th>
+                <th class="py-3 px-4 text-right">Yıllık %</th>
+                <th class="py-3 px-4 text-right">Portföy Büyüklüğü</th>
+                <th class="py-3 px-4 text-center">Risk</th>
+                <th class="py-3 px-4 text-center">İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="fundTableBody" class="divide-y divide-slate-800/60 font-mono">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
 
   </main>
 
@@ -542,16 +721,137 @@
     </div>
   </div>
 
+  <!-- ================= TEFAS FUND DETAIL MODAL ================= -->
+  <div id="fundModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-[#0d1322] border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[92vh] overflow-y-auto custom-scrollbar p-5 sm:p-7 shadow-2xl relative space-y-5">
+      
+      <!-- Close Button -->
+      <button onclick="closeFundModal()" class="absolute right-5 top-5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 p-2.5 rounded-2xl transition-all cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Header -->
+      <div class="border-b border-slate-800/80 pb-4 pr-12">
+        <div class="flex items-center gap-3">
+          <span id="fundModalCode" class="text-3xl font-black font-display text-white">--</span>
+          <span id="fundModalCategory" class="text-xs font-bold font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">--</span>
+          <span id="fundModalRisk" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">--</span>
+        </div>
+        <h3 id="fundModalName" class="text-base font-bold text-slate-200 mt-2">--</h3>
+        <p id="fundModalCompany" class="text-xs text-slate-400 mt-0.5">--</p>
+      </div>
+
+      <!-- Price & Desc -->
+      <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/70 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-slate-500">Birim Pay Değeri</span>
+          <div id="fundModalPrice" class="text-2xl font-black font-num text-white mt-0.5">--</div>
+        </div>
+        <div class="text-right">
+          <span class="text-xs text-slate-500">Portföy Büyüklüğü</span>
+          <div id="fundModalSize" class="text-base font-bold font-num text-amber-400 mt-0.5">--</div>
+        </div>
+      </div>
+
+      <p id="fundModalDesc" class="text-xs text-slate-400 leading-relaxed bg-[#0a0f18] p-3.5 rounded-xl border border-slate-850">
+        --
+      </p>
+
+      <!-- Returns Grid -->
+      <div>
+        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2 font-mono">Dönemsel Getiri Performansı</h4>
+        <div class="grid grid-cols-5 gap-2 text-center font-mono">
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 block">Günlük</span>
+            <span id="fundRet1D" class="text-xs font-bold font-num mt-1 block">--</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 block">1 Hafta</span>
+            <span id="fundRet1W" class="text-xs font-bold font-num mt-1 block">--</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 block">1 Ay</span>
+            <span id="fundRet1M" class="text-xs font-bold font-num mt-1 block">--</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 block">3 Ay</span>
+            <span id="fundRet3M" class="text-xs font-bold font-num mt-1 block">--</span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 block">1 Yıl</span>
+            <span id="fundRet1Y" class="text-xs font-bold font-num mt-1 block">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action link to TEFAS official -->
+      <div class="pt-2 flex items-center justify-between">
+        <span id="fundModalInvestors" class="text-xs text-slate-500 font-mono">Yatırımcı Sayısı: --</span>
+        <a id="fundModalTefasLink" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-md">
+          <span>TEFAS Resmi Fon Analizi</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ================= JAVASCRIPT APPLICATION LOGIC ================= -->
   <script>
     let globalData = null;
+    let currentMainTab = 'stocks';
     let currentSectorFilter = 'ALL';
     let currentViewMode = 'grid';
+    let stockDisplayLimit = 36;
+    let lastFilteredStocks = [];
+
+    // TEFAS Funds State
+    let currentFundCategory = 'ALL';
+    let currentFundSort = 'monthly_desc';
+    let currentFundViewMode = 'grid';
+    let activeModalFundCode = null;
+
     let modalChartInstance = null;
     let activeModalSymbol = null;
     let modalCurrentDays = 30;
 
     const FAVORITES_STORAGE_KEY = 'bist_terminal_favorites_v1';
+
+    function switchMainTab(tab) {
+      currentMainTab = tab;
+      const isStocks = (tab === 'stocks');
+
+      const stocksBtn = document.getElementById('mainTabStocksBtn');
+      const fundsBtn = document.getElementById('mainTabFundsBtn');
+      const stocksSection = document.getElementById('stocksMainSection');
+      const fundsSection = document.getElementById('fundsMainSection');
+      const searchInput = document.getElementById('searchInput');
+
+      if (isStocks) {
+        stocksBtn.className = 'px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/25';
+        fundsBtn.className = 'px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-[#0c121e] border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700';
+        stocksSection.classList.remove('hidden');
+        fundsSection.classList.add('hidden');
+        if (searchInput) searchInput.placeholder = 'Hisse sembolü veya şirket ara (THYAO, Garanti)...';
+        applyAllFilters();
+      } else {
+        fundsBtn.className = 'px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/25';
+        stocksBtn.className = 'px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-[#0c121e] border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700';
+        fundsSection.classList.remove('hidden');
+        stocksSection.classList.add('hidden');
+        if (searchInput) searchInput.placeholder = 'TEFAS fon kodu veya fon adı ara (THF, PTO, TGE, IPJ, TP2)...';
+        applyFundFilters();
+      }
+    }
+
+    function handleSearchInput() {
+      if (currentMainTab === 'stocks') {
+        stockDisplayLimit = 36;
+        applyAllFilters();
+      } else {
+        applyFundFilters();
+      }
+    }
 
     function getFavorites() {
       try {
@@ -650,6 +950,11 @@
         items.push({ sym: g.symbol, price: `₺${formatNumber(g.price)}`, chg: g.changePercent });
       });
 
+      // Add featured funds to ticker
+      if (data.funds?.THF) items.push({ sym: 'THF Fon', price: `₺${data.funds.THF.price.toFixed(2)}`, chg: data.funds.THF.dailyReturn });
+      if (data.funds?.PTO) items.push({ sym: 'PTO Fon', price: `₺${data.funds.PTO.price.toFixed(2)}`, chg: data.funds.PTO.dailyReturn });
+      if (data.funds?.TP2) items.push({ sym: 'TP2 Likit', price: `₺${data.funds.TP2.price.toFixed(2)}`, chg: data.funds.TP2.dailyReturn });
+
       const html = items.map(item => {
         const isPos = item.chg >= 0;
         const color = isPos ? 'text-emerald-400' : 'text-rose-400';
@@ -669,6 +974,11 @@
     function renderGridCards(stocks) {
       const container = document.getElementById('viewContainerGrid');
       const favs = getFavorites();
+      const paginationContainer = document.getElementById('stockPaginationContainer');
+      const paginationInfo = document.getElementById('stockPaginationInfo');
+      const filteredStockCount = document.getElementById('filteredStockCount');
+
+      if (filteredStockCount) filteredStockCount.textContent = stocks.length;
 
       if (stocks.length === 0) {
         container.innerHTML = `
@@ -677,10 +987,22 @@
             <p class="text-xs mt-1">Farklı bir arama kelimesi veya sektör seçmeyi deneyebilirsiniz.</p>
           </div>
         `;
+        if (paginationContainer) paginationContainer.classList.add('hidden');
         return;
       }
 
-      container.innerHTML = stocks.map(item => {
+      const visibleStocks = stocks.slice(0, stockDisplayLimit);
+
+      if (paginationContainer) {
+        if (stocks.length > stockDisplayLimit) {
+          paginationContainer.classList.remove('hidden');
+          if (paginationInfo) paginationInfo.textContent = `(${visibleStocks.length} / ${stocks.length})`;
+        } else {
+          paginationContainer.classList.add('hidden');
+        }
+      }
+
+      container.innerHTML = visibleStocks.map(item => {
         const isPos = item.change >= 0;
         const isFav = favs.includes(item.symbol);
         const rsiVal = item.rsi14;
@@ -736,6 +1058,13 @@
           </div>
         `;
       }).join('');
+    }
+
+    function loadMoreStocks() {
+      stockDisplayLimit += 36;
+      if (lastFilteredStocks && lastFilteredStocks.length > 0) {
+        renderGridCards(lastFilteredStocks);
+      }
     }
 
     function renderTable(stocks) {
@@ -870,6 +1199,8 @@
         stocks.sort((a, b) => (b.rsi14 ?? 50) - (a.rsi14 ?? 50));
       }
 
+      lastFilteredStocks = stocks;
+
       // Render based on current view mode
       renderGridCards(stocks);
       renderTable(stocks);
@@ -878,6 +1209,7 @@
 
     function setSectorFilter(sec, btnEl) {
       currentSectorFilter = sec;
+      stockDisplayLimit = 36;
       document.querySelectorAll('.sector-tab-btn').forEach(btn => {
         btn.className = 'sector-tab-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all';
       });
@@ -900,6 +1232,248 @@
       btnGrid.className = mode === 'grid' ? 'px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition-all flex items-center gap-1.5' : 'px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
       btnTable.className = mode === 'table' ? 'px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition-all flex items-center gap-1.5' : 'px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
       btnHeat.className = mode === 'heat' ? 'px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 text-white transition-all flex items-center gap-1.5' : 'px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
+    }
+
+    // ================= TEFAS MUTUAL FUNDS LOGIC =================
+    function setFundCategoryFilter(cat, btnEl) {
+      currentFundCategory = cat;
+      document.querySelectorAll('.fund-cat-btn').forEach(btn => {
+        btn.className = 'fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all';
+      });
+      if (btnEl) {
+        btnEl.className = 'fund-cat-btn px-3.5 py-1.5 rounded-xl font-bold bg-amber-600 text-white shrink-0 transition-all';
+      }
+      applyFundFilters();
+    }
+
+    function filterBySpecificFund(code) {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = code;
+        applyFundFilters();
+      }
+    }
+
+    function switchFundViewMode(mode) {
+      currentFundViewMode = mode;
+      document.getElementById('fundContainerGrid').classList.toggle('hidden', mode !== 'grid');
+      document.getElementById('fundContainerTable').classList.toggle('hidden', mode !== 'table');
+
+      const btnGrid = document.getElementById('fundViewBtnGrid');
+      const btnTable = document.getElementById('fundViewBtnTable');
+
+      btnGrid.className = mode === 'grid' ? 'px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-600 text-white transition-all flex items-center gap-1.5' : 'px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
+      btnTable.className = mode === 'table' ? 'px-3 py-1.5 text-xs font-bold rounded-lg bg-amber-600 text-white transition-all flex items-center gap-1.5' : 'px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
+    }
+
+    function formatFundSize(val) {
+      if (!val || isNaN(val)) return '-';
+      if (val >= 1e9) return `₺${(val / 1e9).toFixed(2)} Milyar`;
+      if (val >= 1e6) return `₺${(val / 1e6).toFixed(1)} Milyon`;
+      return `₺${Number(val).toLocaleString('tr-TR')}`;
+    }
+
+    function applyFundFilters() {
+      if (!globalData?.funds) return;
+
+      const q = (document.getElementById('searchInput')?.value || '').trim().toUpperCase();
+      const sortMode = document.getElementById('fundSortSelect')?.value || 'monthly_desc';
+
+      let funds = Object.values(globalData.funds);
+
+      // 1. Category Filter
+      if (currentFundCategory !== 'ALL') {
+        funds = funds.filter(f => f.category === currentFundCategory);
+      }
+
+      // 2. Search Query Filter
+      if (q) {
+        funds = funds.filter(f => {
+          return f.code.toUpperCase().includes(q) || 
+                 (f.name && f.name.toUpperCase().includes(q)) || 
+                 (f.company && f.company.toUpperCase().includes(q)) ||
+                 (f.category && f.category.toUpperCase().includes(q));
+        });
+      }
+
+      // 3. Sorting
+      if (sortMode === 'monthly_desc') {
+        funds.sort((a, b) => b.monthlyReturn - a.monthlyReturn);
+      } else if (sortMode === 'yearly_desc') {
+        funds.sort((a, b) => b.yearlyReturn - a.yearlyReturn);
+      } else if (sortMode === 'daily_desc') {
+        funds.sort((a, b) => b.dailyReturn - a.dailyReturn);
+      } else if (sortMode === 'size_desc') {
+        funds.sort((a, b) => b.totalValue - a.totalValue);
+      } else if (sortMode === 'price_desc') {
+        funds.sort((a, b) => b.price - a.price);
+      }
+
+      renderFundCards(funds);
+      renderFundTable(funds);
+    }
+
+    function renderFundCards(funds) {
+      const container = document.getElementById('fundContainerGrid');
+      if (!container) return;
+
+      if (funds.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500 font-sans glass-card rounded-2xl p-8">
+            <p class="text-base font-bold text-slate-300">Arama kriterlerine uygun TEFAS fonu bulunamadı.</p>
+            <p class="text-xs mt-1">Farklı bir fon kodu (örn: THF, PTO, TGE, IPJ, TP2) veya kategori seçebilirsiniz.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = funds.map(fund => {
+        const isPos1D = fund.dailyReturn >= 0;
+        const isPos1M = fund.monthlyReturn >= 0;
+        const isPos1Y = fund.yearlyReturn >= 0;
+        const sparklineSvg = renderSparklineSvg(fund.sparkline, isPos1M);
+
+        let riskBadge = '';
+        if (fund.riskLevel <= 2) riskBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Düşük Risk (1-2)</span>';
+        else if (fund.riskLevel <= 4) riskBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Orta Risk (3-4)</span>';
+        else riskBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Yüksek Risk (5-6)</span>';
+
+        return `
+          <div onclick="openFundModal('${fund.code}')" class="glass-card glass-card-hover p-4 sm:p-5 rounded-2xl transition-all duration-200 cursor-pointer group relative flex flex-col justify-between border border-slate-800/80 hover:border-amber-500/30">
+            <div>
+              <!-- Top Row: Code, Category, Risk -->
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-black text-lg font-display text-white group-hover:text-amber-400 transition-colors tracking-wide">${fund.code}</span>
+                  <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">${fund.category}</span>
+                </div>
+                ${riskBadge}
+              </div>
+
+              <!-- Fund Name & Company -->
+              <h4 class="text-xs font-semibold text-slate-200 line-clamp-2 font-sans min-h-[32px]">${fund.name}</h4>
+              <p class="text-[11px] text-slate-500 line-clamp-1 font-sans mt-0.5">${fund.company}</p>
+              
+              <!-- Price & Sparkline -->
+              <div class="flex items-end justify-between mt-3 mb-2.5">
+                <div>
+                  <div class="text-[10px] text-slate-500 uppercase tracking-wider font-mono">Birim Pay Değeri</div>
+                  <div class="text-xl font-black font-num text-white">₺${fund.price.toFixed(4)}</div>
+                </div>
+                ${sparklineSvg}
+              </div>
+
+              <!-- Returns Badges Grid -->
+              <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-slate-800/60 font-mono text-center">
+                <div class="bg-slate-950/60 p-1.5 rounded-lg border border-slate-850">
+                  <span class="text-[9px] text-slate-500 block">Günlük</span>
+                  <span class="text-[11px] font-bold ${isPos1D ? 'text-emerald-400' : 'text-rose-400'}">${isPos1D ? '+' : ''}${fund.dailyReturn.toFixed(2)}%</span>
+                </div>
+                <div class="bg-slate-950/60 p-1.5 rounded-lg border border-slate-850">
+                  <span class="text-[9px] text-slate-500 block">1 Ay</span>
+                  <span class="text-[11px] font-bold ${isPos1M ? 'text-emerald-400' : 'text-rose-400'}">${isPos1M ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%</span>
+                </div>
+                <div class="bg-slate-950/60 p-1.5 rounded-lg border border-slate-850">
+                  <span class="text-[9px] text-slate-500 block">1 Yıl</span>
+                  <span class="text-[11px] font-bold ${isPos1Y ? 'text-emerald-400' : 'text-rose-400'}">${isPos1Y ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Stats -->
+            <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
+              <span class="font-mono text-[10px]">Portföy: ${formatFundSize(fund.totalValue)}</span>
+              <span class="text-amber-400 hover:text-amber-300 font-semibold inline-flex items-center gap-0.5 transition-transform group-hover:translate-x-0.5">
+                Detay →
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderFundTable(funds) {
+      const tbody = document.getElementById('fundTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = funds.map(fund => {
+        const isPos1D = fund.dailyReturn >= 0;
+        const isPos1W = fund.weeklyReturn >= 0;
+        const isPos1M = fund.monthlyReturn >= 0;
+        const isPos1Y = fund.yearlyReturn >= 0;
+
+        return `
+          <tr onclick="openFundModal('${fund.code}')" class="hover:bg-slate-850/60 cursor-pointer transition-colors">
+            <td class="py-3 px-4 font-bold text-white font-display text-sm">${fund.code}</td>
+            <td class="py-3 px-4 font-sans">
+              <div class="font-semibold text-slate-200 line-clamp-1">${fund.name}</div>
+              <div class="text-[11px] text-slate-500 line-clamp-1">${fund.company}</div>
+            </td>
+            <td class="py-3 px-4 font-sans text-slate-400">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">${fund.category}</span>
+            </td>
+            <td class="py-3 px-4 text-right font-bold text-white font-num">₺${fund.price.toFixed(4)}</td>
+            <td class="py-3 px-4 text-right font-bold ${isPos1D ? 'text-emerald-400' : 'text-rose-400'}">${isPos1D ? '+' : ''}${fund.dailyReturn.toFixed(2)}%</td>
+            <td class="py-3 px-4 text-right ${isPos1W ? 'text-emerald-400' : 'text-rose-400'}">${isPos1W ? '+' : ''}${fund.weeklyReturn.toFixed(2)}%</td>
+            <td class="py-3 px-4 text-right font-bold ${isPos1M ? 'text-emerald-400' : 'text-rose-400'}">${isPos1M ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%</td>
+            <td class="py-3 px-4 text-right font-bold ${isPos1Y ? 'text-emerald-400' : 'text-rose-400'}">${isPos1Y ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%</td>
+            <td class="py-3 px-4 text-right text-slate-400 font-num">${formatFundSize(fund.totalValue)}</td>
+            <td class="py-3 px-4 text-center">
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded ${fund.riskLevel <= 2 ? 'bg-emerald-500/10 text-emerald-400' : (fund.riskLevel <= 4 ? 'bg-sky-500/10 text-sky-400' : 'bg-amber-500/10 text-amber-400')}">${fund.riskLevel}/7</span>
+            </td>
+            <td class="py-3 px-4 text-center">
+              <button onclick="openFundModal('${fund.code}')" class="text-amber-400 hover:text-amber-300 font-semibold text-[11px]">İncele →</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openFundModal(code) {
+      const fund = globalData?.funds?.[code];
+      if (!fund) return;
+
+      activeModalFundCode = code;
+      const modal = document.getElementById('fundModal');
+      if (!modal) return;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      document.getElementById('fundModalCode').textContent = fund.code;
+      document.getElementById('fundModalCategory').textContent = fund.category;
+      document.getElementById('fundModalRisk').textContent = `Risk: ${fund.riskLevel}/7`;
+      document.getElementById('fundModalName').textContent = fund.name;
+      document.getElementById('fundModalCompany').textContent = fund.company;
+      document.getElementById('fundModalPrice').textContent = `₺${fund.price.toFixed(6)}`;
+      document.getElementById('fundModalSize').textContent = formatFundSize(fund.totalValue);
+      document.getElementById('fundModalDesc').textContent = fund.desc || 'Bu fon TEFAS platformunda işlem görmekte olup SPK onaylı portföy yönetim şirketi tarafından yönetilmektedir.';
+      document.getElementById('fundModalInvestors').textContent = `Yatırımcı Sayısı: ${Number(fund.investorCount || 0).toLocaleString('tr-TR')} kişi`;
+
+      const formatRet = (elId, val) => {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        const isPos = val >= 0;
+        el.className = `text-xs font-bold font-num mt-1 block ${isPos ? 'text-emerald-400' : 'text-rose-400'}`;
+        el.textContent = `${isPos ? '+' : ''}${val.toFixed(2)}%`;
+      };
+
+      formatRet('fundRet1D', fund.dailyReturn);
+      formatRet('fundRet1W', fund.weeklyReturn);
+      formatRet('fundRet1M', fund.monthlyReturn);
+      formatRet('fundRet3M', fund.threeMonthReturn);
+      formatRet('fundRet1Y', fund.yearlyReturn);
+
+      const linkEl = document.getElementById('fundModalTefasLink');
+      if (linkEl) {
+        linkEl.href = `https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${fund.code}`;
+      }
+    }
+
+    function closeFundModal() {
+      const modal = document.getElementById('fundModal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
     }
 
     // ================= CLIENT-SIDE LIVE SESSION ENGINE =================
@@ -1235,13 +1809,26 @@
         if (globalData.commodities?.BITCOIN) document.getElementById('stripBtc').textContent = `$${formatNumber(globalData.commodities.BITCOIN.price)}`;
 
         // 3. Counts & Ticker Tape
-        document.getElementById('totalStocksCount').textContent = Object.keys(globalData.stocks || {}).length;
+        const stockCount = Object.keys(globalData.stocks || {}).length;
+        document.getElementById('totalStocksCount').textContent = stockCount;
+        const tabStockEl = document.getElementById('tabStockCountBadge');
+        if (tabStockEl) tabStockEl.textContent = stockCount;
+
+        if (globalData.funds) {
+          const fundCount = Object.keys(globalData.funds).length;
+          const tabFundEl = document.getElementById('tabFundCountBadge');
+          if (tabFundEl) tabFundEl.textContent = `${fundCount} Fon`;
+          const fundStatTotalEl = document.getElementById('fundStatTotalCount');
+          if (fundStatTotalEl) fundStatTotalEl.textContent = `${fundCount} Fon`;
+        }
+
         updateFavCount();
         buildTickerTape(globalData);
         renderSectorStats(globalData.sectorStats);
 
         // 4. Render Lists
         applyAllFilters();
+        applyFundFilters();
 
         // 5. Update session and freshness
         updateLiveClockAndSession();
@@ -1269,7 +1856,7 @@
     }
 
     // Modal Operations
-    function openStockModal(sym) {
+    async function openStockModal(sym) {
       const stock = globalData?.stocks?.[sym];
       if (!stock) return;
 
@@ -1296,6 +1883,20 @@
       document.getElementById('modalDeepLink').href = `hisse.html?sembol=${sym}`;
 
       updateModalFavIcon();
+
+      // Lazy load granular history from data/history/[SYMBOL].json if not present
+      if (!stock.history || stock.history.length === 0) {
+        try {
+          const histRes = await fetch(`data/history/${sym}.json`);
+          if (histRes.ok) {
+            const histData = await histRes.json();
+            stock.history = histData.history || [];
+          }
+        } catch (hErr) {
+          console.warn('History dosyası yüklenirken hata:', hErr);
+        }
+      }
+
       renderModalChart();
     }
 

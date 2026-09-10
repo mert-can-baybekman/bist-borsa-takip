@@ -14,15 +14,16 @@ Borsa İstanbul (**BIST 100, BIST 30, BIST Banka, BIST Sınai, BIST Bilişim**) 
 ## ✨ Öne Çıkan Özellikler
 
 ### 📊 1. Canlı Piyasa Terminali (`index.html`)
-- ⚡ **Yüksek Hızlı Statik CDN Mimarisi:** Tarayıcı tarafında CORS veya proxy engellerine takılmadan, sunucu tarafında derlenen optimize `data.json` ile 0.02 saniyede ultra hızlı yükleme.
+- ⚡ **Ayrıştırılmış Hafif CDN Mimarisi (`data/history/`):** 100+ hisse senedi ve TEFAS fonları bulunmasına rağmen, detaylı mum verileri `data/history/` klasörüne ayrıştırılarak ana `data.json` dosyası megabaytlardan ~600 KB'a indirildi; anında ve takılmasız yükleme.
+- 🏛️ **TEFAS Yatırım Fonları Bölümü:** THF, PTO, TGE, IPJ, TP2 başta olmak üzere Hisse Senedi, Yabancı Teknoloji, Altın ve Para Piyasası fonları için canlı getiri takibi, kategori filtreleri ve detay analiz modalı.
 - ⏱️ **Canlı Seans & Geri Sayım Saati:** TSİ (UTC+3) çalışma saatlerini (Emir toplama, sürekli müzayede, kapanış seansı, hafta sonu) anlık izleyen ve seans açılış/kapanışına kalan süreyi hesaplayan akıllı motor.
-- 🚥 **Kayan Piyasa Bandı (Ticker Marquee):** Endeksler, dövizler, altın ve günün en çok yükselen hisselerini kesintisiz kayan bantta canlı gösterim.
+- 🚥 **Kayan Piyasa Bandı (Ticker Marquee):** Endeksler, dövizler, altın, hisseler ve fonları kesintisiz kayan bantta canlı gösterim.
 - 🎛️ **3 Farklı Görüntüleme Modu:**
-  - **Kart Görünümü (Grid):** Mini sparkline SVG grafikleri, hacim rozetleri ve RSI sinyalleri.
+  - **Kart Görünümü (Grid):** Mini sparkline SVG grafikleri, sayfalama (+36 Hisse yükleme), hacim rozetleri ve RSI sinyalleri.
   - **Finansal Tablo (Table):** Sembol, fiyat, 1 günlük / 1 haftalık / 1 aylık getiri, günün aralığı, RSI(14) ve hacim sıralaması.
   - **Piyasa Isı Haritası (Heatmap):** Sektör ağırlıklarına göre renk tonlamalı görsel getiri haritası.
-- 🔍 **Canlı Arama & Sektör Filtreleri:** BIST 30, Bankacılık, Havacılık, Holding, Sanayi, Enerji, Teknoloji, Temettü ve Kişisel Takip Listesi sekmeleri.
-- ⚡ **Hızlı Önizleme Modalı:** Tıklanan hissenin 1H - 1Y geçmiş trend grafiği, 52 haftalık aralık çubuğu, RSI ve destek/direnç pivotları.
+- 🔍 **Canlı Arama & Sektör Filtreleri:** 100+ hisse ve fon için anlık çift yönlü arama, BIST 30, Bankacılık, Havacılık, Holding, Sanayi, Enerji, Teknoloji, GYO, Temettü ve Kişisel Takip Listesi sekmeleri.
+- ⚡ **Hızlı Önizleme Modalı:** Tıklanan hissenin 1H - 1Y geçmiş trend grafiği (on-demand lazy-load), 52 haftalık aralık çubuğu, RSI ve destek/direnç pivotları.
 
 ### 📈 2. Derinlemesine Hisse Analiz Sayfası (`hisse.html`)
 - 📉 **Çok Zamanlı İnteraktif Grafik:** 1H, 1A, 3A, 6A, 1Y periyotlarında Chart.js ile dinamik kapanış çizgisi.
@@ -115,9 +116,18 @@ Herhangi bir statik sunucuyla (örn: VS Code Live Server veya `npx serve .`) `in
 
 ---
 
+---
+
+## 📚 Kaynakça & Teşekkürler
+
+- **[Tefas-API](https://github.com/mertc/Tefas-API)**: Türkiye Elektronik Fon Alım Satım Platformu (TEFAS) veri modelleri, endpoint mimarisi ve fon entegrasyonu referansı için kaynak kütüphane olarak kullanılmıştır.
+- **Yahoo Finance API (`yahoo-finance2`)**: BIST endeksleri, 100+ hisse senedi, döviz kurları ve emtia piyasa verileri sağlayıcısı.
+
+---
+
 ## 📄 Yasal Uyarı
 
-Bu sayfada ve terminal aracında sunulan borsa verileri, hisse fiyatları, teknik analiz göstergeleri ve hesaplamalar yalnızca bilgilendirme amaçlıdır. Sermaye Piyasası Kurulu (SPK) mevzuatı kapsamında yatırım danışmanlığı veya alım-satım tavsiyesi niteliği taşımaz.
+Bu sayfada ve terminal aracında sunulan borsa verileri, hisse fiyatları, yatırım fonu getirileri, teknik analiz göstergeleri ve hesaplamalar yalnızca bilgilendirme amaçlıdır. Sermaye Piyasası Kurulu (SPK) mevzuatı kapsamında yatırım danışmanlığı veya alım-satım tavsiyesi niteliği taşımaz.
 
 ---
 

@@ -367,6 +367,19 @@
         }
         document.getElementById('rsiStatusIndicator').textContent = rsiText;
 
+        // Load granular history from separate history file (lightweight architecture)
+        if (!stockData.history || stockData.history.length === 0) {
+          try {
+            const histRes = await fetch(`data/history/${currentSymbol}.json?_t=${Date.now()}`);
+            if (histRes.ok) {
+              const histJson = await histRes.json();
+              stockData.history = histJson.history || [];
+            }
+          } catch (hErr) {
+            console.warn('History dosyası yüklenirken uyarı:', hErr);
+          }
+        }
+
         fullHistory = stockData.history || [];
         updateFavButton();
         renderChart();

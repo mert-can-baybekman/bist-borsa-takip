@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import { 
   STOCKS_CONFIG, 
   INDICES_CONFIG, 
@@ -12,6 +13,7 @@ import {
   calculateReturns, 
   getMarketSessionStatus 
 } from './src/indicators.js';
+import { fetchTefasFunds } from './src/fetch-funds.js';
 
 const OUNCE_TO_GRAM = 31.1034768;
 
@@ -307,6 +309,8 @@ export async function fetchAllData() {
     currencies: {},
     commodities: {},
     stocks: {},
+    funds: {},
+    fundStats: {},
     sectorStats: {},
     topGainers: [],
     topLosers: [],
@@ -419,19 +423,38 @@ export async function fetchAllData() {
     return null;
   });
 
+  const historyDir = path.join(process.cwd(), 'data', 'history');
+  if (!fs.existsSync(historyDir)) {
+    fs.mkdirSync(historyDir, { recursive: true });
+  }
+
   const validStockObjects = [];
 
   for (const res of stockResults) {
     if (res && res.data) {
-      output.stocks[res.symbol] = res.data;
-      validStockObjects.push(res.data);
+      // 1. Write individual stock history to data/history/[SYMBOL].json
+      if (res.data.history && Array.isArray(res.data.history) && res.data.history.length > 0) {
+        const histPath = path.join(historyDir, `${res.symbol}.json`);
+        fs.writeFileSync(histPath, JSON.stringify({
+          symbol: res.symbol,
+          name: res.data.name || res.symbol,
+          history: res.data.history
+        }), 'utf-8');
+      }
+
+      // 2. Strip large history array from main data.json to keep it ultra-lightweight
+      const { history, ...lightData } = res.data;
+      lightData.hasHistory = true;
+
+      output.stocks[res.symbol] = lightData;
+      validStockObjects.push(lightData);
       process.stdout.write(`.`);
     }
   }
   console.log(`\n✅ Toplam ${validStockObjects.length} hisse başarıyla işlendi.`);
 
   // 4. Calculate Market Stats, Sector Breakdown & Top Movers
-  console.log('\n⏳ 4/4 Sektör ve piyasa istatistikleri hesaplanıyor...');
+  console.log('\n⏳ 4/5 Sektör ve piyasa istatistikleri hesaplanıyor...');
   
   // Top Gainers & Losers
   const sortedByGain = [...validStockObjects].sort((a, b) => b.changePercent - a.changePercent);
@@ -488,8 +511,23 @@ export async function fetchAllData() {
     };
   }
 
+  // 5. Fetch TEFAS Mutual Funds
+  console.log('\n⏳ 5/5 TEFAS Yatırım Fonları verileri derleniyor...');
+  try {
+    const fundResults = await fetchTefasFunds(previousData.funds || {});
+    output.funds = fundResults.funds;
+    output.fundStats = fundResults.stats;
+    console.log(`✅ Toplam ${Object.keys(output.funds).length} TEFAS fonu başarıyla işlendi.`);
+  } catch (fundErr) {
+    console.warn('⚠️ TEFAS fonları derlenirken uyarı:', fundErr.message);
+    if (previousData.funds) {
+      output.funds = previousData.funds;
+      output.fundStats = previousData.fundStats || {};
+    }
+  }
+
   fs.writeFileSync('./data.json', JSON.stringify(output, null, 2), 'utf-8');
-  console.log(`\n🎉 data.json (${Object.keys(output.stocks).length} hisse + ${Object.keys(output.indices).length} endeks/emtia) başarıyla kaydedildi!\n`);
+  console.log(`\n🎉 data.json (${Object.keys(output.stocks).length} hisse + ${Object.keys(output.indices).length} endeks/emtia + ${Object.keys(output.funds).length} TEFAS fonu) başarıyla kaydedildi!\n`);
   return output;
 }
 
