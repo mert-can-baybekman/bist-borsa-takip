@@ -90,12 +90,12 @@ export const FUNDS_CONFIG = [
   },
   {
     code: 'YAY',
-    name: 'Yapı Kredi Portföy Koç Holding İştirakleri Hisse Senedi Fonu',
+    name: 'Yapı Kredi Portföy Yabancı Teknoloji Sektörü Hisse Senedi Fonu',
     company: 'Yapı Kredi Portföy Yönetimi A.Ş.',
-    category: 'Hisse Senedi',
+    category: 'Yabancı & Teknoloji',
     riskLevel: 6,
     featured: false,
-    desc: 'Koç Holding ve iştiraklerine (Tüpraş, Ford Otosan, Tofaş, Arçelik, Yapı Kredi vb.) odaklı fon.'
+    desc: 'Küresel teknoloji devlerine ve yabancı teknoloji şirketlerine yatırım yapan getiri odaklı hisse fonu.'
   },
   {
     code: 'TTE',

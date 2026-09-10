@@ -1273,6 +1273,11 @@
       return `₺${Number(val).toLocaleString('tr-TR')}`;
     }
 
+    function formatFundPrice(val, decimals = 4) {
+      if (val === undefined || val === null || isNaN(val)) return '₺0.0000';
+      return `₺${Number(val).toLocaleString('tr-TR', { minimumFractionDigits: decimals, maximumFractionDigits: 6 })}`;
+    }
+
     function applyFundFilters() {
       if (!globalData?.funds) return;
 
@@ -1358,7 +1363,7 @@
               <div class="flex items-end justify-between mt-3 mb-2.5">
                 <div>
                   <div class="text-[10px] text-slate-500 uppercase tracking-wider font-mono">Birim Pay Değeri</div>
-                  <div class="text-xl font-black font-num text-white">₺${fund.price.toFixed(4)}</div>
+                  <div class="text-xl font-black font-num text-white">${formatFundPrice(fund.price, 4)}</div>
                 </div>
                 ${sparklineSvg}
               </div>
@@ -1412,7 +1417,7 @@
             <td class="py-3 px-4 font-sans text-slate-400">
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">${fund.category}</span>
             </td>
-            <td class="py-3 px-4 text-right font-bold text-white font-num">₺${fund.price.toFixed(4)}</td>
+            <td class="py-3 px-4 text-right font-bold text-white font-num">${formatFundPrice(fund.price, 4)}</td>
             <td class="py-3 px-4 text-right font-bold ${isPos1D ? 'text-emerald-400' : 'text-rose-400'}">${isPos1D ? '+' : ''}${fund.dailyReturn.toFixed(2)}%</td>
             <td class="py-3 px-4 text-right ${isPos1W ? 'text-emerald-400' : 'text-rose-400'}">${isPos1W ? '+' : ''}${fund.weeklyReturn.toFixed(2)}%</td>
             <td class="py-3 px-4 text-right font-bold ${isPos1M ? 'text-emerald-400' : 'text-rose-400'}">${isPos1M ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%</td>
@@ -1445,7 +1450,7 @@
       document.getElementById('fundModalRisk').textContent = `Risk: ${fund.riskLevel}/7`;
       document.getElementById('fundModalName').textContent = fund.name;
       document.getElementById('fundModalCompany').textContent = fund.company;
-      document.getElementById('fundModalPrice').textContent = `₺${fund.price.toFixed(6)}`;
+      document.getElementById('fundModalPrice').textContent = formatFundPrice(fund.price, 6);
       document.getElementById('fundModalSize').textContent = formatFundSize(fund.totalValue);
       document.getElementById('fundModalDesc').textContent = fund.desc || 'Bu fon TEFAS platformunda işlem görmekte olup SPK onaylı portföy yönetim şirketi tarafından yönetilmektedir.';
       document.getElementById('fundModalInvestors').textContent = `Yatırımcı Sayısı: ${Number(fund.investorCount || 0).toLocaleString('tr-TR')} kişi`;

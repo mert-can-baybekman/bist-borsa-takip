@@ -122,15 +122,15 @@ const FUND_BASELINE_DATA = {
     sparkline: [0.968, 0.974, 0.982, 0.990, 0.998, 1.005, 1.012, 1.016, 1.019, 1.021, 1.022, 1.0226]
   },
   'YAY': {
-    price: 913.010307,
+    price: 1913.010307,
     dailyReturn: 0.56,
     weeklyReturn: 5.52,
     monthlyReturn: 5.19,
-    threeMonthReturn: 41.43,
+    threeMonthReturn: 27.65,
     yearlyReturn: 77.68,
     totalValue: 13800278445,
     investorCount: 43935,
-    sparkline: [868, 875, 882, 890, 897, 902, 906, 909, 911, 912, 912.5, 913.01]
+    sparkline: [1810, 1825, 1840, 1860, 1878, 1892, 1902, 1908, 1910, 1912, 1912.8, 1913.01]
   },
   'TTE': {
     price: 1.608530,
@@ -264,19 +264,20 @@ async function fetchLiveTefasDataFromWeb(codes) {
 
         const parsed = await page.evaluate(() => {
           const text = document.body.innerText;
-          const priceMatch = text.match(/([0-9]+,[0-9]{4,6})\s*\n\s*%\s*\n\s*([+-]?[0-9]+,[0-9]{2})/);
-          const wMatch = text.match(/1 Hafta\s*\n\s*%\s*\n\s*([+-]?[0-9]+,[0-9]{2})/);
-          const mMatch = text.match(/1 Ay\s*\n\s*%\s*\n\s*([+-]?[0-9]+,[0-9]{2})/);
-          const yMatch = text.match(/1 Yıl\s*\n\s*%\s*\n\s*([+-]?[0-9]+,[0-9]{2})/);
+          const priceMatch = text.match(/([0-9.]+,\d{4,6})\s*\n\s*%\s*\n\s*([+-]?[0-9]+,\d{2})/);
+          const wMatch = text.match(/1 Hafta\s*\n\s*%\s*\n\s*([+-]?[0-9]+,\d{2})/);
+          const mMatch = text.match(/1 Ay\s*\n\s*%\s*\n\s*([+-]?[0-9]+,\d{2})/);
+          const yMatch = text.match(/1 Yıl\s*\n\s*%\s*\n\s*([+-]?[0-9]+,\d{2})/);
           const sizeMatch = text.match(/Fon Toplam Değer\s*\n\s*([0-9.]+)\s*\n\s*TL/);
           const invMatch = text.match(/Yatırımcı Sayısı\s*\n\s*([0-9.]+)/);
 
           if (!priceMatch) return null;
           const toNum = s => s ? Number(s.replace(/\./g, '').replace(',', '.')) : 0;
           const toFloat = s => s ? Number(s.replace(',', '.')) : 0;
+          const parsePrice = s => s ? Number(s.replace(/\./g, '').replace(',', '.')) : 0;
 
           return {
-            price: toFloat(priceMatch[1]),
+            price: parsePrice(priceMatch[1]),
             dailyReturn: toFloat(priceMatch[2]),
             weeklyReturn: toFloat(wMatch ? wMatch[1] : '0'),
             monthlyReturn: toFloat(mMatch ? mMatch[1] : '0'),
