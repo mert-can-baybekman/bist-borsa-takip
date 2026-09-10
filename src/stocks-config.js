@@ -91,7 +91,7 @@ export const STOCKS_CONFIG = [
   { symbol: 'CANTE', name: 'Çan2 Termik', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
   { symbol: 'BIOEN', name: 'Biotrend Çevre ve Enerji', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
   { symbol: 'ENERY', name: 'Enerya Enerji', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
-  { symbol: 'TATEN', name: 'TatlせるPınarı Enerji', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
+  { symbol: 'TATEN', name: 'Tatlıpınar Enerji', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
   { symbol: 'ZOREN', name: 'Zorlu Enerji', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
   { symbol: 'ODAS', name: 'Odaş Elektrik Üretim', sector: 'Enerji & Altyapı', bist30: false, dividend: false },
   { symbol: 'KOZAL', name: 'Koza Altın İşletmeleri', sector: 'Madencilik & Emtia', bist30: true, dividend: false },

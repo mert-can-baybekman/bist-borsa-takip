@@ -7,21 +7,21 @@ export const FUNDS_CONFIG = [
   // HİSSE SENEDİ YOĞUN FONLAR
   {
     code: 'THF',
-    name: 'TEB Portföy Hisse Senedi Fonu (Hisse Senedi Yoğun Fon)',
-    company: 'TEB Portföy Yönetimi A.Ş.',
-    category: 'Hisse Senedi',
-    riskLevel: 6,
-    featured: true,
-    desc: 'BIST hisse senetlerinde aktif portföy yönetimi ve yüksek sermaye kazancı odaklı fon.'
-  },
-  {
-    code: 'PTO',
-    name: 'Tera Portföy Birinci Hisse Senedi (TL) Fonu (Hisse Senedi Yoğun Fon)',
+    name: 'Tera Portföy Hisse Senedi (TL) Fonu (Hisse Senedi Yoğun Fon)',
     company: 'Tera Portföy Yönetimi A.Ş.',
     category: 'Hisse Senedi',
     riskLevel: 6,
     featured: true,
-    desc: 'Borsa İstanbul\'da büyüme potansiyeli yüksek şirketlere yatırım yapan dinamik hisse fonu.'
+    desc: 'Borsa İstanbul\'da büyüme potansiyeli yüksek şirketlere yatırım yapan Tera Portföy hisse senedi fonu.'
+  },
+  {
+    code: 'PTO',
+    name: 'Pardus Portföy Temettü Ödeyen Şirketler Hisse Senedi Fonu (Hisse Senedi Yoğun Fon)',
+    company: 'Pardus Portföy Yönetimi A.Ş.',
+    category: 'Hisse Senedi',
+    riskLevel: 6,
+    featured: true,
+    desc: 'BIST\'te düzenli temettü ödeyen ve temettü verimi yüksek şirketlere odaklanan Pardus Portföy fonu.'
   },
   {
     code: 'MAC',
@@ -63,12 +63,12 @@ export const FUNDS_CONFIG = [
   // YABANCI, TEKNOLOJİ & SEKTÖREL FONLAR
   {
     code: 'TGE',
-    name: 'İş Portföy Emtia Yabancı BYF Fon Sepeti Fonu',
+    name: 'İş Portföy Emtia Yabancı Fon Sepeti Fonu',
     company: 'İş Portföy Yönetimi A.Ş.',
     category: 'Yabancı & Emtia',
     riskLevel: 6,
     featured: true,
-    desc: 'Küresel emtia piyasalarına (enerji, tarım, sanayi metalleri) yabancı BYF\'ler yoluyla yatırım.'
+    desc: 'Küresel emtia piyasalarına (enerji, tarım, sanayi metalleri) yabancı fon sepeti yoluyla yatırım.'
   },
   {
     code: 'IPJ',
@@ -110,7 +110,7 @@ export const FUNDS_CONFIG = [
   // PARA PİYASASI & LİKİT FONLAR
   {
     code: 'TP2',
-    name: 'Tera Portföy İkinci Para Piyasası (TL) Fonu',
+    name: 'Tera Portföy Para Piyasası (TL) Fonu',
     company: 'Tera Portföy Yönetimi A.Ş.',
     category: 'Para Piyasası',
     riskLevel: 1,
