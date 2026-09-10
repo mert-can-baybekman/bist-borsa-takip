@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-10T09:16:44.375Z",
-  "updatedAtFormatted": "10.09.2026 12:16:44",
+  "updatedAt": "2026-09-10T09:37:13.602Z",
+  "updatedAtFormatted": "10.09.2026 12:37:13",
   "marketSession": {
     "isOpen": true,
     "isPrePost": false,
@@ -8,8 +8,8 @@
     "statusColor": "emerald",
     "sessionName": "Canlı Seans Açık",
     "nextEvent": "18:00 Kapanış Seansı",
-    "countdownStr": "Kapanışa: 5s 44dk",
-    "timeStr": "12:16:44",
+    "countdownStr": "Kapanışa: 5s 23dk",
+    "timeStr": "12:37:13",
     "dateStr": "10.09.2026"
   },
   "indices": {
@@ -17,22 +17,22 @@
       "name": "BIST 100",
       "desc": "Borsa İstanbul Ulusal 100 Endeksi",
       "symbol": "XU100.IS",
-      "price": 14459.42,
-      "change": -46.08,
-      "changePercent": -0.32,
+      "price": 14443.59,
+      "change": -61.91,
+      "changePercent": -0.43,
       "prevClose": 14505.5,
       "dayHigh": 14569.89,
-      "dayLow": 14441.01,
-      "rsi14": 57.28,
-      "sma20": 14334.3,
+      "dayLow": 14435.67,
+      "rsi14": 56.75,
+      "sma20": 14333.51,
       "returns": {
-        "d1": -0.32,
-        "w1": 3.78,
-        "m1": 2.48,
-        "m3": 3.74,
-        "m6": 10.56,
-        "y1": 36.59,
-        "ytd": 25.75
+        "d1": -0.43,
+        "w1": 3.67,
+        "m1": 2.36,
+        "m3": 3.62,
+        "m6": 10.43,
+        "y1": 36.44,
+        "ytd": 25.61
       },
       "sparkline": [
         14610.9,
@@ -46,7 +46,7 @@
         14151.6,
         14405.3,
         14505.5,
-        14459.42
+        14443.59
       ],
       "history": [
         {
@@ -2304,8 +2304,8 @@
           "date": "10.09.2026",
           "open": 14550.67,
           "high": 14569.89,
-          "low": 14441.01,
-          "close": 14459.42,
+          "low": 14435.67,
+          "close": 14443.59,
           "volume": 0
         }
       ]
@@ -2314,22 +2314,22 @@
       "name": "BIST 30",
       "desc": "Borsa İstanbul 30 Endeksi",
       "symbol": "XU030.IS",
-      "price": 17181.09,
-      "change": -58.01,
-      "changePercent": -0.34,
+      "price": 17156.66,
+      "change": -82.44,
+      "changePercent": -0.48,
       "prevClose": 17239.1,
       "dayHigh": 17332.39,
-      "dayLow": 17156.47,
-      "rsi14": 67.26,
-      "sma20": 16607.86,
+      "dayLow": 17146.12,
+      "rsi14": 66.5,
+      "sma20": 16606.64,
       "returns": {
-        "d1": -0.34,
-        "w1": 5.41,
-        "m1": 7.58,
-        "m3": 7.79,
-        "m6": 15.32,
-        "y1": 47.53,
-        "ytd": 37.29
+        "d1": -0.48,
+        "w1": 5.26,
+        "m1": 7.43,
+        "m3": 7.64,
+        "m6": 15.15,
+        "y1": 47.32,
+        "ytd": 37.1
       },
       "sparkline": [
         16854.5,
@@ -2343,7 +2343,7 @@
         16730.7,
         17103.7,
         17239.1,
-        17181.09
+        17156.66
       ],
       "history": [
         {
@@ -4601,8 +4601,8 @@
           "date": "10.09.2026",
           "open": 17290.14,
           "high": 17332.39,
-          "low": 17156.47,
-          "close": 17181.09,
+          "low": 17146.12,
+          "close": 17156.66,
           "volume": 0
         }
       ]
@@ -4611,22 +4611,22 @@
       "name": "BIST Banka",
       "desc": "Bankacılık Sektör Endeksi",
       "symbol": "XBANK.IS",
-      "price": 17044.14,
-      "change": 44.94,
-      "changePercent": 0.26,
+      "price": 16965.28,
+      "change": -33.92,
+      "changePercent": -0.2,
       "prevClose": 16999.2,
       "dayHigh": 17102,
       "dayLow": 16869.64,
-      "rsi14": 61.72,
-      "sma20": 16344.94,
+      "rsi14": 60.46,
+      "sma20": 16341,
       "returns": {
-        "d1": 0.26,
-        "w1": 3.4,
-        "m1": 7.69,
-        "m3": -1.31,
-        "m6": -4.54,
-        "y1": 11.09,
-        "ytd": -1.16
+        "d1": -0.2,
+        "w1": 2.92,
+        "m1": 7.2,
+        "m3": -1.77,
+        "m6": -4.98,
+        "y1": 10.57,
+        "ytd": -1.62
       },
       "sparkline": [
         16525.4,
@@ -4640,7 +4640,7 @@
         16702.4,
         17423.4,
         16999.2,
-        17044.14
+        16965.28
       ],
       "history": [
         {
@@ -6899,7 +6899,7 @@
           "open": 17078.01,
           "high": 17102,
           "low": 16869.64,
-          "close": 17044.14,
+          "close": 16965.28,
           "volume": 0
         }
       ]
@@ -6908,22 +6908,22 @@
       "name": "BIST Sınai",
       "desc": "Sınai Şirketler Endeksi",
       "symbol": "XUSIN.IS",
-      "price": 20067.41,
-      "change": -100.59,
-      "changePercent": -0.5,
+      "price": 20036.07,
+      "change": -131.93,
+      "changePercent": -0.65,
       "prevClose": 20168,
       "dayHigh": 20288.76,
-      "dayLow": 20052.41,
-      "rsi14": 58.17,
-      "sma20": 19843.21,
+      "dayLow": 20032.56,
+      "rsi14": 57.59,
+      "sma20": 19841.64,
       "returns": {
-        "d1": -0.5,
-        "w1": 4.8,
-        "m1": 4.4,
-        "m3": 13.01,
-        "m6": 23.24,
-        "y1": 44.12,
-        "ytd": 41.03
+        "d1": -0.65,
+        "w1": 4.63,
+        "m1": 4.24,
+        "m3": 12.83,
+        "m6": 23.05,
+        "y1": 43.9,
+        "ytd": 40.81
       },
       "sparkline": [
         20099.2,
@@ -6937,7 +6937,7 @@
         19578.1,
         19945.1,
         20168,
-        20067.41
+        20036.07
       ],
       "history": [
         {
@@ -9195,8 +9195,8 @@
           "date": "10.09.2026",
           "open": 20217.6,
           "high": 20288.76,
-          "low": 20052.41,
-          "close": 20067.41,
+          "low": 20032.56,
+          "close": 20036.07,
           "volume": 0
         }
       ]
@@ -9205,10 +9205,10 @@
       "name": "BIST Bilişim",
       "desc": "Bilişim ve Teknoloji Endeksi",
       "symbol": "XBLSM.IS",
-      "price": 7360.07,
+      "price": 7358.05,
       "change": 0,
       "changePercent": 0,
-      "prevClose": 7360.07,
+      "prevClose": 7358.05,
       "dayHigh": 7385.22,
       "dayLow": 7281.77,
       "rsi14": null,
@@ -9223,26 +9223,26 @@
         "ytd": 0
       },
       "sparkline": [
-        7360.07
+        7358.05
       ],
       "history": [
         {
-          "timestamp": 1789030900,
+          "timestamp": 1789032130,
           "date": "10.09.2026",
           "open": 7290.17,
           "high": 7385.22,
           "low": 7281.77,
-          "close": 7360.07,
+          "close": 7358.05,
           "volume": 0
         }
       ]
     },
     "ALTIN": {
       "name": "Gram Altın (24K)",
-      "price": 6915.83,
+      "price": 6917.08,
       "prevClose": 6880.24,
-      "change": 35.59,
-      "changePercent": 0.52,
+      "change": 36.84,
+      "changePercent": 0.54,
       "unit": "₺/gr",
       "history": [
         {
@@ -10251,24 +10251,24 @@
         },
         {
           "date": "10.09.2026",
-          "close": 6881.6
+          "close": 6882.85
         }
       ]
     },
     "CEYREK": {
       "name": "Çeyrek Altın (Yeni)",
-      "price": 11307.38,
+      "price": 11309.43,
       "prevClose": 11249.19,
-      "change": 58.19,
-      "changePercent": 0.52,
+      "change": 60.24,
+      "changePercent": 0.54,
       "unit": "₺/Adet"
     },
     "GUMUS": {
       "name": "Gram Gümüş",
-      "price": 104.95,
+      "price": 104.84,
       "prevClose": 105.85,
-      "change": -0.9,
-      "changePercent": -0.85,
+      "change": -1.01,
+      "changePercent": -0.95,
       "unit": "₺/gr"
     }
   },
@@ -12613,7 +12613,7 @@
           "volume": 0
         },
         {
-          "timestamp": 1789031806,
+          "timestamp": 1789033036,
           "date": "10.09.2026",
           "open": 48.47,
           "high": 48.5,
@@ -12626,9 +12626,9 @@
     "EURTRY": {
       "name": "Euro / TL",
       "symbol": "EURTRY=X",
-      "price": 56.56,
-      "change": 0.19,
-      "changePercent": 0.34,
+      "price": 56.54,
+      "change": 0.17,
+      "changePercent": 0.3,
       "prevClose": 56.37,
       "history": [
         {
@@ -14963,12 +14963,12 @@
           "volume": 0
         },
         {
-          "timestamp": 1789031807,
+          "timestamp": 1789033033,
           "date": "10.09.2026",
           "open": 56.51,
           "high": 56.58,
           "low": 56.35,
-          "close": 56.56,
+          "close": 56.54,
           "volume": 0
         }
       ]
@@ -14976,9 +14976,9 @@
     "GBPTRY": {
       "name": "Sterlin / TL",
       "symbol": "GBPTRY=X",
-      "price": 65.62,
-      "change": -0.04,
-      "changePercent": -0.06,
+      "price": 65.69,
+      "change": 0.03,
+      "changePercent": 0.05,
       "prevClose": 65.66,
       "history": [
         {
@@ -17313,12 +17313,12 @@
           "volume": 0
         },
         {
-          "timestamp": 1789031553,
+          "timestamp": 1789032754,
           "date": "10.09.2026",
           "open": 65.68,
           "high": 65.75,
           "low": 65.62,
-          "close": 65.62,
+          "close": 65.69,
           "volume": 0
         }
       ]
@@ -17328,9 +17328,9 @@
     "BRENT": {
       "name": "Brent Petrol",
       "unit": "USD/Varil",
-      "price": 101.99,
-      "change": 0.78,
-      "changePercent": 0.77,
+      "price": 102.34,
+      "change": 1.13,
+      "changePercent": 1.12,
       "prevClose": 101.21,
       "history": [
         {
@@ -19598,17 +19598,17 @@
           "open": 101.8,
           "high": 102.57,
           "low": 100.19,
-          "close": 101.99,
-          "volume": 9897
+          "close": 102.34,
+          "volume": 10372
         }
       ]
     },
     "BITCOIN": {
       "name": "Bitcoin",
       "unit": "USD",
-      "price": 78125.99,
-      "change": -133.53,
-      "changePercent": -0.17,
+      "price": 78023.01,
+      "change": -236.51,
+      "changePercent": -0.3,
       "prevClose": 78259.52,
       "history": [
         {
@@ -22902,8 +22902,8 @@
           "open": 78291.64,
           "high": 78497.55,
           "low": 77906.91,
-          "close": 78125.99,
-          "volume": 28685848576
+          "close": 78023.01,
+          "volume": 28491714560
         }
       ]
     }
@@ -22912,33 +22912,33 @@
     "THYAO": {
       "symbol": "THYAO",
       "shortName": "TURK HAVA YOLLARI",
-      "price": 298.5,
+      "price": 298.25,
       "prevClose": 305,
-      "change": -6.5,
-      "changePercent": -2.13,
+      "change": -6.75,
+      "changePercent": -2.21,
       "dayHigh": 304,
-      "dayLow": 298,
+      "dayLow": 297.75,
       "fiftyTwoWeekHigh": 355.5,
       "fiftyTwoWeekLow": 262.75,
-      "volume": 12561457,
-      "rsi14": 44.1,
-      "sma20": 301.98,
-      "sma50": 314.61,
+      "volume": 13619005,
+      "rsi14": 43.9,
+      "sma20": 301.96,
+      "sma50": 314.6,
       "pivots": {
-        "pivot": 300.17,
-        "r1": 302.34,
-        "r2": 306.17,
-        "s1": 296.34,
-        "s2": 294.17
+        "pivot": 300,
+        "r1": 302.25,
+        "r2": 306.25,
+        "s1": 296,
+        "s2": 293.75
       },
       "returns": {
-        "d1": -2.13,
-        "w1": -1,
-        "m1": -1.49,
-        "m3": 1.02,
-        "m6": 7.86,
-        "y1": -7.44,
-        "ytd": 8.84
+        "d1": -2.21,
+        "w1": -1.08,
+        "m1": -1.57,
+        "m3": 0.93,
+        "m6": 7.77,
+        "y1": -7.52,
+        "ytd": 8.75
       },
       "sparkline": [
         300.5,
@@ -22952,7 +22952,7 @@
         291.5,
         296,
         305,
-        298.5
+        298.25
       ],
       "name": "Türk Hava Yolları",
       "sector": "Ulaştırma & Havacılık",
@@ -22963,33 +22963,33 @@
     "PGSUS": {
       "symbol": "PGSUS",
       "shortName": "PEGASUS",
-      "price": 152.9,
+      "price": 152.7,
       "prevClose": 155.5,
-      "change": -2.6,
-      "changePercent": -1.67,
+      "change": -2.8,
+      "changePercent": -1.8,
       "dayHigh": 155.8,
-      "dayLow": 152.7,
+      "dayLow": 152.6,
       "fiftyTwoWeekHigh": 238.6,
       "fiftyTwoWeekLow": 146,
-      "volume": 2247681,
-      "rsi14": 49.85,
-      "sma20": 150.7,
+      "volume": 2367220,
+      "rsi14": 49.53,
+      "sma20": 150.69,
       "sma50": 158.11,
       "pivots": {
-        "pivot": 153.8,
-        "r1": 154.9,
+        "pivot": 153.7,
+        "r1": 154.8,
         "r2": 156.9,
-        "s1": 151.8,
-        "s2": 150.7
+        "s1": 151.6,
+        "s2": 150.5
       },
       "returns": {
-        "d1": -1.67,
-        "w1": 0.66,
-        "m1": 1.06,
-        "m3": -8.33,
-        "m6": -13.71,
-        "y1": -31.37,
-        "ytd": -21.59
+        "d1": -1.8,
+        "w1": 0.53,
+        "m1": 0.93,
+        "m3": -8.45,
+        "m6": -13.83,
+        "y1": -31.46,
+        "ytd": -21.69
       },
       "sparkline": [
         149.6,
@@ -23003,7 +23003,7 @@
         148.2,
         148.7,
         155.5,
-        152.9
+        152.7
       ],
       "name": "Pegasus Hava Taşımacılığı",
       "sector": "Ulaştırma & Havacılık",
@@ -23014,33 +23014,33 @@
     "TAVHL": {
       "symbol": "TAVHL",
       "shortName": "TAV HAVALIMANLARI",
-      "price": 273.75,
+      "price": 273.5,
       "prevClose": 275.25,
-      "change": -1.5,
-      "changePercent": -0.54,
+      "change": -1.75,
+      "changePercent": -0.64,
       "dayHigh": 277.75,
       "dayLow": 273.25,
       "fiftyTwoWeekHigh": 369,
       "fiftyTwoWeekLow": 217.6,
-      "volume": 385003,
-      "rsi14": 50.08,
-      "sma20": 275.43,
-      "sma50": 273.01,
+      "volume": 413708,
+      "rsi14": 49.87,
+      "sma20": 275.41,
+      "sma50": 273,
       "pivots": {
-        "pivot": 274.92,
-        "r1": 276.59,
-        "r2": 279.42,
-        "s1": 272.09,
-        "s2": 270.42
+        "pivot": 274.83,
+        "r1": 276.41,
+        "r2": 279.33,
+        "s1": 271.91,
+        "s2": 270.33
       },
       "returns": {
-        "d1": -0.54,
-        "w1": 5.19,
-        "m1": 0.18,
-        "m3": 5.09,
-        "m6": -6.01,
-        "y1": 14.01,
-        "ytd": -11.91
+        "d1": -0.64,
+        "w1": 5.09,
+        "m1": 0.09,
+        "m3": 4.99,
+        "m6": -6.09,
+        "y1": 13.91,
+        "ytd": -11.99
       },
       "sparkline": [
         276,
@@ -23054,7 +23054,7 @@
         266.25,
         268.25,
         275.25,
-        273.75
+        273.5
       ],
       "name": "TAV Havalimanları",
       "sector": "Ulaştırma & Havacılık",
@@ -23065,33 +23065,33 @@
     "CLEBI": {
       "symbol": "CLEBI",
       "shortName": "CELEBI",
-      "price": 1462,
+      "price": 1461,
       "prevClose": 1474,
-      "change": -12,
-      "changePercent": -0.81,
+      "change": -13,
+      "changePercent": -0.88,
       "dayHigh": 1470,
       "dayLow": 1458,
       "fiftyTwoWeekHigh": 2247,
       "fiftyTwoWeekLow": 1427,
-      "volume": 4995,
-      "rsi14": 45.78,
-      "sma20": 1483,
-      "sma50": 1499.82,
+      "volume": 6206,
+      "rsi14": 45.59,
+      "sma20": 1482.95,
+      "sma50": 1499.8,
       "pivots": {
-        "pivot": 1463.33,
-        "r1": 1468.66,
-        "r2": 1475.33,
-        "s1": 1456.66,
-        "s2": 1451.33
+        "pivot": 1463,
+        "r1": 1468,
+        "r2": 1475,
+        "s1": 1456,
+        "s2": 1451
       },
       "returns": {
-        "d1": -0.81,
-        "w1": 0.69,
-        "m1": -2.21,
-        "m3": -9.31,
-        "m6": -15.25,
-        "y1": -3.82,
-        "ytd": -5.62
+        "d1": -0.88,
+        "w1": 0.62,
+        "m1": -2.27,
+        "m3": -9.37,
+        "m6": -15.3,
+        "y1": -3.88,
+        "ytd": -5.68
       },
       "sparkline": [
         1494,
@@ -23105,7 +23105,7 @@
         1429,
         1451,
         1474,
-        1462
+        1461
       ],
       "name": "Çelebi Hava Servisi",
       "sector": "Ulaştırma & Havacılık",
@@ -23116,33 +23116,33 @@
     "GARAN": {
       "symbol": "GARAN",
       "shortName": "GARANTI BANKASI",
-      "price": 135.7,
+      "price": 135,
       "prevClose": 136,
-      "change": -0.3,
-      "changePercent": -0.22,
+      "change": -1,
+      "changePercent": -0.74,
       "dayHigh": 136.1,
       "dayLow": 133.5,
       "fiftyTwoWeekHigh": 169.7,
       "fiftyTwoWeekLow": 115.4,
-      "volume": 9893371,
-      "rsi14": 60.82,
-      "sma20": 131.78,
-      "sma50": 130.06,
+      "volume": 10670733,
+      "rsi14": 58.86,
+      "sma20": 131.75,
+      "sma50": 130.05,
       "pivots": {
-        "pivot": 135.1,
-        "r1": 136.7,
-        "r2": 137.7,
-        "s1": 134.1,
-        "s2": 132.5
+        "pivot": 134.87,
+        "r1": 136.24,
+        "r2": 137.47,
+        "s1": 133.64,
+        "s2": 132.27
       },
       "returns": {
-        "d1": -0.22,
-        "w1": 2.11,
-        "m1": 7.19,
-        "m3": 5.85,
-        "m6": 0.15,
-        "y1": -4.37,
-        "ytd": -9.35
+        "d1": -0.74,
+        "w1": 1.58,
+        "m1": 6.64,
+        "m3": 5.3,
+        "m6": -0.37,
+        "y1": -4.86,
+        "ytd": -9.82
       },
       "sparkline": [
         131.6,
@@ -23156,7 +23156,7 @@
         131.4,
         131.4,
         136,
-        135.7
+        135
       ],
       "name": "Garanti BBVA",
       "sector": "Bankacılık & Finans",
@@ -23167,33 +23167,33 @@
     "AKBNK": {
       "symbol": "AKBNK",
       "shortName": "AKBANK",
-      "price": 73.2,
+      "price": 72.9,
       "prevClose": 74.95,
-      "change": -1.75,
-      "changePercent": -2.33,
+      "change": -2.05,
+      "changePercent": -2.74,
       "dayHigh": 73.4,
       "dayLow": 72.25,
       "fiftyTwoWeekHigh": 93.5,
       "fiftyTwoWeekLow": 53.05,
-      "volume": 62912452,
-      "rsi14": 58.71,
-      "sma20": 71.08,
+      "volume": 68959803,
+      "rsi14": 57.51,
+      "sma20": 71.07,
       "sma50": 69.62,
       "pivots": {
-        "pivot": 72.95,
-        "r1": 73.65,
-        "r2": 74.1,
-        "s1": 72.5,
-        "s2": 71.8
+        "pivot": 72.85,
+        "r1": 73.45,
+        "r2": 74,
+        "s1": 72.3,
+        "s2": 71.7
       },
       "returns": {
-        "d1": -2.33,
-        "w1": 1.74,
-        "m1": 9.58,
-        "m3": 10.74,
-        "m6": -1.15,
-        "y1": 14.55,
-        "ytd": -0.41
+        "d1": -2.74,
+        "w1": 1.32,
+        "m1": 9.13,
+        "m3": 10.29,
+        "m6": -1.55,
+        "y1": 14.08,
+        "ytd": -0.82
       },
       "sparkline": [
         72.1,
@@ -23207,7 +23207,7 @@
         71.55,
         71.85,
         74.95,
-        73.2
+        72.9
       ],
       "name": "Akbank",
       "sector": "Bankacılık & Finans",
@@ -23218,33 +23218,33 @@
     "ISCTR": {
       "symbol": "ISCTR",
       "shortName": "IS BANKASI (C)",
-      "price": 13.91,
+      "price": 13.8,
       "prevClose": 14.35,
-      "change": -0.44,
-      "changePercent": -3.07,
+      "change": -0.55,
+      "changePercent": -3.83,
       "dayHigh": 14.04,
-      "dayLow": 13.79,
+      "dayLow": 13.78,
       "fiftyTwoWeekHigh": 18.21,
       "fiftyTwoWeekLow": 11.11,
-      "volume": 240289723,
-      "rsi14": 64.93,
-      "sma20": 12.78,
+      "volume": 263590307,
+      "rsi14": 62.93,
+      "sma20": 12.77,
       "sma50": 13.08,
       "pivots": {
-        "pivot": 13.91,
-        "r1": 14.03,
-        "r2": 14.16,
-        "s1": 13.78,
-        "s2": 13.66
+        "pivot": 13.87,
+        "r1": 13.96,
+        "r2": 14.13,
+        "s1": 13.7,
+        "s2": 13.61
       },
       "returns": {
-        "d1": -3.07,
-        "w1": 9.1,
-        "m1": 14.86,
-        "m3": 1.31,
-        "m6": -2.18,
-        "y1": -0.22,
-        "ytd": -3.27
+        "d1": -3.83,
+        "w1": 8.24,
+        "m1": 13.96,
+        "m3": 0.51,
+        "m6": -2.95,
+        "y1": -1,
+        "ytd": -4.03
       },
       "sparkline": [
         12.59,
@@ -23258,7 +23258,7 @@
         12.95,
         13.01,
         14.35,
-        13.91
+        13.8
       ],
       "name": "Türkiye İş Bankası (C)",
       "sector": "Bankacılık & Finans",
@@ -23269,33 +23269,33 @@
     "YKBNK": {
       "symbol": "YKBNK",
       "shortName": "YAPI VE KREDI BANK.",
-      "price": 36.6,
+      "price": 36.52,
       "prevClose": 37.62,
-      "change": -1.02,
-      "changePercent": -2.71,
+      "change": -1.1,
+      "changePercent": -2.92,
       "dayHigh": 36.9,
       "dayLow": 36.34,
       "fiftyTwoWeekHigh": 44.5,
       "fiftyTwoWeekLow": 27.14,
-      "volume": 50561169,
-      "rsi14": 54.65,
-      "sma20": 36.09,
+      "volume": 53218529,
+      "rsi14": 54.13,
+      "sma20": 36.08,
       "sma50": 35.28,
       "pivots": {
-        "pivot": 36.61,
-        "r1": 36.88,
-        "r2": 37.17,
-        "s1": 36.32,
-        "s2": 36.05
+        "pivot": 36.59,
+        "r1": 36.84,
+        "r2": 37.15,
+        "s1": 36.28,
+        "s2": 36.03
       },
       "returns": {
-        "d1": -2.71,
-        "w1": -0.6,
-        "m1": 7.65,
-        "m3": 5.17,
-        "m6": 3.51,
-        "y1": 16.04,
-        "ytd": -3.99
+        "d1": -2.92,
+        "w1": -0.81,
+        "m1": 7.41,
+        "m3": 4.94,
+        "m6": 3.28,
+        "y1": 15.79,
+        "ytd": -4.2
       },
       "sparkline": [
         36.52,
@@ -23309,7 +23309,7 @@
         35.9,
         35.9,
         37.62,
-        36.6
+        36.52
       ],
       "name": "Yapı ve Kredi Bankası",
       "sector": "Bankacılık & Finans",
@@ -23320,33 +23320,33 @@
     "VAKBN": {
       "symbol": "VAKBN",
       "shortName": "VAKIFLAR BANKASI",
-      "price": 35.6,
+      "price": 35.3,
       "prevClose": 36.64,
-      "change": -1.04,
-      "changePercent": -2.84,
+      "change": -1.34,
+      "changePercent": -3.66,
       "dayHigh": 35.84,
       "dayLow": 34.96,
       "fiftyTwoWeekHigh": 43.06,
       "fiftyTwoWeekLow": 21.38,
-      "volume": 22734971,
-      "rsi14": 64.63,
-      "sma20": 32.22,
-      "sma50": 31.43,
+      "volume": 24500123,
+      "rsi14": 63.02,
+      "sma20": 32.2,
+      "sma50": 31.42,
       "pivots": {
-        "pivot": 35.47,
-        "r1": 35.98,
-        "r2": 36.35,
-        "s1": 35.1,
-        "s2": 34.59
+        "pivot": 35.37,
+        "r1": 35.78,
+        "r2": 36.25,
+        "s1": 34.9,
+        "s2": 34.49
       },
       "returns": {
-        "d1": -2.84,
-        "w1": 9.34,
-        "m1": 20.92,
-        "m3": 12.73,
-        "m6": 3.61,
-        "y1": 31.08,
-        "ytd": 12.37
+        "d1": -3.66,
+        "w1": 8.42,
+        "m1": 19.9,
+        "m3": 11.78,
+        "m6": 2.74,
+        "y1": 29.97,
+        "ytd": 11.43
       },
       "sparkline": [
         31.38,
@@ -23360,7 +23360,7 @@
         33.74,
         33.62,
         36.64,
-        35.6
+        35.3
       ],
       "name": "Vakıflar Bankası",
       "sector": "Bankacılık & Finans",
@@ -23379,7 +23379,7 @@
       "dayLow": 49.44,
       "fiftyTwoWeekHigh": 54.35,
       "fiftyTwoWeekLow": 23.38,
-      "volume": 19326421,
+      "volume": 20741354,
       "rsi14": 65.77,
       "sma20": 40.07,
       "sma50": 39.28,
@@ -23422,33 +23422,33 @@
     "TSKB": {
       "symbol": "TSKB",
       "shortName": "T.S.K.B.",
-      "price": 11.4,
+      "price": 11.36,
       "prevClose": 11.62,
-      "change": -0.22,
-      "changePercent": -1.89,
+      "change": -0.26,
+      "changePercent": -2.24,
       "dayHigh": 11.5,
-      "dayLow": 11.36,
+      "dayLow": 11.33,
       "fiftyTwoWeekHigh": 14.52,
       "fiftyTwoWeekLow": 10.69,
-      "volume": 3863033,
-      "rsi14": 55.47,
+      "volume": 4653567,
+      "rsi14": 54.54,
       "sma20": 11.07,
       "sma50": 11.28,
       "pivots": {
-        "pivot": 11.42,
-        "r1": 11.48,
-        "r2": 11.56,
-        "s1": 11.34,
-        "s2": 11.28
+        "pivot": 11.4,
+        "r1": 11.47,
+        "r2": 11.57,
+        "s1": 11.3,
+        "s2": 11.23
       },
       "returns": {
-        "d1": -1.89,
-        "w1": 3.73,
-        "m1": 3.54,
-        "m3": -1.72,
-        "m6": -2.48,
-        "y1": -15.24,
-        "ytd": -11.21
+        "d1": -2.24,
+        "w1": 3.37,
+        "m1": 3.18,
+        "m3": -2.07,
+        "m6": -2.82,
+        "y1": -15.54,
+        "ytd": -11.53
       },
       "sparkline": [
         11.15,
@@ -23462,7 +23462,7 @@
         11.04,
         10.97,
         11.62,
-        11.4
+        11.36
       ],
       "name": "T.S.K.B.",
       "sector": "Bankacılık & Finans",
@@ -23473,33 +23473,33 @@
     "ALBRK": {
       "symbol": "ALBRK",
       "shortName": "ALBARAKA TURK",
-      "price": 9.2,
+      "price": 9.19,
       "prevClose": 9.13,
-      "change": 0.07,
-      "changePercent": 0.77,
+      "change": 0.06,
+      "changePercent": 0.66,
       "dayHigh": 9.3,
       "dayLow": 8.97,
       "fiftyTwoWeekHigh": 10.54,
       "fiftyTwoWeekLow": 7.42,
-      "volume": 2740848,
-      "rsi14": 66.06,
+      "volume": 2897108,
+      "rsi14": 65.87,
       "sma20": 8.72,
       "sma50": 8.35,
       "pivots": {
-        "pivot": 9.16,
-        "r1": 9.35,
-        "r2": 9.49,
-        "s1": 9.02,
-        "s2": 8.83
+        "pivot": 9.15,
+        "r1": 9.33,
+        "r2": 9.48,
+        "s1": 9,
+        "s2": 8.82
       },
       "returns": {
-        "d1": 0.77,
-        "w1": 5.99,
-        "m1": 10.84,
-        "m3": 16.46,
-        "m6": 9.65,
-        "y1": 10.71,
-        "ytd": 13.58
+        "d1": 0.66,
+        "w1": 5.88,
+        "m1": 10.72,
+        "m3": 16.33,
+        "m6": 9.54,
+        "y1": 10.59,
+        "ytd": 13.46
       },
       "sparkline": [
         8.94,
@@ -23513,7 +23513,7 @@
         8.67,
         8.69,
         9.13,
-        9.2
+        9.19
       ],
       "name": "Albaraka Türk Katılım",
       "sector": "Bankacılık & Finans",
@@ -23524,33 +23524,33 @@
     "SKBNK": {
       "symbol": "SKBNK",
       "shortName": "SEKERBANK",
-      "price": 6.43,
+      "price": 6.4,
       "prevClose": 6.78,
-      "change": -0.35,
-      "changePercent": -5.16,
+      "change": -0.38,
+      "changePercent": -5.6,
       "dayHigh": 6.46,
       "dayLow": 6.38,
       "fiftyTwoWeekHigh": 20,
       "fiftyTwoWeekLow": 5.81,
-      "volume": 23128537,
-      "rsi14": 37.68,
+      "volume": 25413723,
+      "rsi14": 37.4,
       "sma20": 6.26,
       "sma50": 10.46,
       "pivots": {
-        "pivot": 6.42,
-        "r1": 6.46,
-        "r2": 6.5,
-        "s1": 6.38,
-        "s2": 6.34
+        "pivot": 6.41,
+        "r1": 6.44,
+        "r2": 6.49,
+        "s1": 6.36,
+        "s2": 6.33
       },
       "returns": {
-        "d1": -5.16,
-        "w1": 1.74,
-        "m1": 8.25,
-        "m3": -51.65,
-        "m6": -38.76,
-        "y1": -13.69,
-        "ytd": -17.35
+        "d1": -5.6,
+        "w1": 1.27,
+        "m1": 7.74,
+        "m3": -51.88,
+        "m6": -39.05,
+        "y1": -14.09,
+        "ytd": -17.74
       },
       "sparkline": [
         6.25,
@@ -23564,7 +23564,7 @@
         6.29,
         6.24,
         6.78,
-        6.43
+        6.4
       ],
       "name": "Şekerbank",
       "sector": "Bankacılık & Finans",
@@ -23575,33 +23575,33 @@
     "ISMEN": {
       "symbol": "ISMEN",
       "shortName": "IS Y. MEN. DEG.",
-      "price": 36.76,
+      "price": 36.66,
       "prevClose": 36.7,
-      "change": 0.06,
-      "changePercent": 0.16,
+      "change": -0.04,
+      "changePercent": -0.11,
       "dayHigh": 37.1,
       "dayLow": 36.6,
       "fiftyTwoWeekHigh": 54,
       "fiftyTwoWeekLow": 32.04,
-      "volume": 2078183,
-      "rsi14": 65.13,
-      "sma20": 33.63,
+      "volume": 2336596,
+      "rsi14": 64.58,
+      "sma20": 33.62,
       "sma50": 34.65,
       "pivots": {
-        "pivot": 36.82,
-        "r1": 37.04,
-        "r2": 37.32,
-        "s1": 36.54,
-        "s2": 36.32
+        "pivot": 36.79,
+        "r1": 36.98,
+        "r2": 37.29,
+        "s1": 36.48,
+        "s2": 36.29
       },
       "returns": {
-        "d1": 0.16,
-        "w1": 8.31,
-        "m1": 9.99,
-        "m3": 2.85,
-        "m6": -17.21,
-        "y1": -12.68,
-        "ytd": -9.37
+        "d1": -0.11,
+        "w1": 8.01,
+        "m1": 9.69,
+        "m3": 2.57,
+        "m6": -17.43,
+        "y1": -12.92,
+        "ytd": -9.62
       },
       "sparkline": [
         32.5,
@@ -23615,7 +23615,7 @@
         35.42,
         34.5,
         36.7,
-        36.76
+        36.66
       ],
       "name": "İş Yatırım Menkul Değerler",
       "sector": "Bankacılık & Finans",
@@ -23626,33 +23626,33 @@
     "ISFIN": {
       "symbol": "ISFIN",
       "shortName": "IS FIN.KIR.",
-      "price": 19.48,
+      "price": 19.41,
       "prevClose": 19.77,
-      "change": -0.29,
-      "changePercent": -1.47,
+      "change": -0.36,
+      "changePercent": -1.82,
       "dayHigh": 19.58,
-      "dayLow": 19.42,
+      "dayLow": 19.38,
       "fiftyTwoWeekHigh": 22.32,
       "fiftyTwoWeekLow": 15.84,
-      "volume": 208416,
-      "rsi14": 43.77,
+      "volume": 228710,
+      "rsi14": 42.53,
       "sma20": 19.92,
       "sma50": 19.76,
       "pivots": {
-        "pivot": 19.49,
-        "r1": 19.56,
-        "r2": 19.65,
-        "s1": 19.4,
-        "s2": 19.33
+        "pivot": 19.46,
+        "r1": 19.54,
+        "r2": 19.66,
+        "s1": 19.34,
+        "s2": 19.26
       },
       "returns": {
-        "d1": -1.47,
-        "w1": 0.41,
-        "m1": -2.6,
-        "m3": 0.83,
-        "m6": -1.62,
-        "y1": 19.44,
-        "ytd": 12.41
+        "d1": -1.82,
+        "w1": 0.05,
+        "m1": -2.95,
+        "m3": 0.47,
+        "m6": -1.97,
+        "y1": 19.01,
+        "ytd": 12
       },
       "sparkline": [
         19.97,
@@ -23666,7 +23666,7 @@
         19.31,
         19.23,
         19.77,
-        19.48
+        19.41
       ],
       "name": "İş Finansal Kiralama",
       "sector": "Bankacılık & Finans",
@@ -23685,7 +23685,7 @@
       "dayLow": 402.25,
       "fiftyTwoWeekHigh": 450,
       "fiftyTwoWeekLow": 171.1,
-      "volume": 6654922,
+      "volume": 7192286,
       "rsi14": 60.08,
       "sma20": 393.3,
       "sma50": 374.35,
@@ -23728,33 +23728,33 @@
     "TCELL": {
       "symbol": "TCELL",
       "shortName": "TURKCELL",
-      "price": 100.5,
+      "price": 100.6,
       "prevClose": 101.6,
-      "change": -1.1,
-      "changePercent": -1.08,
+      "change": -1,
+      "changePercent": -0.98,
       "dayHigh": 102.2,
       "dayLow": 100.3,
       "fiftyTwoWeekHigh": 129.6,
       "fiftyTwoWeekLow": 87.05,
-      "volume": 7102642,
-      "rsi14": 46.79,
-      "sma20": 101.5,
+      "volume": 7590919,
+      "rsi14": 46.99,
+      "sma20": 101.51,
       "sma50": 104.39,
       "pivots": {
-        "pivot": 101,
-        "r1": 101.7,
-        "r2": 102.9,
-        "s1": 99.8,
-        "s2": 99.1
+        "pivot": 101.03,
+        "r1": 101.76,
+        "r2": 102.93,
+        "s1": 99.86,
+        "s2": 99.13
       },
       "returns": {
-        "d1": -1.08,
-        "w1": 4.09,
-        "m1": -4.56,
-        "m3": -3.92,
-        "m6": -6.51,
-        "y1": 13.24,
-        "ytd": 4.69
+        "d1": -0.98,
+        "w1": 4.19,
+        "m1": -4.46,
+        "m3": -3.82,
+        "m6": -6.42,
+        "y1": 13.35,
+        "ytd": 4.79
       },
       "sparkline": [
         103.1,
@@ -23768,7 +23768,7 @@
         96.6,
         98.15,
         101.6,
-        100.5
+        100.6
       ],
       "name": "Turkcell İletişim",
       "sector": "Teknoloji & Telekomünikasyon",
@@ -23779,33 +23779,33 @@
     "TTKOM": {
       "symbol": "TTKOM",
       "shortName": "TURK TELEKOM",
-      "price": 54.8,
+      "price": 54.75,
       "prevClose": 54.5,
-      "change": 0.3,
-      "changePercent": 0.55,
+      "change": 0.25,
+      "changePercent": 0.46,
       "dayHigh": 55.55,
       "dayLow": 54.35,
       "fiftyTwoWeekHigh": 75.65,
       "fiftyTwoWeekLow": 47.48,
-      "volume": 12120281,
-      "rsi14": 54.65,
+      "volume": 13057324,
+      "rsi14": 54.47,
       "sma20": 53.41,
-      "sma50": 55.18,
+      "sma50": 55.17,
       "pivots": {
-        "pivot": 54.9,
-        "r1": 55.45,
-        "r2": 56.1,
-        "s1": 54.25,
-        "s2": 53.7
+        "pivot": 54.88,
+        "r1": 55.41,
+        "r2": 56.08,
+        "s1": 54.21,
+        "s2": 53.68
       },
       "returns": {
-        "d1": 0.55,
-        "w1": 6.3,
-        "m1": -2.14,
-        "m3": -10.53,
-        "m6": -7.28,
-        "y1": 7.77,
-        "ytd": -5.68
+        "d1": 0.46,
+        "w1": 6.21,
+        "m1": -2.23,
+        "m3": -10.61,
+        "m6": -7.36,
+        "y1": 7.67,
+        "ytd": -5.77
       },
       "sparkline": [
         53.4,
@@ -23819,7 +23819,7 @@
         50.8,
         51.9,
         54.5,
-        54.8
+        54.75
       ],
       "name": "Türk Telekomünikasyon",
       "sector": "Teknoloji & Telekomünikasyon",
@@ -23830,33 +23830,33 @@
     "VBTYZ": {
       "symbol": "VBTYZ",
       "shortName": "VBT YAZILIM",
-      "price": 37.08,
+      "price": 37.28,
       "prevClose": 37.9,
-      "change": -0.82,
-      "changePercent": -2.16,
+      "change": -0.62,
+      "changePercent": -1.64,
       "dayHigh": 37.34,
       "dayLow": 36.64,
       "fiftyTwoWeekHigh": 40,
       "fiftyTwoWeekLow": 15.02,
-      "volume": 554186,
-      "rsi14": 55.77,
-      "sma20": 36.11,
-      "sma50": 32.69,
+      "volume": 610585,
+      "rsi14": 56.54,
+      "sma20": 36.12,
+      "sma50": 32.7,
       "pivots": {
-        "pivot": 37.02,
-        "r1": 37.4,
-        "r2": 37.72,
-        "s1": 36.7,
-        "s2": 36.32
+        "pivot": 37.09,
+        "r1": 37.54,
+        "r2": 37.79,
+        "s1": 36.84,
+        "s2": 36.39
       },
       "returns": {
-        "d1": -2.16,
-        "w1": -2.27,
-        "m1": 18.01,
-        "m3": 22.13,
-        "m6": 77.42,
-        "y1": 84.11,
-        "ytd": 124.05
+        "d1": -1.64,
+        "w1": -1.74,
+        "m1": 18.65,
+        "m3": 22.79,
+        "m6": 78.37,
+        "y1": 85.1,
+        "ytd": 125.26
       },
       "sparkline": [
         38.7,
@@ -23870,7 +23870,7 @@
         37.1,
         39,
         37.9,
-        37.08
+        37.28
       ],
       "name": "VBT Yazılım",
       "sector": "Teknoloji & Savunma",
@@ -23881,33 +23881,33 @@
     "SDTTR": {
       "symbol": "SDTTR",
       "shortName": "SDT UZAY VE SAVUNMA",
-      "price": 21.58,
+      "price": 21.5,
       "prevClose": 21.84,
-      "change": -0.26,
-      "changePercent": -1.19,
+      "change": -0.34,
+      "changePercent": -1.56,
       "dayHigh": 22.04,
-      "dayLow": 21.56,
+      "dayLow": 21.44,
       "fiftyTwoWeekHigh": 27.273,
       "fiftyTwoWeekLow": 15.755,
-      "volume": 2745227,
-      "rsi14": 45.31,
-      "sma20": 22.7,
-      "sma50": 22.54,
+      "volume": 2966139,
+      "rsi14": 44.91,
+      "sma20": 22.69,
+      "sma50": 22.53,
       "pivots": {
-        "pivot": 21.73,
-        "r1": 21.9,
-        "r2": 22.21,
-        "s1": 21.42,
-        "s2": 21.25
+        "pivot": 21.66,
+        "r1": 21.88,
+        "r2": 22.26,
+        "s1": 21.28,
+        "s2": 21.06
       },
       "returns": {
-        "d1": -1.19,
-        "w1": 1.89,
-        "m1": -4.77,
-        "m3": -7.82,
-        "m6": 5.68,
-        "y1": 18.31,
-        "ytd": 30.71
+        "d1": -1.56,
+        "w1": 1.51,
+        "m1": -5.12,
+        "m3": -8.16,
+        "m6": 5.29,
+        "y1": 17.87,
+        "ytd": 30.22
       },
       "sparkline": [
         24.64,
@@ -23921,7 +23921,7 @@
         20.4,
         21.62,
         21.84,
-        21.58
+        21.5
       ],
       "name": "SDT Uzay ve Savunma",
       "sector": "Teknoloji & Savunma",
@@ -23932,33 +23932,33 @@
     "MIATK": {
       "symbol": "MIATK",
       "shortName": "MIA TEKNOLOJI",
-      "price": 38.66,
+      "price": 38.14,
       "prevClose": 37.12,
-      "change": 1.54,
-      "changePercent": 4.15,
+      "change": 1.02,
+      "changePercent": 2.75,
       "dayHigh": 39.58,
       "dayLow": 36.62,
       "fiftyTwoWeekHigh": 57.85,
       "fiftyTwoWeekLow": 26.76,
-      "volume": 25009538,
-      "rsi14": 73.25,
-      "sma20": 30.78,
-      "sma50": 31.98,
+      "volume": 28085956,
+      "rsi14": 72.38,
+      "sma20": 30.75,
+      "sma50": 31.97,
       "pivots": {
-        "pivot": 38.29,
-        "r1": 39.96,
-        "r2": 41.25,
-        "s1": 37,
-        "s2": 35.33
+        "pivot": 38.11,
+        "r1": 39.6,
+        "r2": 41.07,
+        "s1": 36.64,
+        "s2": 35.15
       },
       "returns": {
-        "d1": 4.15,
-        "w1": 40.89,
-        "m1": 26.67,
-        "m3": -17.57,
-        "m6": 7.57,
-        "y1": -7.95,
-        "ytd": -2.32
+        "d1": 2.75,
+        "w1": 38.99,
+        "m1": 24.97,
+        "m3": -18.68,
+        "m6": 6.12,
+        "y1": -9.19,
+        "ytd": -3.64
       },
       "sparkline": [
         29.76,
@@ -23972,7 +23972,7 @@
         27.92,
         30.7,
         37.12,
-        38.66
+        38.14
       ],
       "name": "Mia Teknoloji",
       "sector": "Teknoloji & Savunma",
@@ -23983,33 +23983,33 @@
     "REEDR": {
       "symbol": "REEDR",
       "shortName": "REEDER TEKNOLOJI",
-      "price": 5.49,
+      "price": 5.48,
       "prevClose": 5.59,
-      "change": -0.1,
-      "changePercent": -1.79,
+      "change": -0.11,
+      "changePercent": -1.97,
       "dayHigh": 5.56,
-      "dayLow": 5.48,
+      "dayLow": 5.46,
       "fiftyTwoWeekHigh": 12.42,
       "fiftyTwoWeekLow": 5.34,
-      "volume": 4859887,
-      "rsi14": 31.73,
+      "volume": 5307177,
+      "rsi14": 31.5,
       "sma20": 5.83,
       "sma50": 6.29,
       "pivots": {
-        "pivot": 5.51,
+        "pivot": 5.5,
         "r1": 5.54,
-        "r2": 5.59,
-        "s1": 5.46,
-        "s2": 5.43
+        "r2": 5.6,
+        "s1": 5.44,
+        "s2": 5.4
       },
       "returns": {
-        "d1": -1.79,
-        "w1": -2.83,
-        "m1": -9.41,
-        "m3": -24.17,
-        "m6": -6.95,
-        "y1": -46.12,
-        "ytd": -18.55
+        "d1": -1.97,
+        "w1": -3.01,
+        "m1": -9.57,
+        "m3": -24.31,
+        "m6": -7.12,
+        "y1": -46.22,
+        "ytd": -18.69
       },
       "sparkline": [
         5.99,
@@ -24023,7 +24023,7 @@
         5.55,
         5.48,
         5.59,
-        5.49
+        5.48
       ],
       "name": "Reeder Teknoloji",
       "sector": "Teknoloji & Savunma",
@@ -24039,19 +24039,19 @@
       "change": 0.7,
       "changePercent": 0.51,
       "dayHigh": 139.9,
-      "dayLow": 138.3,
+      "dayLow": 137.7,
       "fiftyTwoWeekHigh": 182.5,
       "fiftyTwoWeekLow": 129,
-      "volume": 118132,
+      "volume": 186194,
       "rsi14": 55.42,
       "sma20": 135.93,
       "sma50": 136.17,
       "pivots": {
-        "pivot": 138.87,
-        "r1": 139.44,
-        "r2": 140.47,
-        "s1": 137.84,
-        "s2": 137.27
+        "pivot": 138.67,
+        "r1": 139.64,
+        "r2": 140.87,
+        "s1": 137.44,
+        "s2": 136.47
       },
       "returns": {
         "d1": 0.51,
@@ -24085,33 +24085,33 @@
     "ALTNY": {
       "symbol": "ALTNY",
       "shortName": "ALTINAY SAVUNMA",
-      "price": 18.34,
+      "price": 18.22,
       "prevClose": 18.18,
-      "change": 0.16,
-      "changePercent": 0.88,
+      "change": 0.04,
+      "changePercent": 0.22,
       "dayHigh": 18.71,
       "dayLow": 17.95,
       "fiftyTwoWeekHigh": 20.96,
       "fiftyTwoWeekLow": 14.21,
-      "volume": 16570695,
-      "rsi14": 58.02,
-      "sma20": 17.58,
+      "volume": 17264333,
+      "rsi14": 57.3,
+      "sma20": 17.57,
       "sma50": 16.75,
       "pivots": {
-        "pivot": 18.33,
-        "r1": 18.71,
-        "r2": 19.09,
-        "s1": 17.95,
-        "s2": 17.57
+        "pivot": 18.29,
+        "r1": 18.63,
+        "r2": 19.05,
+        "s1": 17.87,
+        "s2": 17.53
       },
       "returns": {
-        "d1": 0.88,
-        "w1": 5.1,
-        "m1": 14.55,
-        "m3": 13.91,
-        "m6": 19.32,
-        "y1": 6.5,
-        "ytd": 23
+        "d1": 0.22,
+        "w1": 4.41,
+        "m1": 13.8,
+        "m3": 13.17,
+        "m6": 18.54,
+        "y1": 5.81,
+        "ytd": 22.2
       },
       "sparkline": [
         18.6,
@@ -24125,7 +24125,7 @@
         16.89,
         16.53,
         18.18,
-        18.34
+        18.22
       ],
       "name": "Altınay Savunma Teknolojileri",
       "sector": "Teknoloji & Savunma",
@@ -24136,16 +24136,16 @@
     "PAPIL": {
       "symbol": "PAPIL",
       "shortName": "PAPILON SAVUNMA",
-      "price": 12.81,
+      "price": 12.8,
       "prevClose": 12.85,
-      "change": -0.04,
-      "changePercent": -0.31,
+      "change": -0.05,
+      "changePercent": -0.39,
       "dayHigh": 13.06,
       "dayLow": 12.77,
       "fiftyTwoWeekHigh": 21.48,
       "fiftyTwoWeekLow": 11.1,
-      "volume": 1840800,
-      "rsi14": 49.99,
+      "volume": 1905523,
+      "rsi14": 49.89,
       "sma20": 12.68,
       "sma50": 13.09,
       "pivots": {
@@ -24156,13 +24156,13 @@
         "s2": 12.59
       },
       "returns": {
-        "d1": -0.31,
-        "w1": -1.31,
-        "m1": 11.78,
-        "m3": -12.32,
-        "m6": -25.57,
-        "y1": -29.19,
-        "ytd": -21.02
+        "d1": -0.39,
+        "w1": -1.39,
+        "m1": 11.69,
+        "m3": -12.39,
+        "m6": -25.62,
+        "y1": -29.24,
+        "ytd": -21.09
       },
       "sparkline": [
         13.47,
@@ -24176,7 +24176,7 @@
         12.83,
         12.55,
         12.85,
-        12.81
+        12.8
       ],
       "name": "Papilon Savunma",
       "sector": "Teknoloji & Savunma",
@@ -24187,33 +24187,33 @@
     "KCHOL": {
       "symbol": "KCHOL",
       "shortName": "KOC HOLDING",
-      "price": 222.8,
+      "price": 223.6,
       "prevClose": 224.8,
-      "change": -2,
-      "changePercent": -0.89,
+      "change": -1.2,
+      "changePercent": -0.53,
       "dayHigh": 225.4,
       "dayLow": 222.6,
       "fiftyTwoWeekHigh": 229.1,
       "fiftyTwoWeekLow": 146,
-      "volume": 7352174,
-      "rsi14": 64.3,
-      "sma20": 214.21,
-      "sma50": 202.93,
+      "volume": 8004757,
+      "rsi14": 65.54,
+      "sma20": 214.25,
+      "sma50": 202.95,
       "pivots": {
-        "pivot": 223.6,
-        "r1": 224.6,
-        "r2": 226.4,
-        "s1": 221.8,
-        "s2": 220.8
+        "pivot": 223.87,
+        "r1": 225.14,
+        "r2": 226.67,
+        "s1": 222.34,
+        "s2": 221.07
       },
       "returns": {
-        "d1": -0.89,
-        "w1": 3.77,
-        "m1": 9.27,
-        "m3": 20.43,
-        "m6": 19.02,
-        "y1": 33.01,
-        "ytd": 27.46
+        "d1": -0.53,
+        "w1": 4.15,
+        "m1": 9.66,
+        "m3": 20.86,
+        "m6": 19.44,
+        "y1": 33.49,
+        "ytd": 27.92
       },
       "sparkline": [
         218.8,
@@ -24227,7 +24227,7 @@
         216.4,
         215.1,
         224.8,
-        222.8
+        223.6
       ],
       "name": "Koç Holding",
       "sector": "Holdingler",
@@ -24238,33 +24238,33 @@
     "SAHOL": {
       "symbol": "SAHOL",
       "shortName": "SABANCI HOLDING",
-      "price": 95.55,
+      "price": 95.3,
       "prevClose": 96.5,
-      "change": -0.95,
-      "changePercent": -0.98,
+      "change": -1.2,
+      "changePercent": -1.24,
       "dayHigh": 96.6,
-      "dayLow": 95.3,
+      "dayLow": 95.2,
       "fiftyTwoWeekHigh": 115,
       "fiftyTwoWeekLow": 73.9,
-      "volume": 6787768,
-      "rsi14": 63.91,
-      "sma20": 92.14,
-      "sma50": 90.57,
+      "volume": 7238199,
+      "rsi14": 62.75,
+      "sma20": 92.13,
+      "sma50": 90.56,
       "pivots": {
-        "pivot": 95.82,
-        "r1": 96.34,
-        "r2": 97.12,
-        "s1": 95.04,
-        "s2": 94.52
+        "pivot": 95.7,
+        "r1": 96.2,
+        "r2": 97.1,
+        "s1": 94.8,
+        "s2": 94.3
       },
       "returns": {
-        "d1": -0.98,
-        "w1": 2.52,
-        "m1": 7.97,
-        "m3": 4.83,
-        "m6": 6.17,
-        "y1": 9.39,
-        "ytd": 8.7
+        "d1": -1.24,
+        "w1": 2.25,
+        "m1": 7.68,
+        "m3": 4.55,
+        "m6": 5.89,
+        "y1": 9.1,
+        "ytd": 8.42
       },
       "sparkline": [
         94.25,
@@ -24278,7 +24278,7 @@
         93,
         92.6,
         96.5,
-        95.55
+        95.3
       ],
       "name": "Sabancı Holding",
       "sector": "Holdingler",
@@ -24289,33 +24289,33 @@
     "AGHOL": {
       "symbol": "AGHOL",
       "shortName": "ANADOLU GRUBU HOLDING",
-      "price": 35.06,
+      "price": 35.02,
       "prevClose": 35.16,
-      "change": -0.1,
-      "changePercent": -0.28,
+      "change": -0.14,
+      "changePercent": -0.4,
       "dayHigh": 35.52,
       "dayLow": 34.98,
       "fiftyTwoWeekHigh": 37.78,
       "fiftyTwoWeekLow": 23.9,
-      "volume": 930948,
-      "rsi14": 65.19,
+      "volume": 988894,
+      "rsi14": 64.86,
       "sma20": 31.94,
       "sma50": 33.34,
       "pivots": {
-        "pivot": 35.19,
-        "r1": 35.4,
-        "r2": 35.73,
-        "s1": 34.86,
-        "s2": 34.65
+        "pivot": 35.17,
+        "r1": 35.36,
+        "r2": 35.71,
+        "s1": 34.82,
+        "s2": 34.63
       },
       "returns": {
-        "d1": -0.28,
-        "w1": 8.28,
-        "m1": -2.01,
-        "m3": 8.61,
-        "m6": 18.13,
-        "y1": 31.9,
-        "ytd": 19.5
+        "d1": -0.4,
+        "w1": 8.15,
+        "m1": -2.12,
+        "m3": 8.49,
+        "m6": 17.99,
+        "y1": 31.75,
+        "ytd": 19.36
       },
       "sparkline": [
         31.14,
@@ -24329,7 +24329,7 @@
         32.98,
         32.88,
         35.16,
-        35.06
+        35.02
       ],
       "name": "Anadolu Grubu Holding",
       "sector": "Holdingler",
@@ -24340,33 +24340,33 @@
     "DOHOL": {
       "symbol": "DOHOL",
       "shortName": "DOGAN HOLDING",
-      "price": 21.56,
+      "price": 21.68,
       "prevClose": 21.76,
-      "change": -0.2,
-      "changePercent": -0.92,
-      "dayHigh": 21.66,
+      "change": -0.08,
+      "changePercent": -0.37,
+      "dayHigh": 21.68,
       "dayLow": 21.5,
       "fiftyTwoWeekHigh": 25.24,
       "fiftyTwoWeekLow": 15.87,
-      "volume": 2218685,
-      "rsi14": 50.8,
-      "sma20": 21.52,
+      "volume": 2702495,
+      "rsi14": 52.23,
+      "sma20": 21.53,
       "sma50": 21.17,
       "pivots": {
-        "pivot": 21.57,
-        "r1": 21.64,
-        "r2": 21.73,
-        "s1": 21.48,
-        "s2": 21.41
+        "pivot": 21.62,
+        "r1": 21.74,
+        "r2": 21.8,
+        "s1": 21.56,
+        "s2": 21.44
       },
       "returns": {
-        "d1": -0.92,
-        "w1": -0.37,
-        "m1": 2.18,
-        "m3": -1.1,
-        "m6": 8.45,
-        "y1": 27.8,
-        "ytd": 23.41
+        "d1": -0.37,
+        "w1": 0.18,
+        "m1": 2.75,
+        "m3": -0.55,
+        "m6": 9.05,
+        "y1": 28.51,
+        "ytd": 24.1
       },
       "sparkline": [
         21.66,
@@ -24380,7 +24380,7 @@
         21.42,
         21.8,
         21.76,
-        21.56
+        21.68
       ],
       "name": "Doğan Holding",
       "sector": "Holdingler",
@@ -24391,33 +24391,33 @@
     "ENKAI": {
       "symbol": "ENKAI",
       "shortName": "ENKA INSAAT",
-      "price": 90.3,
+      "price": 90.15,
       "prevClose": 89.65,
-      "change": 0.65,
-      "changePercent": 0.73,
+      "change": 0.5,
+      "changePercent": 0.56,
       "dayHigh": 90.85,
       "dayLow": 89.95,
       "fiftyTwoWeekHigh": 114.3,
       "fiftyTwoWeekLow": 66.1,
-      "volume": 3632055,
-      "rsi14": 59.17,
-      "sma20": 85.94,
+      "volume": 3830338,
+      "rsi14": 58.83,
+      "sma20": 85.93,
       "sma50": 87.88,
       "pivots": {
-        "pivot": 90.37,
-        "r1": 90.79,
-        "r2": 91.27,
-        "s1": 89.89,
-        "s2": 89.47
+        "pivot": 90.32,
+        "r1": 90.69,
+        "r2": 91.22,
+        "s1": 89.79,
+        "s2": 89.42
       },
       "returns": {
-        "d1": 0.73,
-        "w1": 1.57,
-        "m1": 4.76,
-        "m3": -3.73,
-        "m6": 0.78,
-        "y1": 35.89,
-        "ytd": 12.73
+        "d1": 0.56,
+        "w1": 1.41,
+        "m1": 4.58,
+        "m3": -3.89,
+        "m6": 0.61,
+        "y1": 35.67,
+        "ytd": 12.55
       },
       "sparkline": [
         82.95,
@@ -24431,7 +24431,7 @@
         86.9,
         87.25,
         89.65,
-        90.3
+        90.15
       ],
       "name": "Enka İnşaat ve Sanayi",
       "sector": "Holdingler",
@@ -24450,7 +24450,7 @@
       "dayLow": 115.1,
       "fiftyTwoWeekHigh": 117.2,
       "fiftyTwoWeekLow": 75.3,
-      "volume": 1073391,
+      "volume": 1129002,
       "rsi14": 66.11,
       "sma20": 108.24,
       "sma50": 105.45,
@@ -24493,33 +24493,33 @@
     "TKFEN": {
       "symbol": "TKFEN",
       "shortName": "TEKFEN HOLDING",
-      "price": 211.9,
+      "price": 212.5,
       "prevClose": 216.1,
-      "change": -4.2,
-      "changePercent": -1.94,
+      "change": -3.6,
+      "changePercent": -1.67,
       "dayHigh": 214.8,
       "dayLow": 209.7,
       "fiftyTwoWeekHigh": 245.2,
       "fiftyTwoWeekLow": 67,
-      "volume": 1423980,
-      "rsi14": 54.59,
-      "sma20": 220.7,
-      "sma50": 181.24,
+      "volume": 1620606,
+      "rsi14": 55.05,
+      "sma20": 220.73,
+      "sma50": 181.26,
       "pivots": {
-        "pivot": 212.13,
-        "r1": 214.56,
-        "r2": 217.23,
-        "s1": 209.46,
-        "s2": 207.03
+        "pivot": 212.33,
+        "r1": 214.96,
+        "r2": 217.43,
+        "s1": 209.86,
+        "s2": 207.23
       },
       "returns": {
-        "d1": -1.94,
-        "w1": -1.12,
-        "m1": -4.51,
-        "m3": 54.78,
-        "m6": 187.32,
-        "y1": 131.84,
-        "ytd": 190.87
+        "d1": -1.67,
+        "w1": -0.84,
+        "m1": -4.24,
+        "m3": 55.22,
+        "m6": 188.14,
+        "y1": 132.49,
+        "ytd": 191.7
       },
       "sparkline": [
         217.2,
@@ -24533,7 +24533,7 @@
         208.5,
         210.8,
         216.1,
-        211.9
+        212.5
       ],
       "name": "Tekfen Holding",
       "sector": "Holdingler",
@@ -24544,33 +24544,33 @@
     "BERA": {
       "symbol": "BERA",
       "shortName": "BERA HOLDING",
-      "price": 14.12,
+      "price": 14.08,
       "prevClose": 14.1,
-      "change": 0.02,
-      "changePercent": 0.14,
+      "change": -0.02,
+      "changePercent": -0.14,
       "dayHigh": 14.16,
       "dayLow": 14.05,
       "fiftyTwoWeekHigh": 23.1,
       "fiftyTwoWeekLow": 12.48,
-      "volume": 1193092,
-      "rsi14": 56.88,
+      "volume": 1460806,
+      "rsi14": 56.3,
       "sma20": 13.55,
       "sma50": 13.87,
       "pivots": {
-        "pivot": 14.11,
-        "r1": 14.17,
-        "r2": 14.22,
-        "s1": 14.06,
-        "s2": 14
+        "pivot": 14.1,
+        "r1": 14.15,
+        "r2": 14.21,
+        "s1": 14.04,
+        "s2": 13.99
       },
       "returns": {
-        "d1": 0.14,
-        "w1": 3.98,
-        "m1": 5.85,
-        "m3": -21.82,
-        "m6": -25.29,
-        "y1": -14.01,
-        "ytd": -22.59
+        "d1": -0.14,
+        "w1": 3.68,
+        "m1": 5.55,
+        "m3": -22.04,
+        "m6": -25.5,
+        "y1": -14.25,
+        "ytd": -22.81
       },
       "sparkline": [
         13.82,
@@ -24584,7 +24584,7 @@
         13.14,
         13.62,
         14.1,
-        14.12
+        14.08
       ],
       "name": "Bera Holding",
       "sector": "Holdingler",
@@ -24595,33 +24595,33 @@
     "ECZYT": {
       "symbol": "ECZYT",
       "shortName": "ECZACIBASI YATIRIM",
-      "price": 310.75,
+      "price": 311,
       "prevClose": 316,
-      "change": -5.25,
-      "changePercent": -1.66,
+      "change": -5,
+      "changePercent": -1.58,
       "dayHigh": 314.5,
-      "dayLow": 310.5,
+      "dayLow": 310.25,
       "fiftyTwoWeekHigh": 426.75,
       "fiftyTwoWeekLow": 207.9,
-      "volume": 35464,
-      "rsi14": 44.7,
-      "sma20": 318.44,
-      "sma50": 321.16,
+      "volume": 40116,
+      "rsi14": 44.84,
+      "sma20": 318.45,
+      "sma50": 321.17,
       "pivots": {
         "pivot": 311.92,
-        "r1": 313.34,
-        "r2": 315.92,
+        "r1": 313.59,
+        "r2": 316.17,
         "s1": 309.34,
-        "s2": 307.92
+        "s2": 307.67
       },
       "returns": {
-        "d1": -1.66,
-        "w1": -1.35,
-        "m1": -3.72,
-        "m3": -10.9,
-        "m6": 10.29,
-        "y1": 41.57,
-        "ytd": 6.33
+        "d1": -1.58,
+        "w1": -1.27,
+        "m1": -3.64,
+        "m3": -10.82,
+        "m6": 10.38,
+        "y1": 41.69,
+        "ytd": 6.42
       },
       "sparkline": [
         325,
@@ -24635,7 +24635,7 @@
         299.5,
         311.25,
         316,
-        310.75
+        311
       ],
       "name": "Eczacıbaşı Yatırım",
       "sector": "Holdingler",
@@ -24654,7 +24654,7 @@
       "dayLow": 4.67,
       "fiftyTwoWeekHigh": 6.92,
       "fiftyTwoWeekLow": 4,
-      "volume": 2071419,
+      "volume": 2126840,
       "rsi14": 45.17,
       "sma20": 4.74,
       "sma50": 5.1,
@@ -24697,33 +24697,33 @@
     "EREGL": {
       "symbol": "EREGL",
       "shortName": "EREGLI DEMIR CELIK",
-      "price": 38.82,
+      "price": 38.68,
       "prevClose": 39.92,
-      "change": -1.1,
-      "changePercent": -2.76,
+      "change": -1.24,
+      "changePercent": -3.11,
       "dayHigh": 39.58,
-      "dayLow": 38.74,
+      "dayLow": 38.66,
       "fiftyTwoWeekHigh": 45.1,
       "fiftyTwoWeekLow": 23.46,
-      "volume": 34815048,
-      "rsi14": 50.07,
-      "sma20": 38.1,
-      "sma50": 40.11,
+      "volume": 38608905,
+      "rsi14": 49.43,
+      "sma20": 38.09,
+      "sma50": 40.1,
       "pivots": {
-        "pivot": 39.05,
-        "r1": 39.36,
+        "pivot": 38.97,
+        "r1": 39.28,
         "r2": 39.89,
-        "s1": 38.52,
-        "s2": 38.21
+        "s1": 38.36,
+        "s2": 38.05
       },
       "returns": {
-        "d1": -2.76,
-        "w1": 2.75,
-        "m1": 5.26,
-        "m3": 0.47,
-        "m6": 37.66,
-        "y1": 49.19,
-        "ytd": 60.28
+        "d1": -3.11,
+        "w1": 2.38,
+        "m1": 4.88,
+        "m3": 0.1,
+        "m6": 37.16,
+        "y1": 48.65,
+        "ytd": 59.7
       },
       "sparkline": [
         38.18,
@@ -24737,7 +24737,7 @@
         36.58,
         37.2,
         39.92,
-        38.82
+        38.68
       ],
       "name": "Ereğli Demir ve Çelik",
       "sector": "Sanayi & Metal",
@@ -24748,33 +24748,33 @@
     "KRDMD": {
       "symbol": "KRDMD",
       "shortName": "KARDEMIR (D)",
-      "price": 46.66,
+      "price": 46.78,
       "prevClose": 45.98,
-      "change": 0.68,
-      "changePercent": 1.48,
+      "change": 0.8,
+      "changePercent": 1.74,
       "dayHigh": 48.06,
       "dayLow": 46.6,
       "fiftyTwoWeekHigh": 48.06,
       "fiftyTwoWeekLow": 23.5,
-      "volume": 14406164,
-      "rsi14": 59.68,
+      "volume": 14757279,
+      "rsi14": 60.02,
       "sma20": 44.7,
       "sma50": 42.25,
       "pivots": {
-        "pivot": 47.11,
-        "r1": 47.62,
-        "r2": 48.57,
-        "s1": 46.16,
-        "s2": 45.65
+        "pivot": 47.15,
+        "r1": 47.7,
+        "r2": 48.61,
+        "s1": 46.24,
+        "s2": 45.69
       },
       "returns": {
-        "d1": 1.48,
-        "w1": 5.09,
-        "m1": 16.3,
-        "m3": 22.53,
-        "m6": 58.28,
-        "y1": 79.46,
-        "ytd": 78.91
+        "d1": 1.74,
+        "w1": 5.36,
+        "m1": 16.6,
+        "m3": 22.85,
+        "m6": 58.68,
+        "y1": 79.92,
+        "ytd": 79.37
       },
       "sparkline": [
         45.2,
@@ -24788,7 +24788,7 @@
         42.98,
         43.52,
         45.98,
-        46.66
+        46.78
       ],
       "name": "Kardemir (D)",
       "sector": "Sanayi & Metal",
@@ -24799,33 +24799,33 @@
     "BRSAN": {
       "symbol": "BRSAN",
       "shortName": "BORUSAN BORU SANAYI",
-      "price": 704,
+      "price": 705.5,
       "prevClose": 728.5,
-      "change": -24.5,
-      "changePercent": -3.36,
+      "change": -23,
+      "changePercent": -3.16,
       "dayHigh": 721.5,
       "dayLow": 702,
       "fiftyTwoWeekHigh": 789,
       "fiftyTwoWeekLow": 383.5,
-      "volume": 465893,
-      "rsi14": 57,
-      "sma20": 693.7,
-      "sma50": 612.53,
+      "volume": 514458,
+      "rsi14": 57.35,
+      "sma20": 693.77,
+      "sma50": 612.56,
       "pivots": {
-        "pivot": 709.17,
-        "r1": 716.34,
-        "r2": 728.67,
-        "s1": 696.84,
-        "s2": 689.67
+        "pivot": 709.67,
+        "r1": 717.34,
+        "r2": 729.17,
+        "s1": 697.84,
+        "s2": 690.17
       },
       "returns": {
-        "d1": -3.36,
-        "w1": -0.42,
-        "m1": 11.92,
-        "m3": 13.73,
-        "m6": 43.89,
-        "y1": 56.53,
-        "ytd": 23.62
+        "d1": -3.16,
+        "w1": -0.21,
+        "m1": 12.16,
+        "m3": 13.97,
+        "m6": 44.2,
+        "y1": 56.86,
+        "ytd": 23.88
       },
       "sparkline": [
         753,
@@ -24839,7 +24839,7 @@
         688,
         715.5,
         728.5,
-        704
+        705.5
       ],
       "name": "Borusan Boru Sanayi",
       "sector": "Sanayi & Metal",
@@ -24850,33 +24850,33 @@
     "KCAER": {
       "symbol": "KCAER",
       "shortName": "KOCAER CELIK",
-      "price": 14.17,
+      "price": 14.26,
       "prevClose": 14.45,
-      "change": -0.28,
-      "changePercent": -1.94,
+      "change": -0.19,
+      "changePercent": -1.31,
       "dayHigh": 14.36,
       "dayLow": 14.09,
       "fiftyTwoWeekHigh": 16.9,
       "fiftyTwoWeekLow": 9.99,
-      "volume": 2144817,
-      "rsi14": 36.24,
+      "volume": 2493760,
+      "rsi14": 37.05,
       "sma20": 15.66,
       "sma50": 14.98,
       "pivots": {
-        "pivot": 14.21,
-        "r1": 14.33,
-        "r2": 14.48,
-        "s1": 14.06,
-        "s2": 13.94
+        "pivot": 14.24,
+        "r1": 14.39,
+        "r2": 14.51,
+        "s1": 14.12,
+        "s2": 13.97
       },
       "returns": {
-        "d1": -1.94,
-        "w1": -7.75,
-        "m1": -5.97,
-        "m3": -1.6,
-        "m6": 23.65,
-        "y1": 6.14,
-        "ytd": 34.82
+        "d1": -1.31,
+        "w1": -7.16,
+        "m1": -5.37,
+        "m3": -0.97,
+        "m6": 24.43,
+        "y1": 6.82,
+        "ytd": 35.68
       },
       "sparkline": [
         16.3,
@@ -24890,7 +24890,7 @@
         13.92,
         13.9,
         14.45,
-        14.17
+        14.26
       ],
       "name": "Kocaer Çelik Sanayi",
       "sector": "Sanayi & Metal",
@@ -24901,33 +24901,33 @@
     "SISE": {
       "symbol": "SISE",
       "shortName": "SISE CAM",
-      "price": 44.34,
+      "price": 44.4,
       "prevClose": 45.82,
-      "change": -1.48,
-      "changePercent": -3.23,
+      "change": -1.42,
+      "changePercent": -3.1,
       "dayHigh": 45.26,
       "dayLow": 44.14,
       "fiftyTwoWeekHigh": 54.1,
       "fiftyTwoWeekLow": 32.44,
-      "volume": 26808033,
-      "rsi14": 63.12,
+      "volume": 28916290,
+      "rsi14": 63.41,
       "sma20": 40.28,
       "sma50": 41.9,
       "pivots": {
-        "pivot": 44.58,
-        "r1": 45.02,
-        "r2": 45.7,
-        "s1": 43.9,
-        "s2": 43.46
+        "pivot": 44.6,
+        "r1": 45.06,
+        "r2": 45.72,
+        "s1": 43.94,
+        "s2": 43.48
       },
       "returns": {
-        "d1": -3.23,
-        "w1": 12.08,
-        "m1": 6.89,
-        "m3": 0.32,
-        "m6": 9.75,
-        "y1": 20.75,
-        "ytd": 13.29
+        "d1": -3.1,
+        "w1": 12.23,
+        "m1": 7.04,
+        "m3": 0.45,
+        "m6": 9.9,
+        "y1": 20.92,
+        "ytd": 13.44
       },
       "sparkline": [
         39.74,
@@ -24941,7 +24941,7 @@
         38.68,
         39.08,
         45.82,
-        44.34
+        44.4
       ],
       "name": "Türkiye Şişe ve Cam",
       "sector": "Sanayi & Cam",
@@ -24960,7 +24960,7 @@
       "dayLow": 22.12,
       "fiftyTwoWeekHigh": 28.56,
       "fiftyTwoWeekLow": 19.4,
-      "volume": 2817791,
+      "volume": 2973778,
       "rsi14": 53.42,
       "sma20": 22.11,
       "sma50": 21.18,
@@ -25003,33 +25003,33 @@
     "CIMSA": {
       "symbol": "CIMSA",
       "shortName": "CIMSA",
-      "price": 45.5,
+      "price": 45.44,
       "prevClose": 45.94,
-      "change": -0.44,
-      "changePercent": -0.96,
+      "change": -0.5,
+      "changePercent": -1.09,
       "dayHigh": 45.98,
       "dayLow": 45.4,
       "fiftyTwoWeekHigh": 60,
       "fiftyTwoWeekLow": 41.18,
-      "volume": 1739026,
-      "rsi14": 49.51,
+      "volume": 1804798,
+      "rsi14": 49.19,
       "sma20": 45.32,
       "sma50": 46.44,
       "pivots": {
-        "pivot": 45.63,
-        "r1": 45.86,
-        "r2": 46.21,
-        "s1": 45.28,
-        "s2": 45.05
+        "pivot": 45.61,
+        "r1": 45.82,
+        "r2": 46.19,
+        "s1": 45.24,
+        "s2": 45.03
       },
       "returns": {
-        "d1": -0.96,
-        "w1": 3.88,
-        "m1": 0.89,
-        "m3": -7.75,
-        "m6": -5.21,
-        "y1": 1.38,
-        "ytd": -0.09
+        "d1": -1.09,
+        "w1": 3.74,
+        "m1": 0.75,
+        "m3": -7.87,
+        "m6": -5.33,
+        "y1": 1.25,
+        "ytd": -0.22
       },
       "sparkline": [
         45.98,
@@ -25043,7 +25043,7 @@
         43.44,
         43.78,
         45.94,
-        45.5
+        45.44
       ],
       "name": "Çimsa Çimento Sanayi",
       "sector": "Sanayi & Yapı",
@@ -25054,33 +25054,33 @@
     "BSOKE": {
       "symbol": "BSOKE",
       "shortName": "BATICIM CIMENTO",
-      "price": 21.18,
+      "price": 21.44,
       "prevClose": 21.34,
-      "change": -0.16,
-      "changePercent": -0.75,
+      "change": 0.1,
+      "changePercent": 0.47,
       "dayHigh": 21.44,
       "dayLow": 20.2,
       "fiftyTwoWeekHigh": 40,
       "fiftyTwoWeekLow": 14.31,
-      "volume": 1622832,
-      "rsi14": 22.66,
-      "sma20": 29.88,
-      "sma50": 33.43,
+      "volume": 1844576,
+      "rsi14": 23.35,
+      "sma20": 29.89,
+      "sma50": 33.44,
       "pivots": {
-        "pivot": 20.94,
-        "r1": 21.68,
-        "r2": 22.18,
-        "s1": 20.44,
-        "s2": 19.7
+        "pivot": 21.03,
+        "r1": 21.86,
+        "r2": 22.27,
+        "s1": 20.62,
+        "s2": 19.79
       },
       "returns": {
-        "d1": -0.75,
-        "w1": -21.21,
-        "m1": -41.97,
-        "m3": -36.55,
-        "m6": -35.7,
-        "y1": 47.6,
-        "ytd": 30.58
+        "d1": 0.47,
+        "w1": -20.24,
+        "m1": -41.26,
+        "m3": -35.77,
+        "m6": -34.91,
+        "y1": 49.41,
+        "ytd": 32.18
       },
       "sparkline": [
         33.42,
@@ -25094,7 +25094,7 @@
         21.94,
         23.98,
         21.34,
-        21.18
+        21.44
       ],
       "name": "Batısöke Çimento",
       "sector": "Sanayi & Yapı",
@@ -25105,16 +25105,16 @@
     "BUCIM": {
       "symbol": "BUCIM",
       "shortName": "BURSA CIMENTO",
-      "price": 5.79,
+      "price": 5.8,
       "prevClose": 5.76,
-      "change": 0.03,
-      "changePercent": 0.52,
+      "change": 0.04,
+      "changePercent": 0.69,
       "dayHigh": 5.85,
       "dayLow": 5.79,
       "fiftyTwoWeekHigh": 8,
       "fiftyTwoWeekLow": 4.91,
-      "volume": 801457,
-      "rsi14": 61.65,
+      "volume": 808067,
+      "rsi14": 61.96,
       "sma20": 5.49,
       "sma50": 5.37,
       "pivots": {
@@ -25125,13 +25125,13 @@
         "s2": 5.75
       },
       "returns": {
-        "d1": 0.52,
-        "w1": -1.7,
-        "m1": 15.11,
-        "m3": -2.36,
-        "m6": -5.55,
-        "y1": -13.58,
-        "ytd": -24.21
+        "d1": 0.69,
+        "w1": -1.53,
+        "m1": 15.31,
+        "m3": -2.19,
+        "m6": -5.38,
+        "y1": -13.43,
+        "ytd": -24.08
       },
       "sparkline": [
         5.68,
@@ -25145,7 +25145,7 @@
         5.77,
         5.7,
         5.76,
-        5.79
+        5.8
       ],
       "name": "Bursa Çimento",
       "sector": "Sanayi & Yapı",
@@ -25164,7 +25164,7 @@
       "dayLow": 2.96,
       "fiftyTwoWeekHigh": 11.89,
       "fiftyTwoWeekLow": 2.42,
-      "volume": 11399273,
+      "volume": 12321098,
       "rsi14": 34.1,
       "sma20": 3.26,
       "sma50": 3.44,
@@ -25207,33 +25207,33 @@
     "EGEEN": {
       "symbol": "EGEEN",
       "shortName": "EGE ENDUSTRI",
-      "price": 5737.5,
+      "price": 5720,
       "prevClose": 5537.5,
-      "change": 200,
-      "changePercent": 3.61,
+      "change": 182.5,
+      "changePercent": 3.3,
       "dayHigh": 5865,
       "dayLow": 5690,
       "fiftyTwoWeekHigh": 8877.5,
       "fiftyTwoWeekLow": 4802.5,
-      "volume": 10633,
-      "rsi14": 67.7,
-      "sma20": 5192.63,
-      "sma50": 5350.2,
+      "volume": 11320,
+      "rsi14": 67.32,
+      "sma20": 5191.75,
+      "sma50": 5349.85,
       "pivots": {
-        "pivot": 5764.17,
-        "r1": 5838.34,
-        "r2": 5939.17,
-        "s1": 5663.34,
-        "s2": 5589.17
+        "pivot": 5758.33,
+        "r1": 5826.66,
+        "r2": 5933.33,
+        "s1": 5651.66,
+        "s2": 5583.33
       },
       "returns": {
-        "d1": 3.61,
-        "w1": 15.04,
-        "m1": 9.7,
-        "m3": 1.24,
-        "m6": -2.3,
-        "y1": -30.87,
-        "ytd": -28.97
+        "d1": 3.3,
+        "w1": 14.69,
+        "m1": 9.37,
+        "m3": 0.93,
+        "m6": -2.6,
+        "y1": -31.08,
+        "ytd": -29.19
       },
       "sparkline": [
         5235,
@@ -25247,7 +25247,7 @@
         4810,
         5140,
         5537.5,
-        5737.5
+        5720
       ],
       "name": "Ege Endüstri ve Ticaret",
       "sector": "Sanayi & Metal",
@@ -25258,33 +25258,33 @@
     "SARKY": {
       "symbol": "SARKY",
       "shortName": "SARKUYSAN",
-      "price": 25.7,
+      "price": 25.74,
       "prevClose": 26.34,
-      "change": -0.64,
-      "changePercent": -2.43,
+      "change": -0.6,
+      "changePercent": -2.28,
       "dayHigh": 26.88,
       "dayLow": 25.62,
       "fiftyTwoWeekHigh": 51.6,
       "fiftyTwoWeekLow": 12.35,
-      "volume": 1904023,
-      "rsi14": 51.93,
+      "volume": 1990731,
+      "rsi14": 52.14,
       "sma20": 25.51,
-      "sma50": 25.52,
+      "sma50": 25.53,
       "pivots": {
-        "pivot": 26.07,
-        "r1": 26.52,
-        "r2": 27.33,
-        "s1": 25.26,
-        "s2": 24.81
+        "pivot": 26.08,
+        "r1": 26.54,
+        "r2": 27.34,
+        "s1": 25.28,
+        "s2": 24.82
       },
       "returns": {
-        "d1": -2.43,
-        "w1": 4.73,
-        "m1": 3.96,
-        "m3": -8.28,
-        "m6": -18,
-        "y1": 106.59,
-        "ytd": 39.67
+        "d1": -2.28,
+        "w1": 4.89,
+        "m1": 4.13,
+        "m3": -8.14,
+        "m6": -17.87,
+        "y1": 106.91,
+        "ytd": 39.89
       },
       "sparkline": [
         25.9,
@@ -25298,7 +25298,7 @@
         23.44,
         23.48,
         26.34,
-        25.7
+        25.74
       ],
       "name": "Sarkuysan Elektrolitik Bakır",
       "sector": "Sanayi & Metal",
@@ -25309,33 +25309,33 @@
     "KORDS": {
       "symbol": "KORDS",
       "shortName": "KORDSA TEKNIK TEKSTIL",
-      "price": 79.05,
+      "price": 78,
       "prevClose": 79.8,
-      "change": -0.75,
-      "changePercent": -0.94,
+      "change": -1.8,
+      "changePercent": -2.26,
       "dayHigh": 84.8,
-      "dayLow": 78.8,
+      "dayLow": 77.7,
       "fiftyTwoWeekHigh": 98.9,
       "fiftyTwoWeekLow": 47.44,
-      "volume": 1658028,
-      "rsi14": 46.21,
-      "sma20": 85.91,
-      "sma50": 77.94,
+      "volume": 1800000,
+      "rsi14": 44.87,
+      "sma20": 85.86,
+      "sma50": 77.91,
       "pivots": {
-        "pivot": 80.88,
-        "r1": 82.96,
-        "r2": 86.88,
-        "s1": 76.96,
-        "s2": 74.88
+        "pivot": 80.17,
+        "r1": 82.64,
+        "r2": 87.27,
+        "s1": 75.54,
+        "s2": 73.07
       },
       "returns": {
-        "d1": -0.94,
-        "w1": -5.56,
-        "m1": 11.18,
-        "m3": -6.39,
-        "m6": 55,
-        "y1": 23.71,
-        "ytd": 60.74
+        "d1": -2.26,
+        "w1": -6.81,
+        "m1": 9.7,
+        "m3": -7.64,
+        "m6": 52.94,
+        "y1": 22.07,
+        "ytd": 58.6
       },
       "sparkline": [
         89.6,
@@ -25349,7 +25349,7 @@
         75.5,
         78.5,
         79.8,
-        79.05
+        78
       ],
       "name": "Kordsa Teknik Tekstil",
       "sector": "Sanayi & Tekstil",
@@ -25360,33 +25360,33 @@
     "FROTO": {
       "symbol": "FROTO",
       "shortName": "FORD OTOSAN",
-      "price": 82,
+      "price": 81.85,
       "prevClose": 82.8,
-      "change": -0.8,
-      "changePercent": -0.97,
+      "change": -0.95,
+      "changePercent": -1.15,
       "dayHigh": 84.3,
-      "dayLow": 81.85,
+      "dayLow": 81.8,
       "fiftyTwoWeekHigh": 135.4,
       "fiftyTwoWeekLow": 75.05,
-      "volume": 8060469,
-      "rsi14": 58.99,
-      "sma20": 78.94,
-      "sma50": 80.01,
+      "volume": 8791528,
+      "rsi14": 58.45,
+      "sma20": 78.93,
+      "sma50": 80,
       "pivots": {
-        "pivot": 82.72,
-        "r1": 83.59,
-        "r2": 85.17,
-        "s1": 81.14,
-        "s2": 80.27
+        "pivot": 82.65,
+        "r1": 83.5,
+        "r2": 85.15,
+        "s1": 81,
+        "s2": 80.15
       },
       "returns": {
-        "d1": -0.97,
-        "w1": 6.15,
-        "m1": 5.94,
-        "m3": -6.23,
-        "m6": -24.42,
-        "y1": -20.16,
-        "ytd": -14.23
+        "d1": -1.15,
+        "w1": 5.95,
+        "m1": 5.75,
+        "m3": -6.4,
+        "m6": -24.56,
+        "y1": -20.3,
+        "ytd": -14.38
       },
       "sparkline": [
         80.1,
@@ -25400,7 +25400,7 @@
         75.65,
         77.2,
         82.8,
-        82
+        81.85
       ],
       "name": "Ford Otomotiv Sanayi",
       "sector": "Otomotiv & Sanayi",
@@ -25411,33 +25411,33 @@
     "TOASO": {
       "symbol": "TOASO",
       "shortName": "TOFAS OTO. FAB.",
-      "price": 288.5,
+      "price": 289,
       "prevClose": 291.75,
-      "change": -3.25,
-      "changePercent": -1.11,
+      "change": -2.75,
+      "changePercent": -0.94,
       "dayHigh": 293.25,
       "dayLow": 287.5,
       "fiftyTwoWeekHigh": 358.25,
       "fiftyTwoWeekLow": 223.9,
-      "volume": 610990,
-      "rsi14": 60.09,
-      "sma20": 272.44,
-      "sma50": 280.83,
+      "volume": 645229,
+      "rsi14": 60.52,
+      "sma20": 272.46,
+      "sma50": 280.85,
       "pivots": {
-        "pivot": 289.75,
-        "r1": 292,
-        "r2": 295.5,
-        "s1": 286.25,
-        "s2": 284
+        "pivot": 289.92,
+        "r1": 292.34,
+        "r2": 295.67,
+        "s1": 286.59,
+        "s2": 284.17
       },
       "returns": {
-        "d1": -1.11,
-        "w1": 7.65,
-        "m1": 9.18,
-        "m3": -0.52,
-        "m6": -0.52,
-        "y1": 20.16,
-        "ytd": 11.5
+        "d1": -0.94,
+        "w1": 7.84,
+        "m1": 9.37,
+        "m3": -0.34,
+        "m6": -0.34,
+        "y1": 20.37,
+        "ytd": 11.69
       },
       "sparkline": [
         277.25,
@@ -25451,7 +25451,7 @@
         260.5,
         274.25,
         291.75,
-        288.5
+        289
       ],
       "name": "Tofaş Türk Otomobil",
       "sector": "Otomotiv & Sanayi",
@@ -25462,33 +25462,33 @@
     "DOAS": {
       "symbol": "DOAS",
       "shortName": "DOGUS OTOMOTIV",
-      "price": 164.4,
+      "price": 164.8,
       "prevClose": 166.7,
-      "change": -2.3,
-      "changePercent": -1.38,
+      "change": -1.9,
+      "changePercent": -1.14,
       "dayHigh": 166,
       "dayLow": 164.2,
       "fiftyTwoWeekHigh": 247,
       "fiftyTwoWeekLow": 159.1,
-      "volume": 189323,
-      "rsi14": 38.43,
-      "sma20": 168.41,
-      "sma50": 179.11,
+      "volume": 204966,
+      "rsi14": 38.9,
+      "sma20": 168.43,
+      "sma50": 179.12,
       "pivots": {
-        "pivot": 164.87,
-        "r1": 165.54,
-        "r2": 166.67,
-        "s1": 163.74,
-        "s2": 163.07
+        "pivot": 165,
+        "r1": 165.8,
+        "r2": 166.8,
+        "s1": 164,
+        "s2": 163.2
       },
       "returns": {
-        "d1": -1.38,
-        "w1": 0.12,
-        "m1": -15.3,
-        "m3": -18.17,
-        "m6": -15.56,
-        "y1": -3.86,
-        "ytd": -14.82
+        "d1": -1.14,
+        "w1": 0.37,
+        "m1": -15.1,
+        "m3": -17.97,
+        "m6": -15.36,
+        "y1": -3.63,
+        "ytd": -14.61
       },
       "sparkline": [
         168,
@@ -25502,7 +25502,7 @@
         159.4,
         162.9,
         166.7,
-        164.4
+        164.8
       ],
       "name": "Doğuş Otomotiv",
       "sector": "Otomotiv & Sanayi",
@@ -25513,33 +25513,33 @@
     "OTKAR": {
       "symbol": "OTKAR",
       "shortName": "OTOKAR",
-      "price": 322.75,
+      "price": 322.25,
       "prevClose": 330,
-      "change": -7.25,
-      "changePercent": -2.2,
+      "change": -7.75,
+      "changePercent": -2.35,
       "dayHigh": 326.5,
-      "dayLow": 322.5,
+      "dayLow": 322.25,
       "fiftyTwoWeekHigh": 569,
       "fiftyTwoWeekLow": 270,
-      "volume": 47008,
-      "rsi14": 51.31,
-      "sma20": 321.76,
-      "sma50": 324.47,
+      "volume": 48253,
+      "rsi14": 51.06,
+      "sma20": 321.74,
+      "sma50": 324.46,
       "pivots": {
-        "pivot": 323.92,
-        "r1": 325.34,
+        "pivot": 323.67,
+        "r1": 325.09,
         "r2": 327.92,
-        "s1": 321.34,
-        "s2": 319.92
+        "s1": 320.84,
+        "s2": 319.42
       },
       "returns": {
-        "d1": -2.2,
-        "w1": 0.55,
-        "m1": 11.1,
-        "m3": -8.76,
-        "m6": -12,
-        "y1": -36.9,
-        "ytd": -32.9
+        "d1": -2.35,
+        "w1": 0.39,
+        "m1": 10.93,
+        "m3": -8.9,
+        "m6": -12.13,
+        "y1": -37,
+        "ytd": -33
       },
       "sparkline": [
         330.5,
@@ -25553,7 +25553,7 @@
         308.5,
         312,
         330,
-        322.75
+        322.25
       ],
       "name": "Otokar Otomotiv ve Savunma",
       "sector": "Otomotiv & Sanayi",
@@ -25564,33 +25564,33 @@
     "KARSN": {
       "symbol": "KARSN",
       "shortName": "KARSAN OTOMOTIV",
-      "price": 15.86,
+      "price": 15.77,
       "prevClose": 14.15,
-      "change": 1.71,
-      "changePercent": 12.08,
+      "change": 1.62,
+      "changePercent": 11.45,
       "dayHigh": 16.49,
       "dayLow": 15.58,
       "fiftyTwoWeekHigh": 16.49,
       "fiftyTwoWeekLow": 9,
-      "volume": 36914328,
-      "rsi14": 88.76,
-      "sma20": 10.52,
+      "volume": 40088976,
+      "rsi14": 88.61,
+      "sma20": 10.51,
       "sma50": 10.8,
       "pivots": {
-        "pivot": 15.98,
-        "r1": 16.38,
-        "r2": 16.89,
-        "s1": 15.47,
-        "s2": 15.07
+        "pivot": 15.95,
+        "r1": 16.32,
+        "r2": 16.86,
+        "s1": 15.41,
+        "s2": 15.04
       },
       "returns": {
-        "d1": 12.08,
-        "w1": 54.28,
-        "m1": 60.36,
-        "m3": 31.4,
-        "m6": 59.24,
-        "y1": 43.01,
-        "ytd": 68.37
+        "d1": 11.45,
+        "w1": 53.4,
+        "m1": 59.45,
+        "m3": 30.65,
+        "m6": 58.33,
+        "y1": 42.2,
+        "ytd": 67.41
       },
       "sparkline": [
         9.35,
@@ -25604,7 +25604,7 @@
         12.43,
         12.68,
         14.15,
-        15.86
+        15.77
       ],
       "name": "Karsan Otomotiv",
       "sector": "Otomotiv & Sanayi",
@@ -25615,33 +25615,33 @@
     "BRISA": {
       "symbol": "BRISA",
       "shortName": "BRISA",
-      "price": 78.05,
+      "price": 77.95,
       "prevClose": 78.55,
-      "change": -0.5,
-      "changePercent": -0.64,
+      "change": -0.6,
+      "changePercent": -0.76,
       "dayHigh": 78.8,
-      "dayLow": 78.05,
+      "dayLow": 77.75,
       "fiftyTwoWeekHigh": 104,
       "fiftyTwoWeekLow": 71.8,
-      "volume": 32643,
-      "rsi14": 48.37,
+      "volume": 38168,
+      "rsi14": 48.07,
       "sma20": 78.22,
-      "sma50": 80.14,
+      "sma50": 80.13,
       "pivots": {
-        "pivot": 78.3,
-        "r1": 78.55,
-        "r2": 79.05,
-        "s1": 77.8,
-        "s2": 77.55
+        "pivot": 78.17,
+        "r1": 78.59,
+        "r2": 79.22,
+        "s1": 77.54,
+        "s2": 77.12
       },
       "returns": {
-        "d1": -0.64,
-        "w1": 2.63,
-        "m1": -2.38,
-        "m3": -14.04,
-        "m6": -8.77,
-        "y1": 6.55,
-        "ytd": -8.61
+        "d1": -0.76,
+        "w1": 2.5,
+        "m1": -2.5,
+        "m3": -14.15,
+        "m6": -8.88,
+        "y1": 6.42,
+        "ytd": -8.72
       },
       "sparkline": [
         79.95,
@@ -25655,7 +25655,7 @@
         74.05,
         74.7,
         78.55,
-        78.05
+        77.95
       ],
       "name": "Brisa Bridgestone Sabancı",
       "sector": "Otomotiv & Sanayi",
@@ -25666,33 +25666,33 @@
     "ARCLK": {
       "symbol": "ARCLK",
       "shortName": "ARCELIK",
-      "price": 94.3,
+      "price": 94.35,
       "prevClose": 95,
-      "change": -0.7,
-      "changePercent": -0.74,
+      "change": -0.65,
+      "changePercent": -0.68,
       "dayHigh": 95.75,
-      "dayLow": 94.2,
+      "dayLow": 94.15,
       "fiftyTwoWeekHigh": 140.8,
       "fiftyTwoWeekLow": 88.8,
-      "volume": 425236,
-      "rsi14": 51.39,
+      "volume": 450614,
+      "rsi14": 51.56,
       "sma20": 92.88,
       "sma50": 96.09,
       "pivots": {
         "pivot": 94.75,
-        "r1": 95.3,
-        "r2": 96.3,
+        "r1": 95.35,
+        "r2": 96.35,
         "s1": 93.75,
-        "s2": 93.2
+        "s2": 93.15
       },
       "returns": {
-        "d1": -0.74,
-        "w1": 4.49,
-        "m1": -3.23,
-        "m3": -7.55,
-        "m6": -13.49,
-        "y1": -25.28,
-        "ytd": -10.1
+        "d1": -0.68,
+        "w1": 4.54,
+        "m1": -3.18,
+        "m3": -7.5,
+        "m6": -13.44,
+        "y1": -25.24,
+        "ytd": -10.06
       },
       "sparkline": [
         92.85,
@@ -25706,7 +25706,7 @@
         88.85,
         91.05,
         95,
-        94.3
+        94.35
       ],
       "name": "Arçelik",
       "sector": "Dayanıklı Tüketim",
@@ -25722,19 +25722,19 @@
       "change": 0.9,
       "changePercent": 3.46,
       "dayHigh": 27.7,
-      "dayLow": 26.8,
+      "dayLow": 26.74,
       "fiftyTwoWeekHigh": 40.4,
       "fiftyTwoWeekLow": 21.1,
-      "volume": 3155152,
+      "volume": 3331180,
       "rsi14": 69.57,
       "sma20": 23.07,
       "sma50": 23.74,
       "pivots": {
-        "pivot": 27.13,
-        "r1": 27.46,
-        "r2": 28.03,
-        "s1": 26.56,
-        "s2": 26.23
+        "pivot": 27.11,
+        "r1": 27.48,
+        "r2": 28.07,
+        "s1": 26.52,
+        "s2": 26.15
       },
       "returns": {
         "d1": 3.46,
@@ -25768,16 +25768,16 @@
     "VESBE": {
       "symbol": "VESBE",
       "shortName": "VESTEL BEYAZ ESYA",
-      "price": 5.86,
+      "price": 5.87,
       "prevClose": 5.72,
-      "change": 0.14,
-      "changePercent": 2.45,
+      "change": 0.15,
+      "changePercent": 2.62,
       "dayHigh": 5.94,
       "dayLow": 5.84,
       "fiftyTwoWeekHigh": 12.05,
       "fiftyTwoWeekLow": 5.25,
-      "volume": 3125062,
-      "rsi14": 56.08,
+      "volume": 3435069,
+      "rsi14": 56.29,
       "sma20": 5.47,
       "sma50": 5.83,
       "pivots": {
@@ -25788,13 +25788,13 @@
         "s2": 5.78
       },
       "returns": {
-        "d1": 2.45,
-        "w1": 10.98,
-        "m1": 2.99,
-        "m3": -6.54,
-        "m6": -19.51,
-        "y1": -47.68,
-        "ytd": -26.38
+        "d1": 2.62,
+        "w1": 11.17,
+        "m1": 3.16,
+        "m3": -6.38,
+        "m6": -19.37,
+        "y1": -47.59,
+        "ytd": -26.26
       },
       "sparkline": [
         5.27,
@@ -25808,7 +25808,7 @@
         5.45,
         5.99,
         5.72,
-        5.86
+        5.87
       ],
       "name": "Vestel Beyaz Eşya",
       "sector": "Dayanıklı Tüketim",
@@ -25819,33 +25819,33 @@
     "TUPRS": {
       "symbol": "TUPRS",
       "shortName": "TUPRAS",
-      "price": 417.75,
+      "price": 415.25,
       "prevClose": 394.5,
-      "change": 23.25,
-      "changePercent": 5.89,
+      "change": 20.75,
+      "changePercent": 5.26,
       "dayHigh": 423,
       "dayLow": 410,
       "fiftyTwoWeekHigh": 423,
       "fiftyTwoWeekLow": 169.8,
-      "volume": 12085907,
-      "rsi14": 71.98,
-      "sma20": 385.86,
-      "sma50": 325.98,
+      "volume": 12911428,
+      "rsi14": 71.38,
+      "sma20": 385.74,
+      "sma50": 325.93,
       "pivots": {
-        "pivot": 416.92,
-        "r1": 423.84,
-        "r2": 429.92,
-        "s1": 410.84,
-        "s2": 403.92
+        "pivot": 416.08,
+        "r1": 422.16,
+        "r2": 429.08,
+        "s1": 409.16,
+        "s2": 403.08
       },
       "returns": {
-        "d1": 5.89,
-        "w1": 3.72,
-        "m1": 22.87,
-        "m3": 77.92,
-        "m6": 61.92,
-        "y1": 145.01,
-        "ytd": 123.4
+        "d1": 5.26,
+        "w1": 3.1,
+        "m1": 22.13,
+        "m3": 76.85,
+        "m6": 60.95,
+        "y1": 143.55,
+        "ytd": 122.06
       },
       "sparkline": [
         400.5,
@@ -25859,7 +25859,7 @@
         391,
         388.5,
         394.5,
-        417.75
+        415.25
       ],
       "name": "Tüpraş Türkiye Petrol Rafinerileri",
       "sector": "Enerji & Petrokimya",
@@ -25870,33 +25870,33 @@
     "PETKM": {
       "symbol": "PETKM",
       "shortName": "PETKIM",
-      "price": 25.52,
+      "price": 25.4,
       "prevClose": 24.26,
-      "change": 1.26,
-      "changePercent": 5.19,
+      "change": 1.14,
+      "changePercent": 4.7,
       "dayHigh": 26.54,
-      "dayLow": 25.5,
+      "dayLow": 25.32,
       "fiftyTwoWeekHigh": 28.06,
       "fiftyTwoWeekLow": 16.12,
-      "volume": 73453615,
-      "rsi14": 77.08,
+      "volume": 79326934,
+      "rsi14": 76.8,
       "sma20": 20.4,
       "sma50": 20.07,
       "pivots": {
-        "pivot": 25.85,
-        "r1": 26.2,
-        "r2": 26.89,
-        "s1": 25.16,
-        "s2": 24.81
+        "pivot": 25.75,
+        "r1": 26.18,
+        "r2": 26.97,
+        "s1": 24.96,
+        "s2": 24.53
       },
       "returns": {
-        "d1": 5.19,
-        "w1": 24.98,
-        "m1": 35.96,
-        "m3": 27.92,
-        "m6": 38.7,
-        "y1": 47.77,
-        "ytd": 53.92
+        "d1": 4.7,
+        "w1": 24.39,
+        "m1": 35.32,
+        "m3": 27.32,
+        "m6": 38.04,
+        "y1": 47.08,
+        "ytd": 53.2
       },
       "sparkline": [
         20.8,
@@ -25910,7 +25910,7 @@
         20.22,
         20.06,
         24.26,
-        25.52
+        25.4
       ],
       "name": "Petkim Petrokimya",
       "sector": "Enerji & Petrokimya",
@@ -25929,7 +25929,7 @@
       "dayLow": 290,
       "fiftyTwoWeekHigh": 385.75,
       "fiftyTwoWeekLow": 88.2,
-      "volume": 10636477,
+      "volume": 11462595,
       "rsi14": 38.76,
       "sma20": 326.5,
       "sma50": 312.11,
@@ -25972,33 +25972,33 @@
     "ENJSA": {
       "symbol": "ENJSA",
       "shortName": "ENERJISA ENERJI",
-      "price": 117,
+      "price": 116.7,
       "prevClose": 115.3,
-      "change": 1.7,
-      "changePercent": 1.47,
+      "change": 1.4,
+      "changePercent": 1.21,
       "dayHigh": 119.6,
-      "dayLow": 116.7,
+      "dayLow": 116.6,
       "fiftyTwoWeekHigh": 127.9,
       "fiftyTwoWeekLow": 68.05,
-      "volume": 1532811,
-      "rsi14": 60.09,
-      "sma20": 111.48,
-      "sma50": 108.54,
+      "volume": 1623893,
+      "rsi14": 59.67,
+      "sma20": 111.47,
+      "sma50": 108.53,
       "pivots": {
-        "pivot": 117.77,
-        "r1": 118.84,
-        "r2": 120.67,
-        "s1": 115.94,
-        "s2": 114.87
+        "pivot": 117.63,
+        "r1": 118.66,
+        "r2": 120.63,
+        "s1": 115.66,
+        "s2": 114.63
       },
       "returns": {
-        "d1": 1.47,
-        "w1": 5.6,
-        "m1": 3.45,
-        "m3": 12.18,
-        "m6": 13.04,
-        "y1": 67.98,
-        "ytd": 28.22
+        "d1": 1.21,
+        "w1": 5.32,
+        "m1": 3.18,
+        "m3": 11.89,
+        "m6": 12.75,
+        "y1": 67.55,
+        "ytd": 27.89
       },
       "sparkline": [
         110.6,
@@ -26012,7 +26012,7 @@
         114.5,
         113.7,
         115.3,
-        117
+        116.7
       ],
       "name": "Enerjisa Enerji",
       "sector": "Enerji & Altyapı",
@@ -26023,33 +26023,33 @@
     "AKSEN": {
       "symbol": "AKSEN",
       "shortName": "AKSA ENERJI",
-      "price": 80,
+      "price": 79.95,
       "prevClose": 80.4,
-      "change": -0.4,
-      "changePercent": -0.5,
+      "change": -0.45,
+      "changePercent": -0.56,
       "dayHigh": 80.95,
-      "dayLow": 79.8,
+      "dayLow": 79.7,
       "fiftyTwoWeekHigh": 117.5,
       "fiftyTwoWeekLow": 35.8,
-      "volume": 1201230,
-      "rsi14": 41.62,
-      "sma20": 82.06,
+      "volume": 1311038,
+      "rsi14": 41.54,
+      "sma20": 82.05,
       "sma50": 89.67,
       "pivots": {
-        "pivot": 80.25,
+        "pivot": 80.2,
         "r1": 80.7,
-        "r2": 81.4,
-        "s1": 79.55,
-        "s2": 79.1
+        "r2": 81.45,
+        "s1": 79.45,
+        "s2": 78.95
       },
       "returns": {
-        "d1": -0.5,
-        "w1": 1.85,
-        "m1": -2.79,
-        "m3": 4.37,
-        "m6": 17.56,
-        "y1": 120.75,
-        "ytd": 16.11
+        "d1": -0.56,
+        "w1": 1.78,
+        "m1": -2.86,
+        "m3": 4.31,
+        "m6": 17.49,
+        "y1": 120.61,
+        "ytd": 16.04
       },
       "sparkline": [
         81.4,
@@ -26063,7 +26063,7 @@
         79.35,
         78.8,
         80.4,
-        80
+        79.95
       ],
       "name": "Aksa Enerji Üretim",
       "sector": "Enerji & Altyapı",
@@ -26074,33 +26074,33 @@
     "AKSA": {
       "symbol": "AKSA",
       "shortName": "AKSA",
-      "price": 11.28,
+      "price": 11.32,
       "prevClose": 11.55,
-      "change": -0.27,
-      "changePercent": -2.34,
+      "change": -0.23,
+      "changePercent": -1.99,
       "dayHigh": 11.38,
       "dayLow": 11.24,
       "fiftyTwoWeekHigh": 13.28,
       "fiftyTwoWeekLow": 9.26,
-      "volume": 4301305,
-      "rsi14": 48.49,
+      "volume": 4888274,
+      "rsi14": 49.14,
       "sma20": 11.22,
       "sma50": 11.79,
       "pivots": {
-        "pivot": 11.3,
-        "r1": 11.36,
-        "r2": 11.44,
-        "s1": 11.22,
-        "s2": 11.16
+        "pivot": 11.31,
+        "r1": 11.38,
+        "r2": 11.45,
+        "s1": 11.24,
+        "s2": 11.17
       },
       "returns": {
-        "d1": -2.34,
-        "w1": 5.42,
-        "m1": -7.69,
-        "m3": 4.64,
-        "m6": 12.13,
-        "y1": 9.2,
-        "ytd": 11.57
+        "d1": -1.99,
+        "w1": 5.79,
+        "m1": -7.36,
+        "m3": 5.01,
+        "m6": 12.52,
+        "y1": 9.58,
+        "ytd": 11.97
       },
       "sparkline": [
         11.27,
@@ -26114,7 +26114,7 @@
         10.64,
         10.75,
         11.55,
-        11.28
+        11.32
       ],
       "name": "Aksa Akrilik Kimya",
       "sector": "Kimya & Sanayi",
@@ -26125,33 +26125,33 @@
     "GESAN": {
       "symbol": "GESAN",
       "shortName": "GIRISIM ELEKTRIK SANAYI",
-      "price": 62.65,
+      "price": 62.5,
       "prevClose": 61.5,
-      "change": 1.15,
-      "changePercent": 1.87,
+      "change": 1,
+      "changePercent": 1.63,
       "dayHigh": 63.6,
       "dayLow": 62.3,
       "fiftyTwoWeekHigh": 97.2,
       "fiftyTwoWeekLow": 41.48,
-      "volume": 3365967,
-      "rsi14": 29.17,
-      "sma20": 81.44,
-      "sma50": 80.2,
+      "volume": 3537384,
+      "rsi14": 28.91,
+      "sma20": 81.43,
+      "sma50": 80.19,
       "pivots": {
-        "pivot": 62.85,
-        "r1": 63.4,
-        "r2": 64.15,
-        "s1": 62.1,
-        "s2": 61.55
+        "pivot": 62.8,
+        "r1": 63.3,
+        "r2": 64.1,
+        "s1": 62,
+        "s2": 61.5
       },
       "returns": {
-        "d1": 1.87,
-        "w1": -24.43,
-        "m1": -21.83,
-        "m3": -30.12,
-        "m6": 39.59,
-        "y1": 45.63,
-        "ytd": 30.85
+        "d1": 1.63,
+        "w1": -24.61,
+        "m1": -22.02,
+        "m3": -30.28,
+        "m6": 39.26,
+        "y1": 45.28,
+        "ytd": 30.53
       },
       "sparkline": [
         88.65,
@@ -26165,7 +26165,7 @@
         67.2,
         60.5,
         61.5,
-        62.65
+        62.5
       ],
       "name": "Girişim Elektrik",
       "sector": "Enerji & Altyapı",
@@ -26227,33 +26227,33 @@
     "EUPWR": {
       "symbol": "EUPWR",
       "shortName": "EUROPOWER ENERJI",
-      "price": 74.85,
+      "price": 74.75,
       "prevClose": 70.45,
-      "change": 4.4,
-      "changePercent": 6.25,
+      "change": 4.3,
+      "changePercent": 6.1,
       "dayHigh": 76.55,
       "dayLow": 74.3,
       "fiftyTwoWeekHigh": 109.3,
       "fiftyTwoWeekLow": 25.5,
-      "volume": 8301096,
-      "rsi14": 36.2,
+      "volume": 8881987,
+      "rsi14": 36.08,
       "sma20": 90.85,
       "sma50": 90.46,
       "pivots": {
-        "pivot": 75.23,
-        "r1": 76.16,
-        "r2": 77.48,
-        "s1": 73.91,
-        "s2": 72.98
+        "pivot": 75.2,
+        "r1": 76.1,
+        "r2": 77.45,
+        "s1": 73.85,
+        "s2": 72.95
       },
       "returns": {
-        "d1": 6.25,
-        "w1": -18.95,
-        "m1": -16.93,
-        "m3": -22.52,
-        "m6": 108.73,
-        "y1": 179.5,
-        "ytd": 121.32
+        "d1": 6.1,
+        "w1": -19.06,
+        "m1": -17.04,
+        "m3": -22.62,
+        "m6": 108.45,
+        "y1": 179.13,
+        "ytd": 121.02
       },
       "sparkline": [
         93.2,
@@ -26267,7 +26267,7 @@
         74.85,
         69.4,
         70.45,
-        74.85
+        74.75
       ],
       "name": "Europower Enerji",
       "sector": "Enerji & Altyapı",
@@ -26283,19 +26283,19 @@
       "change": -0.82,
       "changePercent": -2.45,
       "dayHigh": 33.3,
-      "dayLow": 32.6,
+      "dayLow": 32.5,
       "fiftyTwoWeekHigh": 48.3,
       "fiftyTwoWeekLow": 15.228,
-      "volume": 6882636,
+      "volume": 7558925,
       "rsi14": 41.34,
       "sma20": 35.99,
       "sma50": 38.08,
       "pivots": {
-        "pivot": 32.86,
-        "r1": 33.12,
-        "r2": 33.56,
-        "s1": 32.42,
-        "s2": 32.16
+        "pivot": 32.83,
+        "r1": 33.16,
+        "r2": 33.63,
+        "s1": 32.36,
+        "s2": 32.03
       },
       "returns": {
         "d1": -2.45,
@@ -26329,33 +26329,33 @@
     "YEOTK": {
       "symbol": "YEOTK",
       "shortName": "YEO TEKNOLOJI ENERJI",
-      "price": 32.78,
+      "price": 32.84,
       "prevClose": 33.1,
-      "change": -0.32,
-      "changePercent": -0.97,
+      "change": -0.26,
+      "changePercent": -0.79,
       "dayHigh": 33.14,
       "dayLow": 32.44,
       "fiftyTwoWeekHigh": 53.036,
       "fiftyTwoWeekLow": 13.815,
-      "volume": 3753818,
-      "rsi14": 36.59,
+      "volume": 4074900,
+      "rsi14": 36.77,
       "sma20": 35.49,
       "sma50": 38.27,
       "pivots": {
-        "pivot": 32.79,
-        "r1": 33.14,
-        "r2": 33.49,
-        "s1": 32.44,
-        "s2": 32.09
+        "pivot": 32.81,
+        "r1": 33.18,
+        "r2": 33.51,
+        "s1": 32.48,
+        "s2": 32.11
       },
       "returns": {
-        "d1": -0.97,
-        "w1": -2.15,
-        "m1": -14.81,
-        "m3": -27.62,
-        "m6": 50.71,
-        "y1": 120.89,
-        "ytd": 106.42
+        "d1": -0.79,
+        "w1": -1.97,
+        "m1": -14.66,
+        "m3": -27.49,
+        "m6": 50.99,
+        "y1": 121.29,
+        "ytd": 106.8
       },
       "sparkline": [
         34.44,
@@ -26369,7 +26369,7 @@
         31.98,
         32.24,
         33.1,
-        32.78
+        32.84
       ],
       "name": "YEO Teknoloji Enerji",
       "sector": "Enerji & Teknoloji",
@@ -26380,33 +26380,33 @@
     "SMRTG": {
       "symbol": "SMRTG",
       "shortName": "SMART GUNES ENERJISI TEK.",
-      "price": 8.51,
+      "price": 8.44,
       "prevClose": 8.45,
-      "change": 0.06,
-      "changePercent": 0.71,
+      "change": -0.01,
+      "changePercent": -0.12,
       "dayHigh": 8.6,
       "dayLow": 8.39,
       "fiftyTwoWeekHigh": 13.33,
       "fiftyTwoWeekLow": 6.27,
-      "volume": 3536095,
-      "rsi14": 26.39,
-      "sma20": 9.85,
+      "volume": 4386316,
+      "rsi14": 24.99,
+      "sma20": 9.84,
       "sma50": 10.68,
       "pivots": {
-        "pivot": 8.5,
-        "r1": 8.61,
-        "r2": 8.71,
-        "s1": 8.4,
-        "s2": 8.29
+        "pivot": 8.48,
+        "r1": 8.57,
+        "r2": 8.69,
+        "s1": 8.36,
+        "s2": 8.27
       },
       "returns": {
-        "d1": 0.71,
-        "w1": -16.57,
-        "m1": -20.84,
-        "m3": -25.09,
-        "m6": 21.23,
-        "y1": -5.55,
-        "ytd": 10.81
+        "d1": -0.12,
+        "w1": -17.25,
+        "m1": -21.49,
+        "m3": -25.7,
+        "m6": 20.23,
+        "y1": -6.33,
+        "ytd": 9.9
       },
       "sparkline": [
         10.22,
@@ -26420,7 +26420,7 @@
         9,
         8.54,
         8.45,
-        8.51
+        8.44
       ],
       "name": "Smart Güneş Enerjisi",
       "sector": "Enerji & Altyapı",
@@ -26431,33 +26431,33 @@
     "GWIND": {
       "symbol": "GWIND",
       "shortName": "GALATA WIND ENERJI",
-      "price": 23.04,
+      "price": 23.1,
       "prevClose": 22.96,
-      "change": 0.08,
-      "changePercent": 0.35,
+      "change": 0.14,
+      "changePercent": 0.61,
       "dayHigh": 23.16,
       "dayLow": 22.9,
       "fiftyTwoWeekHigh": 33.62,
       "fiftyTwoWeekLow": 21.64,
-      "volume": 961269,
-      "rsi14": 47.07,
+      "volume": 1108438,
+      "rsi14": 47.86,
       "sma20": 22.91,
       "sma50": 23.91,
       "pivots": {
-        "pivot": 23.03,
-        "r1": 23.16,
-        "r2": 23.29,
-        "s1": 22.9,
-        "s2": 22.77
+        "pivot": 23.05,
+        "r1": 23.2,
+        "r2": 23.31,
+        "s1": 22.94,
+        "s2": 22.79
       },
       "returns": {
-        "d1": 0.35,
-        "w1": 2.4,
-        "m1": -3.6,
-        "m3": -12.66,
-        "m6": -3.76,
-        "y1": 0.26,
-        "ytd": -0.09
+        "d1": 0.61,
+        "w1": 2.67,
+        "m1": -3.35,
+        "m3": -12.43,
+        "m6": -3.51,
+        "y1": 0.52,
+        "ytd": 0.17
       },
       "sparkline": [
         23.24,
@@ -26471,7 +26471,7 @@
         21.98,
         22.34,
         22.96,
-        23.04
+        23.1
       ],
       "name": "Galata Wind Enerji",
       "sector": "Enerji & Altyapı",
@@ -26482,16 +26482,16 @@
     "CANTE": {
       "symbol": "CANTE",
       "shortName": "CAN2 TERMIK",
-      "price": 1.33,
+      "price": 1.32,
       "prevClose": 1.33,
-      "change": 0,
-      "changePercent": 0,
+      "change": -0.01,
+      "changePercent": -0.75,
       "dayHigh": 1.34,
       "dayLow": 1.32,
       "fiftyTwoWeekHigh": 2.87,
       "fiftyTwoWeekLow": 1.17,
-      "volume": 78937748,
-      "rsi14": 59.08,
+      "volume": 81039597,
+      "rsi14": 57.32,
       "sma20": 1.26,
       "sma50": 1.26,
       "pivots": {
@@ -26502,13 +26502,13 @@
         "s2": 1.31
       },
       "returns": {
-        "d1": 0,
-        "w1": 2.31,
-        "m1": 10.83,
-        "m3": -8.9,
-        "m6": -10.74,
-        "y1": -45.04,
-        "ytd": -34.8
+        "d1": -0.75,
+        "w1": 1.54,
+        "m1": 10,
+        "m3": -9.59,
+        "m6": -11.41,
+        "y1": -45.45,
+        "ytd": -35.29
       },
       "sparkline": [
         1.23,
@@ -26522,7 +26522,7 @@
         1.34,
         1.33,
         1.33,
-        1.33
+        1.32
       ],
       "name": "Çan2 Termik",
       "sector": "Enerji & Altyapı",
@@ -26533,16 +26533,16 @@
     "BIOEN": {
       "symbol": "BIOEN",
       "shortName": "BIOTREND CEVRE VE ENERJI",
-      "price": 18.62,
+      "price": 18.63,
       "prevClose": 19.01,
-      "change": -0.39,
-      "changePercent": -2.05,
+      "change": -0.38,
+      "changePercent": -2,
       "dayHigh": 18.85,
       "dayLow": 18.47,
       "fiftyTwoWeekHigh": 27.96,
       "fiftyTwoWeekLow": 14.67,
-      "volume": 1006584,
-      "rsi14": 49.69,
+      "volume": 1088943,
+      "rsi14": 49.76,
       "sma20": 18.81,
       "sma50": 18.1,
       "pivots": {
@@ -26553,13 +26553,13 @@
         "s2": 18.27
       },
       "returns": {
-        "d1": -2.05,
-        "w1": -3.92,
-        "m1": 9.53,
-        "m3": 6.95,
-        "m6": 9.59,
-        "y1": -21.37,
-        "ytd": 10.7
+        "d1": -2,
+        "w1": -3.87,
+        "m1": 9.59,
+        "m3": 7.01,
+        "m6": 9.65,
+        "y1": -21.33,
+        "ytd": 10.76
       },
       "sparkline": [
         20.1,
@@ -26573,7 +26573,7 @@
         18.61,
         19.32,
         19.01,
-        18.62
+        18.63
       ],
       "name": "Biotrend Çevre ve Enerji",
       "sector": "Enerji & Altyapı",
@@ -26584,16 +26584,16 @@
     "ENERY": {
       "symbol": "ENERY",
       "shortName": "ENERYA ENERJI",
-      "price": 11.28,
+      "price": 11.3,
       "prevClose": 10.82,
-      "change": 0.46,
-      "changePercent": 4.25,
+      "change": 0.48,
+      "changePercent": 4.44,
       "dayHigh": 11.4,
       "dayLow": 11.09,
       "fiftyTwoWeekHigh": 11.79,
       "fiftyTwoWeekLow": 8.06,
-      "volume": 18136138,
-      "rsi14": 76.57,
+      "volume": 19740906,
+      "rsi14": 76.72,
       "sma20": 9.58,
       "sma50": 9.47,
       "pivots": {
@@ -26604,13 +26604,13 @@
         "s2": 10.95
       },
       "returns": {
-        "d1": 4.25,
-        "w1": 10.91,
-        "m1": 30.56,
-        "m3": 32.39,
-        "m6": 22.48,
-        "y1": -1.14,
-        "ytd": 19.37
+        "d1": 4.44,
+        "w1": 11.11,
+        "m1": 30.79,
+        "m3": 32.63,
+        "m6": 22.69,
+        "y1": -0.96,
+        "ytd": 19.58
       },
       "sparkline": [
         8.88,
@@ -26624,7 +26624,7 @@
         10.5,
         11.04,
         10.82,
-        11.28
+        11.3
       ],
       "name": "Enerya Enerji",
       "sector": "Enerji & Altyapı",
@@ -26635,33 +26635,33 @@
     "TATEN": {
       "symbol": "TATEN",
       "shortName": "TATLIPINAR ENERJI URETIM",
-      "price": 8.12,
+      "price": 8.14,
       "prevClose": 7.87,
-      "change": 0.25,
-      "changePercent": 3.18,
+      "change": 0.27,
+      "changePercent": 3.43,
       "dayHigh": 8.17,
       "dayLow": 8.01,
       "fiftyTwoWeekHigh": 23.888,
       "fiftyTwoWeekLow": 7.41,
-      "volume": 5619460,
-      "rsi14": 34.28,
+      "volume": 6007329,
+      "rsi14": 34.62,
       "sma20": 8.67,
       "sma50": 10.68,
       "pivots": {
-        "pivot": 8.1,
-        "r1": 8.19,
-        "r2": 8.26,
-        "s1": 8.03,
-        "s2": 7.94
+        "pivot": 8.11,
+        "r1": 8.21,
+        "r2": 8.27,
+        "s1": 8.05,
+        "s2": 7.95
       },
       "returns": {
-        "d1": 3.18,
-        "w1": -2.4,
-        "m1": -12.69,
-        "m3": -39.04,
-        "m6": -9.07,
-        "y1": -37.44,
-        "ytd": -40.69
+        "d1": 3.43,
+        "w1": -2.16,
+        "m1": -12.47,
+        "m3": -38.89,
+        "m6": -8.85,
+        "y1": -37.29,
+        "ytd": -40.54
       },
       "sparkline": [
         9.2,
@@ -26675,7 +26675,7 @@
         7.59,
         7.62,
         7.87,
-        8.12
+        8.14
       ],
       "name": "Tatlıpınar Enerji",
       "sector": "Enerji & Altyapı",
@@ -26690,20 +26690,20 @@
       "prevClose": 2.4,
       "change": 0.1,
       "changePercent": 4.17,
-      "dayHigh": 2.51,
+      "dayHigh": 2.52,
       "dayLow": 2.45,
       "fiftyTwoWeekHigh": 3.83,
       "fiftyTwoWeekLow": 2.22,
-      "volume": 20364163,
+      "volume": 25647826,
       "rsi14": 62.21,
       "sma20": 2.31,
       "sma50": 2.44,
       "pivots": {
         "pivot": 2.49,
         "r1": 2.53,
-        "r2": 2.55,
-        "s1": 2.47,
-        "s2": 2.43
+        "r2": 2.56,
+        "s1": 2.46,
+        "s2": 2.42
       },
       "returns": {
         "d1": 4.17,
@@ -26737,33 +26737,33 @@
     "ODAS": {
       "symbol": "ODAS",
       "shortName": "ODAS ELEKTRIK",
-      "price": 7.49,
+      "price": 7.48,
       "prevClose": 7.57,
-      "change": -0.08,
-      "changePercent": -1.06,
+      "change": -0.09,
+      "changePercent": -1.19,
       "dayHigh": 7.71,
       "dayLow": 7.47,
       "fiftyTwoWeekHigh": 9.71,
       "fiftyTwoWeekLow": 4.97,
-      "volume": 18041675,
-      "rsi14": 50.01,
-      "sma20": 7.33,
+      "volume": 19542514,
+      "rsi14": 49.77,
+      "sma20": 7.32,
       "sma50": 7.86,
       "pivots": {
-        "pivot": 7.56,
-        "r1": 7.65,
-        "r2": 7.8,
-        "s1": 7.41,
-        "s2": 7.32
+        "pivot": 7.55,
+        "r1": 7.63,
+        "r2": 7.79,
+        "s1": 7.39,
+        "s2": 7.31
       },
       "returns": {
-        "d1": -1.06,
-        "w1": 0.27,
-        "m1": 2.6,
-        "m3": 6.09,
-        "m6": 27.6,
-        "y1": 35.69,
-        "ytd": 43.49
+        "d1": -1.19,
+        "w1": 0.13,
+        "m1": 2.47,
+        "m3": 5.95,
+        "m6": 27.43,
+        "y1": 35.51,
+        "ytd": 43.3
       },
       "sparkline": [
         7.11,
@@ -26777,7 +26777,7 @@
         7.28,
         7.24,
         7.57,
-        7.49
+        7.48
       ],
       "name": "Odaş Elektrik Üretim",
       "sector": "Enerji & Altyapı",
@@ -26788,33 +26788,33 @@
     "BIMAS": {
       "symbol": "BIMAS",
       "shortName": "BIM MAGAZALAR",
-      "price": 428.5,
+      "price": 429.25,
       "prevClose": 420.5,
-      "change": 8,
-      "changePercent": 1.9,
+      "change": 8.75,
+      "changePercent": 2.08,
       "dayHigh": 431.25,
       "dayLow": 425.75,
       "fiftyTwoWeekHigh": 431.25,
       "fiftyTwoWeekLow": 242,
-      "volume": 2642187,
-      "rsi14": 66.26,
-      "sma20": 407.05,
-      "sma50": 391.14,
+      "volume": 2756675,
+      "rsi14": 66.57,
+      "sma20": 407.09,
+      "sma50": 391.16,
       "pivots": {
-        "pivot": 428.5,
-        "r1": 431.25,
-        "r2": 434,
-        "s1": 425.75,
-        "s2": 423
+        "pivot": 428.75,
+        "r1": 431.75,
+        "r2": 434.25,
+        "s1": 426.25,
+        "s2": 423.25
       },
       "returns": {
-        "d1": 1.9,
-        "w1": 4.96,
-        "m1": 11.52,
-        "m3": 12.61,
-        "m6": 31.34,
-        "y1": 73.48,
-        "ytd": 57.83
+        "d1": 2.08,
+        "w1": 5.14,
+        "m1": 11.71,
+        "m3": 12.81,
+        "m6": 31.57,
+        "y1": 73.79,
+        "ytd": 58.1
       },
       "sparkline": [
         412.25,
@@ -26828,7 +26828,7 @@
         412.75,
         415.75,
         420.5,
-        428.5
+        429.25
       ],
       "name": "BİM Birleşik Mağazalar",
       "sector": "Perakende & Tüketim",
@@ -26839,33 +26839,33 @@
     "MGROS": {
       "symbol": "MGROS",
       "shortName": "MIGROS TICARET",
-      "price": 532,
+      "price": 536.5,
       "prevClose": 539,
-      "change": -7,
-      "changePercent": -1.3,
+      "change": -2.5,
+      "changePercent": -0.46,
       "dayHigh": 537.5,
       "dayLow": 528.5,
       "fiftyTwoWeekHigh": 727,
       "fiftyTwoWeekLow": 415.5,
-      "volume": 1334447,
-      "rsi14": 36.92,
-      "sma20": 550.95,
-      "sma50": 600.75,
+      "volume": 1572588,
+      "rsi14": 38.14,
+      "sma20": 551.17,
+      "sma50": 600.84,
       "pivots": {
-        "pivot": 532.67,
-        "r1": 536.84,
-        "r2": 541.67,
-        "s1": 527.84,
-        "s2": 523.67
+        "pivot": 534.17,
+        "r1": 539.84,
+        "r2": 543.17,
+        "s1": 530.84,
+        "s2": 525.17
       },
       "returns": {
-        "d1": -1.3,
-        "w1": 0.57,
-        "m1": -19.15,
-        "m3": -20.36,
-        "m6": -6.83,
-        "y1": 22.51,
-        "ytd": 0.28
+        "d1": -0.46,
+        "w1": 1.42,
+        "m1": -18.47,
+        "m3": -19.69,
+        "m6": -6.04,
+        "y1": 23.55,
+        "ytd": 1.13
       },
       "sparkline": [
         565,
@@ -26879,7 +26879,7 @@
         516,
         527,
         539,
-        532
+        536.5
       ],
       "name": "Migros Ticaret",
       "sector": "Perakende & Tüketim",
@@ -26890,33 +26890,33 @@
     "SOKM": {
       "symbol": "SOKM",
       "shortName": "SOK MARKETLER TICARET",
-      "price": 60.75,
+      "price": 60.8,
       "prevClose": 59,
-      "change": 1.75,
-      "changePercent": 2.97,
+      "change": 1.8,
+      "changePercent": 3.05,
       "dayHigh": 61.55,
       "dayLow": 60.2,
       "fiftyTwoWeekHigh": 70.25,
       "fiftyTwoWeekLow": 34.36,
-      "volume": 2596912,
-      "rsi14": 68.37,
+      "volume": 2672159,
+      "rsi14": 68.48,
       "sma20": 56.58,
       "sma50": 52.64,
       "pivots": {
-        "pivot": 60.83,
-        "r1": 61.46,
-        "r2": 62.18,
-        "s1": 60.11,
-        "s2": 59.48
+        "pivot": 60.85,
+        "r1": 61.5,
+        "r2": 62.2,
+        "s1": 60.15,
+        "s2": 59.5
       },
       "returns": {
-        "d1": 2.97,
-        "w1": 7.43,
-        "m1": 16.49,
-        "m3": 24.49,
-        "m6": 1.67,
-        "y1": 69.03,
-        "ytd": 21.89
+        "d1": 3.05,
+        "w1": 7.52,
+        "m1": 16.59,
+        "m3": 24.59,
+        "m6": 1.76,
+        "y1": 69.17,
+        "ytd": 21.99
       },
       "sparkline": [
         58.85,
@@ -26930,7 +26930,7 @@
         58,
         58,
         59,
-        60.75
+        60.8
       ],
       "name": "Şok Marketler",
       "sector": "Perakende & Tüketim",
@@ -26941,33 +26941,33 @@
     "ULKER": {
       "symbol": "ULKER",
       "shortName": "ULKER BISKUVI",
-      "price": 95.2,
+      "price": 95.15,
       "prevClose": 94.85,
-      "change": 0.35,
-      "changePercent": 0.37,
+      "change": 0.3,
+      "changePercent": 0.32,
       "dayHigh": 96.4,
       "dayLow": 95.05,
       "fiftyTwoWeekHigh": 141.7,
       "fiftyTwoWeekLow": 84.9,
-      "volume": 1501364,
-      "rsi14": 57.96,
+      "volume": 1541617,
+      "rsi14": 57.86,
       "sma20": 91.57,
       "sma50": 92.87,
       "pivots": {
-        "pivot": 95.55,
-        "r1": 96.05,
-        "r2": 96.9,
-        "s1": 94.7,
-        "s2": 94.2
+        "pivot": 95.53,
+        "r1": 96.01,
+        "r2": 96.88,
+        "s1": 94.66,
+        "s2": 94.18
       },
       "returns": {
-        "d1": 0.37,
-        "w1": 5.43,
-        "m1": 6.73,
-        "m3": -16.86,
-        "m6": -17.79,
-        "y1": -8.9,
-        "ytd": -15
+        "d1": 0.32,
+        "w1": 5.37,
+        "m1": 6.67,
+        "m3": -16.9,
+        "m6": -17.83,
+        "y1": -8.95,
+        "ytd": -15.04
       },
       "sparkline": [
         91.75,
@@ -26981,7 +26981,7 @@
         88.65,
         90.45,
         94.85,
-        95.2
+        95.15
       ],
       "name": "Ülker Bisküvi",
       "sector": "Gıda & İçecek",
@@ -27000,7 +27000,7 @@
       "dayLow": 78.25,
       "fiftyTwoWeekHigh": 93.5,
       "fiftyTwoWeekLow": 45.14,
-      "volume": 1589756,
+      "volume": 1955921,
       "rsi14": 43.84,
       "sma20": 79.95,
       "sma50": 84.44,
@@ -27043,33 +27043,33 @@
     "AEFES": {
       "symbol": "AEFES",
       "shortName": "ANADOLU EFES",
-      "price": 19.52,
+      "price": 19.51,
       "prevClose": 19.26,
-      "change": 0.26,
-      "changePercent": 1.35,
+      "change": 0.25,
+      "changePercent": 1.3,
       "dayHigh": 19.78,
       "dayLow": 19.46,
       "fiftyTwoWeekHigh": 23.28,
       "fiftyTwoWeekLow": 13.37,
-      "volume": 9951959,
-      "rsi14": 52.38,
+      "volume": 10443893,
+      "rsi14": 52.27,
       "sma20": 18.85,
       "sma50": 20.19,
       "pivots": {
-        "pivot": 19.59,
-        "r1": 19.72,
-        "r2": 19.91,
-        "s1": 19.4,
-        "s2": 19.27
+        "pivot": 19.58,
+        "r1": 19.7,
+        "r2": 19.9,
+        "s1": 19.38,
+        "s2": 19.26
       },
       "returns": {
-        "d1": 1.35,
-        "w1": 7.96,
-        "m1": -10.13,
-        "m3": -2.2,
-        "m6": 15.57,
-        "y1": 29.96,
-        "ytd": 22.31
+        "d1": 1.3,
+        "w1": 7.91,
+        "m1": -10.17,
+        "m3": -2.25,
+        "m6": 15.51,
+        "y1": 29.89,
+        "ytd": 22.24
       },
       "sparkline": [
         18.94,
@@ -27083,7 +27083,7 @@
         18.21,
         18.45,
         19.26,
-        19.52
+        19.51
       ],
       "name": "Anadolu Efes Biracılık",
       "sector": "Gıda & İçecek",
@@ -27094,33 +27094,33 @@
     "TABGD": {
       "symbol": "TABGD",
       "shortName": "TAB GIDA",
-      "price": 230.9,
+      "price": 231.3,
       "prevClose": 241.2,
-      "change": -10.3,
-      "changePercent": -4.27,
+      "change": -9.9,
+      "changePercent": -4.1,
       "dayHigh": 235,
-      "dayLow": 230.7,
+      "dayLow": 230.6,
       "fiftyTwoWeekHigh": 295,
       "fiftyTwoWeekLow": 207.4,
-      "volume": 103404,
-      "rsi14": 38.6,
-      "sma20": 246.1,
-      "sma50": 241.6,
+      "volume": 110015,
+      "rsi14": 38.86,
+      "sma20": 246.12,
+      "sma50": 241.61,
       "pivots": {
-        "pivot": 232.2,
-        "r1": 233.7,
-        "r2": 236.5,
-        "s1": 229.4,
+        "pivot": 232.3,
+        "r1": 234,
+        "r2": 236.7,
+        "s1": 229.6,
         "s2": 227.9
       },
       "returns": {
-        "d1": -4.27,
-        "w1": -1.11,
-        "m1": -10.94,
-        "m3": -9.98,
-        "m6": -6.25,
-        "y1": 5.92,
-        "ytd": 8.92
+        "d1": -4.1,
+        "w1": -0.94,
+        "m1": -10.78,
+        "m3": -9.82,
+        "m6": -6.09,
+        "y1": 6.1,
+        "ytd": 9.1
       },
       "sparkline": [
         250.25,
@@ -27134,7 +27134,7 @@
         239.2,
         241,
         241.2,
-        230.9
+        231.3
       ],
       "name": "TAB Gıda Sanayi",
       "sector": "Perakende & Tüketim",
@@ -27153,7 +27153,7 @@
       "dayLow": 36.36,
       "fiftyTwoWeekHigh": 50.75,
       "fiftyTwoWeekLow": 35.76,
-      "volume": 1153327,
+      "volume": 1223629,
       "rsi14": 37.28,
       "sma20": 37.67,
       "sma50": 38.66,
@@ -27196,33 +27196,33 @@
     "VAKKO": {
       "symbol": "VAKKO",
       "shortName": "VAKKO TEKSTIL",
-      "price": 67.25,
+      "price": 67.4,
       "prevClose": 67.25,
-      "change": 0,
-      "changePercent": 0,
+      "change": 0.15,
+      "changePercent": 0.22,
       "dayHigh": 68.9,
       "dayLow": 67.1,
       "fiftyTwoWeekHigh": 101.9,
       "fiftyTwoWeekLow": 54.6,
-      "volume": 38646,
-      "rsi14": 48.47,
-      "sma20": 67.39,
+      "volume": 39255,
+      "rsi14": 49.11,
+      "sma20": 67.4,
       "sma50": 68.79,
       "pivots": {
-        "pivot": 67.75,
-        "r1": 68.4,
-        "r2": 69.55,
-        "s1": 66.6,
-        "s2": 65.95
+        "pivot": 67.8,
+        "r1": 68.5,
+        "r2": 69.6,
+        "s1": 66.7,
+        "s2": 66
       },
       "returns": {
-        "d1": 0,
-        "w1": 2.2,
-        "m1": 0.67,
-        "m3": -16.2,
-        "m6": -9.12,
-        "y1": 13.5,
-        "ytd": 17.26
+        "d1": 0.22,
+        "w1": 2.43,
+        "m1": 0.9,
+        "m3": -16.01,
+        "m6": -8.92,
+        "y1": 13.76,
+        "ytd": 17.52
       },
       "sparkline": [
         67.1,
@@ -27236,7 +27236,7 @@
         65.5,
         66,
         67.25,
-        67.25
+        67.4
       ],
       "name": "Vakko Tekstil ve Hazır Giyim",
       "sector": "Perakende & Tüketim",
@@ -27247,33 +27247,33 @@
     "YYLGD": {
       "symbol": "YYLGD",
       "shortName": "YAYLA GIDA",
-      "price": 10.18,
+      "price": 10.2,
       "prevClose": 10.2,
-      "change": -0.02,
-      "changePercent": -0.2,
+      "change": 0,
+      "changePercent": 0,
       "dayHigh": 10.31,
       "dayLow": 10.18,
       "fiftyTwoWeekHigh": 14.61,
       "fiftyTwoWeekLow": 9.35,
-      "volume": 1151201,
-      "rsi14": 49,
+      "volume": 1270488,
+      "rsi14": 49.57,
       "sma20": 10.17,
       "sma50": 10.39,
       "pivots": {
-        "pivot": 10.22,
-        "r1": 10.26,
-        "r2": 10.35,
-        "s1": 10.13,
-        "s2": 10.09
+        "pivot": 10.23,
+        "r1": 10.28,
+        "r2": 10.36,
+        "s1": 10.15,
+        "s2": 10.1
       },
       "returns": {
-        "d1": -0.2,
-        "w1": 1.39,
-        "m1": -4.41,
-        "m3": -9.99,
-        "m6": -4.41,
-        "y1": -1.36,
-        "ytd": 2.62
+        "d1": 0,
+        "w1": 1.59,
+        "m1": -4.23,
+        "m3": -9.81,
+        "m6": -4.23,
+        "y1": -1.16,
+        "ytd": 2.82
       },
       "sparkline": [
         10.25,
@@ -27287,7 +27287,7 @@
         9.81,
         9.86,
         10.2,
-        10.18
+        10.2
       ],
       "name": "Yayla Agro Gıda",
       "sector": "Gıda & İçecek",
@@ -27306,7 +27306,7 @@
       "dayLow": 2.06,
       "fiftyTwoWeekHigh": 4.3,
       "fiftyTwoWeekLow": 1.91,
-      "volume": 15284588,
+      "volume": 18821570,
       "rsi14": 54.44,
       "sma20": 2.01,
       "sma50": 2.06,
@@ -27349,16 +27349,16 @@
     "OYLUM": {
       "symbol": "OYLUM",
       "shortName": "OYLUM SINAI YATIRIMLAR",
-      "price": 7.01,
+      "price": 7.02,
       "prevClose": 7.11,
-      "change": -0.1,
-      "changePercent": -1.41,
+      "change": -0.09,
+      "changePercent": -1.27,
       "dayHigh": 7.07,
       "dayLow": 6.97,
       "fiftyTwoWeekHigh": 13.12,
       "fiftyTwoWeekLow": 6.95,
-      "volume": 260290,
-      "rsi14": 28.69,
+      "volume": 267904,
+      "rsi14": 29.02,
       "sma20": 7.26,
       "sma50": 7.69,
       "pivots": {
@@ -27369,13 +27369,13 @@
         "s2": 6.92
       },
       "returns": {
-        "d1": -1.41,
-        "w1": -1.41,
-        "m1": -10.93,
-        "m3": -17.53,
-        "m6": -16.55,
-        "y1": -14.51,
-        "ytd": -26.13
+        "d1": -1.27,
+        "w1": -1.27,
+        "m1": -10.8,
+        "m3": -17.41,
+        "m6": -16.43,
+        "y1": -14.39,
+        "ytd": -26.03
       },
       "sparkline": [
         7.29,
@@ -27389,7 +27389,7 @@
         7.12,
         7.17,
         7.11,
-        7.01
+        7.02
       ],
       "name": "Oylum Sınai Yatırımlar",
       "sector": "Gıda & İçecek",
@@ -27408,7 +27408,7 @@
       "dayLow": 2.62,
       "fiftyTwoWeekHigh": 4.32,
       "fiftyTwoWeekLow": 2.13,
-      "volume": 3025194865,
+      "volume": 3283297924,
       "rsi14": 60.15,
       "sma20": 2.37,
       "sma50": 2.43,
@@ -27451,33 +27451,33 @@
     "HEKTS": {
       "symbol": "HEKTS",
       "shortName": "HEKTAS",
-      "price": 2.88,
+      "price": 2.86,
       "prevClose": 3,
-      "change": -0.12,
-      "changePercent": -4,
+      "change": -0.14,
+      "changePercent": -4.67,
       "dayHigh": 2.91,
-      "dayLow": 2.86,
+      "dayLow": 2.84,
       "fiftyTwoWeekHigh": 5.13,
       "fiftyTwoWeekLow": 2.57,
-      "volume": 119009904,
-      "rsi14": 51.45,
+      "volume": 137757750,
+      "rsi14": 50.41,
       "sma20": 2.8,
       "sma50": 2.93,
       "pivots": {
-        "pivot": 2.88,
+        "pivot": 2.87,
         "r1": 2.9,
-        "r2": 2.93,
-        "s1": 2.85,
-        "s2": 2.83
+        "r2": 2.94,
+        "s1": 2.83,
+        "s2": 2.8
       },
       "returns": {
-        "d1": -4,
-        "w1": 6.27,
-        "m1": 1.05,
-        "m3": -21.31,
-        "m6": 0.7,
-        "y1": -25.39,
-        "ytd": -8.28
+        "d1": -4.67,
+        "w1": 5.54,
+        "m1": 0.35,
+        "m3": -21.86,
+        "m6": 0,
+        "y1": -25.91,
+        "ytd": -8.92
       },
       "sparkline": [
         2.9,
@@ -27491,7 +27491,7 @@
         2.6,
         2.64,
         3,
-        2.88
+        2.86
       ],
       "name": "Hektaş Ticaret",
       "sector": "Kimya & Tarım",
@@ -27502,33 +27502,33 @@
     "GUBRF": {
       "symbol": "GUBRF",
       "shortName": "GUBRE FABRIK.",
-      "price": 513.5,
+      "price": 512.5,
       "prevClose": 504,
-      "change": 9.5,
-      "changePercent": 1.88,
+      "change": 8.5,
+      "changePercent": 1.69,
       "dayHigh": 525.5,
       "dayLow": 510.5,
       "fiftyTwoWeekHigh": 625.5,
       "fiftyTwoWeekLow": 254,
-      "volume": 1454504,
-      "rsi14": 65.65,
-      "sma20": 469.96,
-      "sma50": 444.55,
+      "volume": 1523114,
+      "rsi14": 65.43,
+      "sma20": 469.91,
+      "sma50": 444.52,
       "pivots": {
-        "pivot": 516.5,
-        "r1": 522.5,
-        "r2": 531.5,
-        "s1": 507.5,
-        "s2": 501.5
+        "pivot": 516.17,
+        "r1": 521.84,
+        "r2": 531.17,
+        "s1": 506.84,
+        "s2": 501.17
       },
       "returns": {
-        "d1": 1.88,
-        "w1": 9.02,
-        "m1": 16.24,
-        "m3": 9.2,
-        "m6": -1.82,
-        "y1": 91.78,
-        "ytd": 45.98
+        "d1": 1.69,
+        "w1": 8.81,
+        "m1": 16.02,
+        "m3": 8.98,
+        "m6": -2.01,
+        "y1": 91.41,
+        "ytd": 45.7
       },
       "sparkline": [
         492.25,
@@ -27542,7 +27542,7 @@
         482.25,
         478.75,
         504,
-        513.5
+        512.5
       ],
       "name": "Gübre Fabrikaları",
       "sector": "Kimya & Tarım",
@@ -27553,33 +27553,33 @@
     "ECILC": {
       "symbol": "ECILC",
       "shortName": "ECZACIBASI ILAC",
-      "price": 73.25,
+      "price": 73.15,
       "prevClose": 74.1,
-      "change": -0.85,
-      "changePercent": -1.15,
+      "change": -0.95,
+      "changePercent": -1.28,
       "dayHigh": 74.4,
       "dayLow": 73.05,
       "fiftyTwoWeekHigh": 132.6,
       "fiftyTwoWeekLow": 53.45,
-      "volume": 1673856,
-      "rsi14": 47.21,
+      "volume": 1723790,
+      "rsi14": 46.99,
       "sma20": 75.52,
       "sma50": 73.45,
       "pivots": {
-        "pivot": 73.57,
-        "r1": 74.09,
-        "r2": 74.92,
-        "s1": 72.74,
-        "s2": 72.22
+        "pivot": 73.53,
+        "r1": 74.01,
+        "r2": 74.88,
+        "s1": 72.66,
+        "s2": 72.18
       },
       "returns": {
-        "d1": -1.15,
-        "w1": -2.4,
-        "m1": 3.9,
-        "m3": -11.32,
-        "m6": -35.06,
-        "y1": 33.79,
-        "ytd": -12.43
+        "d1": -1.28,
+        "w1": -2.53,
+        "m1": 3.76,
+        "m3": -11.44,
+        "m6": -35.15,
+        "y1": 33.61,
+        "ytd": -12.55
       },
       "sparkline": [
         78.3,
@@ -27593,7 +27593,7 @@
         70,
         73.15,
         74.1,
-        73.25
+        73.15
       ],
       "name": "Eczacıbaşı İlaç Sanayi",
       "sector": "Kimya & İlaç",
@@ -27604,33 +27604,33 @@
     "MPARK": {
       "symbol": "MPARK",
       "shortName": "MLP SAGLIK",
-      "price": 434.5,
+      "price": 434.25,
       "prevClose": 427,
-      "change": 7.5,
-      "changePercent": 1.76,
+      "change": 7.25,
+      "changePercent": 1.7,
       "dayHigh": 436.75,
       "dayLow": 430.5,
       "fiftyTwoWeekHigh": 514,
       "fiftyTwoWeekLow": 304,
-      "volume": 117788,
-      "rsi14": 55.65,
-      "sma20": 432.49,
-      "sma50": 421.78,
+      "volume": 125066,
+      "rsi14": 55.5,
+      "sma20": 432.48,
+      "sma50": 421.77,
       "pivots": {
-        "pivot": 433.92,
-        "r1": 437.34,
-        "r2": 440.17,
-        "s1": 431.09,
-        "s2": 427.67
+        "pivot": 433.83,
+        "r1": 437.16,
+        "r2": 440.08,
+        "s1": 430.91,
+        "s2": 427.58
       },
       "returns": {
-        "d1": 1.76,
-        "w1": 5.08,
-        "m1": 1.22,
-        "m3": -2.58,
-        "m6": 4.83,
-        "y1": 24.14,
-        "ytd": 13.74
+        "d1": 1.7,
+        "w1": 5.02,
+        "m1": 1.16,
+        "m3": -2.63,
+        "m6": 4.76,
+        "y1": 24.07,
+        "ytd": 13.68
       },
       "sparkline": [
         445.25,
@@ -27644,7 +27644,7 @@
         416,
         426.75,
         427,
-        434.5
+        434.25
       ],
       "name": "MLP Sağlık Hizmetleri (Medical Park)",
       "sector": "Sağlık & Hizmet",
@@ -27655,33 +27655,33 @@
     "GENIL": {
       "symbol": "GENIL",
       "shortName": "GEN ILAC",
-      "price": 12.62,
+      "price": 12.54,
       "prevClose": 11.64,
-      "change": 0.98,
-      "changePercent": 8.42,
-      "dayHigh": 12.64,
+      "change": 0.9,
+      "changePercent": 7.73,
+      "dayHigh": 12.75,
       "dayLow": 12.28,
       "fiftyTwoWeekHigh": 14.933,
       "fiftyTwoWeekLow": 7.12,
-      "volume": 11774112,
-      "rsi14": 66.44,
+      "volume": 14923682,
+      "rsi14": 65.88,
       "sma20": 11.58,
-      "sma50": 10.23,
+      "sma50": 10.22,
       "pivots": {
-        "pivot": 12.51,
-        "r1": 12.74,
-        "r2": 12.87,
-        "s1": 12.38,
-        "s2": 12.15
+        "pivot": 12.52,
+        "r1": 12.76,
+        "r2": 12.99,
+        "s1": 12.29,
+        "s2": 12.05
       },
       "returns": {
-        "d1": 8.42,
-        "w1": 8.61,
-        "m1": 19.62,
-        "m3": 54.28,
-        "m6": 47.78,
-        "y1": 16.96,
-        "ytd": 1.77
+        "d1": 7.73,
+        "w1": 7.92,
+        "m1": 18.86,
+        "m3": 53.3,
+        "m6": 46.84,
+        "y1": 16.22,
+        "ytd": 1.13
       },
       "sparkline": [
         11.9,
@@ -27695,7 +27695,7 @@
         10.81,
         11.2,
         11.64,
-        12.62
+        12.54
       ],
       "name": "Gen İlaç ve Sağlık",
       "sector": "Kimya & İlaç",
@@ -27706,33 +27706,33 @@
     "DEVA": {
       "symbol": "DEVA",
       "shortName": "DEVA HOLDING",
-      "price": 96.85,
+      "price": 96.5,
       "prevClose": 95.8,
-      "change": 1.05,
-      "changePercent": 1.1,
+      "change": 0.7,
+      "changePercent": 0.73,
       "dayHigh": 97.2,
       "dayLow": 94.35,
       "fiftyTwoWeekHigh": 97.2,
       "fiftyTwoWeekLow": 57.5,
-      "volume": 153522,
-      "rsi14": 70.6,
-      "sma20": 87.31,
+      "volume": 159516,
+      "rsi14": 70.24,
+      "sma20": 87.3,
       "sma50": 78.19,
       "pivots": {
-        "pivot": 96.13,
-        "r1": 97.91,
-        "r2": 98.98,
-        "s1": 95.06,
-        "s2": 93.28
+        "pivot": 96.02,
+        "r1": 97.69,
+        "r2": 98.87,
+        "s1": 94.84,
+        "s2": 93.17
       },
       "returns": {
-        "d1": 1.1,
-        "w1": 1.25,
-        "m1": 34.79,
-        "m3": 48.66,
-        "m6": 50.51,
-        "y1": 52.64,
-        "ytd": 53.37
+        "d1": 0.73,
+        "w1": 0.89,
+        "m1": 34.31,
+        "m3": 48.12,
+        "m6": 49.96,
+        "y1": 52.09,
+        "ytd": 52.81
       },
       "sparkline": [
         84.3,
@@ -27746,7 +27746,7 @@
         90.55,
         92.45,
         95.8,
-        96.85
+        96.5
       ],
       "name": "Deva Holding",
       "sector": "Kimya & İlaç",
@@ -27757,33 +27757,33 @@
     "SELEC": {
       "symbol": "SELEC",
       "shortName": "SELCUK ECZA DEPOSU",
-      "price": 396.5,
+      "price": 396.75,
       "prevClose": 375,
-      "change": 21.5,
-      "changePercent": 5.73,
+      "change": 21.75,
+      "changePercent": 5.8,
       "dayHigh": 399,
       "dayLow": 390,
       "fiftyTwoWeekHigh": 399,
       "fiftyTwoWeekLow": 66.35,
-      "volume": 855538,
-      "rsi14": 92.32,
-      "sma20": 307.54,
+      "volume": 921483,
+      "rsi14": 92.34,
+      "sma20": 307.55,
       "sma50": 255.49,
       "pivots": {
-        "pivot": 395.17,
-        "r1": 400.34,
-        "r2": 404.17,
-        "s1": 391.34,
-        "s2": 386.17
+        "pivot": 395.25,
+        "r1": 400.5,
+        "r2": 404.25,
+        "s1": 391.5,
+        "s2": 386.25
       },
       "returns": {
-        "d1": 5.73,
-        "w1": 17.31,
-        "m1": 85.19,
-        "m3": 286.83,
-        "m6": 392.55,
-        "y1": 389.2,
-        "ytd": 398.12
+        "d1": 5.8,
+        "w1": 17.38,
+        "m1": 85.31,
+        "m3": 287.07,
+        "m6": 392.86,
+        "y1": 389.51,
+        "ytd": 398.43
       },
       "sparkline": [
         292.5,
@@ -27797,7 +27797,7 @@
         350,
         356,
         375,
-        396.5
+        396.75
       ],
       "name": "Selçuk Ecza Deposu",
       "sector": "Sağlık & Hizmet",
@@ -27816,7 +27816,7 @@
       "dayLow": 20.96,
       "fiftyTwoWeekHigh": 27.12,
       "fiftyTwoWeekLow": 17.47,
-      "volume": 157683184,
+      "volume": 164095892,
       "rsi14": 63.06,
       "sma20": 19.67,
       "sma50": 19.58,
@@ -27867,7 +27867,7 @@
       "dayLow": 93.95,
       "fiftyTwoWeekHigh": 107.8,
       "fiftyTwoWeekLow": 69.05,
-      "volume": 181392,
+      "volume": 188341,
       "rsi14": 49.18,
       "sma20": 94.64,
       "sma50": 95.87,
@@ -27910,33 +27910,33 @@
     "ISGYO": {
       "symbol": "ISGYO",
       "shortName": "IS GMYO",
-      "price": 25.2,
+      "price": 25.24,
       "prevClose": 24.7,
-      "change": 0.5,
-      "changePercent": 2.02,
+      "change": 0.54,
+      "changePercent": 2.19,
       "dayHigh": 27.1,
       "dayLow": 24.96,
       "fiftyTwoWeekHigh": 29.22,
       "fiftyTwoWeekLow": 17.81,
-      "volume": 1281475,
-      "rsi14": 43.27,
+      "volume": 1307339,
+      "rsi14": 43.56,
       "sma20": 26.68,
       "sma50": 26.42,
       "pivots": {
-        "pivot": 25.75,
-        "r1": 26.54,
-        "r2": 27.89,
-        "s1": 24.4,
-        "s2": 23.61
+        "pivot": 25.77,
+        "r1": 26.58,
+        "r2": 27.91,
+        "s1": 24.44,
+        "s2": 23.63
       },
       "returns": {
-        "d1": 2.02,
-        "w1": -3,
-        "m1": -8.5,
-        "m3": 24.14,
-        "m6": 16.77,
-        "y1": 27.27,
-        "ytd": 17.32
+        "d1": 2.19,
+        "w1": -2.85,
+        "m1": -8.35,
+        "m3": 24.33,
+        "m6": 16.96,
+        "y1": 27.47,
+        "ytd": 17.5
       },
       "sparkline": [
         27.52,
@@ -27950,7 +27950,7 @@
         24.68,
         23.7,
         24.7,
-        25.2
+        25.24
       ],
       "name": "İş Gayrimenkul Yatırım Ortaklığı",
       "sector": "Gayrimenkul (GYO)",
@@ -27961,33 +27961,33 @@
     "AKFGY": {
       "symbol": "AKFGY",
       "shortName": "AKFEN GMYO",
-      "price": 2.74,
+      "price": 2.75,
       "prevClose": 2.58,
-      "change": 0.16,
-      "changePercent": 6.2,
-      "dayHigh": 2.75,
+      "change": 0.17,
+      "changePercent": 6.59,
+      "dayHigh": 2.76,
       "dayLow": 2.62,
       "fiftyTwoWeekHigh": 3.19,
       "fiftyTwoWeekLow": 2.4,
-      "volume": 23587372,
-      "rsi14": 60.07,
+      "volume": 28723506,
+      "rsi14": 60.76,
       "sma20": 2.61,
       "sma50": 2.69,
       "pivots": {
-        "pivot": 2.7,
-        "r1": 2.78,
-        "r2": 2.83,
-        "s1": 2.65,
+        "pivot": 2.71,
+        "r1": 2.8,
+        "r2": 2.85,
+        "s1": 2.66,
         "s2": 2.57
       },
       "returns": {
-        "d1": 6.2,
-        "w1": 7.45,
-        "m1": 2.24,
-        "m3": 0.74,
-        "m6": -2.84,
-        "y1": 3.79,
-        "ytd": 4.18
+        "d1": 6.59,
+        "w1": 7.84,
+        "m1": 2.61,
+        "m3": 1.1,
+        "m6": -2.48,
+        "y1": 4.17,
+        "ytd": 4.56
       },
       "sparkline": [
         2.72,
@@ -28001,7 +28001,7 @@
         2.51,
         2.52,
         2.58,
-        2.74
+        2.75
       ],
       "name": "Akfen GYO",
       "sector": "Gayrimenkul (GYO)",
@@ -28012,16 +28012,16 @@
     "KLGYO": {
       "symbol": "KLGYO",
       "shortName": "KILER GMYO",
-      "price": 4.86,
+      "price": 4.87,
       "prevClose": 4.78,
-      "change": 0.08,
-      "changePercent": 1.67,
+      "change": 0.09,
+      "changePercent": 1.88,
       "dayHigh": 4.88,
       "dayLow": 4.8,
       "fiftyTwoWeekHigh": 8.3,
       "fiftyTwoWeekLow": 4.21,
-      "volume": 1230562,
-      "rsi14": 54.74,
+      "volume": 1291807,
+      "rsi14": 55.1,
       "sma20": 4.73,
       "sma50": 4.73,
       "pivots": {
@@ -28032,13 +28032,13 @@
         "s2": 4.77
       },
       "returns": {
-        "d1": 1.67,
-        "w1": -2.8,
-        "m1": 14.08,
-        "m3": -1.22,
-        "m6": -19.4,
-        "y1": -22.61,
-        "ytd": -21.61
+        "d1": 1.88,
+        "w1": -2.6,
+        "m1": 14.32,
+        "m3": -1.02,
+        "m6": -19.24,
+        "y1": -22.45,
+        "ytd": -21.45
       },
       "sparkline": [
         4.86,
@@ -28052,7 +28052,7 @@
         4.77,
         4.75,
         4.78,
-        4.86
+        4.87
       ],
       "name": "Kiler GYO",
       "sector": "Gayrimenkul (GYO)",
@@ -28063,33 +28063,33 @@
     "OZKGY": {
       "symbol": "OZKGY",
       "shortName": "OZAK GMYO",
-      "price": 13.38,
+      "price": 13.34,
       "prevClose": 13.28,
-      "change": 0.1,
-      "changePercent": 0.75,
+      "change": 0.06,
+      "changePercent": 0.45,
       "dayHigh": 13.42,
       "dayLow": 13.29,
       "fiftyTwoWeekHigh": 16.48,
       "fiftyTwoWeekLow": 11.69,
-      "volume": 601278,
-      "rsi14": 53.24,
+      "volume": 674947,
+      "rsi14": 52.44,
       "sma20": 13.16,
       "sma50": 13.28,
       "pivots": {
-        "pivot": 13.36,
-        "r1": 13.43,
-        "r2": 13.49,
-        "s1": 13.3,
-        "s2": 13.23
+        "pivot": 13.35,
+        "r1": 13.41,
+        "r2": 13.48,
+        "s1": 13.28,
+        "s2": 13.22
       },
       "returns": {
-        "d1": 0.75,
-        "w1": 0.15,
-        "m1": 4.86,
-        "m3": -5.37,
-        "m6": 3.08,
-        "y1": 1.67,
-        "ytd": -5.77
+        "d1": 0.45,
+        "w1": -0.15,
+        "m1": 4.55,
+        "m3": -5.66,
+        "m6": 2.77,
+        "y1": 1.37,
+        "ytd": -6.06
       },
       "sparkline": [
         13.49,
@@ -28103,7 +28103,7 @@
         13.23,
         13.22,
         13.28,
-        13.38
+        13.34
       ],
       "name": "Özak GYO",
       "sector": "Gayrimenkul (GYO)",
@@ -28122,7 +28122,7 @@
       "dayLow": 3.12,
       "fiftyTwoWeekHigh": 4.27,
       "fiftyTwoWeekLow": 2.02,
-      "volume": 31121342,
+      "volume": 33111333,
       "rsi14": 41.65,
       "sma20": 3.32,
       "sma50": 3.42,
@@ -28165,33 +28165,33 @@
     "PEKGY": {
       "symbol": "PEKGY",
       "shortName": "PEKER GMYO",
-      "price": 11.6,
+      "price": 11.92,
       "prevClose": 10.65,
-      "change": 0.95,
-      "changePercent": 8.92,
+      "change": 1.27,
+      "changePercent": 11.92,
       "dayHigh": 11.93,
       "dayLow": 11.34,
       "fiftyTwoWeekHigh": 19.94,
       "fiftyTwoWeekLow": 6.83,
-      "volume": 192305092,
-      "rsi14": 34.51,
-      "sma20": 14.44,
-      "sma50": 14.57,
+      "volume": 213144474,
+      "rsi14": 36.91,
+      "sma20": 14.45,
+      "sma50": 14.58,
       "pivots": {
-        "pivot": 11.62,
-        "r1": 11.9,
-        "r2": 12.21,
-        "s1": 11.31,
-        "s2": 11.03
+        "pivot": 11.73,
+        "r1": 12.12,
+        "r2": 12.32,
+        "s1": 11.53,
+        "s2": 11.14
       },
       "returns": {
-        "d1": 8.92,
-        "w1": -18.19,
-        "m1": -19.44,
-        "m3": -4.53,
-        "m6": -10.91,
-        "y1": 58.9,
-        "ytd": -10.01
+        "d1": 11.92,
+        "w1": -15.94,
+        "m1": -17.22,
+        "m3": -1.89,
+        "m6": -8.45,
+        "y1": 63.29,
+        "ytd": -7.53
       },
       "sparkline": [
         15.13,
@@ -28205,7 +28205,7 @@
         11.5,
         10.5,
         10.65,
-        11.6
+        11.92
       ],
       "name": "Peker GYO",
       "sector": "Gayrimenkul (GYO)",
@@ -28217,15 +28217,15 @@
       "symbol": "MHRGY",
       "shortName": "MHR GMYO",
       "price": 2.28,
-      "prevClose": 2.24,
-      "change": 0.04,
-      "changePercent": 1.79,
+      "prevClose": 2.25,
+      "change": 0.03,
+      "changePercent": 1.33,
       "dayHigh": 2.29,
       "dayLow": 2.25,
       "fiftyTwoWeekHigh": 3.473,
       "fiftyTwoWeekLow": 2.087,
-      "volume": 4141641,
-      "rsi14": 55.13,
+      "volume": 4271381,
+      "rsi14": 55.35,
       "sma20": 2.21,
       "sma50": 2.29,
       "pivots": {
@@ -28236,16 +28236,15 @@
         "s2": 2.23
       },
       "returns": {
-        "d1": 1.79,
-        "w1": 6.54,
+        "d1": 1.33,
+        "w1": 8.57,
         "m1": 3.17,
         "m3": -17.99,
-        "m6": 0.44,
+        "m6": 0.88,
         "y1": -20.56,
         "ytd": 0.44
       },
       "sparkline": [
-        2.22,
         2.24,
         2.24,
         2.23,
@@ -28256,6 +28255,7 @@
         2.15,
         2.2,
         2.24,
+        2.25,
         2.28
       ],
       "name": "MHR GYO",
@@ -28267,16 +28267,16 @@
     "TURSG": {
       "symbol": "TURSG",
       "shortName": "TURKIYE SIGORTA",
-      "price": 6.16,
+      "price": 6.15,
       "prevClose": 6.24,
-      "change": -0.08,
-      "changePercent": -1.28,
+      "change": -0.09,
+      "changePercent": -1.44,
       "dayHigh": 6.3,
       "dayLow": 6.14,
       "fiftyTwoWeekHigh": 7.495,
       "fiftyTwoWeekLow": 4.325,
-      "volume": 22354254,
-      "rsi14": 47.64,
+      "volume": 23636232,
+      "rsi14": 47.25,
       "sma20": 6.2,
       "sma50": 6.28,
       "pivots": {
@@ -28287,13 +28287,13 @@
         "s2": 6.04
       },
       "returns": {
-        "d1": -1.28,
-        "w1": 0.98,
-        "m1": -2.38,
-        "m3": -1.91,
-        "m6": 0.33,
-        "y1": 41.28,
-        "ytd": 7.13
+        "d1": -1.44,
+        "w1": 0.82,
+        "m1": -2.54,
+        "m3": -2.07,
+        "m6": 0.16,
+        "y1": 41.06,
+        "ytd": 6.96
       },
       "sparkline": [
         6.18,
@@ -28307,7 +28307,7 @@
         6,
         6.08,
         6.24,
-        6.16
+        6.15
       ],
       "name": "Türkiye Sigorta",
       "sector": "Bankacılık & Finans",
@@ -28318,33 +28318,33 @@
     "ANSGR": {
       "symbol": "ANSGR",
       "shortName": "ANADOLU SIGORTA",
-      "price": 26.54,
+      "price": 26.48,
       "prevClose": 26.52,
-      "change": 0.02,
-      "changePercent": 0.08,
+      "change": -0.04,
+      "changePercent": -0.15,
       "dayHigh": 26.62,
       "dayLow": 26.4,
       "fiftyTwoWeekHigh": 31.52,
       "fiftyTwoWeekLow": 20.28,
-      "volume": 782280,
-      "rsi14": 38.37,
+      "volume": 839093,
+      "rsi14": 37.68,
       "sma20": 27.63,
       "sma50": 27.59,
       "pivots": {
-        "pivot": 26.52,
-        "r1": 26.64,
-        "r2": 26.74,
-        "s1": 26.42,
-        "s2": 26.3
+        "pivot": 26.5,
+        "r1": 26.6,
+        "r2": 26.72,
+        "s1": 26.38,
+        "s2": 26.28
       },
       "returns": {
-        "d1": 0.08,
-        "w1": -1.19,
-        "m1": -9.67,
-        "m3": -2.86,
-        "m6": 0.23,
-        "y1": 25.54,
-        "ytd": 16
+        "d1": -0.15,
+        "w1": -1.41,
+        "m1": -9.87,
+        "m3": -3.07,
+        "m6": 0,
+        "y1": 25.26,
+        "ytd": 15.73
       },
       "sparkline": [
         28.32,
@@ -28358,7 +28358,7 @@
         26.22,
         26.18,
         26.52,
-        26.54
+        26.48
       ],
       "name": "Anadolu Sigorta",
       "sector": "Bankacılık & Finans",
@@ -28369,33 +28369,33 @@
     "AKGRT": {
       "symbol": "AKGRT",
       "shortName": "AKSIGORTA",
-      "price": 6.07,
+      "price": 6.06,
       "prevClose": 6.22,
-      "change": -0.15,
-      "changePercent": -2.41,
+      "change": -0.16,
+      "changePercent": -2.57,
       "dayHigh": 6.23,
-      "dayLow": 6.05,
+      "dayLow": 6.03,
       "fiftyTwoWeekHigh": 8.71,
       "fiftyTwoWeekLow": 5.92,
-      "volume": 12157152,
-      "rsi14": 34.24,
+      "volume": 15817684,
+      "rsi14": 33.87,
       "sma20": 6.23,
       "sma50": 6.63,
       "pivots": {
-        "pivot": 6.12,
+        "pivot": 6.11,
         "r1": 6.19,
-        "r2": 6.3,
-        "s1": 6.01,
-        "s2": 5.94
+        "r2": 6.31,
+        "s1": 5.99,
+        "s2": 5.91
       },
       "returns": {
-        "d1": -2.41,
-        "w1": -1.62,
-        "m1": -5.01,
-        "m3": -14.02,
-        "m6": -18.63,
-        "y1": -1.3,
-        "ytd": -12.03
+        "d1": -2.57,
+        "w1": -1.78,
+        "m1": -5.16,
+        "m3": -14.16,
+        "m6": -18.77,
+        "y1": -1.46,
+        "ytd": -12.17
       },
       "sparkline": [
         6.23,
@@ -28409,7 +28409,7 @@
         6.08,
         6.09,
         6.22,
-        6.07
+        6.06
       ],
       "name": "Aksigorta",
       "sector": "Bankacılık & Finans",
@@ -28427,27 +28427,27 @@
       "riskLevel": 6,
       "featured": true,
       "desc": "Borsa İstanbul'da büyüme potansiyeli yüksek şirketlere yatırım yapan Tera Portföy hisse senedi fonu.",
-      "price": 3.48291,
-      "dailyReturn": 1.45,
-      "weeklyReturn": 4.82,
-      "monthlyReturn": 11.2,
-      "threeMonthReturn": 28.4,
-      "yearlyReturn": 88.5,
-      "totalValue": 2840500000,
-      "investorCount": 14850,
+      "price": 3.816462,
+      "dailyReturn": 1.25,
+      "weeklyReturn": 4.3,
+      "monthlyReturn": 10.8,
+      "threeMonthReturn": 26.5,
+      "yearlyReturn": 86.4,
+      "totalValue": 3029072825,
+      "investorCount": 15629,
       "sparkline": [
-        3.12,
-        3.16,
-        3.19,
-        3.22,
-        3.27,
-        3.31,
-        3.35,
-        3.38,
-        3.42,
-        3.44,
-        3.43,
-        3.48
+        3.45,
+        3.48,
+        3.52,
+        3.56,
+        3.61,
+        3.65,
+        3.7,
+        3.74,
+        3.78,
+        3.8,
+        3.81,
+        3.816
       ]
     },
     "PTO": {
@@ -28458,27 +28458,27 @@
       "riskLevel": 6,
       "featured": true,
       "desc": "BIST'te düzenli temettü ödeyen ve temettü verimi yüksek şirketlere odaklanan Pardus Portföy fonu.",
-      "price": 18.2415,
-      "dailyReturn": 2.15,
-      "weeklyReturn": 6.1,
-      "monthlyReturn": 14.85,
-      "threeMonthReturn": 34.2,
-      "yearlyReturn": 112.4,
-      "totalValue": 1420000000,
-      "investorCount": 9200,
+      "price": 19.467439,
+      "dailyReturn": 1.85,
+      "weeklyReturn": 5.4,
+      "monthlyReturn": 13.9,
+      "threeMonthReturn": 32.1,
+      "yearlyReturn": 108.5,
+      "totalValue": 1583914502,
+      "investorCount": 10143,
       "sparkline": [
-        15.8,
-        16.1,
-        16.4,
-        16.7,
-        16.9,
-        17.2,
+        17.1,
         17.4,
-        17.6,
-        17.8,
-        17.9,
+        17.7,
         18,
-        18.24
+        18.3,
+        18.6,
+        18.9,
+        19.1,
+        19.3,
+        19.4,
+        19.45,
+        19.467
       ]
     },
     "MAC": {
@@ -28613,27 +28613,27 @@
       "riskLevel": 6,
       "featured": true,
       "desc": "Küresel emtia piyasalarına (enerji, tarım, sanayi metalleri) yabancı fon sepeti yoluyla yatırım.",
-      "price": 0.14285,
-      "dailyReturn": 0.85,
-      "weeklyReturn": 2.9,
-      "monthlyReturn": 7.4,
-      "threeMonthReturn": 18.2,
-      "yearlyReturn": 64.5,
-      "totalValue": 2450000000,
-      "investorCount": 31000,
+      "price": 0.308842,
+      "dailyReturn": 0.48,
+      "weeklyReturn": 2.87,
+      "monthlyReturn": 9.11,
+      "threeMonthReturn": 7.9,
+      "yearlyReturn": 65.7,
+      "totalValue": 3126714198,
+      "investorCount": 37719,
       "sparkline": [
-        0.131,
-        0.133,
-        0.134,
-        0.136,
-        0.137,
-        0.138,
-        0.139,
-        0.14,
-        0.141,
-        0.141,
-        0.142,
-        0.1428
+        0.283,
+        0.286,
+        0.29,
+        0.294,
+        0.297,
+        0.3,
+        0.302,
+        0.304,
+        0.306,
+        0.307,
+        0.308,
+        0.3088
       ]
     },
     "IPJ": {
@@ -28644,27 +28644,27 @@
       "riskLevel": 6,
       "featured": true,
       "desc": "Küresel elektrikli araçlar, batarya teknolojileri ve otonom sürüş sektöründeki öncü şirketler.",
-      "price": 0.19842,
-      "dailyReturn": 1.95,
-      "weeklyReturn": 5.8,
-      "monthlyReturn": 15.2,
-      "threeMonthReturn": 32.5,
-      "yearlyReturn": 78.4,
-      "totalValue": 3120000000,
-      "investorCount": 42500,
+      "price": 0.214064,
+      "dailyReturn": 1.65,
+      "weeklyReturn": 5.1,
+      "monthlyReturn": 14.2,
+      "threeMonthReturn": 28.9,
+      "yearlyReturn": 76.5,
+      "totalValue": 3419825109,
+      "investorCount": 45120,
       "sparkline": [
-        0.175,
-        0.178,
-        0.181,
-        0.184,
         0.187,
-        0.19,
-        0.192,
-        0.193,
+        0.191,
         0.195,
-        0.196,
-        0.197,
-        0.1984
+        0.199,
+        0.203,
+        0.207,
+        0.21,
+        0.211,
+        0.212,
+        0.213,
+        0.214,
+        0.214
       ]
     },
     "AFT": {
@@ -28768,27 +28768,27 @@
       "riskLevel": 1,
       "featured": true,
       "desc": "Gecelik faiz, ters repo ve kısa vadeli mevduat getirisi sunan yüksek likidite fonu.",
-      "price": 1.48521,
+      "price": 1.523812,
       "dailyReturn": 0.14,
-      "weeklyReturn": 0.95,
-      "monthlyReturn": 4.12,
-      "threeMonthReturn": 12.8,
-      "yearlyReturn": 54.2,
-      "totalValue": 8900000000,
-      "investorCount": 45000,
+      "weeklyReturn": 0.98,
+      "monthlyReturn": 4.15,
+      "threeMonthReturn": 12.9,
+      "yearlyReturn": 54.8,
+      "totalValue": 9241602814,
+      "investorCount": 48912,
       "sparkline": [
-        1.42,
-        1.43,
-        1.44,
-        1.445,
-        1.45,
-        1.458,
-        1.465,
+        1.46,
         1.47,
-        1.475,
-        1.478,
-        1.482,
-        1.4852
+        1.48,
+        1.485,
+        1.49,
+        1.498,
+        1.505,
+        1.51,
+        1.515,
+        1.518,
+        1.522,
+        1.5238
       ]
     },
     "PPZ": {
@@ -28806,9 +28806,8 @@
       "threeMonthReturn": 13.1,
       "yearlyReturn": 55.4,
       "totalValue": 18500000000,
-      "investorCount": 96000,
+      "investorCount": 82000,
       "sparkline": [
-        5.95,
         5.98,
         6.02,
         6.06,
@@ -28819,6 +28818,7 @@
         6.2,
         6.22,
         6.23,
+        6.235,
         6.241
       ]
     },
@@ -28830,27 +28830,27 @@
       "riskLevel": 1,
       "featured": false,
       "desc": "Kısa vadeli kamu ve özel sektör borçlanma araçlarıyla istikrarlı getiri sağlayan fon.",
-      "price": 2.1245,
+      "price": 1.1425,
       "dailyReturn": 0.13,
       "weeklyReturn": 0.92,
       "monthlyReturn": 4.05,
-      "threeMonthReturn": 12.6,
+      "threeMonthReturn": 12.5,
       "yearlyReturn": 53.8,
-      "totalValue": 3400000000,
-      "investorCount": 18200,
+      "totalValue": 3200000000,
+      "investorCount": 18500,
       "sparkline": [
-        2.03,
-        2.04,
-        2.06,
-        2.07,
-        2.08,
-        2.09,
-        2.1,
-        2.11,
-        2.115,
-        2.12,
-        2.122,
-        2.1245
+        1.09,
+        1.1,
+        1.11,
+        1.115,
+        1.12,
+        1.125,
+        1.13,
+        1.133,
+        1.137,
+        1.14,
+        1.141,
+        1.142
       ]
     },
     "TCA": {
@@ -28861,27 +28861,27 @@
       "riskLevel": 5,
       "featured": true,
       "desc": "Kıymetli madenler ve faizsiz altın kira sertifikalarına yatırım yapan katılım esaslı altın fonu.",
-      "price": 3.8421,
+      "price": 4.1258,
       "dailyReturn": 0.72,
       "weeklyReturn": 2.45,
-      "monthlyReturn": 6.8,
+      "monthlyReturn": 6.85,
       "threeMonthReturn": 19.5,
       "yearlyReturn": 68.2,
       "totalValue": 6800000000,
       "investorCount": 52000,
       "sparkline": [
-        3.51,
-        3.55,
-        3.59,
-        3.63,
-        3.68,
-        3.72,
-        3.75,
         3.78,
-        3.8,
         3.82,
-        3.83,
-        3.842
+        3.87,
+        3.92,
+        3.96,
+        4,
+        4.04,
+        4.07,
+        4.09,
+        4.11,
+        4.12,
+        4.125
       ]
     },
     "KZL": {
@@ -29051,12 +29051,12 @@
       {
         "code": "IPJ",
         "name": "İş Portföy Elektrikli Araçlar Karma Fon",
-        "return": 15.2
+        "return": 14.2
       },
       {
         "code": "PTO",
         "name": "Pardus Portföy Temettü Ödeyen Şirketler Hisse Senedi Fonu (Hisse Senedi Yoğun Fon)",
-        "return": 14.85
+        "return": 13.9
       },
       {
         "code": "HKH",
@@ -29073,7 +29073,7 @@
       {
         "code": "PTO",
         "name": "Pardus Portföy Temettü Ödeyen Şirketler Hisse Senedi Fonu (Hisse Senedi Yoğun Fon)",
-        "return": 112.4
+        "return": 108.5
       },
       {
         "code": "TTE",
@@ -29093,7 +29093,7 @@
       {
         "code": "THF",
         "name": "Tera Portföy Hisse Senedi (TL) Fonu (Hisse Senedi Yoğun Fon)",
-        "return": 88.5
+        "return": 86.4
       }
     ],
     "largestFunds": [
@@ -29110,7 +29110,7 @@
       {
         "code": "TP2",
         "name": "Tera Portföy Para Piyasası (TL) Fonu",
-        "value": 8900000000
+        "value": 9241602814
       },
       {
         "code": "TCA",
@@ -29127,7 +29127,7 @@
   "sectorStats": {
     "Ulaştırma & Havacılık": {
       "count": 4,
-      "avgChange": -1.29,
+      "avgChange": -1.38,
       "positiveCount": 0,
       "negativeCount": 4,
       "symbols": [
@@ -29139,9 +29139,9 @@
     },
     "Bankacılık & Finans": {
       "count": 14,
-      "avgChange": -1.7,
-      "positiveCount": 3,
-      "negativeCount": 11,
+      "avgChange": -2.05,
+      "positiveCount": 1,
+      "negativeCount": 13,
       "symbols": [
         "GARAN",
         "AKBNK",
@@ -29161,7 +29161,7 @@
     },
     "Teknoloji & Savunma": {
       "count": 8,
-      "avgChange": 0.44,
+      "avgChange": 0.17,
       "positiveCount": 4,
       "negativeCount": 4,
       "symbols": [
@@ -29177,7 +29177,7 @@
     },
     "Teknoloji & Telekomünikasyon": {
       "count": 2,
-      "avgChange": -0.27,
+      "avgChange": -0.26,
       "positiveCount": 1,
       "negativeCount": 1,
       "symbols": [
@@ -29187,9 +29187,9 @@
     },
     "Holdingler": {
       "count": 10,
-      "avgChange": -0.73,
-      "positiveCount": 3,
-      "negativeCount": 7,
+      "avgChange": -0.69,
+      "positiveCount": 2,
+      "negativeCount": 8,
       "symbols": [
         "KCHOL",
         "SAHOL",
@@ -29205,7 +29205,7 @@
     },
     "Sanayi & Metal": {
       "count": 6,
-      "avgChange": -0.9,
+      "avgChange": -0.8,
       "positiveCount": 2,
       "negativeCount": 4,
       "symbols": [
@@ -29219,7 +29219,7 @@
     },
     "Sanayi & Cam": {
       "count": 1,
-      "avgChange": -3.23,
+      "avgChange": -3.1,
       "positiveCount": 0,
       "negativeCount": 1,
       "symbols": [
@@ -29228,9 +29228,9 @@
     },
     "Sanayi & Yapı": {
       "count": 5,
-      "avgChange": -1.34,
-      "positiveCount": 1,
-      "negativeCount": 4,
+      "avgChange": -1.09,
+      "positiveCount": 2,
+      "negativeCount": 3,
       "symbols": [
         "OYAKC",
         "CIMSA",
@@ -29241,7 +29241,7 @@
     },
     "Sanayi & Tekstil": {
       "count": 1,
-      "avgChange": -0.94,
+      "avgChange": -2.26,
       "positiveCount": 0,
       "negativeCount": 1,
       "symbols": [
@@ -29250,7 +29250,7 @@
     },
     "Otomotiv & Sanayi": {
       "count": 6,
-      "avgChange": 0.96,
+      "avgChange": 0.85,
       "positiveCount": 1,
       "negativeCount": 5,
       "symbols": [
@@ -29264,7 +29264,7 @@
     },
     "Dayanıklı Tüketim": {
       "count": 3,
-      "avgChange": 1.72,
+      "avgChange": 1.8,
       "positiveCount": 2,
       "negativeCount": 1,
       "symbols": [
@@ -29275,7 +29275,7 @@
     },
     "Enerji & Petrokimya": {
       "count": 2,
-      "avgChange": 5.54,
+      "avgChange": 4.98,
       "positiveCount": 2,
       "negativeCount": 0,
       "symbols": [
@@ -29285,9 +29285,9 @@
     },
     "Enerji & Altyapı": {
       "count": 14,
-      "avgChange": 0.92,
-      "positiveCount": 9,
-      "negativeCount": 5,
+      "avgChange": 0.81,
+      "positiveCount": 7,
+      "negativeCount": 7,
       "symbols": [
         "ASTOR",
         "ENJSA",
@@ -29307,7 +29307,7 @@
     },
     "Kimya & Sanayi": {
       "count": 2,
-      "avgChange": -3.52,
+      "avgChange": -3.35,
       "positiveCount": 0,
       "negativeCount": 2,
       "symbols": [
@@ -29317,7 +29317,7 @@
     },
     "Enerji & Teknoloji": {
       "count": 2,
-      "avgChange": -0.64,
+      "avgChange": -0.55,
       "positiveCount": 0,
       "negativeCount": 2,
       "symbols": [
@@ -29327,7 +29327,7 @@
     },
     "Perakende & Tüketim": {
       "count": 6,
-      "avgChange": -0.19,
+      "avgChange": 0.06,
       "positiveCount": 3,
       "negativeCount": 3,
       "symbols": [
@@ -29341,9 +29341,9 @@
     },
     "Gıda & İçecek": {
       "count": 6,
-      "avgChange": -0.56,
-      "positiveCount": 3,
-      "negativeCount": 3,
+      "avgChange": -0.52,
+      "positiveCount": 4,
+      "negativeCount": 2,
       "symbols": [
         "ULKER",
         "CCOLA",
@@ -29355,7 +29355,7 @@
     },
     "Kimya & Tarım": {
       "count": 2,
-      "avgChange": -1.06,
+      "avgChange": -1.49,
       "positiveCount": 1,
       "negativeCount": 1,
       "symbols": [
@@ -29365,7 +29365,7 @@
     },
     "Kimya & İlaç": {
       "count": 3,
-      "avgChange": 2.79,
+      "avgChange": 2.39,
       "positiveCount": 2,
       "negativeCount": 1,
       "symbols": [
@@ -29386,7 +29386,7 @@
     },
     "Gayrimenkul (GYO)": {
       "count": 9,
-      "avgChange": 2.89,
+      "avgChange": 3.22,
       "positiveCount": 9,
       "negativeCount": 0,
       "symbols": [
@@ -29404,47 +29404,47 @@
   },
   "topGainers": [
     {
-      "symbol": "KARSN",
-      "name": "Karsan Otomotiv",
-      "price": 15.86,
-      "changePercent": 12.08,
-      "sector": "Otomotiv & Sanayi"
-    },
-    {
       "symbol": "PEKGY",
       "name": "Peker GYO",
-      "price": 11.6,
-      "changePercent": 8.92,
+      "price": 11.92,
+      "changePercent": 11.92,
       "sector": "Gayrimenkul (GYO)"
+    },
+    {
+      "symbol": "KARSN",
+      "name": "Karsan Otomotiv",
+      "price": 15.77,
+      "changePercent": 11.45,
+      "sector": "Otomotiv & Sanayi"
     },
     {
       "symbol": "GENIL",
       "name": "Gen İlaç ve Sağlık",
-      "price": 12.62,
-      "changePercent": 8.42,
+      "price": 12.54,
+      "changePercent": 7.73,
       "sector": "Kimya & İlaç"
-    },
-    {
-      "symbol": "EUPWR",
-      "name": "Europower Enerji",
-      "price": 74.85,
-      "changePercent": 6.25,
-      "sector": "Enerji & Altyapı"
     },
     {
       "symbol": "AKFGY",
       "name": "Akfen GYO",
-      "price": 2.74,
-      "changePercent": 6.2,
+      "price": 2.75,
+      "changePercent": 6.59,
       "sector": "Gayrimenkul (GYO)"
+    },
+    {
+      "symbol": "EUPWR",
+      "name": "Europower Enerji",
+      "price": 74.75,
+      "changePercent": 6.1,
+      "sector": "Enerji & Altyapı"
     }
   ],
   "topLosers": [
     {
       "symbol": "SKBNK",
       "name": "Şekerbank",
-      "price": 6.43,
-      "changePercent": -5.16,
+      "price": 6.4,
+      "changePercent": -5.6,
       "sector": "Bankacılık & Finans"
     },
     {
@@ -29455,11 +29455,11 @@
       "sector": "Kimya & Sanayi"
     },
     {
-      "symbol": "TABGD",
-      "name": "TAB Gıda Sanayi",
-      "price": 230.9,
-      "changePercent": -4.27,
-      "sector": "Perakende & Tüketim"
+      "symbol": "HEKTS",
+      "name": "Hektaş Ticaret",
+      "price": 2.86,
+      "changePercent": -4.67,
+      "sector": "Kimya & Tarım"
     },
     {
       "symbol": "QUAGR",
@@ -29469,11 +29469,11 @@
       "sector": "Sanayi & Yapı"
     },
     {
-      "symbol": "HEKTS",
-      "name": "Hektaş Ticaret",
-      "price": 2.88,
-      "changePercent": -4,
-      "sector": "Kimya & Tarım"
+      "symbol": "TABGD",
+      "name": "TAB Gıda Sanayi",
+      "price": 231.3,
+      "changePercent": -4.1,
+      "sector": "Perakende & Tüketim"
     }
   ],
   "mostActive": [
@@ -29481,41 +29481,41 @@
       "symbol": "SASA",
       "name": "Sasa Polyester Sanayi",
       "price": 2.63,
-      "volume": 3025194865,
-      "turnover": 7956262495,
+      "volume": 3283297924,
+      "turnover": 8635073540,
       "changePercent": -4.71
     },
     {
       "symbol": "TUPRS",
       "name": "Tüpraş Türkiye Petrol Rafinerileri",
-      "price": 417.75,
-      "volume": 12085907,
-      "turnover": 5048887649,
-      "changePercent": 5.89
+      "price": 415.25,
+      "volume": 12911428,
+      "turnover": 5361470477,
+      "changePercent": 5.26
     },
     {
       "symbol": "AKBNK",
       "name": "Akbank",
-      "price": 73.2,
-      "volume": 62912452,
-      "turnover": 4605191486,
-      "changePercent": -2.33
+      "price": 72.9,
+      "volume": 68959803,
+      "turnover": 5027169639,
+      "changePercent": -2.74
     },
     {
       "symbol": "THYAO",
       "name": "Türk Hava Yolları",
-      "price": 298.5,
-      "volume": 12561457,
-      "turnover": 3749594915,
-      "changePercent": -2.13
+      "price": 298.25,
+      "volume": 13619005,
+      "turnover": 4061868241,
+      "changePercent": -2.21
     },
     {
       "symbol": "ISCTR",
       "name": "Türkiye İş Bankası (C)",
-      "price": 13.91,
-      "volume": 240289723,
-      "turnover": 3342430047,
-      "changePercent": -3.07
+      "price": 13.8,
+      "volume": 263590307,
+      "turnover": 3637546237,
+      "changePercent": -3.83
     }
   ]
 }
