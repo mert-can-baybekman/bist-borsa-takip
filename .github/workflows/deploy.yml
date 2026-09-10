@@ -43,10 +43,16 @@ jobs:
       - name: Canli Verileri Cek ve data.json Uret
         run: node fetch-data.js
 
+      - name: Dagitim Dizinini Hazirla (_site)
+        run: |
+          mkdir -p _site
+          cp -r index.html hisse.html portfoy.html hesaplayici.html abone.html data.json data _site/
+          touch _site/.nojekyll
+
       - name: GitHub Pages Icin Hazirla
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: GitHub Pagese Yayinla
         id: deployment
