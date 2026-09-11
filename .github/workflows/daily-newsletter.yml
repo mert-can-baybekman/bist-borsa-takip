@@ -1,9 +1,9 @@
-name: Gunluk Canli Bulten Otomatik Gonder (10:30 TSI)
+name: Sabah Bulteni Otomatik Gonder (07:30 TSI)
 
 on:
   schedule:
-    # Hafta ici her gun 07:30 UTC = 10:30 TSI (Seans baslangici sonrasi canli seans verileri)
-    - cron: '30 7 * * 1-5'
+    # Hafta ici her gun 04:30 UTC = 07:30 TSI (Seans oncesi piyasa verileri)
+    - cron: '30 4 * * 1-5'
   workflow_dispatch:
   repository_dispatch:
     types: [send_newsletter]

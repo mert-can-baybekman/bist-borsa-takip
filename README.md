@@ -44,7 +44,7 @@ Borsa İstanbul (**BIST 100, BIST 30, BIST Banka, BIST Sınai, BIST Bilişim**) 
 - 🌱 **Bileşik Getiri & Temettü Büyüme Simülatörü:** Düzenli aylık tasarruf ve bileşik faiz getiri projeksiyon grafiği.
 
 ### ✉️ 5. Canlı Piyasa Bülteni (`send-newsletter.js` & `abone.html`)
-- ☕ **Hafta İçi Her Gün 10:30'da (TSİ):** Seans açılışı sonrasında o anki canlı piyasa verileri, BIST endeksleri, döviz kurları, altın fiyatları ve seansın en çok yükselen/düşen hisseleri e-posta kutunuza otomatik iletilir.
+- ☕ **Hafta İçi Her Gün 07:30'da (TSİ):** Sabah seans öncesinde piyasa verileri, BIST endeksleri, döviz kurları, altın fiyatları ve hisse hareketleri e-posta kutunuza otomatik iletilir.
 
 ### 💻 6. Zengin Terminal CLI Arayüzü (`index.js`)
 - Konsol üzerinden renkli ANSI tabloları, ASCII mini sparkline grafikleri ve anlık piyasa durumu.
@@ -111,7 +111,7 @@ Herhangi bir statik sunucuyla (örn: VS Code Live Server veya `npx serve .`) `in
 | İş Akışı | Zamanlama | Görev |
 | :--- | :--- | :--- |
 | **Piyasa Verisi & Dağıtım** | Hafta içi 10:00 - 19:00 (Her saat başı) | `fetch-data.js` çalıştırılır, `data.json` derlenir ve GitHub Pages'e yüklenir. |
-| **Sabah Bülteni** | Hafta içi 09:00 TSİ | Güncel verileri derleyip kayıtlı abonelere bülten e-postası iletir. |
+| **Sabah Bülteni** | Hafta içi 07:30 TSİ | Güncel verileri derleyip kayıtlı abonelere bülten e-postası iletir. |
 | **CI Test Suite** | Push / Pull Request | Tüm birim testleri (`npm test`) otomatik çalıştırır. |
 
 ---
