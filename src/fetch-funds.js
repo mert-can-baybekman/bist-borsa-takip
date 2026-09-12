@@ -1,24 +1,25 @@
 /**
- * TEFAS Mutual Funds Live Engine
- * Fetches accurate live investment fund data directly from official TEFAS JSON API
- * Endpoint: https://www.tefas.gov.tr/api/funds/fonFiyatBilgiGetir
- * Guarantees real-time daily updated prices, returns, and sparklines
+ * TEFAS Mutual Funds Comprehensive Live Engine
+ * Fetches all fund metrics directly from official TEFAS JSON API:
+ * 1. fonFiyatBilgiGetir: Historical price points, 1D/1W/1M/3M/1Y returns, sparklines
+ * 2. fonBilgiGetir: Total portfolio size (TL), investor count, shares count, market share, category rank
+ * 3. fonProfilBilgiGetir: ISIN code, settlement valors (T+1/T+2), trade hours, KAP link
  */
 
 import { FUNDS_CONFIG } from './funds-config.js';
 
 /**
- * Baseline fallback dataset (used only if TEFAS network request fails)
+ * Baseline fallback dataset (used only if TEFAS network request is temporarily unreachable)
  */
 const FUND_BASELINE_DATA = {
-  'PTO': { price: 1.864854, dailyReturn: 0.13, weeklyReturn: 0.88, monthlyReturn: 2.38, threeMonthReturn: 22.28, yearlyReturn: 77.61, totalValue: 212279020, investorCount: 3089 },
+  'PTO': { price: 1.864854, dailyReturn: 0.13, weeklyReturn: 0.88, monthlyReturn: 2.38, threeMonthReturn: 22.28, yearlyReturn: 77.61, totalValue: 214185325, investorCount: 3107 },
   'TGE': { price: 0.308652, dailyReturn: -0.06, weeklyReturn: 2.87, monthlyReturn: 9.11, threeMonthReturn: 7.90, yearlyReturn: 65.70, totalValue: 3126713225, investorCount: 37719 },
-  'THF': { price: 2.916338, dailyReturn: 0.14, weeklyReturn: 5.40, monthlyReturn: 29.47, threeMonthReturn: 58.20, yearlyReturn: 123.67, totalValue: 120844047625, investorCount: 172380 },
+  'THF': { price: 2.916338, dailyReturn: 0.14, weeklyReturn: 5.40, monthlyReturn: 29.47, threeMonthReturn: 58.20, yearlyReturn: 123.67, totalValue: 130895185406, investorCount: 182730 },
   'IPJ': { price: 19.813969, dailyReturn: -1.48, weeklyReturn: 2.82, monthlyReturn: 0.45, threeMonthReturn: 12.30, yearlyReturn: 53.35, totalValue: 1293578798, investorCount: 18483 },
   'TP2': { price: 2.229489, dailyReturn: 0.13, weeklyReturn: 0.89, monthlyReturn: 4.05, threeMonthReturn: 12.80, yearlyReturn: 60.38, totalValue: 242230969333, investorCount: 169165 },
-  'MAC': { price: 0.748997, dailyReturn: -0.43, weeklyReturn: 2.45, monthlyReturn: -2.70, threeMonthReturn: 8.35, yearlyReturn: 19.39, totalValue: 4245403928, investorCount: 35312 },
-  'TI2': { price: 0.129147, dailyReturn: -0.91, weeklyReturn: 3.19, monthlyReturn: 3.03, threeMonthReturn: 15.19, yearlyReturn: 27.35, totalValue: 3338009173, investorCount: 20629 },
-  'IIH': { price: 33.978942, dailyReturn: -0.56, weeklyReturn: 3.23, monthlyReturn: 5.32, threeMonthReturn: 20.03, yearlyReturn: 34.75, totalValue: 1796152550, investorCount: 21296 },
+  'MAC': { price: 0.748997, dailyReturn: -0.43, weeklyReturn: 2.45, monthlyReturn: -2.70, threeMonthReturn: 8.35, yearlyReturn: 19.39, totalValue: 4228682103, investorCount: 35272 },
+  'TI2': { price: 0.129147, dailyReturn: -0.91, weeklyReturn: 3.19, monthlyReturn: 3.03, threeMonthReturn: 15.19, yearlyReturn: 27.35, totalValue: 3300645306, investorCount: 20603 },
+  'IIH': { price: 33.978942, dailyReturn: -0.56, weeklyReturn: 3.23, monthlyReturn: 5.32, threeMonthReturn: 20.03, yearlyReturn: 34.75, totalValue: 1780877091, investorCount: 21255 },
   'HKH': { price: 8.924923, dailyReturn: -1.18, weeklyReturn: 1.15, monthlyReturn: 7.53, threeMonthReturn: 18.42, yearlyReturn: 15.93, totalValue: 987452100, investorCount: 9450 },
   'AFT': { price: 1.000902, dailyReturn: -2.12, weeklyReturn: -1.45, monthlyReturn: 0.76, threeMonthReturn: 8.14, yearlyReturn: 37.61, totalValue: 8452130200, investorCount: 54120 },
   'YAY': { price: 1871.713648, dailyReturn: -2.16, weeklyReturn: -0.85, monthlyReturn: 0.51, threeMonthReturn: 14.80, yearlyReturn: 69.91, totalValue: 3124500000, investorCount: 19800 },
@@ -34,70 +35,40 @@ const FUND_BASELINE_DATA = {
 };
 
 /**
- * Fetch a single fund directly from official TEFAS API with retry
+ * Generic POST request to TEFAS API with retry
  */
-async function fetchFundLiveFromTefas(code, retries = 2) {
-  const url = 'https://www.tefas.gov.tr/api/funds/fonFiyatBilgiGetir';
+async function callTefasApi(endpoint, body, retries = 2) {
+  const url = `https://www.tefas.gov.tr/api/funds/${endpoint}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json, text/plain, */*',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    'Origin': 'https://www.tefas.gov.tr',
+    'Referer': `https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${body.fonKodu || ''}`
+  };
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const res = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json, text/plain, */*',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-          'Origin': 'https://www.tefas.gov.tr',
-          'Referer': `https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${code}`
-        },
-        body: JSON.stringify({ fonKodu: code, dil: 'TR', periyod: 12 }),
+        headers,
+        body: JSON.stringify(body),
         signal: AbortSignal.timeout(8000)
       });
 
       if (!res.ok) {
         if (attempt < retries) {
-          await new Promise(r => setTimeout(r, 400 * (attempt + 1)));
+          await new Promise(r => setTimeout(r, 250 * (attempt + 1)));
           continue;
         }
         return null;
       }
 
       const json = await res.json();
-      const list = json?.resultList;
-      if (!Array.isArray(list) || list.length === 0) {
-        if (attempt < retries) {
-          await new Promise(r => setTimeout(r, 400 * (attempt + 1)));
-          continue;
-        }
-        return null;
-      }
-
-      const latest = list[list.length - 1];
-      const prevDay = list[list.length - 2];
-      const prevWeek = list[Math.max(0, list.length - 6)];
-      const prevMonth = list[Math.max(0, list.length - 22)];
-      const prev3Month = list[Math.max(0, list.length - 64)];
-      const prevYear = list[0];
-
-      const price = latest.fiyat;
-      const calcReturn = (base) => (base && base.fiyat > 0) ? ((price - base.fiyat) / base.fiyat) * 100 : 0;
-
-      // Extract 12-point sparkline
-      const sparkline = list.slice(-12).map(item => Number(item.fiyat.toFixed(item.fiyat < 1 ? 4 : 2)));
-
-      return {
-        price,
-        dailyReturn: Number(calcReturn(prevDay).toFixed(2)),
-        weeklyReturn: Number(calcReturn(prevWeek).toFixed(2)),
-        monthlyReturn: Number(calcReturn(prevMonth).toFixed(2)),
-        threeMonthReturn: Number(calcReturn(prev3Month).toFixed(2)),
-        yearlyReturn: Number(calcReturn(prevYear).toFixed(2)),
-        date: latest.tarih,
-        sparkline
-      };
+      return json?.resultList ?? null;
     } catch (err) {
       if (attempt < retries) {
-        await new Promise(r => setTimeout(r, 400 * (attempt + 1)));
+        await new Promise(r => setTimeout(r, 250 * (attempt + 1)));
       }
     }
   }
@@ -106,34 +77,112 @@ async function fetchFundLiveFromTefas(code, retries = 2) {
 }
 
 /**
- * Compiles and returns all TEFAS investment funds directly from live TEFAS
+ * Fetch all available data for a single fund from TEFAS
+ */
+async function fetchCompleteFundFromTefas(code) {
+  try {
+    // 1. Fetch live prices & 1-year history
+    const priceList = await callTefasApi('fonFiyatBilgiGetir', { fonKodu: code, dil: 'TR', periyod: 12 });
+    await new Promise(r => setTimeout(r, 80));
+
+    // 2. Fetch official fund info (portfolio size, investor count, market share, category rank)
+    const infoList = await callTefasApi('fonBilgiGetir', { fonKodu: code, dil: 'TR' });
+    await new Promise(r => setTimeout(r, 80));
+
+    // 3. Fetch official fund profile (ISIN, settlement valors, trade hours, KAP link)
+    const profileList = await callTefasApi('fonProfilBilgiGetir', { fonKodu: code, dil: 'TR' });
+
+    const info = infoList?.[0] || {};
+    const profile = profileList?.[0] || {};
+    const hasPriceList = Array.isArray(priceList) && priceList.length > 0;
+
+    let price = info.sonFiyat;
+    let dailyReturn = info.gunlukGetiri;
+    let weeklyReturn = 0;
+    let monthlyReturn = 0;
+    let threeMonthReturn = 0;
+    let yearlyReturn = 0;
+    let sparkline = [];
+    let updatedDate = new Date().toISOString().slice(0, 10);
+
+    if (hasPriceList) {
+      const latest = priceList[priceList.length - 1];
+      const prevDay = priceList[priceList.length - 2];
+      const prevWeek = priceList[Math.max(0, priceList.length - 6)];
+      const prevMonth = priceList[Math.max(0, priceList.length - 22)];
+      const prev3Month = priceList[Math.max(0, priceList.length - 64)];
+      const prevYear = priceList[0];
+
+      if (!price) price = latest.fiyat;
+      const calcReturn = (base) => (base && base.fiyat > 0) ? ((price - base.fiyat) / base.fiyat) * 100 : 0;
+
+      if (dailyReturn === undefined || dailyReturn === null) {
+        dailyReturn = calcReturn(prevDay);
+      }
+      weeklyReturn = calcReturn(prevWeek);
+      monthlyReturn = calcReturn(prevMonth);
+      threeMonthReturn = calcReturn(prev3Month);
+      yearlyReturn = calcReturn(prevYear);
+      updatedDate = latest.tarih || updatedDate;
+
+      sparkline = priceList.slice(-12).map(item => Number(item.fiyat.toFixed(item.fiyat < 1 ? 4 : 2)));
+    }
+
+    if (!price && !info.portBuyukluk) {
+      return null;
+    }
+
+    return {
+      price,
+      dailyReturn: Number((dailyReturn || 0).toFixed(2)),
+      weeklyReturn: Number((weeklyReturn || 0).toFixed(2)),
+      monthlyReturn: Number((monthlyReturn || 0).toFixed(2)),
+      threeMonthReturn: Number((threeMonthReturn || 0).toFixed(2)),
+      yearlyReturn: Number((yearlyReturn || 0).toFixed(2)),
+      totalValue: info.portBuyukluk ? Math.round(info.portBuyukluk) : null,
+      investorCount: info.yatirimciSayi ? Math.round(info.yatirimciSayi) : null,
+      sharesCount: info.payAdet ? Math.round(info.payAdet) : null,
+      marketShare: (info.pazarPayi !== undefined && info.pazarPayi !== null) ? Number(info.pazarPayi.toFixed(2)) : null,
+      categoryRank: info.kategoriDerece ?? null,
+      categoryTotal: info.kategoriFonSay ?? null,
+      isin: profile.isinKodu || null,
+      sellValuation: profile.fonSatisValor !== undefined ? profile.fonSatisValor : null,
+      buyValuation: profile.fonGeriAlisValor !== undefined ? profile.fonGeriAlisValor : null,
+      tradeHours: (profile.basIsSaat && profile.sonIsSaat) ? `${profile.basIsSaat} - ${profile.sonIsSaat}` : null,
+      kapUrl: profile.kapLink || null,
+      tefasStatus: profile.tefasDurum || "TEFAS'ta işlem görüyor",
+      minBuy: profile.minAlis ?? 1,
+      minSell: profile.minSatis ?? 1,
+      sparkline,
+      updatedDate
+    };
+  } catch (err) {
+    return null;
+  }
+}
+
+/**
+ * Compiles and returns all TEFAS investment funds with full details directly from live TEFAS
  */
 export async function fetchTefasFunds(previousFunds = {}) {
   const fundsMap = {};
   const fundList = [];
   const fundCodes = FUNDS_CONFIG.map(f => f.code);
 
-  console.log(`🌐 TEFAS Resmi API üzerinden ${fundCodes.length} yatırım fonu için güncel fiyatlar çekiliyor...`);
+  console.log(`🌐 TEFAS Resmi API üzerinden ${fundCodes.length} yatırım fonu için tüm detay veriler çekiliyor...`);
 
-  // Controlled batch fetching (3 concurrent requests)
+  // Sequential execution with friendly delay between funds to respect TEFAS WAF
   const liveResults = {};
-  const BATCH_SIZE = 4;
-  for (let i = 0; i < fundCodes.length; i += BATCH_SIZE) {
-    const batch = fundCodes.slice(i, i + BATCH_SIZE);
-    const promises = batch.map(async (code) => {
-      const data = await fetchFundLiveFromTefas(code);
-      if (data) {
-        liveResults[code] = data;
-      }
-    });
-    await Promise.all(promises);
-    if (i + BATCH_SIZE < fundCodes.length) {
-      await new Promise(r => setTimeout(r, 150));
+  for (const code of fundCodes) {
+    const data = await fetchCompleteFundFromTefas(code);
+    if (data) {
+      liveResults[code] = data;
     }
+    await new Promise(r => setTimeout(r, 120));
   }
 
   const liveSuccessCount = Object.keys(liveResults).length;
-  console.log(`✅ TEFAS Canlı API: ${liveSuccessCount} / ${fundCodes.length} fon güncel olarak çekildi.`);
+  console.log(`✅ TEFAS Canlı API: ${liveSuccessCount} / ${fundCodes.length} fon için tüm detay veriler çekildi.`);
 
   for (const cfg of FUNDS_CONFIG) {
     const live = liveResults[cfg.code];
@@ -155,9 +204,22 @@ export async function fetchTefasFunds(previousFunds = {}) {
     const monthlyReturn = live?.monthlyReturn ?? prev?.monthlyReturn ?? base.monthlyReturn;
     const threeMonthReturn = live?.threeMonthReturn ?? prev?.threeMonthReturn ?? base.threeMonthReturn;
     const yearlyReturn = live?.yearlyReturn ?? prev?.yearlyReturn ?? base.yearlyReturn;
-    const totalValue = prev?.totalValue ?? base.totalValue;
-    const investorCount = prev?.investorCount ?? base.investorCount;
+    const totalValue = live?.totalValue ?? prev?.totalValue ?? base.totalValue;
+    const investorCount = live?.investorCount ?? prev?.investorCount ?? base.investorCount;
+    const sharesCount = live?.sharesCount ?? prev?.sharesCount ?? null;
+    const marketShare = live?.marketShare ?? prev?.marketShare ?? null;
+    const categoryRank = live?.categoryRank ?? prev?.categoryRank ?? null;
+    const categoryTotal = live?.categoryTotal ?? prev?.categoryTotal ?? null;
+    const isin = live?.isin ?? prev?.isin ?? null;
+    const sellValuation = live?.sellValuation ?? prev?.sellValuation ?? null;
+    const buyValuation = live?.buyValuation ?? prev?.buyValuation ?? null;
+    const tradeHours = live?.tradeHours ?? prev?.tradeHours ?? '09:00 - 17:45';
+    const kapUrl = live?.kapUrl ?? prev?.kapUrl ?? `https://www.kap.org.tr/tr/`;
+    const tefasStatus = live?.tefasStatus ?? prev?.tefasStatus ?? "TEFAS'ta işlem görüyor";
+    const minBuy = live?.minBuy ?? prev?.minBuy ?? 1;
+    const minSell = live?.minSell ?? prev?.minSell ?? 1;
     const sparkline = live?.sparkline ?? prev?.sparkline ?? [price, price];
+    const updatedDate = live?.updatedDate ?? prev?.updatedDate ?? new Date().toISOString().slice(0, 10);
 
     const fundObj = {
       code: cfg.code,
@@ -175,8 +237,20 @@ export async function fetchTefasFunds(previousFunds = {}) {
       yearlyReturn: Number(yearlyReturn.toFixed(2)),
       totalValue: Math.round(totalValue),
       investorCount: Math.round(investorCount),
+      sharesCount,
+      marketShare,
+      categoryRank,
+      categoryTotal,
+      isin,
+      sellValuation,
+      buyValuation,
+      tradeHours,
+      minBuy,
+      minSell,
+      kapUrl,
+      tefasStatus,
       sparkline,
-      updatedDate: live?.date || new Date().toISOString().slice(0, 10)
+      updatedDate
     };
 
     fundsMap[cfg.code] = fundObj;

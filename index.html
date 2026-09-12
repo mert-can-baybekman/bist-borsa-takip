@@ -736,34 +736,79 @@
 
       <!-- Header -->
       <div class="border-b border-slate-800/80 pb-4 pr-12">
-        <div class="flex items-center gap-3">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
           <span id="fundModalCode" class="text-3xl font-black font-display text-white">--</span>
           <span id="fundModalCategory" class="text-xs font-bold font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">--</span>
           <span id="fundModalRisk" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">--</span>
+          <span id="fundModalIsin" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">ISIN: --</span>
+          <span id="fundModalStatus" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">TEFAS'ta İşlem Görüyor</span>
         </div>
-        <h3 id="fundModalName" class="text-base font-bold text-slate-200 mt-2">--</h3>
+        <h3 id="fundModalName" class="text-base font-bold text-slate-200 mt-1">--</h3>
         <p id="fundModalCompany" class="text-xs text-slate-400 mt-0.5">--</p>
       </div>
 
-      <!-- Price & Desc -->
-      <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/70 flex items-center justify-between">
+      <!-- Core 4-column Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800/80">
         <div>
-          <span class="text-xs text-slate-500">Birim Pay Değeri</span>
-          <div id="fundModalPrice" class="text-2xl font-black font-num text-white mt-0.5">--</div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">Birim Pay Değeri</span>
+          <div id="fundModalPrice" class="text-xl font-black font-num text-white mt-0.5">--</div>
         </div>
-        <div class="text-right">
-          <span class="text-xs text-slate-500">Portföy Büyüklüğü</span>
-          <div id="fundModalSize" class="text-base font-bold font-num text-amber-400 mt-0.5">--</div>
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">Portföy Büyüklüğü</span>
+          <div id="fundModalSize" class="text-sm font-bold font-num text-amber-400 mt-0.5">--</div>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">Kategori Sırası</span>
+          <div id="fundModalRank" class="text-sm font-bold font-num text-emerald-400 mt-0.5">--</div>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">TEFAS Pazar Payı</span>
+          <div id="fundModalMarketShare" class="text-sm font-bold font-num text-sky-400 mt-0.5">--</div>
         </div>
       </div>
 
-      <p id="fundModalDesc" class="text-xs text-slate-400 leading-relaxed bg-[#0a0f18] p-3.5 rounded-xl border border-slate-850">
+      <!-- Detailed TEFAS Metrics Grid (2x3) -->
+      <div class="bg-[#0a0f18] p-3.5 rounded-xl border border-slate-850 space-y-2">
+        <h4 class="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-mono flex items-center justify-between">
+          <span>TEFAS Resmi Fon Parametreleri</span>
+          <span id="fundModalDate" class="text-[10px] text-slate-500 font-normal">--</span>
+        </h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">Tedavüldeki Pay</span>
+            <span id="fundModalShares" class="text-slate-200 font-bold font-num mt-0.5 block">--</span>
+          </div>
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">Yatırımcı Sayısı</span>
+            <span id="fundModalInvestors" class="text-slate-200 font-bold font-num mt-0.5 block">--</span>
+          </div>
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">Takas / Valör</span>
+            <span id="fundModalValuation" class="text-slate-200 font-bold mt-0.5 block">--</span>
+          </div>
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">İşlem Saatleri</span>
+            <span id="fundModalHours" class="text-slate-200 font-bold mt-0.5 block">--</span>
+          </div>
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">Min. İşlem Payı</span>
+            <span id="fundModalMinTrade" class="text-slate-200 font-bold mt-0.5 block">--</span>
+          </div>
+          <div class="bg-slate-950/80 p-2 rounded-lg border border-slate-900">
+            <span class="text-[10px] text-slate-500 block">Platform</span>
+            <span class="text-amber-400 font-bold mt-0.5 block">TEFAS / Takasbank</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fund Description -->
+      <p id="fundModalDesc" class="text-xs text-slate-400 leading-relaxed bg-[#0a0f18] p-3 rounded-xl border border-slate-850">
         --
       </p>
 
       <!-- Returns Grid -->
       <div>
-        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2 font-mono">Dönemsel Getiri Performansı</h4>
+        <h4 class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mb-2 font-mono">Dönemsel Getiri Performansı</h4>
         <div class="grid grid-cols-5 gap-2 text-center font-mono">
           <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
             <span class="text-[10px] text-slate-500 block">Günlük</span>
@@ -788,9 +833,12 @@
         </div>
       </div>
 
-      <!-- Action link to TEFAS official -->
-      <div class="pt-2 flex items-center justify-between">
-        <span id="fundModalInvestors" class="text-xs text-slate-500 font-mono">Yatırımcı Sayısı: --</span>
+      <!-- Action links to TEFAS official and KAP -->
+      <div class="pt-2 flex flex-wrap items-center justify-end gap-2.5">
+        <a id="fundModalKapLink" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all flex items-center gap-1.5 border border-slate-700">
+          <span>KAP Bildirimleri</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
         <a id="fundModalTefasLink" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-md">
           <span>TEFAS Resmi Fon Analizi</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
@@ -1282,6 +1330,13 @@
       return `₺${Number(val).toLocaleString('tr-TR', { minimumFractionDigits: decimals, maximumFractionDigits: 6 })}`;
     }
 
+    function formatFundShares(val) {
+      if (!val || isNaN(val)) return '-';
+      if (val >= 1e9) return `${(val / 1e9).toFixed(2)} Mr Pay`;
+      if (val >= 1e6) return `${(val / 1e6).toFixed(1)} Mn Pay`;
+      return `${Number(val).toLocaleString('tr-TR')} Pay`;
+    }
+
     function applyFundFilters() {
       if (!globalData?.funds) return;
 
@@ -1391,7 +1446,7 @@
 
             <!-- Bottom Stats -->
             <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
-              <span class="font-mono text-[10px]">Portföy: ${formatFundSize(fund.totalValue)}</span>
+              <span class="font-mono text-[10px]">Portföy: ${formatFundSize(fund.totalValue)}${fund.categoryRank ? ` • <span class="text-emerald-400 font-bold" title="Kategori Sıralaması">#${fund.categoryRank}</span>` : ''}</span>
               <span class="text-amber-400 hover:text-amber-300 font-semibold inline-flex items-center gap-0.5 transition-transform group-hover:translate-x-0.5">
                 Detay →
               </span>
@@ -1457,7 +1512,39 @@
       document.getElementById('fundModalPrice').textContent = formatFundPrice(fund.price, 6);
       document.getElementById('fundModalSize').textContent = formatFundSize(fund.totalValue);
       document.getElementById('fundModalDesc').textContent = fund.desc || 'Bu fon TEFAS platformunda işlem görmekte olup SPK onaylı portföy yönetim şirketi tarafından yönetilmektedir.';
-      document.getElementById('fundModalInvestors').textContent = `Yatırımcı Sayısı: ${Number(fund.investorCount || 0).toLocaleString('tr-TR')} kişi`;
+
+      // Enriched TEFAS Fields
+      const isinEl = document.getElementById('fundModalIsin');
+      if (isinEl) isinEl.textContent = fund.isin ? `ISIN: ${fund.isin}` : `ISIN: -`;
+
+      const statusEl = document.getElementById('fundModalStatus');
+      if (statusEl) statusEl.textContent = fund.tefasStatus || "TEFAS'ta İşlem Görüyor";
+
+      const rankEl = document.getElementById('fundModalRank');
+      if (rankEl) rankEl.textContent = fund.categoryRank ? `${fund.categoryRank} / ${fund.categoryTotal || '-'}` : '-';
+
+      const shareEl = document.getElementById('fundModalMarketShare');
+      if (shareEl) shareEl.textContent = (fund.marketShare !== null && fund.marketShare !== undefined) ? `%${fund.marketShare.toFixed(2)}` : '-';
+
+      const sharesEl = document.getElementById('fundModalShares');
+      if (sharesEl) sharesEl.textContent = formatFundShares(fund.sharesCount);
+
+      const invEl = document.getElementById('fundModalInvestors');
+      if (invEl) invEl.textContent = `${Number(fund.investorCount || 0).toLocaleString('tr-TR')} kişi`;
+
+      const valEl = document.getElementById('fundModalValuation');
+      if (valEl) {
+        valEl.textContent = `Alış: T+${fund.buyValuation ?? 1} | Satış: T+${fund.sellValuation ?? 1}`;
+      }
+
+      const hoursEl = document.getElementById('fundModalHours');
+      if (hoursEl) hoursEl.textContent = fund.tradeHours || '09:00 - 17:45';
+
+      const minTradeEl = document.getElementById('fundModalMinTrade');
+      if (minTradeEl) minTradeEl.textContent = `${fund.minBuy ?? 1} Pay`;
+
+      const dateEl = document.getElementById('fundModalDate');
+      if (dateEl) dateEl.textContent = fund.updatedDate ? `Son Güncelleme: ${fund.updatedDate}` : '';
 
       const formatRet = (elId, val) => {
         const el = document.getElementById(elId);
@@ -1476,6 +1563,11 @@
       const linkEl = document.getElementById('fundModalTefasLink');
       if (linkEl) {
         linkEl.href = `https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${fund.code}`;
+      }
+
+      const kapEl = document.getElementById('fundModalKapLink');
+      if (kapEl) {
+        kapEl.href = fund.kapUrl || 'https://www.kap.org.tr';
       }
     }
 
