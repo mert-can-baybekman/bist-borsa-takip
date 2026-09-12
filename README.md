@@ -110,7 +110,7 @@ Herhangi bir statik sunucuyla (örn: VS Code Live Server veya `npx serve .`) `in
 
 | İş Akışı | Zamanlama | Görev |
 | :--- | :--- | :--- |
-| **Piyasa Verisi & Dağıtım** | Hafta içi 10:00 - 19:00 (Her saat başı) | `fetch-data.js` çalıştırılır, `data.json` derlenir ve GitHub Pages'e yüklenir. |
+| **Piyasa Verisi, Fonlar & Dağıtım** | Hafta içi 09:30 (Piyasa öncesi fon güncellemesi) ve 10:00 - 19:00 (Her saat başı) | TEFAS fonları ve borsa verileri derlenir, `data.json` üretilip GitHub Pages'e yüklenir. |
 | **Sabah Bülteni** | Hafta içi 07:30 TSİ | Güncel verileri derleyip kayıtlı abonelere bülten e-postası iletir. |
 | **CI Test Suite** | Push / Pull Request | Tüm birim testleri (`npm test`) otomatik çalıştırır. |
 

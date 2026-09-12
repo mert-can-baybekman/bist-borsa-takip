@@ -5,6 +5,8 @@ on:
     branches:
       - main
   schedule:
+    # Hafta ici borsa acilmadan once gunluk fon ve seans oncesi guncelleme (06:30 UTC = 09:30 TSI)
+    - cron: '30 6 * * 1-5'
     # Hafta ici borsa seans saatlerinde her saat basi calisir (07:00 - 16:00 UTC = 10:00 - 19:00 TSI)
     - cron: '0 7-16 * * 1-5'
   workflow_dispatch:
