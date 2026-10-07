@@ -94,9 +94,18 @@ async function fetchCompleteFundFromTefas(code) {
 
     const info = infoList?.[0] || {};
     const profile = profileList?.[0] || {};
-    const hasPriceList = Array.isArray(priceList) && priceList.length > 0;
+    const history = (Array.isArray(priceList) ? priceList : [])
+      .map(item => ({
+        date: item.tarih,
+        close: Number(item.fiyat)
+      }))
+      .filter(item => item.date && Number.isFinite(Date.parse(item.date)) && Number.isFinite(item.close) && item.close > 0);
+    const hasPriceList = history.length > 0;
 
-    let price = info.sonFiyat;
+    const reportedPrice = Number(info.sonFiyat);
+    let price = Number.isFinite(reportedPrice) && reportedPrice > 0
+      ? reportedPrice
+      : (history[history.length - 1]?.close ?? null);
     let dailyReturn = info.gunlukGetiri;
     let weeklyReturn = 0;
     let monthlyReturn = 0;
@@ -106,15 +115,14 @@ async function fetchCompleteFundFromTefas(code) {
     let updatedDate = new Date().toISOString().slice(0, 10);
 
     if (hasPriceList) {
-      const latest = priceList[priceList.length - 1];
-      const prevDay = priceList[priceList.length - 2];
-      const prevWeek = priceList[Math.max(0, priceList.length - 6)];
-      const prevMonth = priceList[Math.max(0, priceList.length - 22)];
-      const prev3Month = priceList[Math.max(0, priceList.length - 64)];
-      const prevYear = priceList[0];
+      const latest = history[history.length - 1];
+      const prevDay = history[history.length - 2];
+      const prevWeek = history[Math.max(0, history.length - 6)];
+      const prevMonth = history[Math.max(0, history.length - 22)];
+      const prev3Month = history[Math.max(0, history.length - 64)];
+      const prevYear = history[0];
 
-      if (!price) price = latest.fiyat;
-      const calcReturn = (base) => (base && base.fiyat > 0) ? ((price - base.fiyat) / base.fiyat) * 100 : 0;
+      const calcReturn = (base) => (base && base.close > 0) ? ((price - base.close) / base.close) * 100 : 0;
 
       if (dailyReturn === undefined || dailyReturn === null) {
         dailyReturn = calcReturn(prevDay);
@@ -123,9 +131,9 @@ async function fetchCompleteFundFromTefas(code) {
       monthlyReturn = calcReturn(prevMonth);
       threeMonthReturn = calcReturn(prev3Month);
       yearlyReturn = calcReturn(prevYear);
-      updatedDate = latest.tarih || updatedDate;
+      updatedDate = latest.date || updatedDate;
 
-      sparkline = priceList.slice(-12).map(item => Number(item.fiyat.toFixed(item.fiyat < 1 ? 4 : 2)));
+      sparkline = history.slice(-12).map(item => Number(item.close.toFixed(item.close < 1 ? 4 : 2)));
     }
 
     if (!price && !info.portBuyukluk) {
@@ -154,6 +162,7 @@ async function fetchCompleteFundFromTefas(code) {
       minBuy: profile.minAlis ?? 1,
       minSell: profile.minSatis ?? 1,
       sparkline,
+      history,
       updatedDate
     };
   } catch (err) {
@@ -166,6 +175,7 @@ async function fetchCompleteFundFromTefas(code) {
  */
 export async function fetchTefasFunds(previousFunds = {}) {
   const fundsMap = {};
+  const fundHistories = {};
   const fundList = [];
   const fundCodes = FUNDS_CONFIG.map(f => f.code);
 
@@ -254,6 +264,9 @@ export async function fetchTefasFunds(previousFunds = {}) {
     };
 
     fundsMap[cfg.code] = fundObj;
+    if (Array.isArray(live?.history) && live.history.length > 0) {
+      fundHistories[cfg.code] = live.history;
+    }
     fundList.push(fundObj);
   }
 
@@ -264,6 +277,7 @@ export async function fetchTefasFunds(previousFunds = {}) {
 
   return {
     funds: fundsMap,
+    fundHistories,
     stats: {
       totalFundsCount: fundList.length,
       topMonthlyGainers: topMonthly.map(f => ({ code: f.code, name: f.name, return: f.monthlyReturn })),

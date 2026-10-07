@@ -767,6 +767,27 @@
         </div>
       </div>
 
+      <!-- Historical TEFAS fund price chart -->
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h4 class="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-mono">Geçmiş Birim Pay Değeri</h4>
+          <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+            <button onclick="setFundChartFilter(7, this)" class="fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">1H</button>
+            <button onclick="setFundChartFilter(30, this)" class="fund-time-btn px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold">1A</button>
+            <button onclick="setFundChartFilter(90, this)" class="fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">3A</button>
+            <button onclick="setFundChartFilter(180, this)" class="fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">6A</button>
+            <button onclick="setFundChartFilter(365, this)" class="fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">1Y</button>
+          </div>
+        </div>
+        <div class="bg-slate-950/80 border border-slate-800/90 rounded-2xl p-4 h-64 sm:h-72 relative">
+          <canvas id="fundModalChartCanvas"></canvas>
+          <p id="fundModalChartStatus" class="absolute inset-0 flex items-center justify-center text-xs text-slate-500 pointer-events-none">
+            TEFAS geçmiş verileri yükleniyor...
+          </p>
+        </div>
+        <p class="text-[10px] text-slate-500">Kaynak: TEFAS resmi fon fiyat geçmişi</p>
+      </div>
+
       <!-- Detailed TEFAS Metrics Grid (2x3) -->
       <div class="bg-[#0a0f18] p-3.5 rounded-xl border border-slate-850 space-y-2">
         <h4 class="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-mono flex items-center justify-between">
@@ -862,6 +883,9 @@
     let currentFundSort = 'monthly_desc';
     let currentFundViewMode = 'grid';
     let activeModalFundCode = null;
+    let currentFundChartDays = 30;
+    let fundModalChartInstance = null;
+    const fundHistoryCache = {};
 
     let modalChartInstance = null;
     let activeModalSymbol = null;
@@ -1493,11 +1517,12 @@
       }).join('');
     }
 
-    function openFundModal(code) {
+    async function openFundModal(code) {
       const fund = globalData?.funds?.[code];
       if (!fund) return;
 
       activeModalFundCode = code;
+      currentFundChartDays = 30;
       const modal = document.getElementById('fundModal');
       if (!modal) return;
 
@@ -1569,12 +1594,139 @@
       if (kapEl) {
         kapEl.href = fund.kapUrl || 'https://www.kap.org.tr';
       }
+
+      document.querySelectorAll('.fund-time-btn').forEach(button => {
+        button.className = 'fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white';
+      });
+      const defaultFundTimeButton = document.querySelector('.fund-time-btn[onclick="setFundChartFilter(30, this)"]');
+      if (defaultFundTimeButton) {
+        defaultFundTimeButton.className = 'fund-time-btn px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold';
+      }
+
+      const chartStatus = document.getElementById('fundModalChartStatus');
+      if (chartStatus) chartStatus.textContent = 'TEFAS geçmiş verileri yükleniyor...';
+      if (fundModalChartInstance) {
+        fundModalChartInstance.destroy();
+        fundModalChartInstance = null;
+      }
+
+      try {
+        if (!fundHistoryCache[code]) {
+          const historyResponse = await fetch(`data/fund-history/${encodeURIComponent(code)}.json`);
+          if (!historyResponse.ok) {
+            throw new Error(`Fon geçmişi alınamadı (HTTP ${historyResponse.status})`);
+          }
+          const historyData = await historyResponse.json();
+          if (!Array.isArray(historyData.history)) {
+            throw new Error('Fon geçmiş verisi beklenen formatta değil');
+          }
+          fundHistoryCache[code] = historyData.history.filter(item =>
+            item && typeof item.date === 'string' && Number.isFinite(item.close) && item.close > 0
+          );
+        }
+
+        if (activeModalFundCode !== code) return;
+        renderFundModalChart();
+      } catch (error) {
+        console.warn(`TEFAS fon geçmişi yüklenemedi (${code}):`, error);
+        if (activeModalFundCode === code && chartStatus) {
+          chartStatus.textContent = 'TEFAS geçmiş verisi şu anda yüklenemedi.';
+        }
+      }
     }
 
     function closeFundModal() {
       const modal = document.getElementById('fundModal');
       if (modal) modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
+      activeModalFundCode = null;
+      if (fundModalChartInstance) {
+        fundModalChartInstance.destroy();
+        fundModalChartInstance = null;
+      }
+    }
+
+    function setFundChartFilter(days, btnEl) {
+      currentFundChartDays = days;
+      document.querySelectorAll('.fund-time-btn').forEach(button => {
+        button.className = 'fund-time-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white';
+      });
+      btnEl.className = 'fund-time-btn px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold';
+      renderFundModalChart();
+    }
+
+    function renderFundModalChart() {
+      const history = fundHistoryCache[activeModalFundCode];
+      const chartStatus = document.getElementById('fundModalChartStatus');
+      if (!Array.isArray(history) || history.length === 0) {
+        if (chartStatus) chartStatus.textContent = 'Bu fon için TEFAS geçmiş fiyat verisi bulunamadı.';
+        return;
+      }
+
+      const chartData = history.slice(-currentFundChartDays);
+      const labels = chartData.map(item => item.date);
+      const prices = chartData.map(item => item.close);
+      const isPositive = prices[prices.length - 1] >= prices[0];
+      const color = isPositive ? '#10b981' : '#f59e0b';
+      const canvas = document.getElementById('fundModalChartCanvas');
+      const ctx = canvas.getContext('2d');
+      const gradient = ctx.createLinearGradient(0, 0, 0, 260);
+      gradient.addColorStop(0, isPositive ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)');
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+      if (fundModalChartInstance) fundModalChartInstance.destroy();
+      fundModalChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: `${activeModalFundCode} Birim Pay Değeri (₺)`,
+            data: prices,
+            borderColor: color,
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.2,
+            borderWidth: 2.5,
+            pointRadius: labels.length > 40 ? 0 : 2,
+            pointHoverRadius: 5,
+            pointBackgroundColor: color
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0c121e',
+              titleColor: '#94a3b8',
+              bodyColor: '#f8fafc',
+              borderColor: '#1e293b',
+              borderWidth: 1,
+              padding: 10,
+              displayColors: false,
+              callbacks: {
+                label: context => `₺${context.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(30, 41, 59, 0.4)' },
+              ticks: { color: '#64748b', maxTicksLimit: 8, font: { family: 'JetBrains Mono', size: 10 } }
+            },
+            y: {
+              grid: { color: 'rgba(30, 41, 59, 0.4)' },
+              ticks: {
+                color: '#64748b',
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: value => `₺${Number(value).toLocaleString('tr-TR', { maximumFractionDigits: 4 })}`
+              }
+            }
+          }
+        }
+      });
+      if (chartStatus) chartStatus.textContent = '';
     }
 
     // ================= CLIENT-SIDE LIVE SESSION ENGINE =================

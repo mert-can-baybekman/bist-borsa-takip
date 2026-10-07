@@ -68,4 +68,13 @@ test('data.json exists and adheres to the production schema', () => {
     assert.ok(typeof fund.yearlyReturn === 'number', `${fCode} yearlyReturn must be numeric`);
     assert.ok(fund.category, `${fCode} category must be defined`);
   }
+
+  const thfFundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'THF.json');
+  assert.ok(fs.existsSync(thfFundHistoryPath), 'data/fund-history/THF.json must exist');
+  const thfFundHistory = JSON.parse(fs.readFileSync(thfFundHistoryPath, 'utf-8'));
+  assert.equal(thfFundHistory.source, 'TEFAS', 'Fund history must come from TEFAS');
+  assert.ok(Array.isArray(thfFundHistory.history) && thfFundHistory.history.length > 5, 'THF TEFAS history must contain historical prices');
+  assert.ok(thfFundHistory.history.every(item =>
+    typeof item.date === 'string' && typeof item.close === 'number' && item.close > 0
+  ), 'Fund history points must contain a date and a positive price');
 });

@@ -32201,17 +32201,17 @@
       "riskLevel": 6,
       "featured": true,
       "desc": "Borsa İstanbul'da büyüme potansiyeli yüksek şirketlere yatırım yapan Tera Portföy hisse senedi fonu.",
-      "price": 2.916338,
-      "dailyReturn": 0.14,
-      "weeklyReturn": 4.74,
-      "monthlyReturn": 25.02,
-      "threeMonthReturn": 32.4,
-      "yearlyReturn": 123.53,
+      "price": 0.768118,
+      "dailyReturn": 0,
+      "weeklyReturn": -71.56,
+      "monthlyReturn": -70.39,
+      "threeMonthReturn": -64.34,
+      "yearlyReturn": -44.83,
       "totalValue": 130895185407,
-      "investorCount": 182730,
+      "investorCount": 214403,
       "sharesCount": 44883414529,
-      "marketShare": 42.17,
-      "categoryRank": 2,
+      "marketShare": 0,
+      "categoryRank": 178,
       "categoryTotal": 200,
       "isin": "TRYTRPY00140",
       "sellValuation": 2,
@@ -32220,22 +32220,22 @@
       "minBuy": 1,
       "minSell": 1,
       "kapUrl": "https://www.kap.org.tr/tr/fon-bilgileri/genel/thf-tera-portfoy-hisse-senedi-tl-fonu-hisse-senedi-yogun-fon",
-      "tefasStatus": "TEFAS'ta işlem görüyor",
+      "tefasStatus": "Fon Alımına Kapalı, Fon Bozumuna Kapalı",
       "sparkline": [
-        2.63,
-        2.69,
-        2.73,
-        2.72,
-        2.74,
-        2.76,
-        2.78,
-        2.81,
-        2.83,
         2.88,
         2.91,
-        2.92
+        2.92,
+        2.92,
+        2.93,
+        2.92,
+        2.7,
+        2.31,
+        1.91,
+        1.67,
+        1.25,
+        0.7681
       ],
-      "updatedDate": "2026-09-11"
+      "updatedDate": "2026-09-24"
     },
     "PTO": {
       "code": "PTO",
@@ -32685,18 +32685,18 @@
       "riskLevel": 1,
       "featured": true,
       "desc": "Gecelik faiz, ters repo ve kısa vadeli mevduat getirisi sunan yüksek likidite fonu.",
-      "price": 2.229489,
-      "dailyReturn": 0.13,
-      "weeklyReturn": 0.9,
-      "monthlyReturn": 3.78,
-      "threeMonthReturn": 11.94,
-      "yearlyReturn": 60.38,
+      "price": 2.243343,
+      "dailyReturn": 0,
+      "weeklyReturn": 0.89,
+      "monthlyReturn": 3.77,
+      "threeMonthReturn": 12.2,
+      "yearlyReturn": 56.08,
       "totalValue": 249859113793,
-      "investorCount": 170623,
+      "investorCount": 169233,
       "sharesCount": 112070112475,
-      "marketShare": 12.69,
-      "categoryRank": 1,
-      "categoryTotal": 87,
+      "marketShare": 0,
+      "categoryRank": 77,
+      "categoryTotal": 88,
       "isin": "TRYTRPY00132",
       "sellValuation": 0,
       "buyValuation": 0,
@@ -32704,11 +32704,8 @@
       "minBuy": 1,
       "minSell": 1,
       "kapUrl": "https://www.kap.org.tr/tr/fon-bilgileri/genel/tp2-tera-portfoy-para-piyasasi-tl-fonu",
-      "tefasStatus": "TEFAS'ta işlem görüyor",
+      "tefasStatus": "Fon Alımına Kapalı, Fon Bozumuna Kapalı",
       "sparkline": [
-        2.19,
-        2.19,
-        2.2,
         2.2,
         2.2,
         2.21,
@@ -32717,9 +32714,12 @@
         2.22,
         2.22,
         2.23,
-        2.23
+        2.23,
+        2.24,
+        2.24,
+        2.24
       ],
-      "updatedDate": "2026-09-11"
+      "updatedDate": "2026-09-16"
     },
     "PPZ": {
       "code": "PPZ",
@@ -33078,11 +33078,6 @@
     "totalFundsCount": 20,
     "topMonthlyGainers": [
       {
-        "code": "THF",
-        "name": "Tera Portföy Hisse Senedi (TL) Fonu (Hisse Senedi Yoğun Fon)",
-        "return": 25.02
-      },
-      {
         "code": "YAY",
         "name": "Yapı Kredi Portföy Yabancı Teknoloji Sektörü Hisse Senedi Fonu",
         "return": 9.71
@@ -33095,20 +33090,20 @@
       {
         "code": "TP2",
         "name": "Tera Portföy Para Piyasası (TL) Fonu",
-        "return": 3.78
+        "return": 3.77
       },
       {
         "code": "PPZ",
         "name": "Azimut Portföy Para Piyasası (TL) Fonu",
         "return": 2.72
+      },
+      {
+        "code": "IPJ",
+        "name": "İş Portföy Elektrikli Araçlar Karma Fon",
+        "return": 2.22
       }
     ],
     "topYearlyGainers": [
-      {
-        "code": "THF",
-        "name": "Tera Portföy Hisse Senedi (TL) Fonu (Hisse Senedi Yoğun Fon)",
-        "return": 123.53
-      },
       {
         "code": "PTO",
         "name": "Pardus Portföy Temettü Ödeyen Şirketler Hisse Senedi Fonu (Hisse Senedi Yoğun Fon)",
@@ -33122,12 +33117,17 @@
       {
         "code": "TP2",
         "name": "Tera Portföy Para Piyasası (TL) Fonu",
-        "return": 60.38
+        "return": 56.08
       },
       {
         "code": "TGE",
         "name": "İş Portföy Emtia Yabancı Fon Sepeti Fonu",
         "return": 54.35
+      },
+      {
+        "code": "NRM",
+        "name": "Nurol Portföy Birinci Para Piyasası (TL) Fonu",
+        "return": 48.9
       }
     ],
     "largestFunds": [

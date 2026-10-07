@@ -517,6 +517,19 @@ export async function fetchAllData() {
     const fundResults = await fetchTefasFunds(previousData.funds || {});
     output.funds = fundResults.funds;
     output.fundStats = fundResults.stats;
+    const fundHistoryDir = path.join(process.cwd(), 'data', 'fund-history');
+    if (!fs.existsSync(fundHistoryDir)) {
+      fs.mkdirSync(fundHistoryDir, { recursive: true });
+    }
+    for (const [code, history] of Object.entries(fundResults.fundHistories)) {
+      if (Array.isArray(history) && history.length > 0) {
+        fs.writeFileSync(
+          path.join(fundHistoryDir, `${code}.json`),
+          JSON.stringify({ code, source: 'TEFAS', history }),
+          'utf-8'
+        );
+      }
+    }
     console.log(`✅ Toplam ${Object.keys(output.funds).length} TEFAS fonu başarıyla işlendi.`);
   } catch (fundErr) {
     console.warn('⚠️ TEFAS fonları derlenirken uyarı:', fundErr.message);
