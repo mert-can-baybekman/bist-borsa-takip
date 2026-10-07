@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'fs';
 import path from 'path';
 import { FUNDS_CONFIG } from '../src/funds-config.js';
+import { isQualifiedInvestorFund } from '../src/fetch-funds.js';
 
 test('data.json exists and adheres to the production schema', () => {
   assert.ok(fs.existsSync('./data.json'), 'data.json must exist');
@@ -84,8 +85,11 @@ test('data.json exists and adheres to the production schema', () => {
   for (const comparison of [...data.fundStats.topMonthlyGainers, ...data.fundStats.topYearlyGainers]) {
     const fund = Object.values(data.funds).find(item => item.code === comparison.code && item.name === comparison.name);
     assert.ok(fund, `${comparison.code} comparison entry must exist in the fund catalog`);
-    assert.notEqual(fund.tefasFundType, 'GSYF', `${comparison.code} GSYF fund must not appear in return comparisons`);
+    assert.equal(isQualifiedInvestorFund(fund), false, `${comparison.code} qualified-investor fund must not appear in return comparisons`);
   }
+  assert.equal(isQualifiedInvestorFund({ tefasFundType: 'GYF' }), true, 'GYF funds are qualified-investor funds');
+  assert.equal(isQualifiedInvestorFund({ tefasFundType: 'GSYF' }), true, 'GSYF funds are qualified-investor funds');
+  assert.equal(isQualifiedInvestorFund({ tefasFundType: 'YAT', name: 'ÖRNEK SERBEST FON' }), true, 'Serbest funds are qualified-investor funds');
   assert.ok(FUNDS_CONFIG.every(config => data.funds[config.code]), 'Configured investment funds must remain in the TEFAS catalog');
 
   const fundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'TGE.json');

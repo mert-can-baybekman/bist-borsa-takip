@@ -1314,7 +1314,17 @@
       for (const fund of funds) {
         categoryCounts.set(fund.category, (categoryCounts.get(fund.category) || 0) + 1);
       }
-      const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
+      const lastCategories = ['Değişken & Karma', 'Girişim Sermayesi Fonları', 'Emeklilik Fonları', 'Gayrimenkul Fonları'];
+      const categories = [...categoryCounts.entries()].sort((a, b) => {
+        const aLastIndex = lastCategories.indexOf(a[0]);
+        const bLastIndex = lastCategories.indexOf(b[0]);
+        if (aLastIndex !== -1 || bLastIndex !== -1) {
+          if (aLastIndex === -1) return -1;
+          if (bLastIndex === -1) return 1;
+          return aLastIndex - bLastIndex;
+        }
+        return b[1] - a[1];
+      });
       const tabs = [
         ['ALL', `Tüm Fonlar (${funds.length})`],
         ['FAVORITES', `Takip Listem (${fundFavorites.length})`],
@@ -1377,6 +1387,13 @@
       if (val >= 1e9) return `${(val / 1e9).toFixed(2)} Mr Pay`;
       if (val >= 1e6) return `${(val / 1e6).toFixed(1)} Mn Pay`;
       return `${Number(val).toLocaleString('tr-TR')} Pay`;
+    }
+
+    function isQualifiedInvestorFund(fund) {
+      const searchableText = `${fund.category || ''} ${fund.name || ''}`.toLocaleUpperCase('tr-TR');
+      return fund.tefasFundType === 'GYF'
+        || fund.tefasFundType === 'GSYF'
+        || searchableText.includes('SERBEST');
     }
 
     function applyFundFilters() {
@@ -2182,7 +2199,7 @@
           }
           renderFundCategoryTabs(funds);
 
-          const comparableFunds = funds.filter(fund => fund.tefasFundType !== 'GSYF');
+          const comparableFunds = funds.filter(fund => !isQualifiedInvestorFund(fund));
           const topYearlyFund = [...comparableFunds].sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0];
           const topMonthlyFund = [...comparableFunds].sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0];
           const largestFund = [...funds].sort((a, b) => b.totalValue - a.totalValue)[0];

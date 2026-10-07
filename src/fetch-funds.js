@@ -233,9 +233,16 @@ function makeFundObject(history, previous, config, kindLabel) {
   };
 }
 
+export function isQualifiedInvestorFund(fund) {
+  const searchableText = `${fund.category || ''} ${fund.name || ''}`.toLocaleUpperCase('tr-TR');
+  return fund.tefasFundType === 'GYF'
+    || fund.tefasFundType === 'GSYF'
+    || searchableText.includes('SERBEST');
+}
+
 function buildFundStats(funds) {
   const fundList = Object.values(funds);
-  const comparableFunds = fundList.filter(fund => fund.tefasFundType !== 'GSYF');
+  const comparableFunds = fundList.filter(fund => !isQualifiedInvestorFund(fund));
   const topMonthly = [...comparableFunds].sort((a, b) => b.monthlyReturn - a.monthlyReturn).slice(0, 5);
   const topYearly = [...comparableFunds].sort((a, b) => b.yearlyReturn - a.yearlyReturn).slice(0, 5);
   const largestFunds = [...fundList].sort((a, b) => b.totalValue - a.totalValue).slice(0, 5);

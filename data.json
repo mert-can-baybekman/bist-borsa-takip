@@ -207036,56 +207036,56 @@
     "totalFundsCount": 3241,
     "topMonthlyGainers": [
       {
-        "code": "YLP",
-        "name": "İŞ PORTFÖY YÖNETİMİ A.Ş. YALÇINLAR PROJE GAYRİMENKUL YATIRIM FONU",
-        "return": 81.81
+        "code": "SGT",
+        "name": "GARANTİ PORTFÖY SİBER GÜVENLİK TEKNOLOJİLERİ DEĞİŞKEN FON",
+        "return": 11.7
       },
       {
-        "code": "DZS",
-        "name": "AK PORTFÖY DOKUZUNCU SERBEST FON",
-        "return": 26.4
+        "code": "GUH",
+        "name": "GARANTİ PORTFÖY YABANCI TEKNOLOJİ HİSSE SENEDİ FONU",
+        "return": 10.77
       },
       {
-        "code": "OGC",
-        "name": "TERA PORTFÖY YÖNETİMİ A.Ş. ÇATI KATILIM GAYRİMENKUL YATIRIM FONU",
-        "return": 23.69
+        "code": "AVR",
+        "name": "AGESA HAYAT VE EMEKLİLİK A.Ş. TEKNOLOJİ SEKTÖRÜ YABANCI DEĞİŞKEN EMEKLİLİK YATIRIM FONU",
+        "return": 9.96
       },
       {
-        "code": "RVS",
-        "name": "ROTA PORTFÖY ONBEŞİNCİ HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
-        "return": 22.93
+        "code": "KTJ",
+        "name": "KUVEYT TÜRK PORTFÖY TEKNOLOJİ KATILIM FONU",
+        "return": 9.74
       },
       {
-        "code": "AG7",
-        "name": "ALBARAKA PORTFÖY YÖNETİMİ A.Ş. METROPOL GAYRİMENKUL YATIRIM FONU",
-        "return": 14.85
+        "code": "YAY",
+        "name": "YAPI KREDİ PORTFÖY YABANCI TEKNOLOJİ SEKTÖRÜ HİSSE SENEDİ FONU",
+        "return": 9.71
       }
     ],
     "topYearlyGainers": [
       {
-        "code": "NBA",
-        "name": "NUROL PORTFÖY YÖNETİMİ A.Ş. BABACAN MERİDİAN PROJE GAYRİMENKUL YATIRIM FONU",
-        "return": 9474.07
+        "code": "CPT",
+        "name": "ROTA PORTFÖY ÇİP TEKNOLOJİLERİ DEĞİŞKEN FON",
+        "return": 106.14
       },
       {
-        "code": "NIP",
-        "name": "NUROL PORTFÖY YÖNETİMİ A.Ş. İKİNCİ PROJE GAYRİMENKUL YATIRIM FONU",
-        "return": 4251.69
+        "code": "AES",
+        "name": "AK PORTFÖY PETROL YABANCI BYF FON SEPETİ FONU",
+        "return": 105.83
       },
       {
-        "code": "HGG",
-        "name": "HAN VARLIK GAYRİMENKUL VE GİRİŞİM SERMAYESİ PORTFÖY YÖNETİMİ A.Ş. BİRİNCİ PROJE GAYRİMENKUL YATIRIM FONU",
-        "return": 1615.11
+        "code": "YIT",
+        "name": "GARANTİ PORTFÖY YARI İLETKEN TEKNOLOJİLERİ DEĞİŞKEN FON",
+        "return": 92.09
       },
       {
-        "code": "PGE",
-        "name": "PARDUS PORTFÖY GÜNEY HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
-        "return": 783.59
+        "code": "BGE",
+        "name": "HDI FİBA EMEKLİLİK VE HAYAT A.Ş. DENGELİ DEĞİŞKEN GRUP EMEKLİLİK YATIRIM FONU",
+        "return": 85.7
       },
       {
-        "code": "KUE",
-        "name": "AURA PORTFÖY YÖNETİMİ A.Ş. KUZEY EGE GAYRİMENKUL YATIRIM FONU",
-        "return": 763.27
+        "code": "BTK",
+        "name": "BV PORTFÖY TEKNOLOJİ KATILIM FONU",
+        "return": 81.67
       }
     ],
     "largestFunds": [
