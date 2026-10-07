@@ -718,24 +718,30 @@
       </button>
 
       <!-- Header -->
-      <div class="border-b border-slate-800/80 pb-4 pr-12">
-        <div class="flex flex-wrap items-center gap-2 mb-2">
-          <span id="fundModalCode" class="text-3xl font-black font-display text-white">--</span>
-          <span id="fundModalCategory" class="text-xs font-bold font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">--</span>
-          <span id="fundModalRisk" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">--</span>
-          <span id="fundModalIsin" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">ISIN: --</span>
-          <span id="fundModalStatus" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">TEFAS'ta İşlem Görüyor</span>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4 pr-12">
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span id="fundModalCode" class="text-3xl font-black font-display text-white">--</span>
+            <button id="fundModalFavBtn" onclick="toggleFundFavoriteCurrentModal()" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Takip listesine ekle" aria-label="Fon takip listesine ekle">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 20 20"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m10 2.5 2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L2.5 8l5.2-.8L10 2.5Z"></path></svg>
+            </button>
+            <span id="fundModalChangeBadge" class="text-xs font-bold font-mono px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">--</span>
+            <span id="fundModalCategory" class="text-xs font-bold font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">--</span>
+            <span id="fundModalRisk" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">--</span>
+            <span id="fundModalIsin" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">ISIN: --</span>
+            <span id="fundModalStatus" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">TEFAS'ta İşlem Görüyor</span>
+          </div>
+          <h3 id="fundModalName" class="text-base font-bold text-slate-200 mt-1">--</h3>
+          <p id="fundModalCompany" class="text-xs text-slate-400 mt-0.5">--</p>
         </div>
-        <h3 id="fundModalName" class="text-base font-bold text-slate-200 mt-1">--</h3>
-        <p id="fundModalCompany" class="text-xs text-slate-400 mt-0.5">--</p>
+        <div class="text-left sm:text-right shrink-0">
+          <div id="fundModalPrice" class="text-2xl sm:text-3xl font-black font-num text-white">--</div>
+          <div id="fundModalChange" class="text-xs font-semibold font-num text-slate-400 mt-1">--</div>
+        </div>
       </div>
 
       <!-- Core 4-column Stats -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800/80">
-        <div>
-          <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">Birim Pay Değeri</span>
-          <div id="fundModalPrice" class="text-xl font-black font-num text-white mt-0.5">--</div>
-        </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800/80">
         <div>
           <span class="text-[10px] uppercase tracking-wider text-slate-500 font-mono block">Portföy Büyüklüğü</span>
           <div id="fundModalSize" class="text-sm font-bold font-num text-amber-400 mt-0.5">--</div>
@@ -1303,12 +1309,17 @@
       const container = document.getElementById('fundCategoryTabs');
       if (!container) return;
 
+      const fundFavorites = getFavorites().filter(key => key.startsWith('FUND:'));
       const categoryCounts = new Map();
       for (const fund of funds) {
         categoryCounts.set(fund.category, (categoryCounts.get(fund.category) || 0) + 1);
       }
       const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
-      const tabs = [['ALL', `Tüm Fonlar (${funds.length})`], ...categories.map(([category, count]) => [category, `${category} (${count})`])];
+      const tabs = [
+        ['ALL', `Tüm Fonlar (${funds.length})`],
+        ['FAVORITES', `Takip Listem (${fundFavorites.length})`],
+        ...categories.map(([category, count]) => [category, `${category} (${count})`])
+      ];
       container.replaceChildren();
 
       for (const [category, label] of tabs) {
@@ -1377,7 +1388,10 @@
       let funds = Object.values(globalData.funds);
 
       // 1. Category Filter
-      if (currentFundCategory !== 'ALL') {
+      if (currentFundCategory === 'FAVORITES') {
+        const favoriteFundIds = new Set(getFavorites().filter(key => key.startsWith('FUND:')).map(key => key.slice(5)));
+        funds = funds.filter(fund => favoriteFundIds.has(fund.id));
+      } else if (currentFundCategory !== 'ALL') {
         funds = funds.filter(f => f.category === currentFundCategory);
       }
 
@@ -1432,6 +1446,7 @@
     function renderFundCards(funds) {
       const container = document.getElementById('fundContainerGrid');
       if (!container) return;
+      const favoriteFundIds = new Set(getFavorites().filter(key => key.startsWith('FUND:')).map(key => key.slice(5)));
 
       if (funds.length === 0) {
         container.innerHTML = `
@@ -1444,6 +1459,7 @@
       }
 
       container.innerHTML = funds.map(fund => {
+        const isFavorite = favoriteFundIds.has(fund.id);
         const isPos1D = fund.dailyReturn >= 0;
         const isPos1M = fund.monthlyReturn >= 0;
         const isPos1Y = fund.yearlyReturn >= 0;
@@ -1460,6 +1476,9 @@
               <!-- Top Row: Code, Category, Risk -->
               <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-2">
+                  <button onclick="toggleFundFavorite('${fund.id}', event)" class="text-slate-600 hover:text-amber-400 transition-colors" title="${isFavorite ? 'Takip listesinden çıkar' : 'Takip listesine ekle'}" aria-label="${isFavorite ? 'Takip listesinden çıkar' : 'Takip listesine ekle'}">
+                    <svg class="w-4 h-4 ${isFavorite ? 'text-amber-400 fill-amber-400' : ''}" fill="${isFavorite ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                  </button>
                   <span class="font-black text-lg font-display text-white group-hover:text-amber-400 transition-colors tracking-wide">${fund.code}</span>
                   <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">${fund.category}</span>
                 </div>
@@ -1511,8 +1530,10 @@
     function renderFundTable(funds) {
       const tbody = document.getElementById('fundTableBody');
       if (!tbody) return;
+      const favoriteFundIds = new Set(getFavorites().filter(key => key.startsWith('FUND:')).map(key => key.slice(5)));
 
       tbody.innerHTML = funds.map(fund => {
+        const isFavorite = favoriteFundIds.has(fund.id);
         const isPos1D = fund.dailyReturn >= 0;
         const isPos1W = fund.weeklyReturn >= 0;
         const isPos1M = fund.monthlyReturn >= 0;
@@ -1538,6 +1559,9 @@
               <span class="text-[10px] font-mono px-1.5 py-0.5 rounded ${fund.riskLevel <= 2 ? 'bg-emerald-500/10 text-emerald-400' : (fund.riskLevel <= 4 ? 'bg-sky-500/10 text-sky-400' : 'bg-amber-500/10 text-amber-400')}">${fund.riskLevel}/7</span>
             </td>
             <td class="py-3 px-4 text-center">
+              <button onclick="toggleFundFavorite('${fund.id}', event)" class="text-amber-400 hover:text-amber-300 font-semibold text-[11px] mr-2" title="${isFavorite ? 'Takip listesinden çıkar' : 'Takip listesine ekle'}">
+                <svg class="inline w-3.5 h-3.5 ${isFavorite ? 'fill-amber-400' : ''}" fill="${isFavorite ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927a1 1 0 011.902 0l1.519 4.674a1 1 0 00.95.69h4.915a1 1 0 01.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674a1 1 0 01-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888a1 1 0 01-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888a1 1 0 01.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+              </button>
               <button onclick="openFundModal('${fund.id}')" class="text-amber-400 hover:text-amber-300 font-semibold text-[11px]">İncele →</button>
             </td>
           </tr>
@@ -1563,6 +1587,7 @@
       document.getElementById('fundModalName').textContent = fund.name;
       document.getElementById('fundModalCompany').textContent = fund.company;
       document.getElementById('fundModalPrice').textContent = formatFundPrice(fund.price, 6);
+      updateFundModalFavIcon();
       document.getElementById('fundModalSize').textContent = formatFundSize(fund.totalValue);
       document.getElementById('fundModalDesc').textContent = fund.desc || 'Bu fon TEFAS platformunda işlem görmekte olup SPK onaylı portföy yönetim şirketi tarafından yönetilmektedir.';
 
@@ -1674,6 +1699,38 @@
       }
     }
 
+    function toggleFundFavorite(id, e) {
+      if (e) e.stopPropagation();
+      const favoriteKey = `FUND:${id}`;
+      const favorites = getFavorites();
+      const nextFavorites = favorites.includes(favoriteKey)
+        ? favorites.filter(key => key !== favoriteKey)
+        : [...favorites, favoriteKey];
+      localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(nextFavorites));
+      updateFavCount();
+      renderFundCategoryTabs(Object.values(globalData?.funds || {}));
+      applyFundFilters();
+      updateFundModalFavIcon();
+    }
+
+    function toggleFundFavoriteCurrentModal() {
+      if (activeModalFundCode) toggleFundFavorite(activeModalFundCode);
+    }
+
+    function updateFundModalFavIcon() {
+      const button = document.getElementById('fundModalFavBtn');
+      if (!button || !activeModalFundCode) return;
+      const isFavorite = getFavorites().includes(`FUND:${activeModalFundCode}`);
+      button.className = isFavorite ? 'text-amber-400 p-1' : 'text-slate-500 hover:text-amber-400 transition-colors p-1';
+      button.title = isFavorite ? 'Takip listesinden çıkar' : 'Takip listesine ekle';
+      button.setAttribute('aria-label', button.title);
+      const icon = button.querySelector('svg');
+      if (icon) {
+        icon.setAttribute('fill', isFavorite ? 'currentColor' : 'none');
+        icon.setAttribute('stroke', isFavorite ? 'currentColor' : 'currentColor');
+      }
+    }
+
     function setFundChartFilter(days, btnEl) {
       currentFundChartDays = days;
       document.querySelectorAll('.fund-time-btn').forEach(button => {
@@ -1692,10 +1749,27 @@
         return;
       }
 
-      const chartData = history.slice(-currentFundChartDays);
+      const latestDate = new Date(`${history[history.length - 1].date}T00:00:00Z`);
+      const cutoffDate = new Date(latestDate);
+      cutoffDate.setUTCDate(cutoffDate.getUTCDate() - currentFundChartDays);
+      const chartData = history.filter(item => new Date(`${item.date}T00:00:00Z`) >= cutoffDate);
+      if (chartData.length === 0) return;
       const labels = chartData.map(item => item.date);
       const prices = chartData.map(item => item.close);
       const isPositive = prices[prices.length - 1] >= prices[0];
+      const selectedPeriodChange = prices[prices.length - 1] - prices[0];
+      const selectedPeriodReturn = prices[0] > 0 ? (selectedPeriodChange / prices[0]) * 100 : 0;
+      const priceChangeEl = document.getElementById('fundModalChange');
+      const changeBadgeEl = document.getElementById('fundModalChangeBadge');
+      const changeColor = isPositive ? 'text-emerald-400' : 'text-rose-400';
+      if (priceChangeEl) {
+        priceChangeEl.className = `text-xs font-semibold font-num mt-1 ${changeColor}`;
+        priceChangeEl.textContent = `${isPositive ? '▲ +' : '▼ -'}${formatFundPrice(Math.abs(selectedPeriodChange), 6)} (%${selectedPeriodReturn >= 0 ? '+' : ''}${selectedPeriodReturn.toFixed(2)}%)`;
+      }
+      if (changeBadgeEl) {
+        changeBadgeEl.className = `text-xs font-bold font-mono px-2.5 py-1 rounded-full ${isPositive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`;
+        changeBadgeEl.textContent = `${selectedPeriodReturn >= 0 ? '+' : ''}${selectedPeriodReturn.toFixed(2)}%`;
+      }
       const color = isPositive ? '#10b981' : '#f59e0b';
       const canvas = document.getElementById('fundModalChartCanvas');
       const ctx = canvas.getContext('2d');
@@ -2103,7 +2177,7 @@
           if (tabFundEl) tabFundEl.textContent = `${fundCount} Fon`;
           const fundStatTotalEl = document.getElementById('fundStatTotalCount');
           if (fundStatTotalEl) fundStatTotalEl.textContent = `${fundCount} Fon`;
-          if (currentFundCategory !== 'ALL' && !funds.some(fund => fund.category === currentFundCategory)) {
+          if (currentFundCategory !== 'ALL' && currentFundCategory !== 'FAVORITES' && !funds.some(fund => fund.category === currentFundCategory)) {
             currentFundCategory = 'ALL';
           }
           renderFundCategoryTabs(funds);
