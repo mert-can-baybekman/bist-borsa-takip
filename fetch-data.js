@@ -6,6 +6,7 @@ import {
   CURRENCIES_CONFIG, 
   COMMODITIES_CONFIG 
 } from './src/stocks-config.js';
+import { fetchBistStocks } from './src/market-universe.js';
 import { 
   calculateSMA, 
   calculateRSI, 
@@ -286,7 +287,7 @@ export async function fetchAllData() {
   const sessionStatus = getMarketSessionStatus();
   console.log(`\n📊 BIST Borsa Takip - Veri Motoru`);
   console.log(`Durum: ${sessionStatus.sessionName} (${sessionStatus.status}) | Zaman: ${sessionStatus.timeStr}`);
-  console.log(`Hedef Evren: ${STOCKS_CONFIG.length} Hisse + ${INDICES_CONFIG.length} Endeks + Döviz/Emtialar\n`);
+  console.log(`Hedef Evren: tüm BIST adi payları + ${INDICES_CONFIG.length} Endeks + Döviz/Emtialar\n`);
 
   const now = new Date();
   const formattedTime = formatTimeTR(now);
@@ -394,8 +395,9 @@ export async function fetchAllData() {
   }
 
   // 3. Fetch Stocks (Batch Concurrent)
-  console.log(`\n⏳ 3/4 ${STOCKS_CONFIG.length} Hisse senedi verisi çekiliyor...`);
-  const stockList = STOCKS_CONFIG.map(s => ({ ...s, ticker: `${s.symbol}.IS` }));
+  const stockUniverse = await fetchBistStocks();
+  console.log(`\n⏳ 3/4 ${stockUniverse.length} BIST hissesi verisi çekiliyor...`);
+  const stockList = stockUniverse.map(s => ({ ...s, ticker: `${s.symbol}.IS` }));
 
   const stockResults = await mapConcurrent(stockList, 5, async (item) => {
     const data = await fetchTickerData(item.ticker);
@@ -452,6 +454,12 @@ export async function fetchAllData() {
     }
   }
   console.log(`\n✅ Toplam ${validStockObjects.length} hisse başarıyla işlendi.`);
+  const activeStockHistoryFiles = new Set(validStockObjects.map(stock => `${stock.symbol}.json`));
+  for (const fileName of fs.readdirSync(historyDir)) {
+    if (fileName.endsWith('.json') && !activeStockHistoryFiles.has(fileName)) {
+      fs.unlinkSync(path.join(historyDir, fileName));
+    }
+  }
 
   // 4. Calculate Market Stats, Sector Breakdown & Top Movers
   console.log('\n⏳ 4/5 Sektör ve piyasa istatistikleri hesaplanıyor...');
@@ -514,29 +522,60 @@ export async function fetchAllData() {
   // 5. Fetch TEFAS Mutual Funds
   console.log('\n⏳ 5/5 TEFAS Yatırım Fonları verileri derleniyor...');
   try {
-    const fundResults = await fetchTefasFunds(previousData.funds || {});
+    const fundHistoryDir = path.join(process.cwd(), 'data', 'fund-history');
+    const previousFundHistories = {};
+    if (process.env.TEFAS_HISTORY_MODE === 'latest' && fs.existsSync(fundHistoryDir)) {
+      for (const fileName of fs.readdirSync(fundHistoryDir)) {
+        if (!fileName.endsWith('.json')) continue;
+        try {
+          const savedHistory = JSON.parse(fs.readFileSync(path.join(fundHistoryDir, fileName), 'utf-8'));
+          previousFundHistories[savedHistory.id || path.basename(fileName, '.json')] = {
+            code: savedHistory.code,
+            kind: savedHistory.kind,
+            history: savedHistory.history || []
+          };
+        } catch (historyError) {
+          console.warn(`⚠️ Fon geçmiş önbelleği okunamadı (${fileName}): ${historyError.message}`);
+        }
+      }
+    }
+
+    const fundResults = await fetchTefasFunds(previousData.funds || {}, {
+      previousHistories: previousFundHistories,
+      includeFullHistory: process.env.TEFAS_HISTORY_MODE !== 'latest'
+    });
     output.funds = fundResults.funds;
     output.fundStats = fundResults.stats;
-    const fundHistoryDir = path.join(process.cwd(), 'data', 'fund-history');
     if (!fs.existsSync(fundHistoryDir)) {
       fs.mkdirSync(fundHistoryDir, { recursive: true });
     }
-    for (const [code, history] of Object.entries(fundResults.fundHistories)) {
+    const activeFundHistoryFiles = new Set();
+    for (const [id, history] of Object.entries(fundResults.fundHistories)) {
       if (Array.isArray(history) && history.length > 0) {
+        const fileName = `${id}.json`;
+        activeFundHistoryFiles.add(fileName);
         fs.writeFileSync(
-          path.join(fundHistoryDir, `${code}.json`),
-          JSON.stringify({ code, source: 'TEFAS', history }),
+          path.join(fundHistoryDir, fileName),
+          JSON.stringify({
+            id,
+            code: fundResults.funds[id].code,
+            kind: fundResults.funds[id].tefasFundType,
+            source: 'TEFAS',
+            history
+          }),
           'utf-8'
         );
+      }
+    }
+    for (const fileName of fs.readdirSync(fundHistoryDir)) {
+      if (fileName.endsWith('.json') && !activeFundHistoryFiles.has(fileName)) {
+        fs.unlinkSync(path.join(fundHistoryDir, fileName));
       }
     }
     console.log(`✅ Toplam ${Object.keys(output.funds).length} TEFAS fonu başarıyla işlendi.`);
   } catch (fundErr) {
     console.warn('⚠️ TEFAS fonları derlenirken uyarı:', fundErr.message);
-    if (previousData.funds) {
-      output.funds = previousData.funds;
-      output.fundStats = previousData.fundStats || {};
-    }
+    throw fundErr;
   }
 
   fs.writeFileSync('./data.json', JSON.stringify(output, null, 2), 'utf-8');

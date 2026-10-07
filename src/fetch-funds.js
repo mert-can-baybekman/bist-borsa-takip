@@ -1,285 +1,354 @@
 /**
- * TEFAS Mutual Funds Comprehensive Live Engine
- * Fetches all fund metrics directly from official TEFAS JSON API:
- * 1. fonFiyatBilgiGetir: Historical price points, 1D/1W/1M/3M/1Y returns, sparklines
- * 2. fonBilgiGetir: Total portfolio size (TL), investor count, shares count, market share, category rank
- * 3. fonProfilBilgiGetir: ISIN code, settlement valors (T+1/T+2), trade hours, KAP link
+ * Fetches complete TEFAS fund universes and daily histories from the official API.
  */
-
 import { FUNDS_CONFIG } from './funds-config.js';
 
-/**
- * Baseline fallback dataset (used only if TEFAS network request is temporarily unreachable)
- */
-const FUND_BASELINE_DATA = {
-  'TGE': { price: 0.308652, dailyReturn: -0.06, weeklyReturn: 2.87, monthlyReturn: 9.11, threeMonthReturn: 7.90, yearlyReturn: 65.70, totalValue: 3126713225, investorCount: 37719 },
-  'IPJ': { price: 19.813969, dailyReturn: -1.48, weeklyReturn: 2.82, monthlyReturn: 0.45, threeMonthReturn: 12.30, yearlyReturn: 53.35, totalValue: 1293578798, investorCount: 18483 },
-  'MAC': { price: 0.748997, dailyReturn: -0.43, weeklyReturn: 2.45, monthlyReturn: -2.70, threeMonthReturn: 8.35, yearlyReturn: 19.39, totalValue: 4228682103, investorCount: 35272 },
-  'TI2': { price: 0.129147, dailyReturn: -0.91, weeklyReturn: 3.19, monthlyReturn: 3.03, threeMonthReturn: 15.19, yearlyReturn: 27.35, totalValue: 3300645306, investorCount: 20603 },
-  'IIH': { price: 33.978942, dailyReturn: -0.56, weeklyReturn: 3.23, monthlyReturn: 5.32, threeMonthReturn: 20.03, yearlyReturn: 34.75, totalValue: 1780877091, investorCount: 21255 },
-  'HKH': { price: 8.924923, dailyReturn: -1.18, weeklyReturn: 1.15, monthlyReturn: 7.53, threeMonthReturn: 18.42, yearlyReturn: 15.93, totalValue: 987452100, investorCount: 9450 },
-  'AFT': { price: 1.000902, dailyReturn: -2.12, weeklyReturn: -1.45, monthlyReturn: 0.76, threeMonthReturn: 8.14, yearlyReturn: 37.61, totalValue: 8452130200, investorCount: 54120 },
-  'YAY': { price: 1871.713648, dailyReturn: -2.16, weeklyReturn: -0.85, monthlyReturn: 0.51, threeMonthReturn: 14.80, yearlyReturn: 69.91, totalValue: 3124500000, investorCount: 19800 },
-  'TTE': { price: 1.599258, dailyReturn: -0.58, weeklyReturn: -3.12, monthlyReturn: -10.94, threeMonthReturn: 5.12, yearlyReturn: 58.06, totalValue: 1450230000, investorCount: 14200 },
-  'PPZ': { price: 6.733779, dailyReturn: 0.10, weeklyReturn: 0.82, monthlyReturn: 3.09, threeMonthReturn: 11.45, yearlyReturn: 46.69, totalValue: 56420100000, investorCount: 88400 },
-  'NRM': { price: 160.419783, dailyReturn: -0.51, weeklyReturn: 1.10, monthlyReturn: 4.46, threeMonthReturn: 15.60, yearlyReturn: 60.51, totalValue: 1820450000, investorCount: 11300 },
-  'TCA': { price: 0.788889, dailyReturn: -0.36, weeklyReturn: 0.45, monthlyReturn: 0.62, threeMonthReturn: 6.80, yearlyReturn: 24.43, totalValue: 4120300000, investorCount: 22100 },
-  'KZL': { price: 28.530669, dailyReturn: -0.19, weeklyReturn: 0.95, monthlyReturn: 1.17, threeMonthReturn: 12.30, yearlyReturn: 40.84, totalValue: 6540200000, investorCount: 38900 },
-  'GGK': { price: 14.041938, dailyReturn: -0.17, weeklyReturn: 2.52, monthlyReturn: 1.06, threeMonthReturn: 19.95, yearlyReturn: 35.51, totalValue: 2519936968, investorCount: 11802 },
-  'NRC': { price: 11.489024, dailyReturn: -0.75, weeklyReturn: 3.38, monthlyReturn: 0.33, threeMonthReturn: 12.52, yearlyReturn: 23.96, totalValue: 231607739, investorCount: 3495 },
-  'BUY': { price: 1.708574, dailyReturn: -1.08, weeklyReturn: 1.69, monthlyReturn: -3.72, threeMonthReturn: 12.10, yearlyReturn: 23.35, totalValue: 323324790, investorCount: 16437 },
-  'DBH': { price: 0.387876, dailyReturn: -0.19, weeklyReturn: 0.59, monthlyReturn: 1.85, threeMonthReturn: 13.35, yearlyReturn: 23.96, totalValue: 992790119, investorCount: 8667 }
+const TEFAS_URL = 'https://www.tefas.gov.tr/api/funds/fonGnlBlgSiraliGetir';
+const MAX_RANGE_DAYS = 28;
+const FUND_TYPES = [
+  { code: 'YAT', label: 'Yatırım Fonu' },
+  { code: 'EMK', label: 'Emeklilik Fonu' },
+  { code: 'BYF', label: 'Borsa Yatırım Fonu' },
+  { code: 'GYF', label: 'Gayrimenkul Yatırım Fonu' },
+  { code: 'GSYF', label: 'Girişim Sermayesi Yatırım Fonu' }
+];
+
+const CATEGORY_MAP = {
+  'Hisse Senedi': 'Hisse Senedi',
+  'Yabancı & Teknoloji': 'Yabancı & Teknoloji',
+  'Para Piyasası': 'Para Piyasası',
+  'Kıymetli Madenler': 'Kıymetli Madenler',
+  'Değişken & Karma': 'Değişken & Karma'
 };
 
-/**
- * Generic POST request to TEFAS API with retry
- */
-async function callTefasApi(endpoint, body, retries = 2) {
-  const url = `https://www.tefas.gov.tr/api/funds/${endpoint}`;
-  const headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json, text/plain, */*',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-    'Origin': 'https://www.tefas.gov.tr',
-    'Referer': `https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${body.fonKodu || ''}`
+const HISTORY_DAYS = 365;
+const LATEST_HISTORY_DAYS = 7;
+const FUND_REQUEST_DELAY_MS = 500;
+const EXCLUDED_YAT_FUNDS = new Set(['PTO', 'THF', 'TP2']);
+
+function wait(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+function toCompactDate(date) {
+  return date.toISOString().slice(0, 10).replaceAll('-', '');
+}
+
+function toDate(value) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+  if (!match) return null;
+  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function makeFundId(kind, code) {
+  return kind === 'YAT' ? code : `${kind}-${code}`;
+}
+
+function inferCategory(name, kind, configuredCategory) {
+  if (configuredCategory && CATEGORY_MAP[configuredCategory]) return configuredCategory;
+  if (kind === 'EMK') return 'Emeklilik Fonları';
+  if (kind === 'BYF') return 'Borsa Yatırım Fonları';
+  if (kind === 'GYF') return 'Gayrimenkul Fonları';
+  if (kind === 'GSYF') return 'Girişim Sermayesi Fonları';
+
+  const normalized = name.toLocaleUpperCase('tr-TR');
+  if (/PARA PİYASASI|PARA PIYASASI|LİKİT|Likit/i.test(normalized)) return 'Para Piyasası';
+  if (/ALTIN|GÜMÜŞ|GUMUS|KIYMETLİ MADEN|KIYMETLI MADEN|EMTİA|EMTIA/.test(normalized)) return 'Kıymetli Madenler';
+  if (/YABANCI|TEKNOLOJİ|TEKNOLOJI|DİJİTAL|DIJITAL|BLOCKCHAIN|BLOKZİNCİR|BLOKZINCIR/.test(normalized)) {
+    return 'Yabancı & Teknoloji';
+  }
+  if (/HİSSE|HISSE|BIST|BORSA İSTANBUL|BORSA ISTANBUL/.test(normalized)) return 'Hisse Senedi';
+  return 'Değişken & Karma';
+}
+
+function inferCompany(name, previousCompany) {
+  if (previousCompany) return previousCompany;
+  const match = /^(.+?\b(?:PORTFÖY|PORTFOY|PYŞ)\b(?:\s+YÖNETİMİ)?)/i.exec(name || '');
+  return match ? match[1] : 'TEFAS Fon Kurucusu';
+}
+
+function calcReturn(price, basePrice) {
+  return basePrice > 0 ? ((price - basePrice) / basePrice) * 100 : 0;
+}
+
+function priorFundIndex(previousFunds) {
+  const result = new Map();
+  for (const fund of Object.values(previousFunds || {})) {
+    if (!fund?.code) continue;
+    const kind = fund.tefasFundType || 'YAT';
+    result.set(`${kind}:${fund.code}`, fund);
+  }
+  return result;
+}
+
+async function fetchTefasRange(kind, startDate, endDate, retries = 5) {
+  const body = {
+    fonTipi: kind,
+    fonKodu: null,
+    aramaMetni: null,
+    fonTurKod: null,
+    fonGrubu: null,
+    sfonTurKod: null,
+    fonTurAciklama: null,
+    kurucuKod: null,
+    basTarih: toCompactDate(startDate),
+    bitTarih: toCompactDate(endDate),
+    basSira: 1,
+    bitSira: 100000,
+    dil: 'TR',
+    sFonTurKod: '',
+    fonKod: '',
+    fonGrup: '',
+    fonUnvanTip: ''
   };
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await fetch(url, {
+      const response = await fetch(TEFAS_URL, {
         method: 'POST',
-        headers,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/plain, */*',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36',
+          Origin: 'https://www.tefas.gov.tr',
+          Referer: 'https://www.tefas.gov.tr/tr/fon-verileri'
+        },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(8000)
+        signal: AbortSignal.timeout(60000)
       });
 
-      if (!res.ok) {
-        if (attempt < retries) {
-          await new Promise(r => setTimeout(r, 250 * (attempt + 1)));
-          continue;
+      if (response.status === 429) {
+        const resetAfter = Number(response.headers.get('ratelimit-reset'));
+        const retryAfterHeader = response.headers.get('retry-after');
+        const retryAfterSeconds = Number(retryAfterHeader);
+        const retryAfterDate = Date.parse(retryAfterHeader || '');
+        const waitMilliseconds = resetAfter > 0
+          ? (resetAfter + 1) * 1000
+          : (retryAfterSeconds > 0
+            ? retryAfterSeconds * 1000
+            : (Number.isFinite(retryAfterDate) ? Math.max(1000, retryAfterDate - Date.now()) : 30000));
+        if (attempt === retries) {
+          throw new Error(`TEFAS kota sınırı nedeniyle ${kind} fon verisi alınamadı`);
         }
-        return null;
+        console.warn(`  ⏳ TEFAS kota sınırı; ${Math.ceil(waitMilliseconds / 1000)} saniye bekleniyor...`);
+        await wait(waitMilliseconds);
+        continue;
       }
 
-      const json = await res.json();
-      return json?.resultList ?? null;
-    } catch (err) {
-      if (attempt < retries) {
-        await new Promise(r => setTimeout(r, 250 * (attempt + 1)));
+      if (!response.ok) {
+        throw new Error(`TEFAS HTTP ${response.status}`);
       }
+
+      const payload = await response.json();
+      if (payload?.errorCode || payload?.errorMessage) {
+        const message = payload.errorMessage || `TEFAS hata kodu: ${payload.errorCode}`;
+        if (/out of bounds|veri bulunamadı/i.test(message)) return [];
+        throw new Error(message);
+      }
+
+      if (!Array.isArray(payload?.resultList)) {
+        throw new Error('TEFAS fon yanıtı beklenen resultList alanını içermiyor');
+      }
+
+      return payload.resultList;
+    } catch (error) {
+      if (attempt === retries) {
+        throw new Error(`${kind} fon verisi ${body.basTarih}-${body.bitTarih} aralığında alınamadı: ${error.message}`);
+      }
+      await wait(500 * (attempt + 1));
     }
   }
 
-  return null;
+  return [];
 }
 
-/**
- * Fetch all available data for a single fund from TEFAS
- */
-async function fetchCompleteFundFromTefas(code) {
-  try {
-    // 1. Fetch live prices & 1-year history
-    const priceList = await callTefasApi('fonFiyatBilgiGetir', { fonKodu: code, dil: 'TR', periyod: 12 });
-    await new Promise(r => setTimeout(r, 80));
+function normalizeHistoryRow(row, kind) {
+  const code = String(row.fonKodu || '').trim().toUpperCase();
+  const date = row.tarih;
+  const close = Number(row.fiyat);
+  if (!code || !toDate(date) || !Number.isFinite(close) || close <= 0) return null;
 
-    // 2. Fetch official fund info (portfolio size, investor count, market share, category rank)
-    const infoList = await callTefasApi('fonBilgiGetir', { fonKodu: code, dil: 'TR' });
-    await new Promise(r => setTimeout(r, 80));
-
-    // 3. Fetch official fund profile (ISIN, settlement valors, trade hours, KAP link)
-    const profileList = await callTefasApi('fonProfilBilgiGetir', { fonKodu: code, dil: 'TR' });
-
-    const info = infoList?.[0] || {};
-    const profile = profileList?.[0] || {};
-    const history = (Array.isArray(priceList) ? priceList : [])
-      .map(item => ({
-        date: item.tarih,
-        close: Number(item.fiyat)
-      }))
-      .filter(item => item.date && Number.isFinite(Date.parse(item.date)) && Number.isFinite(item.close) && item.close > 0);
-    const hasPriceList = history.length > 0;
-
-    const reportedPrice = Number(info.sonFiyat);
-    let price = Number.isFinite(reportedPrice) && reportedPrice > 0
-      ? reportedPrice
-      : (history[history.length - 1]?.close ?? null);
-    let dailyReturn = info.gunlukGetiri;
-    let weeklyReturn = 0;
-    let monthlyReturn = 0;
-    let threeMonthReturn = 0;
-    let yearlyReturn = 0;
-    let sparkline = [];
-    let updatedDate = new Date().toISOString().slice(0, 10);
-
-    if (hasPriceList) {
-      const latest = history[history.length - 1];
-      const prevDay = history[history.length - 2];
-      const prevWeek = history[Math.max(0, history.length - 6)];
-      const prevMonth = history[Math.max(0, history.length - 22)];
-      const prev3Month = history[Math.max(0, history.length - 64)];
-      const prevYear = history[0];
-
-      const calcReturn = (base) => (base && base.close > 0) ? ((price - base.close) / base.close) * 100 : 0;
-
-      if (dailyReturn === undefined || dailyReturn === null) {
-        dailyReturn = calcReturn(prevDay);
-      }
-      weeklyReturn = calcReturn(prevWeek);
-      monthlyReturn = calcReturn(prevMonth);
-      threeMonthReturn = calcReturn(prev3Month);
-      yearlyReturn = calcReturn(prevYear);
-      updatedDate = latest.date || updatedDate;
-
-      sparkline = history.slice(-12).map(item => Number(item.close.toFixed(item.close < 1 ? 4 : 2)));
-    }
-
-    if (!price && !info.portBuyukluk) {
-      return null;
-    }
-
-    return {
-      price,
-      dailyReturn: Number((dailyReturn || 0).toFixed(2)),
-      weeklyReturn: Number((weeklyReturn || 0).toFixed(2)),
-      monthlyReturn: Number((monthlyReturn || 0).toFixed(2)),
-      threeMonthReturn: Number((threeMonthReturn || 0).toFixed(2)),
-      yearlyReturn: Number((yearlyReturn || 0).toFixed(2)),
-      totalValue: info.portBuyukluk ? Math.round(info.portBuyukluk) : null,
-      investorCount: info.yatirimciSayi ? Math.round(info.yatirimciSayi) : null,
-      sharesCount: info.payAdet ? Math.round(info.payAdet) : null,
-      marketShare: (info.pazarPayi !== undefined && info.pazarPayi !== null) ? Number(info.pazarPayi.toFixed(2)) : null,
-      categoryRank: info.kategoriDerece ?? null,
-      categoryTotal: info.kategoriFonSay ?? null,
-      isin: profile.isinKodu || null,
-      sellValuation: profile.fonSatisValor !== undefined ? profile.fonSatisValor : null,
-      buyValuation: profile.fonGeriAlisValor !== undefined ? profile.fonGeriAlisValor : null,
-      tradeHours: (profile.basIsSaat && profile.sonIsSaat) ? `${profile.basIsSaat} - ${profile.sonIsSaat}` : null,
-      kapUrl: profile.kapLink || null,
-      tefasStatus: profile.tefasDurum || "TEFAS'ta işlem görüyor",
-      minBuy: profile.minAlis ?? 1,
-      minSell: profile.minSatis ?? 1,
-      sparkline,
-      history,
-      updatedDate
-    };
-  } catch (err) {
-    return null;
-  }
+  return {
+    id: makeFundId(kind, code),
+    code,
+    name: String(row.fonUnvan || code).trim(),
+    kind,
+    date,
+    close,
+    sharesCount: Number.isFinite(Number(row.tedPaySayisi)) ? Number(row.tedPaySayisi) : null,
+    investorCount: Number.isFinite(Number(row.kisiSayisi)) ? Number(row.kisiSayisi) : null,
+    totalValue: Number.isFinite(Number(row.portfoyBuyukluk)) ? Number(row.portfoyBuyukluk) : null
+  };
 }
 
-/**
- * Compiles and returns all TEFAS investment funds with full details directly from live TEFAS
- */
-export async function fetchTefasFunds(previousFunds = {}) {
-  const fundsMap = {};
-  const fundHistories = {};
-  const fundList = [];
-  const fundCodes = FUNDS_CONFIG.map(f => f.code);
+function categoryForFund(kind, name, config) {
+  return inferCategory(name, kind, config?.category);
+}
 
-  console.log(`🌐 TEFAS Resmi API üzerinden ${fundCodes.length} yatırım fonu için tüm detay veriler çekiliyor...`);
+function makeFundObject(history, previous, config, kindLabel) {
+  const latest = history[history.length - 1];
+  const at = offset => history[Math.max(0, history.length - 1 - offset)];
+  const price = latest.close;
+  const dailyReturn = calcReturn(price, at(1)?.close || price);
+  const weeklyReturn = calcReturn(price, at(5)?.close || price);
+  const monthlyReturn = calcReturn(price, at(21)?.close || price);
+  const threeMonthReturn = calcReturn(price, at(63)?.close || price);
+  const yearlyReturn = calcReturn(price, history[0].close);
+  const category = categoryForFund(latest.kind, latest.name, config);
 
-  // Sequential execution with friendly delay between funds to respect TEFAS WAF
-  const liveResults = {};
-  for (const code of fundCodes) {
-    const data = await fetchCompleteFundFromTefas(code);
-    if (data) {
-      liveResults[code] = data;
-    }
-    await new Promise(r => setTimeout(r, 120));
-  }
+  return {
+    id: latest.id,
+    code: latest.code,
+    tefasFundType: latest.kind,
+    fundTypeLabel: kindLabel,
+    name: latest.name,
+    company: inferCompany(latest.name, previous?.company || config?.company),
+    category,
+    riskLevel: previous?.riskLevel ?? config?.riskLevel ?? (category === 'Para Piyasası' ? 1 : 5),
+    featured: previous?.featured ?? config?.featured ?? false,
+    desc: previous?.desc ?? config?.desc ?? `${kindLabel} kategorisinde TEFAS'ta işlem gören fon.`,
+    price: Number(price.toFixed(6)),
+    dailyReturn: Number(dailyReturn.toFixed(2)),
+    weeklyReturn: Number(weeklyReturn.toFixed(2)),
+    monthlyReturn: Number(monthlyReturn.toFixed(2)),
+    threeMonthReturn: Number(threeMonthReturn.toFixed(2)),
+    yearlyReturn: Number(yearlyReturn.toFixed(2)),
+    totalValue: Math.round(latest.totalValue ?? previous?.totalValue ?? 0),
+    investorCount: Math.round(latest.investorCount ?? previous?.investorCount ?? 0),
+    sharesCount: latest.sharesCount ?? previous?.sharesCount ?? null,
+    marketShare: previous?.marketShare ?? null,
+    categoryRank: previous?.categoryRank ?? null,
+    categoryTotal: previous?.categoryTotal ?? null,
+    isin: previous?.isin ?? null,
+    sellValuation: previous?.sellValuation ?? null,
+    buyValuation: previous?.buyValuation ?? null,
+    tradeHours: previous?.tradeHours ?? '09:00 - 17:45',
+    minBuy: previous?.minBuy ?? 1,
+    minSell: previous?.minSell ?? 1,
+    kapUrl: previous?.kapUrl ?? null,
+    tefasStatus: previous?.tefasStatus ?? "TEFAS'ta işlem görüyor",
+    sparkline: history.slice(-12).map(item => Number(item.close.toFixed(item.close < 1 ? 4 : 2))),
+    updatedDate: latest.date
+  };
+}
 
-  const liveSuccessCount = Object.keys(liveResults).length;
-  console.log(`✅ TEFAS Canlı API: ${liveSuccessCount} / ${fundCodes.length} fon için tüm detay veriler çekildi.`);
-
-  for (const cfg of FUNDS_CONFIG) {
-    const live = liveResults[cfg.code];
-    const prev = previousFunds?.[cfg.code];
-    const base = FUND_BASELINE_DATA[cfg.code] || {
-      price: 1.0,
-      dailyReturn: 0,
-      weeklyReturn: 0,
-      monthlyReturn: 0,
-      threeMonthReturn: 0,
-      yearlyReturn: 0,
-      totalValue: 1000000000,
-      investorCount: 10000
-    };
-
-    const price = live?.price ?? prev?.price ?? base.price;
-    const dailyReturn = live?.dailyReturn ?? prev?.dailyReturn ?? base.dailyReturn;
-    const weeklyReturn = live?.weeklyReturn ?? prev?.weeklyReturn ?? base.weeklyReturn;
-    const monthlyReturn = live?.monthlyReturn ?? prev?.monthlyReturn ?? base.monthlyReturn;
-    const threeMonthReturn = live?.threeMonthReturn ?? prev?.threeMonthReturn ?? base.threeMonthReturn;
-    const yearlyReturn = live?.yearlyReturn ?? prev?.yearlyReturn ?? base.yearlyReturn;
-    const totalValue = live?.totalValue ?? prev?.totalValue ?? base.totalValue;
-    const investorCount = live?.investorCount ?? prev?.investorCount ?? base.investorCount;
-    const sharesCount = live?.sharesCount ?? prev?.sharesCount ?? null;
-    const marketShare = live?.marketShare ?? prev?.marketShare ?? null;
-    const categoryRank = live?.categoryRank ?? prev?.categoryRank ?? null;
-    const categoryTotal = live?.categoryTotal ?? prev?.categoryTotal ?? null;
-    const isin = live?.isin ?? prev?.isin ?? null;
-    const sellValuation = live?.sellValuation ?? prev?.sellValuation ?? null;
-    const buyValuation = live?.buyValuation ?? prev?.buyValuation ?? null;
-    const tradeHours = live?.tradeHours ?? prev?.tradeHours ?? '09:00 - 17:45';
-    const kapUrl = live?.kapUrl ?? prev?.kapUrl ?? `https://www.kap.org.tr/tr/`;
-    const tefasStatus = live?.tefasStatus ?? prev?.tefasStatus ?? "TEFAS'ta işlem görüyor";
-    const minBuy = live?.minBuy ?? prev?.minBuy ?? 1;
-    const minSell = live?.minSell ?? prev?.minSell ?? 1;
-    const sparkline = live?.sparkline ?? prev?.sparkline ?? [price, price];
-    const updatedDate = live?.updatedDate ?? prev?.updatedDate ?? new Date().toISOString().slice(0, 10);
-
-    const fundObj = {
-      code: cfg.code,
-      name: cfg.name,
-      company: cfg.company,
-      category: cfg.category,
-      riskLevel: cfg.riskLevel,
-      featured: cfg.featured,
-      desc: cfg.desc,
-      price: Number(price.toFixed(6)),
-      dailyReturn: Number(dailyReturn.toFixed(2)),
-      weeklyReturn: Number(weeklyReturn.toFixed(2)),
-      monthlyReturn: Number(monthlyReturn.toFixed(2)),
-      threeMonthReturn: Number(threeMonthReturn.toFixed(2)),
-      yearlyReturn: Number(yearlyReturn.toFixed(2)),
-      totalValue: Math.round(totalValue),
-      investorCount: Math.round(investorCount),
-      sharesCount,
-      marketShare,
-      categoryRank,
-      categoryTotal,
-      isin,
-      sellValuation,
-      buyValuation,
-      tradeHours,
-      minBuy,
-      minSell,
-      kapUrl,
-      tefasStatus,
-      sparkline,
-      updatedDate
-    };
-
-    fundsMap[cfg.code] = fundObj;
-    if (Array.isArray(live?.history) && live.history.length > 0) {
-      fundHistories[cfg.code] = live.history;
-    }
-    fundList.push(fundObj);
-  }
-
-  // Top Gainers in Funds (Monthly, Yearly, Largest)
+function buildFundStats(funds) {
+  const fundList = Object.values(funds);
   const topMonthly = [...fundList].sort((a, b) => b.monthlyReturn - a.monthlyReturn).slice(0, 5);
   const topYearly = [...fundList].sort((a, b) => b.yearlyReturn - a.yearlyReturn).slice(0, 5);
   const largestFunds = [...fundList].sort((a, b) => b.totalValue - a.totalValue).slice(0, 5);
 
   return {
-    funds: fundsMap,
-    fundHistories,
-    stats: {
-      totalFundsCount: fundList.length,
-      topMonthlyGainers: topMonthly.map(f => ({ code: f.code, name: f.name, return: f.monthlyReturn })),
-      topYearlyGainers: topYearly.map(f => ({ code: f.code, name: f.name, return: f.yearlyReturn })),
-      largestFunds: largestFunds.map(f => ({ code: f.code, name: f.name, value: f.totalValue }))
+    totalFundsCount: fundList.length,
+    topMonthlyGainers: topMonthly.map(fund => ({ code: fund.code, name: fund.name, return: fund.monthlyReturn })),
+    topYearlyGainers: topYearly.map(fund => ({ code: fund.code, name: fund.name, return: fund.yearlyReturn })),
+    largestFunds: largestFunds.map(fund => ({ code: fund.code, name: fund.name, value: fund.totalValue }))
+  };
+}
+
+export async function fetchTefasFunds(previousFunds = {}, {
+  previousHistories = {},
+  includeFullHistory = true
+} = {}) {
+  const now = new Date();
+  const endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const startDate = new Date(endDate);
+  const historyDays = includeFullHistory ? HISTORY_DAYS : LATEST_HISTORY_DAYS;
+  startDate.setUTCDate(startDate.getUTCDate() - (historyDays - 1));
+  const configByCode = new Map(FUNDS_CONFIG.map(config => [config.code, config]));
+  const previousByCode = priorFundIndex(previousFunds);
+  const historyById = new Map();
+  const activeFundIds = new Set();
+
+  console.log(`🌐 TEFAS'ın 5 resmi fon türü için ${historyDays} günlük toplu fiyat geçmişi çekiliyor...`);
+  if (!includeFullHistory) {
+    for (const [id, savedHistory] of Object.entries(previousHistories)) {
+      const prices = Array.isArray(savedHistory) ? savedHistory : savedHistory?.history;
+      if (!Array.isArray(prices)) continue;
+      const previousFund = previousByCode.get(`${savedHistory?.kind || ''}:${savedHistory?.code || ''}`);
+      const [kind, code = id] = savedHistory?.kind
+        ? [savedHistory.kind, savedHistory.code || id]
+        : (id.includes('-') ? id.split(/-(.*)/s).slice(0, 2) : ['YAT', id]);
+      const previous = previousFund || previousByCode.get(`${kind}:${code}`);
+      const history = prices.map(item => {
+        const date = item?.date;
+        const close = Number(item?.close);
+        if (!toDate(date) || !Number.isFinite(close) || close <= 0) return null;
+        return {
+          id,
+          code,
+          name: previous?.name || code,
+          kind,
+          date,
+          close,
+          sharesCount: null,
+          investorCount: null,
+          totalValue: null
+        };
+      }).filter(Boolean);
+      if (history.length) historyById.set(id, history);
     }
+  }
+  for (const fundType of FUND_TYPES) {
+    let rangeStart = new Date(startDate);
+    let received = 0;
+
+    while (rangeStart <= endDate) {
+      const rangeEnd = new Date(rangeStart);
+      rangeEnd.setUTCDate(rangeEnd.getUTCDate() + MAX_RANGE_DAYS - 1);
+      if (rangeEnd > endDate) rangeEnd.setTime(endDate.getTime());
+
+      const rows = await fetchTefasRange(fundType.code, rangeStart, rangeEnd);
+      received += rows.length;
+      for (const row of rows) {
+        if (fundType.code === 'YAT' && EXCLUDED_YAT_FUNDS.has(String(row.fonKodu || '').trim().toUpperCase())) continue;
+        const normalized = normalizeHistoryRow(row, fundType.code);
+        if (!normalized) continue;
+        const recentCutoff = new Date(endDate);
+        recentCutoff.setUTCDate(recentCutoff.getUTCDate() - (LATEST_HISTORY_DAYS - 1));
+        if (toDate(normalized.date) >= recentCutoff) activeFundIds.add(normalized.id);
+        if (!historyById.has(normalized.id)) historyById.set(normalized.id, []);
+        historyById.get(normalized.id).push(normalized);
+      }
+
+      rangeStart = new Date(rangeEnd);
+      rangeStart.setUTCDate(rangeStart.getUTCDate() + 1);
+      await wait(FUND_REQUEST_DELAY_MS);
+    }
+
+    console.log(`  ✓ ${fundType.label}: ${received.toLocaleString('tr-TR')} fiyat kaydı`);
+    if (received === 0 || ![...activeFundIds].some(id => id.startsWith(`${fundType.code}-`) || fundType.code === 'YAT' && !id.includes('-'))) {
+      throw new Error(`TEFAS ${fundType.label} sınıfı son ${LATEST_HISTORY_DAYS} günde fon verisi döndürmedi`);
+    }
+  }
+
+  const funds = {};
+  const fundHistories = {};
+  for (const [id, unsortedHistory] of historyById) {
+    if (!activeFundIds.has(id)) continue;
+    const sortedHistory = [...new Map(
+      unsortedHistory
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .map(item => [item.date, item])
+    ).values()];
+    if (sortedHistory.length === 0) continue;
+
+    const latest = sortedHistory[sortedHistory.length - 1];
+    const fundType = FUND_TYPES.find(item => item.code === latest.kind);
+    const previous = previousByCode.get(`${latest.kind}:${latest.code}`);
+    const config = latest.kind === 'YAT' ? configByCode.get(latest.code) : null;
+    funds[id] = makeFundObject(sortedHistory, previous, config, fundType?.label || 'TEFAS Fonu');
+    fundHistories[id] = sortedHistory.map(item => ({ date: item.date, close: item.close }));
+  }
+
+  if (Object.keys(funds).length === 0) {
+    throw new Error('TEFAS toplu fiyat servisleri hiçbir geçerli fon döndürmedi');
+  }
+
+  return {
+    funds,
+    fundHistories,
+    stats: buildFundStats(funds)
   };
 }

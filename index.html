@@ -537,26 +537,7 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
           
           <!-- Category Pills -->
-          <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="fundCategoryTabs">
-            <button onclick="setFundCategoryFilter('ALL', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-bold bg-amber-600 text-white shrink-0 transition-all">
-              Tüm Fonlar <span id="fundCategoryCountAll"></span>
-            </button>
-            <button onclick="setFundCategoryFilter('Hisse Senedi', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Hisse Senedi <span id="fundCategoryCountStocks"></span>
-            </button>
-            <button onclick="setFundCategoryFilter('Yabancı & Teknoloji', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Yabancı & Teknoloji <span id="fundCategoryCountForeign"></span>
-            </button>
-            <button onclick="setFundCategoryFilter('Para Piyasası', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Para Piyasası <span id="fundCategoryCountMoney"></span>
-            </button>
-            <button onclick="setFundCategoryFilter('Kıymetli Madenler', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Altın & Maden <span id="fundCategoryCountMetals"></span>
-            </button>
-            <button onclick="setFundCategoryFilter('Değişken & Karma', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Değişken & Karma <span id="fundCategoryCountMixed"></span>
-            </button>
-          </div>
+          <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="fundCategoryTabs"></div>
 
           <!-- Fund Sorting & View Switcher -->
           <div class="flex flex-wrap items-center gap-2">
@@ -630,6 +611,9 @@
             </tbody>
           </table>
         </div>
+      </div>
+      <div id="fundLoadMoreContainer" class="text-center">
+        <button id="fundLoadMoreButton" onclick="loadMoreFunds()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold transition-all"></button>
       </div>
 
     </div>
@@ -882,6 +866,8 @@
     let currentFundSort = 'monthly_desc';
     let currentFundViewMode = 'grid';
     let activeModalFundCode = null;
+    let fundDisplayLimit = 48;
+    let lastFilteredFunds = [];
     let currentFundChartDays = 30;
     let fundModalChartInstance = null;
     const fundHistoryCache = {};
@@ -1313,14 +1299,33 @@
     }
 
     // ================= TEFAS MUTUAL FUNDS LOGIC =================
-    function setFundCategoryFilter(cat, btnEl) {
-      currentFundCategory = cat;
-      document.querySelectorAll('.fund-cat-btn').forEach(btn => {
-        btn.className = 'fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all';
-      });
-      if (btnEl) {
-        btnEl.className = 'fund-cat-btn px-3.5 py-1.5 rounded-xl font-bold bg-amber-600 text-white shrink-0 transition-all';
+    function renderFundCategoryTabs(funds) {
+      const container = document.getElementById('fundCategoryTabs');
+      if (!container) return;
+
+      const categoryCounts = new Map();
+      for (const fund of funds) {
+        categoryCounts.set(fund.category, (categoryCounts.get(fund.category) || 0) + 1);
       }
+      const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
+      const tabs = [['ALL', `Tüm Fonlar (${funds.length})`], ...categories.map(([category, count]) => [category, `${category} (${count})`])];
+      container.replaceChildren();
+
+      for (const [category, label] of tabs) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `fund-cat-btn px-3.5 py-1.5 rounded-xl shrink-0 transition-all ${currentFundCategory === category
+          ? 'font-bold bg-amber-600 text-white'
+          : 'font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white'}`;
+        button.textContent = label;
+        button.addEventListener('click', () => setFundCategoryFilter(category));
+        container.appendChild(button);
+      }
+    }
+
+    function setFundCategoryFilter(cat) {
+      currentFundCategory = cat;
+      renderFundCategoryTabs(Object.values(globalData?.funds || {}));
       applyFundFilters();
     }
 
@@ -1399,8 +1404,29 @@
         funds.sort((a, b) => b.price - a.price);
       }
 
-      renderFundCards(funds);
-      renderFundTable(funds);
+      lastFilteredFunds = funds;
+      fundDisplayLimit = 48;
+      renderVisibleFunds();
+    }
+
+    function renderVisibleFunds() {
+      const visibleFunds = lastFilteredFunds.slice(0, fundDisplayLimit);
+      renderFundCards(visibleFunds);
+      renderFundTable(visibleFunds);
+
+      const loadMoreContainer = document.getElementById('fundLoadMoreContainer');
+      const loadMoreButton = document.getElementById('fundLoadMoreButton');
+      const hasMoreFunds = visibleFunds.length < lastFilteredFunds.length;
+      if (loadMoreContainer) loadMoreContainer.classList.toggle('hidden', !hasMoreFunds);
+      if (loadMoreButton) {
+        const remaining = lastFilteredFunds.length - visibleFunds.length;
+        loadMoreButton.textContent = `Daha Fazla Fon Göster (${Math.min(48, remaining)} / ${remaining})`;
+      }
+    }
+
+    function loadMoreFunds() {
+      fundDisplayLimit += 48;
+      renderVisibleFunds();
     }
 
     function renderFundCards(funds) {
@@ -1429,7 +1455,7 @@
         else riskBadge = '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Yüksek Risk (5-6)</span>';
 
         return `
-          <div onclick="openFundModal('${fund.code}')" class="glass-card glass-card-hover p-4 sm:p-5 rounded-2xl transition-all duration-200 cursor-pointer group relative flex flex-col justify-between border border-slate-800/80 hover:border-amber-500/30">
+          <div onclick="openFundModal('${fund.id}')" class="glass-card glass-card-hover p-4 sm:p-5 rounded-2xl transition-all duration-200 cursor-pointer group relative flex flex-col justify-between border border-slate-800/80 hover:border-amber-500/30">
             <div>
               <!-- Top Row: Code, Category, Risk -->
               <div class="flex items-center justify-between mb-2">
@@ -1493,7 +1519,7 @@
         const isPos1Y = fund.yearlyReturn >= 0;
 
         return `
-          <tr onclick="openFundModal('${fund.code}')" class="hover:bg-slate-850/60 cursor-pointer transition-colors">
+          <tr onclick="openFundModal('${fund.id}')" class="hover:bg-slate-850/60 cursor-pointer transition-colors">
             <td class="py-3 px-4 font-bold text-white font-display text-sm">${fund.code}</td>
             <td class="py-3 px-4 font-sans">
               <div class="font-semibold text-slate-200 line-clamp-1">${fund.name}</div>
@@ -1512,18 +1538,18 @@
               <span class="text-[10px] font-mono px-1.5 py-0.5 rounded ${fund.riskLevel <= 2 ? 'bg-emerald-500/10 text-emerald-400' : (fund.riskLevel <= 4 ? 'bg-sky-500/10 text-sky-400' : 'bg-amber-500/10 text-amber-400')}">${fund.riskLevel}/7</span>
             </td>
             <td class="py-3 px-4 text-center">
-              <button onclick="openFundModal('${fund.code}')" class="text-amber-400 hover:text-amber-300 font-semibold text-[11px]">İncele →</button>
+              <button onclick="openFundModal('${fund.id}')" class="text-amber-400 hover:text-amber-300 font-semibold text-[11px]">İncele →</button>
             </td>
           </tr>
         `;
       }).join('');
     }
 
-    async function openFundModal(code) {
-      const fund = globalData?.funds?.[code];
+    async function openFundModal(id) {
+      const fund = globalData?.funds?.[id];
       if (!fund) return;
 
-      activeModalFundCode = code;
+      activeModalFundCode = id;
       currentFundChartDays = 30;
       const modal = document.getElementById('fundModal');
       if (!modal) return;
@@ -1613,8 +1639,8 @@
       }
 
       try {
-        if (!fundHistoryCache[code]) {
-          const historyResponse = await fetch(`data/fund-history/${encodeURIComponent(code)}.json`);
+        if (!fundHistoryCache[id]) {
+          const historyResponse = await fetch(`data/fund-history/${encodeURIComponent(id)}.json`);
           if (!historyResponse.ok) {
             throw new Error(`Fon geçmişi alınamadı (HTTP ${historyResponse.status})`);
           }
@@ -1622,16 +1648,16 @@
           if (!Array.isArray(historyData.history)) {
             throw new Error('Fon geçmiş verisi beklenen formatta değil');
           }
-          fundHistoryCache[code] = historyData.history.filter(item =>
+          fundHistoryCache[id] = historyData.history.filter(item =>
             item && typeof item.date === 'string' && Number.isFinite(item.close) && item.close > 0
           );
         }
 
-        if (activeModalFundCode !== code) return;
+        if (activeModalFundCode !== id) return;
         renderFundModalChart();
       } catch (error) {
-        console.warn(`TEFAS fon geçmişi yüklenemedi (${code}):`, error);
-        if (activeModalFundCode === code && chartStatus) {
+        console.warn(`TEFAS fon geçmişi yüklenemedi (${id}):`, error);
+        if (activeModalFundCode === id && chartStatus) {
           chartStatus.textContent = 'TEFAS geçmiş verisi şu anda yüklenemedi.';
         }
       }
@@ -1658,6 +1684,7 @@
     }
 
     function renderFundModalChart() {
+      const fund = globalData?.funds?.[activeModalFundCode];
       const history = fundHistoryCache[activeModalFundCode];
       const chartStatus = document.getElementById('fundModalChartStatus');
       if (!Array.isArray(history) || history.length === 0) {
@@ -1682,7 +1709,7 @@
         data: {
           labels,
           datasets: [{
-            label: `${activeModalFundCode} Birim Pay Değeri (₺)`,
+            label: `${fund?.code || activeModalFundCode} Birim Pay Değeri (₺)`,
             data: prices,
             borderColor: color,
             backgroundColor: gradient,
@@ -2076,18 +2103,10 @@
           if (tabFundEl) tabFundEl.textContent = `${fundCount} Fon`;
           const fundStatTotalEl = document.getElementById('fundStatTotalCount');
           if (fundStatTotalEl) fundStatTotalEl.textContent = `${fundCount} Fon`;
-          const categoryCounts = [
-            ['fundCategoryCountAll', funds.length],
-            ['fundCategoryCountStocks', funds.filter(fund => fund.category === 'Hisse Senedi').length],
-            ['fundCategoryCountForeign', funds.filter(fund => fund.category === 'Yabancı & Teknoloji').length],
-            ['fundCategoryCountMoney', funds.filter(fund => fund.category === 'Para Piyasası').length],
-            ['fundCategoryCountMetals', funds.filter(fund => fund.category === 'Kıymetli Madenler').length],
-            ['fundCategoryCountMixed', funds.filter(fund => fund.category === 'Değişken & Karma').length]
-          ];
-          for (const [elementId, count] of categoryCounts) {
-            const element = document.getElementById(elementId);
-            if (element) element.textContent = `(${count})`;
+          if (currentFundCategory !== 'ALL' && !funds.some(fund => fund.category === currentFundCategory)) {
+            currentFundCategory = 'ALL';
           }
+          renderFundCategoryTabs(funds);
 
           const topYearlyFund = [...funds].sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0];
           const topMonthlyFund = [...funds].sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0];

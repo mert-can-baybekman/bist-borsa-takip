@@ -14,8 +14,9 @@ Borsa İstanbul (**BIST 100, BIST 30, BIST Banka, BIST Sınai, BIST Bilişim**) 
 ## ✨ Öne Çıkan Özellikler
 
 ### 📊 1. Canlı Piyasa Terminali (`index.html`)
-- ⚡ **Ayrıştırılmış Hafif CDN Mimarisi (`data/history/`, `data/fund-history/`):** Hisse geçmişleri ve TEFAS'ın resmi günlük fon fiyat geçmişleri ayrı dosyalarda saklanır; detay veriler ana `data.json` dosyasını şişirmez ve gerektiğinde yüklenir.
-- 🏛️ **TEFAS Yatırım Fonları Bölümü:** 60'tan fazla fonun fiyatları ve geçmiş grafik verileri doğrudan TEFAS'ın resmi API'sinden alınır. Hisse, yabancı/teknoloji, para piyasası, kıymetli maden ve değişken fonlar için canlı getiri takibi, kategori filtreleri, 1 hafta–1 yıl fiyat grafiği ve detay analiz modalı.
+- ⚡ **Ayrıştırılmış Hafif CDN Mimarisi (`data/history/`, `data/fund-history/`):** BIST adi paylarının ve tüm TEFAS fon türlerinin fiyat geçmişleri ayrı dosyalarda saklanır; grafik verileri gerektiğinde yüklenir.
+- 🏛️ **TEFAS Fon Kütüphanesi:** Yatırım, emeklilik, borsa yatırım, gayrimenkul ve girişim sermayesi fonları TEFAS'ın resmi toplu API'sinden keşfedilir; fon geçmiş grafikleri 1 yıla kadar gösterilir.
+- 📈 **Tam BIST Hisse Evreni:** BIST'te işlem gören adi paylar otomatik keşfedilir ve hisse fiyat/geçmiş verileri piyasa veri sağlayıcısından güncellenir.
 - ⏱️ **Canlı Seans & Geri Sayım Saati:** TSİ (UTC+3) çalışma saatlerini (Emir toplama, sürekli müzayede, kapanış seansı, hafta sonu) anlık izleyen ve seans açılış/kapanışına kalan süreyi hesaplayan akıllı motor.
 - 🚥 **Kayan Piyasa Bandı (Ticker Marquee):** Endeksler, dövizler, altın, hisseler ve fonları kesintisiz kayan bantta canlı gösterim.
 - 🎛️ **3 Farklı Görüntüleme Modu:**

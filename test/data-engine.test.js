@@ -34,9 +34,9 @@ test('data.json exists and adheres to the production schema', () => {
   assert.ok(altin, 'ALTIN must exist');
   assert.ok(typeof altin.price === 'number' && altin.price > 0, 'ALTIN price must be positive');
 
-  // Validate Expanded Stocks Universe (100+ stocks)
+  // Validate the complete BIST common-share universe
   const stockKeys = Object.keys(data.stocks);
-  assert.ok(stockKeys.length >= 80, `Expected at least 80 stocks, found ${stockKeys.length}`);
+  assert.ok(stockKeys.length >= 500, `Expected at least 500 BIST shares, found ${stockKeys.length}`);
 
   // Test individual stock schema (lightweight architecture)
   const thyao = data.stocks.THYAO;
@@ -72,12 +72,16 @@ test('data.json exists and adheres to the production schema', () => {
 
   const removedFunds = ['PTO', 'THF', 'TP2'];
   for (const code of removedFunds) {
-    assert.equal(data.funds[code], undefined, `${code} must be removed from the site fund data`);
+    const yatFund = Object.values(data.funds).find(fund => fund.code === code && fund.tefasFundType === 'YAT');
+    assert.equal(yatFund, undefined, `${code} must be removed from the investment-fund catalog`);
     assert.equal(fs.existsSync(path.join(process.cwd(), 'data', 'fund-history', `${code}.json`)), false, `${code} history must be removed`);
   }
-  assert.equal(FUNDS_CONFIG.length, 67, 'Fund configuration must contain 50 new funds, excluding the 3 removed funds');
-  assert.equal(new Set(FUNDS_CONFIG.map(fund => fund.code)).size, FUNDS_CONFIG.length, 'Fund configuration codes must be unique');
-  assert.equal(Object.keys(data.funds).length, FUNDS_CONFIG.length, 'Generated fund data must match the configured catalog');
+  assert.ok(Object.keys(data.funds).length >= 3000, 'Fund data must contain all five TEFAS fund classes');
+  assert.equal(new Set(Object.values(data.funds).map(fund => fund.id)).size, Object.keys(data.funds).length, 'TEFAS fund IDs must be unique across fund types');
+  for (const kind of ['YAT', 'EMK', 'BYF', 'GYF', 'GSYF']) {
+    assert.ok(Object.values(data.funds).some(fund => fund.tefasFundType === kind), `TEFAS fund class ${kind} must be included`);
+  }
+  assert.ok(FUNDS_CONFIG.every(config => data.funds[config.code]), 'Configured investment funds must remain in the TEFAS catalog');
 
   const fundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'TGE.json');
   assert.ok(fs.existsSync(fundHistoryPath), 'data/fund-history/TGE.json must exist');

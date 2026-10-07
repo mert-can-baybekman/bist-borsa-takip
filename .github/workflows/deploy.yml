@@ -44,6 +44,8 @@ jobs:
 
       - name: Canli Verileri Cek ve data.json Uret
         run: node fetch-data.js
+        env:
+          TEFAS_HISTORY_MODE: latest
 
       - name: Dagitim Dizinini Hazirla (_site)
         run: |
