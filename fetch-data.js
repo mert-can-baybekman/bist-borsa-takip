@@ -578,6 +578,9 @@ export async function fetchAllData() {
     throw fundErr;
   }
 
+  const completedAt = new Date();
+  output.updatedAt = completedAt.toISOString();
+  output.updatedAtFormatted = formatTimeTR(completedAt);
   fs.writeFileSync('./data.json', JSON.stringify(output, null, 2), 'utf-8');
   console.log(`\n🎉 data.json (${Object.keys(output.stocks).length} hisse + ${Object.keys(output.indices).length} endeks/emtia + ${Object.keys(output.funds).length} TEFAS fonu) başarıyla kaydedildi!\n`);
   return output;

@@ -33,11 +33,17 @@ export function generateNewsletterHtml(data) {
   const usd = currencies.USDTRY || {};
   const eur = currencies.EURTRY || {};
 
-  const dateStr = new Date().toLocaleDateString('tr-TR', {
+  const snapshotDate = data.updatedAt ? new Date(data.updatedAt) : new Date();
+  const snapshotDateLabel = snapshotDate.toLocaleDateString('tr-TR', {
     day: '2-digit',
     month: 'long',
     year: 'numeric',
     weekday: 'long',
+    timeZone: 'Europe/Istanbul'
+  });
+  const snapshotTimeLabel = snapshotDate.toLocaleTimeString('tr-TR', {
+    hour: '2-digit',
+    minute: '2-digit',
     timeZone: 'Europe/Istanbul'
   });
 
@@ -47,7 +53,7 @@ export function generateNewsletterHtml(data) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIST 07:30 Sabah Piyasa Bülteni</title>
+    <title>BIST Günlük Piyasa Bülteni</title>
   </head>
   <body style="margin: 0; padding: 20px 10px; background-color: #030712; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #f3f4f6;">
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #0f172a; border-radius: 20px; overflow: hidden; border: 1px solid #1e293b; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
@@ -56,11 +62,11 @@ export function generateNewsletterHtml(data) {
       <tr>
         <td style="padding: 28px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border-bottom: 1px solid #334155; text-align: center;">
           <div style="display: inline-block; width: 44px; height: 44px; background: linear-gradient(135deg, #0284c7, #6366f1); border-radius: 12px; line-height: 44px; font-size: 22px; font-weight: 900; color: #ffffff; margin-bottom: 12px;">₺</div>
-          <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Borsa İstanbul Sabah Bülteni</h1>
-          <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 13px;">${dateStr} • 07:30 Sabah Piyasa ve Seans Özeti</p>
+          <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Borsa İstanbul Günlük Piyasa Bülteni</h1>
+          <p style="margin: 6px 0 0 0; color: #94a3b8; font-size: 13px;">${snapshotDateLabel} • ${snapshotTimeLabel} TSİ piyasa verileri</p>
           <div style="margin-top: 12px;">
             <span style="display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">
-              ${session.status || '🌅 Seans Öncesi'} • ${session.timeStr?.slice(0, 5) || '07:30'}
+              ${session.status || 'Piyasa durumu'} • Veri saati ${snapshotTimeLabel} TSİ
             </span>
           </div>
         </td>
@@ -212,8 +218,13 @@ async function main() {
   const resend = new Resend(RESEND_API_KEY);
   console.log(`✉️ Canlı piyasa bülteni ${RECIPIENT_EMAIL} adresine gönderiliyor...`);
 
-  const timeLabel = data.marketSession?.timeStr?.slice(0, 5) || '07:30';
-  const dateStr = new Date().toLocaleDateString('tr-TR', {
+  const snapshotDate = data.updatedAt ? new Date(data.updatedAt) : new Date();
+  const timeLabel = snapshotDate.toLocaleTimeString('tr-TR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Istanbul'
+  });
+  const dateStr = snapshotDate.toLocaleDateString('tr-TR', {
     day: '2-digit',
     month: 'long',
     timeZone: 'Europe/Istanbul'
@@ -223,7 +234,7 @@ async function main() {
     const res = await resend.emails.send({
       from: 'BIST Takip <onboarding@resend.dev>',
       to: RECIPIENT_EMAIL,
-      subject: `📈 BIST Canlı Piyasa Bülteni (${timeLabel}) • ${dateStr}`,
+      subject: `📈 BIST Canlı Piyasa Bülteni (${timeLabel} TSİ) • ${dateStr}`,
       html: html
     });
 
