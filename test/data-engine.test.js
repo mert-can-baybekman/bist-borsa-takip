@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'fs';
 import path from 'path';
+import { FUNDS_CONFIG } from '../src/funds-config.js';
 
 test('data.json exists and adheres to the production schema', () => {
   assert.ok(fs.existsSync('./data.json'), 'data.json must exist');
@@ -58,7 +59,7 @@ test('data.json exists and adheres to the production schema', () => {
   // Validate TEFAS Mutual Funds
   assert.ok(data.funds, 'data.funds must exist');
   assert.ok(data.fundStats, 'data.fundStats must exist');
-  const requiredFunds = ['THF', 'PTO', 'TGE', 'IPJ', 'TP2'];
+  const requiredFunds = ['TGE', 'IPJ', 'AFA', 'TCD'];
   for (const fCode of requiredFunds) {
     const fund = data.funds[fCode];
     assert.ok(fund, `Fund ${fCode} must exist in data.funds`);
@@ -69,12 +70,21 @@ test('data.json exists and adheres to the production schema', () => {
     assert.ok(fund.category, `${fCode} category must be defined`);
   }
 
-  const thfFundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'THF.json');
-  assert.ok(fs.existsSync(thfFundHistoryPath), 'data/fund-history/THF.json must exist');
-  const thfFundHistory = JSON.parse(fs.readFileSync(thfFundHistoryPath, 'utf-8'));
-  assert.equal(thfFundHistory.source, 'TEFAS', 'Fund history must come from TEFAS');
-  assert.ok(Array.isArray(thfFundHistory.history) && thfFundHistory.history.length > 5, 'THF TEFAS history must contain historical prices');
-  assert.ok(thfFundHistory.history.every(item =>
+  const removedFunds = ['PTO', 'THF', 'TP2'];
+  for (const code of removedFunds) {
+    assert.equal(data.funds[code], undefined, `${code} must be removed from the site fund data`);
+    assert.equal(fs.existsSync(path.join(process.cwd(), 'data', 'fund-history', `${code}.json`)), false, `${code} history must be removed`);
+  }
+  assert.equal(FUNDS_CONFIG.length, 67, 'Fund configuration must contain 50 new funds, excluding the 3 removed funds');
+  assert.equal(new Set(FUNDS_CONFIG.map(fund => fund.code)).size, FUNDS_CONFIG.length, 'Fund configuration codes must be unique');
+  assert.equal(Object.keys(data.funds).length, FUNDS_CONFIG.length, 'Generated fund data must match the configured catalog');
+
+  const fundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'TGE.json');
+  assert.ok(fs.existsSync(fundHistoryPath), 'data/fund-history/TGE.json must exist');
+  const fundHistory = JSON.parse(fs.readFileSync(fundHistoryPath, 'utf-8'));
+  assert.equal(fundHistory.source, 'TEFAS', 'Fund history must come from TEFAS');
+  assert.ok(Array.isArray(fundHistory.history) && fundHistory.history.length > 5, 'TGE TEFAS history must contain historical prices');
+  assert.ok(fundHistory.history.every(item =>
     typeof item.date === 'string' && typeof item.close === 'number' && item.close > 0
   ), 'Fund history points must contain a date and a positive price');
 });

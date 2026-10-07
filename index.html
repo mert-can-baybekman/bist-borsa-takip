@@ -304,7 +304,7 @@
         <button id="mainTabFundsBtn" onclick="switchMainTab('funds')" class="px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-[#0c121e] border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700">
           <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
           <span>TEFAS Yatırım Fonları</span>
-          <span id="tabFundCountBadge" class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">20 Fon</span>
+          <span id="tabFundCountBadge" class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">-- Fon</span>
         </button>
       </div>
 
@@ -313,7 +313,7 @@
         <input 
           type="text" 
           id="searchInput" 
-          placeholder="Hisse veya fon ara (THYAO, THF, IPJ)..." 
+          placeholder="Hisse veya fon ara (THYAO, AFA, IPJ)..."
           class="w-full bg-[#0c121e] border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all font-sans uppercase"
           oninput="handleSearchInput()"
         />
@@ -503,32 +503,32 @@
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
           <div class="text-[11px] text-slate-400 font-sans">Takip Edilen Fon Sayısı</div>
-          <div class="text-2xl font-black font-num text-white mt-1" id="fundStatTotalCount">20 Fon</div>
+          <div class="text-2xl font-black font-num text-white mt-1" id="fundStatTotalCount">-- Fon</div>
           <div class="text-[10px] text-sky-400 mt-0.5">TEFAS Veri Entegrasyonu</div>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
           <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
-            <span>Hisse Senedi Lideri</span>
-            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-500/10 text-emerald-400 rounded">PTO / THF</span>
+            <span>En Yüksek 1 Yıllık Getiri</span>
+            <span id="fundTopYearlyCode" class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-500/10 text-emerald-400 rounded">--</span>
           </div>
-          <div class="text-xl font-black font-num text-emerald-400 mt-1">+112.40%</div>
-          <div class="text-[10px] text-slate-400 mt-0.5">1 Yıllık Şampiyon Getiri</div>
+          <div id="fundTopYearlyReturn" class="text-xl font-black font-num text-emerald-400 mt-1">--</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">Fonların yıllık performansı</div>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
           <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
-            <span>Emtia & Teknoloji</span>
-            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-sky-500/10 text-sky-400 rounded">TGE / IPJ</span>
+            <span>En Yüksek 1 Aylık Getiri</span>
+            <span id="fundTopMonthlyCode" class="text-[9px] font-mono px-1.5 py-0.2 bg-sky-500/10 text-sky-400 rounded">--</span>
           </div>
-          <div class="text-xl font-black font-num text-sky-400 mt-1">+78.40%</div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Elektrikli Araçlar & Emtia</div>
+          <div id="fundTopMonthlyReturn" class="text-xl font-black font-num text-sky-400 mt-1">--</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">Fonların aylık performansı</div>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-800/80">
           <div class="text-[11px] text-slate-400 font-sans flex items-center justify-between">
-            <span>Likit Para Piyasası</span>
-            <span class="text-[9px] font-mono px-1.5 py-0.2 bg-purple-500/10 text-purple-400 rounded">TP2 / PPZ</span>
+            <span>En Büyük Fon</span>
+            <span id="fundLargestCode" class="text-[9px] font-mono px-1.5 py-0.2 bg-purple-500/10 text-purple-400 rounded">--</span>
           </div>
-          <div class="text-xl font-black font-num text-purple-400 mt-1">+55.40%</div>
-          <div class="text-[10px] text-slate-400 mt-0.5">Yıllık Bileşik Getiri</div>
+          <div id="fundLargestValue" class="text-xl font-black font-num text-purple-400 mt-1">--</div>
+          <div class="text-[10px] text-slate-400 mt-0.5">TEFAS portföy büyüklüğü</div>
         </div>
       </div>
 
@@ -539,22 +539,22 @@
           <!-- Category Pills -->
           <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-xs" id="fundCategoryTabs">
             <button onclick="setFundCategoryFilter('ALL', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-bold bg-amber-600 text-white shrink-0 transition-all">
-              Tüm Fonlar (20)
+              Tüm Fonlar <span id="fundCategoryCountAll"></span>
             </button>
             <button onclick="setFundCategoryFilter('Hisse Senedi', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Hisse Senedi (6)
+              Hisse Senedi <span id="fundCategoryCountStocks"></span>
             </button>
             <button onclick="setFundCategoryFilter('Yabancı & Teknoloji', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Yabancı & Teknoloji (5)
+              Yabancı & Teknoloji <span id="fundCategoryCountForeign"></span>
             </button>
             <button onclick="setFundCategoryFilter('Para Piyasası', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Para Piyasası (3)
+              Para Piyasası <span id="fundCategoryCountMoney"></span>
             </button>
             <button onclick="setFundCategoryFilter('Kıymetli Madenler', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Altın & Maden (3)
+              Altın & Maden <span id="fundCategoryCountMetals"></span>
             </button>
             <button onclick="setFundCategoryFilter('Değişken & Karma', this)" class="fund-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-[#0c121e] border border-slate-800 text-slate-300 hover:text-white shrink-0 transition-all">
-              Değişken & Karma (3)
+              Değişken & Karma <span id="fundCategoryCountMixed"></span>
             </button>
           </div>
 
@@ -590,14 +590,13 @@
         <!-- Featured Funds Quick Chips -->
         <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1 text-xs">
           <span class="text-slate-500 font-sans shrink-0 font-medium">Önemli Fonlar:</span>
-          <button onclick="filterBySpecificFund('THF')" class="px-2.5 py-1 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20 font-mono font-bold hover:bg-sky-500/20 transition-all shrink-0">THF (Tera Hisse)</button>
-          <button onclick="filterBySpecificFund('PTO')" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono font-bold hover:bg-emerald-500/20 transition-all shrink-0">PTO (Pardus Temettü)</button>
           <button onclick="filterBySpecificFund('TGE')" class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold hover:bg-amber-500/20 transition-all shrink-0">TGE (İş Emtia)</button>
           <button onclick="filterBySpecificFund('IPJ')" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono font-bold hover:bg-indigo-500/20 transition-all shrink-0">IPJ (Elektrikli Araçlar)</button>
-          <button onclick="filterBySpecificFund('TP2')" class="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono font-bold hover:bg-purple-500/20 transition-all shrink-0">TP2 (Tera Para Piyasası)</button>
           <button onclick="filterBySpecificFund('MAC')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">MAC</button>
           <button onclick="filterBySpecificFund('AFT')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">AFT</button>
           <button onclick="filterBySpecificFund('PPZ')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">PPZ</button>
+          <button onclick="filterBySpecificFund('AFA')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">AFA</button>
+          <button onclick="filterBySpecificFund('TCD')" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono hover:text-white transition-all shrink-0">TCD</button>
         </div>
 
       </div>
@@ -915,7 +914,7 @@
         stocksBtn.className = 'px-5 py-2.5 rounded-xl font-display font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 bg-[#0c121e] border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700';
         fundsSection.classList.remove('hidden');
         stocksSection.classList.add('hidden');
-        if (searchInput) searchInput.placeholder = 'TEFAS fon kodu veya fon adı ara (THF, PTO, TGE, IPJ, TP2)...';
+        if (searchInput) searchInput.placeholder = 'TEFAS fon kodu veya fon adı ara (AFA, TGE, IPJ, TCD)...';
         applyFundFilters();
       }
     }
@@ -1026,10 +1025,13 @@
         items.push({ sym: g.symbol, price: `₺${formatNumber(g.price)}`, chg: g.changePercent });
       });
 
-      // Add featured funds to ticker
-      if (data.funds?.THF) items.push({ sym: 'THF Fon', price: `₺${data.funds.THF.price.toFixed(2)}`, chg: data.funds.THF.dailyReturn });
-      if (data.funds?.PTO) items.push({ sym: 'PTO Fon', price: `₺${data.funds.PTO.price.toFixed(2)}`, chg: data.funds.PTO.dailyReturn });
-      if (data.funds?.TP2) items.push({ sym: 'TP2 Likit', price: `₺${data.funds.TP2.price.toFixed(2)}`, chg: data.funds.TP2.dailyReturn });
+      // Add the three highest daily-return funds to the ticker
+      Object.values(data.funds || {})
+        .sort((a, b) => b.dailyReturn - a.dailyReturn)
+        .slice(0, 3)
+        .forEach(fund => {
+          items.push({ sym: `${fund.code} Fon`, price: `₺${fund.price.toFixed(2)}`, chg: fund.dailyReturn });
+        });
 
       const html = items.map(item => {
         const isPos = item.chg >= 0;
@@ -1409,7 +1411,7 @@
         container.innerHTML = `
           <div class="col-span-full py-12 text-center text-slate-500 font-sans glass-card rounded-2xl p-8">
             <p class="text-base font-bold text-slate-300">Arama kriterlerine uygun TEFAS fonu bulunamadı.</p>
-            <p class="text-xs mt-1">Farklı bir fon kodu (örn: THF, PTO, TGE, IPJ, TP2) veya kategori seçebilirsiniz.</p>
+            <p class="text-xs mt-1">Farklı bir fon kodu (örn: AFA, TGE, IPJ, TCD) veya kategori seçebilirsiniz.</p>
           </div>
         `;
         return;
@@ -2068,11 +2070,40 @@
         if (tabStockEl) tabStockEl.textContent = stockCount;
 
         if (globalData.funds) {
-          const fundCount = Object.keys(globalData.funds).length;
+          const funds = Object.values(globalData.funds);
+          const fundCount = funds.length;
           const tabFundEl = document.getElementById('tabFundCountBadge');
           if (tabFundEl) tabFundEl.textContent = `${fundCount} Fon`;
           const fundStatTotalEl = document.getElementById('fundStatTotalCount');
           if (fundStatTotalEl) fundStatTotalEl.textContent = `${fundCount} Fon`;
+          const categoryCounts = [
+            ['fundCategoryCountAll', funds.length],
+            ['fundCategoryCountStocks', funds.filter(fund => fund.category === 'Hisse Senedi').length],
+            ['fundCategoryCountForeign', funds.filter(fund => fund.category === 'Yabancı & Teknoloji').length],
+            ['fundCategoryCountMoney', funds.filter(fund => fund.category === 'Para Piyasası').length],
+            ['fundCategoryCountMetals', funds.filter(fund => fund.category === 'Kıymetli Madenler').length],
+            ['fundCategoryCountMixed', funds.filter(fund => fund.category === 'Değişken & Karma').length]
+          ];
+          for (const [elementId, count] of categoryCounts) {
+            const element = document.getElementById(elementId);
+            if (element) element.textContent = `(${count})`;
+          }
+
+          const topYearlyFund = [...funds].sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0];
+          const topMonthlyFund = [...funds].sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0];
+          const largestFund = [...funds].sort((a, b) => b.totalValue - a.totalValue)[0];
+          if (topYearlyFund) {
+            document.getElementById('fundTopYearlyCode').textContent = topYearlyFund.code;
+            document.getElementById('fundTopYearlyReturn').textContent = `${topYearlyFund.yearlyReturn >= 0 ? '+' : ''}${topYearlyFund.yearlyReturn.toFixed(2)}%`;
+          }
+          if (topMonthlyFund) {
+            document.getElementById('fundTopMonthlyCode').textContent = topMonthlyFund.code;
+            document.getElementById('fundTopMonthlyReturn').textContent = `${topMonthlyFund.monthlyReturn >= 0 ? '+' : ''}${topMonthlyFund.monthlyReturn.toFixed(2)}%`;
+          }
+          if (largestFund) {
+            document.getElementById('fundLargestCode').textContent = largestFund.code;
+            document.getElementById('fundLargestValue').textContent = formatFundSize(largestFund.totalValue);
+          }
         }
 
         updateFavCount();

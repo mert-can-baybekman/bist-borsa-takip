@@ -12,11 +12,8 @@ import { FUNDS_CONFIG } from './funds-config.js';
  * Baseline fallback dataset (used only if TEFAS network request is temporarily unreachable)
  */
 const FUND_BASELINE_DATA = {
-  'PTO': { price: 1.864854, dailyReturn: 0.13, weeklyReturn: 0.88, monthlyReturn: 2.38, threeMonthReturn: 22.28, yearlyReturn: 77.61, totalValue: 214185325, investorCount: 3107 },
   'TGE': { price: 0.308652, dailyReturn: -0.06, weeklyReturn: 2.87, monthlyReturn: 9.11, threeMonthReturn: 7.90, yearlyReturn: 65.70, totalValue: 3126713225, investorCount: 37719 },
-  'THF': { price: 2.916338, dailyReturn: 0.14, weeklyReturn: 5.40, monthlyReturn: 29.47, threeMonthReturn: 58.20, yearlyReturn: 123.67, totalValue: 130895185406, investorCount: 182730 },
   'IPJ': { price: 19.813969, dailyReturn: -1.48, weeklyReturn: 2.82, monthlyReturn: 0.45, threeMonthReturn: 12.30, yearlyReturn: 53.35, totalValue: 1293578798, investorCount: 18483 },
-  'TP2': { price: 2.229489, dailyReturn: 0.13, weeklyReturn: 0.89, monthlyReturn: 4.05, threeMonthReturn: 12.80, yearlyReturn: 60.38, totalValue: 242230969333, investorCount: 169165 },
   'MAC': { price: 0.748997, dailyReturn: -0.43, weeklyReturn: 2.45, monthlyReturn: -2.70, threeMonthReturn: 8.35, yearlyReturn: 19.39, totalValue: 4228682103, investorCount: 35272 },
   'TI2': { price: 0.129147, dailyReturn: -0.91, weeklyReturn: 3.19, monthlyReturn: 3.03, threeMonthReturn: 15.19, yearlyReturn: 27.35, totalValue: 3300645306, investorCount: 20603 },
   'IIH': { price: 33.978942, dailyReturn: -0.56, weeklyReturn: 3.23, monthlyReturn: 5.32, threeMonthReturn: 20.03, yearlyReturn: 34.75, totalValue: 1780877091, investorCount: 21255 },
