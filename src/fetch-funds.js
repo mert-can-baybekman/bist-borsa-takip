@@ -235,8 +235,9 @@ function makeFundObject(history, previous, config, kindLabel) {
 
 function buildFundStats(funds) {
   const fundList = Object.values(funds);
-  const topMonthly = [...fundList].sort((a, b) => b.monthlyReturn - a.monthlyReturn).slice(0, 5);
-  const topYearly = [...fundList].sort((a, b) => b.yearlyReturn - a.yearlyReturn).slice(0, 5);
+  const comparableFunds = fundList.filter(fund => fund.tefasFundType !== 'GSYF');
+  const topMonthly = [...comparableFunds].sort((a, b) => b.monthlyReturn - a.monthlyReturn).slice(0, 5);
+  const topYearly = [...comparableFunds].sort((a, b) => b.yearlyReturn - a.yearlyReturn).slice(0, 5);
   const largestFunds = [...fundList].sort((a, b) => b.totalValue - a.totalValue).slice(0, 5);
 
   return {

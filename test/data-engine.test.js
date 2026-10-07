@@ -81,6 +81,11 @@ test('data.json exists and adheres to the production schema', () => {
   for (const kind of ['YAT', 'EMK', 'BYF', 'GYF', 'GSYF']) {
     assert.ok(Object.values(data.funds).some(fund => fund.tefasFundType === kind), `TEFAS fund class ${kind} must be included`);
   }
+  for (const comparison of [...data.fundStats.topMonthlyGainers, ...data.fundStats.topYearlyGainers]) {
+    const fund = Object.values(data.funds).find(item => item.code === comparison.code && item.name === comparison.name);
+    assert.ok(fund, `${comparison.code} comparison entry must exist in the fund catalog`);
+    assert.notEqual(fund.tefasFundType, 'GSYF', `${comparison.code} GSYF fund must not appear in return comparisons`);
+  }
   assert.ok(FUNDS_CONFIG.every(config => data.funds[config.code]), 'Configured investment funds must remain in the TEFAS catalog');
 
   const fundHistoryPath = path.join(process.cwd(), 'data', 'fund-history', 'TGE.json');

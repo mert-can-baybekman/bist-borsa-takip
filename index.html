@@ -2108,8 +2108,9 @@
           }
           renderFundCategoryTabs(funds);
 
-          const topYearlyFund = [...funds].sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0];
-          const topMonthlyFund = [...funds].sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0];
+          const comparableFunds = funds.filter(fund => fund.tefasFundType !== 'GSYF');
+          const topYearlyFund = [...comparableFunds].sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0];
+          const topMonthlyFund = [...comparableFunds].sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0];
           const largestFund = [...funds].sort((a, b) => b.totalValue - a.totalValue)[0];
           if (topYearlyFund) {
             document.getElementById('fundTopYearlyCode').textContent = topYearlyFund.code;

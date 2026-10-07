@@ -207036,56 +207036,56 @@
     "totalFundsCount": 3241,
     "topMonthlyGainers": [
       {
-        "code": "GLI",
-        "name": "GOLDEN GLOBAL PORTFÖY YÖNETİMİ A.Ş. BİRİNCİ GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 587.1
-      },
-      {
-        "code": "RK8",
-        "name": "RE-PIE PORTFÖY YÖNETİMİ A.Ş. ONSEKİZİNCİ KARMA GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 235.85
-      },
-      {
-        "code": "RCH",
-        "name": "ROTA PORTFÖY YÖNETİMİ A.Ş. CONNECTED HEALTHCARE SOLUTİONS GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 98.14
-      },
-      {
         "code": "YLP",
         "name": "İŞ PORTFÖY YÖNETİMİ A.Ş. YALÇINLAR PROJE GAYRİMENKUL YATIRIM FONU",
         "return": 81.81
       },
       {
-        "code": "NCL",
-        "name": "NEO PORTFÖY YÖNETİMİ A.Ş. CLEANTECH GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 32.29
+        "code": "DZS",
+        "name": "AK PORTFÖY DOKUZUNCU SERBEST FON",
+        "return": 26.4
+      },
+      {
+        "code": "OGC",
+        "name": "TERA PORTFÖY YÖNETİMİ A.Ş. ÇATI KATILIM GAYRİMENKUL YATIRIM FONU",
+        "return": 23.69
+      },
+      {
+        "code": "RVS",
+        "name": "ROTA PORTFÖY ONBEŞİNCİ HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
+        "return": 22.93
+      },
+      {
+        "code": "AG7",
+        "name": "ALBARAKA PORTFÖY YÖNETİMİ A.Ş. METROPOL GAYRİMENKUL YATIRIM FONU",
+        "return": 14.85
       }
     ],
     "topYearlyGainers": [
-      {
-        "code": "AK6",
-        "name": "ALBARAKA PORTFÖY YÖNETİMİ A.Ş. ALTINCI KARMA GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 102738.35
-      },
-      {
-        "code": "YG9",
-        "name": "24 GAYRİMENKUL VE GİRİŞİM SERMAYESİ PORTFÖY YÖNETİMİ A.Ş. VEGA GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 47058.11
-      },
-      {
-        "code": "NIH",
-        "name": "NEO PORTFÖY YÖNETİMİ A.Ş. İSTANBUL HOLDİNG GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 39302.7
-      },
       {
         "code": "NBA",
         "name": "NUROL PORTFÖY YÖNETİMİ A.Ş. BABACAN MERİDİAN PROJE GAYRİMENKUL YATIRIM FONU",
         "return": 9474.07
       },
       {
-        "code": "PRO",
-        "name": "ROTA PORTFÖY YÖNETİMİ A.Ş. SANAYİ ŞİRKETLERİ GİRİŞİM SERMAYESİ YATIRIM FONU",
-        "return": 8701.55
+        "code": "NIP",
+        "name": "NUROL PORTFÖY YÖNETİMİ A.Ş. İKİNCİ PROJE GAYRİMENKUL YATIRIM FONU",
+        "return": 4251.69
+      },
+      {
+        "code": "HGG",
+        "name": "HAN VARLIK GAYRİMENKUL VE GİRİŞİM SERMAYESİ PORTFÖY YÖNETİMİ A.Ş. BİRİNCİ PROJE GAYRİMENKUL YATIRIM FONU",
+        "return": 1615.11
+      },
+      {
+        "code": "PGE",
+        "name": "PARDUS PORTFÖY GÜNEY HİSSE SENEDİ SERBEST FON (HİSSE SENEDİ YOĞUN FON)",
+        "return": 783.59
+      },
+      {
+        "code": "KUE",
+        "name": "AURA PORTFÖY YÖNETİMİ A.Ş. KUZEY EGE GAYRİMENKUL YATIRIM FONU",
+        "return": 763.27
       }
     ],
     "largestFunds": [
