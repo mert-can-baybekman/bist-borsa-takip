@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f19">
+  <title>Fon Sıralaması | BIST Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #0b0f19; font-family: 'DM Sans', sans-serif; }
+    .font-num { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100">
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:px-6">
+    <a href="index.html" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
+      <span aria-hidden="true">←</span> Fonlara dön
+    </a>
+
+    <header class="mt-6 mb-6">
+      <p id="listEyebrow" class="text-xs font-semibold uppercase tracking-widest text-sky-400">TEFAS fon sıralaması</p>
+      <h1 id="listTitle" class="mt-2 text-2xl sm:text-3xl font-bold">Fon listesi</h1>
+      <p id="listDescription" class="mt-2 text-sm text-slate-400">Güncel fon verileri yükleniyor...</p>
+    </header>
+
+    <section class="rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-4 py-4 border-b border-slate-800">
+        <span id="resultCount" class="text-sm text-slate-400">Fonlar yükleniyor...</span>
+        <label class="sr-only" for="fundSearch">Fon kodu veya adı ara</label>
+        <input id="fundSearch" type="search" placeholder="Fon kodu veya adı ara..."
+          class="w-full sm:w-72 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500">
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[680px] text-left text-sm">
+          <thead class="bg-slate-950/70 text-xs uppercase tracking-wide text-slate-500">
+            <tr>
+              <th class="px-4 py-3 font-medium">#</th>
+              <th class="px-4 py-3 font-medium">Fon</th>
+              <th class="px-4 py-3 font-medium">Tür</th>
+              <th id="metricHeading" class="px-4 py-3 text-right font-medium">Getiri</th>
+              <th class="px-4 py-3 text-right font-medium">Birim Fiyat</th>
+              <th class="px-4 py-3 text-right font-medium">Güncelleme</th>
+            </tr>
+          </thead>
+          <tbody id="fundList" class="divide-y divide-slate-800/80">
+            <tr><td colspan="6" class="px-4 py-10 text-center text-slate-500">Fon verileri yükleniyor...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex items-center justify-between gap-3 border-t border-slate-800 px-4 py-4">
+        <button id="previousPage" type="button" class="rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 hover:bg-slate-800 disabled:opacity-40">Önceki</button>
+        <span id="pageStatus" class="text-xs text-slate-500"></span>
+        <button id="nextPage" type="button" class="rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 hover:bg-slate-800 disabled:opacity-40">Sonraki</button>
+      </div>
+    </section>
+    <p class="mt-4 text-xs text-slate-500">Getiri listeleri GYF, GSYF ve serbest fonları içermez. Veriler TEFAS fon fiyatlarından hesaplanır.</p>
+  </main>
+
+  <script>
+    const lists = {
+      yillik: {
+        title: 'En Yüksek 1 Yıllık Getirili Fonlar',
+        description: 'Son bir yıllık fiyat performansına göre sıralanmıştır.',
+        heading: '1 Yıllık Getiri',
+        field: 'yearlyReturn',
+        kind: 'return'
+      },
+      aylik: {
+        title: 'En Yüksek 1 Aylık Getirili Fonlar',
+        description: 'Son bir aylık fiyat performansına göre sıralanmıştır.',
+        heading: '1 Aylık Getiri',
+        field: 'monthlyReturn',
+        kind: 'return'
+      },
+      buyukluk: {
+        title: 'En Büyük Fonlar',
+        description: 'TEFAS verilerindeki toplam portföy büyüklüğüne göre sıralanmıştır.',
+        heading: 'Portföy Büyüklüğü',
+        field: 'totalValue',
+        kind: 'size'
+      }
+    };
+    const params = new URLSearchParams(window.location.search);
+    const list = lists[params.get('liste')] || lists.yillik;
+    const pageSize = 50;
+    let funds = [];
+    let page = 0;
+    let query = '';
+
+    document.title = `${list.title} | BIST Terminal`;
+    document.getElementById('listTitle').textContent = list.title;
+    document.getElementById('listDescription').textContent = list.description;
+    document.getElementById('metricHeading').textContent = list.heading;
+
+    function formatPrice(value) {
+      return `₺${Number(value).toLocaleString('tr-TR', { minimumFractionDigits: 4, maximumFractionDigits: 6 })}`;
+    }
+
+    function formatSize(value) {
+      if (value >= 1e9) return `₺${(value / 1e9).toLocaleString('tr-TR', { maximumFractionDigits: 2 })} Mr`;
+      if (value >= 1e6) return `₺${(value / 1e6).toLocaleString('tr-TR', { maximumFractionDigits: 1 })} Mn`;
+      return `₺${Number(value || 0).toLocaleString('tr-TR')}`;
+    }
+
+    function render() {
+      const filteredFunds = funds.filter(fund => `${fund.code} ${fund.name} ${fund.company}`.toLocaleUpperCase('tr-TR').includes(query));
+      const pageCount = Math.max(1, Math.ceil(filteredFunds.length / pageSize));
+      page = Math.min(page, pageCount - 1);
+      const start = page * pageSize;
+      const visible = filteredFunds.slice(start, start + pageSize);
+      const tbody = document.getElementById('fundList');
+
+      document.getElementById('resultCount').textContent = `${filteredFunds.length.toLocaleString('tr-TR')} fon listeleniyor`;
+      document.getElementById('pageStatus').textContent = `${page + 1} / ${pageCount}`;
+      document.getElementById('previousPage').disabled = page === 0;
+      document.getElementById('nextPage').disabled = page >= pageCount - 1;
+
+      if (!visible.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-10 text-center text-slate-500">Aramanızla eşleşen fon bulunamadı.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = visible.map((fund, index) => {
+        const metric = Number(fund[list.field] || 0);
+        const positive = metric >= 0;
+        const metricText = list.kind === 'size'
+          ? formatSize(metric)
+          : `${positive ? '+' : ''}${metric.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+        const fundType = fund.fundTypeLabel || fund.tefasFundType || 'Yatırım Fonu';
+        return `
+          <tr class="hover:bg-slate-800/40">
+            <td class="px-4 py-3 text-slate-500 font-num">${(start + index + 1).toLocaleString('tr-TR')}</td>
+            <td class="px-4 py-3">
+              <a href="https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=${encodeURIComponent(fund.code)}" target="_blank" rel="noopener noreferrer" class="font-semibold text-white hover:text-sky-400">${fund.code}</a>
+              <div class="mt-0.5 max-w-xl truncate text-xs text-slate-400" title="${fund.name}">${fund.name}</div>
+            </td>
+            <td class="px-4 py-3 text-xs text-slate-400">${fundType}</td>
+            <td class="px-4 py-3 text-right font-num font-semibold ${list.kind === 'size' ? 'text-purple-300' : (positive ? 'text-emerald-400' : 'text-rose-400')}">${metricText}</td>
+            <td class="px-4 py-3 text-right font-num text-slate-300">${formatPrice(fund.price)}</td>
+            <td class="px-4 py-3 text-right text-xs text-slate-500">${fund.updatedDate || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('fundSearch').addEventListener('input', event => {
+      query = event.target.value.trim().toLocaleUpperCase('tr-TR');
+      page = 0;
+      render();
+    });
+    document.getElementById('previousPage').addEventListener('click', () => { page -= 1; render(); });
+    document.getElementById('nextPage').addEventListener('click', () => { page += 1; render(); });
+
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`Fon verileri alınamadı (HTTP ${response.status})`);
+        return response.json();
+      })
+      .then(data => {
+        if (!data.funds || typeof data.funds !== 'object') throw new Error('Fon verisi beklenen formatta değil');
+        funds = Object.values(data.funds)
+          .filter(fund => list.kind === 'size' || (
+            fund.tefasFundType !== 'GYF'
+            && fund.tefasFundType !== 'GSYF'
+            && !`${fund.category || ''} ${fund.name || ''}`.toLocaleUpperCase('tr-TR').includes('SERBEST')
+          ))
+          .sort((a, b) => Number(b[list.field] || 0) - Number(a[list.field] || 0));
+        render();
+      })
+      .catch(error => {
+        document.getElementById('resultCount').textContent = 'Fon listesi yüklenemedi';
+        document.getElementById('fundList').innerHTML = `<tr><td colspan="6" class="px-4 py-10 text-center text-rose-400">${error.message}</td></tr>`;
+        document.getElementById('pageStatus').textContent = '';
+      });
+  </script>
+</body>
+</html>
