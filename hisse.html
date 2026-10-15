@@ -315,45 +315,66 @@
         if (!res.ok) throw new Error('data.json yüklenemedi');
         globalData = await res.json();
 
-        stockData = globalData.stocks?.[currentSymbol];
+        stockData = globalData.stocks?.[currentSymbol] || globalData.indices?.[currentSymbol];
         if (!stockData) {
-          document.getElementById('stockLongName').textContent = `"${currentSymbol}" sembolü borsa listesinde bulunamadı.`;
+          document.getElementById('stockLongName').textContent = `"${currentSymbol}" sembolü borsa ve piyasa listesinde bulunamadı.`;
           return;
         }
 
-        const isPos = stockData.change >= 0;
-        document.title = `${currentSymbol} - ₺${formatNumber(stockData.price)} | BIST Terminal`;
+        const isIndex = !!globalData.indices?.[currentSymbol];
+        const isAltin = currentSymbol === 'ALTIN';
+        const isPos = (stockData.change || 0) >= 0;
+        const valPrefix = (isIndex && !isAltin) ? '' : '₺';
+        const valSuffix = isAltin ? ' / gr' : (isIndex ? ' Puan' : '');
 
-        document.getElementById('stockSymbol').textContent = currentSymbol;
-        document.getElementById('stockLongName').textContent = stockData.name || stockData.shortName || currentSymbol;
-        document.getElementById('stockSector').textContent = stockData.sector || 'BIST';
+        document.title = `${currentSymbol} - ${valPrefix}${formatNumber(stockData.price)}${valSuffix} | BIST Terminal`;
+
+        document.getElementById('stockSymbol').textContent = isAltin ? 'GRAM ALTIN' : (stockData.symbol || currentSymbol);
+        document.getElementById('stockLongName').textContent = stockData.name || stockData.desc || stockData.shortName || currentSymbol;
+        
+        let secText = stockData.sector || 'BIST Hisse';
+        if (isAltin) secText = 'Kıymetli Maden & Emtia (24K)';
+        else if (isIndex) secText = stockData.desc || 'Borsa İstanbul Endeksi';
+        document.getElementById('stockSector').textContent = secText;
         
         if (stockData.bist30) document.getElementById('stockBist30').classList.remove('hidden');
         if (stockData.dividend) document.getElementById('stockDividend').classList.remove('hidden');
 
-        document.getElementById('stockPrice').textContent = `₺${formatNumber(stockData.price)}`;
+        document.getElementById('stockPrice').textContent = `${valPrefix}${formatNumber(stockData.price)}${valSuffix}`;
         document.getElementById('stockChange').className = `text-sm sm:text-lg font-bold font-num ${isPos ? 'text-emerald-400' : 'text-rose-400'} mt-1`;
-        document.getElementById('stockChange').textContent = `${isPos ? '▲ +' : '▼ '}₺${formatNumber(stockData.change)} (%${stockData.changePercent.toFixed(2)})`;
+        document.getElementById('stockChange').textContent = `${isPos ? '▲ +' : '▼ '}${valPrefix}${formatNumber(stockData.change)} (%${(stockData.changePercent || 0).toFixed(2)})`;
 
         const badgeEl = document.getElementById('stockBadge');
         badgeEl.className = `text-xs sm:text-sm font-bold font-mono px-3.5 py-1 rounded-full ${isPos ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}`;
-        badgeEl.textContent = `${isPos ? '+' : ''}${stockData.changePercent.toFixed(2)}%`;
+        badgeEl.textContent = `${isPos ? '+' : ''}${(stockData.changePercent || 0).toFixed(2)}%`;
 
-        document.getElementById('tradingViewLink').href = `https://tr.tradingview.com/symbols/BIST-${currentSymbol}/`;
+        // TradingView Link
+        let tvUrl = `https://tr.tradingview.com/symbols/BIST-${currentSymbol}/`;
+        if (isAltin) tvUrl = `https://tr.tradingview.com/symbols/FX_IDC-XAUTRY/`;
+        else if (currentSymbol === 'XU100') tvUrl = `https://tr.tradingview.com/symbols/BIST-XU100/`;
+        else if (currentSymbol === 'XU030') tvUrl = `https://tr.tradingview.com/symbols/BIST-XU030/`;
+        else if (currentSymbol === 'XBANK') tvUrl = `https://tr.tradingview.com/symbols/BIST-XBANK/`;
+        document.getElementById('tradingViewLink').href = tvUrl;
 
-        // Key stats
-        document.getElementById('statHigh52').textContent = `₺${formatNumber(stockData.fiftyTwoWeekHigh)}`;
-        document.getElementById('statLow52').textContent = `₺${formatNumber(stockData.fiftyTwoWeekLow)}`;
-        document.getElementById('statDayRange').textContent = `₺${formatNumber(stockData.dayLow)} - ₺${formatNumber(stockData.dayHigh)}`;
-        document.getElementById('statVolume').textContent = `${Number(stockData.volume || 0).toLocaleString('tr-TR')} Adet`;
+        // Key stats with fallbacks
+        const histCloses = (stockData.history || []).map(h => typeof h.close === 'number' ? h.close : (typeof h === 'number' ? h : stockData.price));
+        const high52 = stockData.fiftyTwoWeekHigh || (histCloses.length > 0 ? Math.max(...histCloses) : stockData.price);
+        const low52 = stockData.fiftyTwoWeekLow || (histCloses.length > 0 ? Math.min(...histCloses) : stockData.price);
+        const dLow = stockData.dayLow ?? (histCloses.length > 0 ? histCloses[histCloses.length - 1] : stockData.price);
+        const dHigh = stockData.dayHigh ?? (histCloses.length > 0 ? histCloses[histCloses.length - 1] : stockData.price);
+
+        document.getElementById('statHigh52').textContent = `${valPrefix}${formatNumber(high52)}${valSuffix}`;
+        document.getElementById('statLow52').textContent = `${valPrefix}${formatNumber(low52)}${valSuffix}`;
+        document.getElementById('statDayRange').textContent = `${valPrefix}${formatNumber(dLow)} - ${valPrefix}${formatNumber(dHigh)}`;
+        document.getElementById('statVolume').textContent = stockData.volume ? `${Number(stockData.volume).toLocaleString('tr-TR')} Adet` : (isAltin ? 'Spot Emtia Piyasası' : '-');
 
         // Pivots
         if (stockData.pivots) {
-          document.getElementById('pivotR1').textContent = `₺${formatNumber(stockData.pivots.r1)}`;
-          document.getElementById('pivotP').textContent = `₺${formatNumber(stockData.pivots.pivot)}`;
-          document.getElementById('pivotS1').textContent = `₺${formatNumber(stockData.pivots.s1)}`;
+          document.getElementById('pivotR1').textContent = `${valPrefix}${formatNumber(stockData.pivots.r1)}`;
+          document.getElementById('pivotP').textContent = `${valPrefix}${formatNumber(stockData.pivots.pivot)}`;
+          document.getElementById('pivotS1').textContent = `${valPrefix}${formatNumber(stockData.pivots.s1)}`;
         }
-        document.getElementById('statSma20').textContent = stockData.sma20 ? `₺${formatNumber(stockData.sma20)}` : '-';
+        document.getElementById('statSma20').textContent = stockData.sma20 ? `${valPrefix}${formatNumber(stockData.sma20)}` : '-';
 
         // Returns
         if (stockData.returns) {
@@ -364,12 +385,12 @@
         }
 
         // RSI Status
-        const rsiVal = stockData.rsi14;
+        const rsiVal = stockData.rsi14 ?? stockData.rsi;
         let rsiText = 'RSI: --';
         if (rsiVal) {
-          if (rsiVal < 30) rsiText = `RSI: ${rsiVal.toFixed(1)} (Aşırı Satım / Alım Bölgesi)`;
-          else if (rsiVal > 70) rsiText = `RSI: ${rsiVal.toFixed(1)} (Aşırı Alım / Düzeltme Riski)`;
-          else rsiText = `RSI: ${rsiVal.toFixed(1)} (Dengeli Bölge)`;
+          if (rsiVal < 30) rsiText = `RSI: ${Number(rsiVal).toFixed(1)} (Aşırı Satım / Alım Bölgesi)`;
+          else if (rsiVal > 70) rsiText = `RSI: ${Number(rsiVal).toFixed(1)} (Aşırı Alım / Düzeltme Riski)`;
+          else rsiText = `RSI: ${Number(rsiVal).toFixed(1)} (Dengeli Bölge)`;
         }
         document.getElementById('rsiStatusIndicator').textContent = rsiText;
 
@@ -399,11 +420,16 @@
     function renderChart() {
       if (!fullHistory || fullHistory.length === 0) return;
 
+      const isIndex = !!globalData.indices?.[currentSymbol];
+      const isAltin = currentSymbol === 'ALTIN';
+      const unitStr = isAltin ? '₺/gr' : (isIndex ? 'Puan' : '₺');
+      const valPrefix = (isIndex && !isAltin) ? '' : '₺';
+
       const sliceData = fullHistory.slice(-currentDays);
       const labels = sliceData.map(h => h.date);
-      const prices = sliceData.map(h => h.close);
-      const volumes = sliceData.map(h => h.volume);
-      const isPos = stockData.change >= 0;
+      const prices = sliceData.map(h => typeof h.close === 'number' ? h.close : h);
+      const volumes = sliceData.map(h => h.volume || 0);
+      const isPos = (stockData.change || 0) >= 0;
 
       // Calculate SMAs for slice
       const showSma20 = document.getElementById('toggleSma20')?.checked;
@@ -413,7 +439,7 @@
         const fullIdx = fullHistory.length - currentDays + idx;
         if (fullIdx < 19) return null;
         const sub = fullHistory.slice(fullIdx - 19, fullIdx + 1);
-        const sum = sub.reduce((a, b) => a + b.close, 0);
+        const sum = sub.reduce((a, b) => a + (typeof b.close === 'number' ? b.close : b), 0);
         return Number((sum / 20).toFixed(2));
       });
 
@@ -421,7 +447,7 @@
         const fullIdx = fullHistory.length - currentDays + idx;
         if (fullIdx < 49) return null;
         const sub = fullHistory.slice(fullIdx - 49, fullIdx + 1);
-        const sum = sub.reduce((a, b) => a + b.close, 0);
+        const sum = sub.reduce((a, b) => a + (typeof b.close === 'number' ? b.close : b), 0);
         return Number((sum / 50).toFixed(2));
       });
 
@@ -429,14 +455,23 @@
       const ctx = document.getElementById('detailChart').getContext('2d');
       if (priceChartInstance) priceChartInstance.destroy();
 
-      const color = isPos ? '#10b981' : '#f43f5e';
+      let color = isPos ? '#10b981' : '#f43f5e';
+      if (isAltin) color = '#f59e0b';
+      else if (currentSymbol === 'XU030') color = isPos ? '#6366f1' : '#f43f5e';
+
       const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-      gradient.addColorStop(0, isPos ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)');
+      if (isAltin) {
+        gradient.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
+      } else if (currentSymbol === 'XU030' && isPos) {
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.35)');
+      } else {
+        gradient.addColorStop(0, isPos ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)');
+      }
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       const datasets = [
         {
-          label: `${currentSymbol} Fiyat (₺)`,
+          label: `${currentSymbol} (${unitStr})`,
           data: prices,
           borderColor: color,
           backgroundColor: gradient,
@@ -490,7 +525,7 @@
               padding: 10,
               displayColors: false,
               callbacks: {
-                label: (ctx) => `${ctx.dataset.label}: ₺${ctx.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`
+                label: (ctx) => `${ctx.dataset.label}: ${valPrefix}${ctx.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${unitStr}`
               }
             }
           },
@@ -504,7 +539,7 @@
               ticks: { 
                 color: '#64748b',
                 font: { family: 'JetBrains Mono', size: 10 },
-                callback: (val) => '₺' + val
+                callback: (val) => `${valPrefix}${val}`
               }
             }
           }
@@ -515,13 +550,14 @@
       const rsiCtx = document.getElementById('rsiChart').getContext('2d');
       if (rsiChartInstance) rsiChartInstance.destroy();
 
+      const hasVol = volumes.some(v => v > 0);
       rsiChartInstance = new Chart(rsiCtx, {
         type: 'bar',
         data: {
           labels,
           datasets: [{
-            label: 'Hacim',
-            data: volumes,
+            label: hasVol ? 'İşlem Hacmi' : 'Seviye',
+            data: hasVol ? volumes : prices,
             backgroundColor: 'rgba(14, 165, 233, 0.4)',
             borderRadius: 3
           }]
@@ -529,43 +565,82 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0c121e',
+              titleColor: '#94a3b8',
+              bodyColor: '#f8fafc',
+              borderColor: '#1e293b',
+              borderWidth: 1,
+              callbacks: {
+                label: (c) => hasVol ? `Hacim: ${formatVolume(c.parsed.y)}` : `Değer: ${valPrefix}${c.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`
+              }
+            }
+          },
           scales: {
             x: { display: false },
             y: {
               grid: { color: 'rgba(30, 41, 59, 0.2)' },
-              ticks: { color: '#475569', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 3 }
+              ticks: { 
+                color: '#475569', 
+                font: { family: 'JetBrains Mono', size: 9 }, 
+                maxTicksLimit: 3,
+                callback: (val) => hasVol ? formatVolume(val) : `${valPrefix}${val}`
+              }
             }
           }
         }
       });
 
-      document.getElementById('chartSubTitle').textContent = `${labels.length} seans verisi • Son Kapanış: ₺${formatNumber(prices[prices.length - 1])} (${labels[labels.length - 1]})`;
+      document.getElementById('chartSubTitle').textContent = `${labels.length} seans verisi • Son Değer: ${valPrefix}${formatNumber(prices[prices.length - 1])}${isAltin ? ' / gr' : ''} (${labels[labels.length - 1]})`;
     }
 
     function renderPeers() {
-      if (!globalData?.stocks || !stockData?.sector) return;
-      const peers = Object.values(globalData.stocks)
-        .filter(s => s.sector === stockData.sector && s.symbol !== currentSymbol)
-        .slice(0, 4);
+      const isIndex = !!globalData.indices?.[currentSymbol];
+      let peers = [];
+
+      if (isIndex) {
+        document.getElementById('peerSectorName').textContent = 'Diğer Endeksler & Emtialar';
+        const indexKeys = ['XU100', 'XU030', 'XBANK', 'ALTIN', 'XUSIN'].filter(k => k !== currentSymbol);
+        peers = indexKeys.map(k => {
+          const item = globalData.indices?.[k];
+          if (!item) return null;
+          return {
+            symbol: k,
+            name: item.name,
+            price: item.price,
+            change: item.change,
+            changePercent: item.changePercent,
+            isAltin: k === 'ALTIN'
+          };
+        }).filter(Boolean);
+      } else {
+        if (!globalData?.stocks || !stockData?.sector) return;
+        peers = Object.values(globalData.stocks)
+          .filter(s => s.sector === stockData.sector && s.symbol !== currentSymbol)
+          .slice(0, 4);
+        document.getElementById('peerSectorName').textContent = `${stockData.sector || 'BIST'} Hisseleri`;
+      }
 
       const container = document.getElementById('peersGrid');
-      document.getElementById('peerSectorName').textContent = `${stockData.sector} Hisseleri`;
 
       if (peers.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-slate-500 font-sans">Bu sektörde başka hisse listelenmiyor.</div>`;
+        container.innerHTML = `<div class="col-span-full text-slate-500 font-sans">Listelenecek başka varlık bulunamadı.</div>`;
         return;
       }
 
       container.innerHTML = peers.map(p => {
-        const isPos = p.change >= 0;
+        const isPos = (p.change || 0) >= 0;
+        const pPrefix = (!p.isAltin && isIndex) ? '' : '₺';
+        const pSuffix = p.isAltin ? ' / gr' : (isIndex ? ' Puan' : '');
         return `
           <a href="hisse.html?sembol=${p.symbol}" class="bg-[#090e18] border border-slate-800/80 hover:border-sky-500/40 p-3 rounded-xl block transition-all group">
             <div class="flex items-center justify-between">
               <span class="font-black font-display text-white group-hover:text-sky-400">${p.symbol}</span>
-              <span class="${isPos ? 'text-emerald-400' : 'text-rose-400'} font-bold">${isPos ? '+' : ''}${p.changePercent.toFixed(2)}%</span>
+              <span class="${isPos ? 'text-emerald-400' : 'text-rose-400'} font-bold">${isPos ? '+' : ''}${(p.changePercent || 0).toFixed(2)}%</span>
             </div>
-            <div class="text-slate-300 font-bold mt-1.5">₺${formatNumber(p.price)}</div>
+            <div class="text-slate-300 font-bold mt-1.5">${pPrefix}${formatNumber(p.price)}${pSuffix}</div>
           </a>
         `;
       }).join('');

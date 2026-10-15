@@ -1,9 +1,9 @@
-name: Sabah Bulteni Otomatik Gonder (07:30 TSI)
+name: Gunluk Piyasa Bulteni Otomatik Gonder (12:00 TSI)
 
 on:
   schedule:
-    # Hafta ici her gun 04:30 UTC = 07:30 TSI (Seans oncesi piyasa verileri)
-    - cron: '30 4 * * 1-5'
+    # Her gun 09:00 UTC = 12:00 Turkiye saati
+    - cron: '0 9 * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [send_newsletter]
@@ -26,8 +26,10 @@ jobs:
 
       - name: Guncel Verileri Cek
         run: node fetch-data.js
+        env:
+          TEFAS_HISTORY_MODE: latest
 
-      - name: Canli Bulteni Gonder
+      - name: Guncel Piyasa Bultenini Gonder
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NEWSLETTER_RECIPIENT: ${{ secrets.NEWSLETTER_RECIPIENT }}

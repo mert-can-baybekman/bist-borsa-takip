@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canlı Piyasa Bültenine Abone Ol | BIST Terminal</title>
-  <meta name="description" content="Her iş günü saat 07:30'da Borsa İstanbul seans öncesi piyasa verileri, döviz kurları ve günün hisse hareketleri e-postanıza gelsin.">
+  <meta name="description" content="Her gün saat 12:00'de Türkiye saatiyle güncel Borsa İstanbul piyasa verileri, döviz kurları ve hisse hareketleri e-postanıza gelsin.">
 
   <!-- Favicon / Brand Financial Logo -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
@@ -44,9 +44,9 @@
       <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full font-display">
         Ücretsiz Günlük Servis
       </span>
-      <h1 class="text-2xl sm:text-3xl font-black font-display text-white mt-3">07:30 Sabah Piyasa Bülteni</h1>
+      <h1 class="text-2xl sm:text-3xl font-black font-display text-white mt-3">12:00 Günlük Piyasa Bülteni</h1>
       <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-        Her iş günü saat <strong>07:30'da</strong> seans öncesi BIST 100, BIST 30, BIST Banka, Gram Altın, döviz ve hisse hareketleri özet olarak e-posta kutunuza gelsin.
+        Her gün saat <strong>12:00'de (Türkiye saatiyle)</strong> güncel BIST 100, BIST 30, BIST Banka, Gram Altın, döviz ve hisse hareketleri özet olarak e-posta kutunuza gelsin.
       </p>
     </div>
 
@@ -120,7 +120,7 @@
 
         if (response.ok) {
           msg.className = 'text-xs font-semibold p-3.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 block';
-          msg.textContent = `Tebrikler! ${userEmail} adresi sabah bültenine başarıyla kaydedildi.`;
+          msg.textContent = `Tebrikler! ${userEmail} adresi günlük 12:00 piyasa bültenine başarıyla kaydedildi.`;
           form.reset();
           btn.innerHTML = '<span>Abone Olundu ✓</span>';
         } else {

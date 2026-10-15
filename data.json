@@ -2317,7 +2317,9 @@
           "close": 14467.25,
           "volume": 0
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 15204.9,
+      "fiftyTwoWeekLow": 10053.7
     },
     "XU030": {
       "name": "BIST 30",
@@ -4623,7 +4625,9 @@
           "close": 17247.4,
           "volume": 0
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 17516.1,
+      "fiftyTwoWeekLow": 10899.6
     },
     "XBANK": {
       "name": "BIST Banka",
@@ -6929,7 +6933,9 @@
           "close": 17027.72,
           "volume": 0
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 20940.2,
+      "fiftyTwoWeekLow": 12848.2
     },
     "XUSIN": {
       "name": "BIST Sınai",
@@ -9235,7 +9241,9 @@
           "close": 20065.47,
           "volume": 0
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 20480.7,
+      "fiftyTwoWeekLow": 13138
     },
     "XBLSM": {
       "name": "BIST Bilişim",
@@ -9281,7 +9289,9 @@
           "close": 7113.44,
           "volume": 0
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 7197.63,
+      "fiftyTwoWeekLow": 7103.45
     },
     "ALTIN": {
       "name": "Gram Altın (24K)",
@@ -10299,7 +10309,11 @@
           "date": "12.09.2026",
           "close": 6842.24
         }
-      ]
+      ],
+      "fiftyTwoWeekHigh": 7464.1,
+      "fiftyTwoWeekLow": 4839.37,
+      "dayHigh": 6881.93,
+      "dayLow": 6881.93
     },
     "CEYREK": {
       "name": "Çeyrek Altın (Yeni)",

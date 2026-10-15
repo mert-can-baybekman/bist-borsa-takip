@@ -187,14 +187,20 @@
     <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5" id="heroMetrics">
       
       <!-- BIST 100 -->
-      <div class="glass-card rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group">
+      <div onclick="openIndexModal('XU100')" class="glass-card glass-card-hover rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group cursor-pointer border border-slate-800/80 hover:border-sky-500/50 hover:shadow-sky-500/10" title="BIST 100 Geçmiş Veri & Grafiği için Tıklayın">
         <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-0.5 rounded-lg font-display">Ana Endeks</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2.5 py-0.5 rounded-lg font-display flex items-center gap-1.5">
+            Ana Endeks
+            <span class="text-[10px] text-sky-300/90 font-normal">📈 Grafik</span>
+          </span>
           <span id="xu100Badge" class="text-[11px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">--</span>
         </div>
         <div class="mt-2 flex items-baseline justify-between">
           <div>
-            <h3 class="text-xs text-slate-400 font-medium">BIST 100 (XU100)</h3>
+            <div class="flex items-center gap-1.5">
+              <h3 class="text-xs text-slate-400 font-medium group-hover:text-white transition-colors">BIST 100 (XU100)</h3>
+              <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
             <div id="xu100Price" class="text-2xl font-black font-num tracking-tight text-white mt-0.5">--</div>
           </div>
           <div id="xu100Change" class="text-right text-xs font-num font-semibold text-slate-400">--</div>
@@ -203,17 +209,27 @@
           <span>RSI: <strong id="xu100Rsi" class="text-slate-300">--</strong></span>
           <span id="xu100Range">G: -- - --</span>
         </div>
+        <div class="mt-2 text-[10px] text-sky-400/80 group-hover:text-sky-300 flex items-center justify-between transition-colors font-sans">
+          <span>Geçmiş grafik ve verileri gör</span>
+          <span class="font-mono text-xs">↗</span>
+        </div>
       </div>
 
       <!-- BIST 30 -->
-      <div class="glass-card rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group">
+      <div onclick="openIndexModal('XU030')" class="glass-card glass-card-hover rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group cursor-pointer border border-slate-800/80 hover:border-indigo-500/50 hover:shadow-indigo-500/10" title="BIST 30 Geçmiş Veri & Grafiği için Tıklayın">
         <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 rounded-lg font-display">BIST 30</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 rounded-lg font-display flex items-center gap-1.5">
+            BIST 30
+            <span class="text-[10px] text-indigo-300/90 font-normal">📈 Grafik</span>
+          </span>
           <span id="xu030Badge" class="text-[11px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">--</span>
         </div>
         <div class="mt-2 flex items-baseline justify-between">
           <div>
-            <h3 class="text-xs text-slate-400 font-medium">BIST 30 (XU030)</h3>
+            <div class="flex items-center gap-1.5">
+              <h3 class="text-xs text-slate-400 font-medium group-hover:text-white transition-colors">BIST 30 (XU030)</h3>
+              <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
             <div id="xu030Price" class="text-2xl font-black font-num tracking-tight text-white mt-0.5">--</div>
           </div>
           <div id="xu030Change" class="text-right text-xs font-num font-semibold text-slate-400">--</div>
@@ -222,17 +238,27 @@
           <span>Önceki Kapanış:</span>
           <span id="xu030Prev" class="text-slate-300">--</span>
         </div>
+        <div class="mt-2 text-[10px] text-indigo-400/80 group-hover:text-indigo-300 flex items-center justify-between transition-colors font-sans">
+          <span>Geçmiş grafik ve verileri gör</span>
+          <span class="font-mono text-xs">↗</span>
+        </div>
       </div>
 
       <!-- BIST Banka -->
-      <div class="glass-card rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group">
+      <div onclick="openIndexModal('XBANK')" class="glass-card glass-card-hover rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group cursor-pointer border border-slate-800/80 hover:border-emerald-500/50 hover:shadow-emerald-500/10" title="BIST Banka Geçmiş Veri & Grafiği için Tıklayın">
         <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-lg font-display">Bankacılık</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-lg font-display flex items-center gap-1.5">
+            Bankacılık
+            <span class="text-[10px] text-emerald-300/90 font-normal">📈 Grafik</span>
+          </span>
           <span id="xbankBadge" class="text-[11px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">--</span>
         </div>
         <div class="mt-2 flex items-baseline justify-between">
           <div>
-            <h3 class="text-xs text-slate-400 font-medium">BIST Banka (XBANK)</h3>
+            <div class="flex items-center gap-1.5">
+              <h3 class="text-xs text-slate-400 font-medium group-hover:text-white transition-colors">BIST Banka (XBANK)</h3>
+              <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
             <div id="xbankPrice" class="text-2xl font-black font-num tracking-tight text-white mt-0.5">--</div>
           </div>
           <div id="xbankChange" class="text-right text-xs font-num font-semibold text-slate-400">--</div>
@@ -241,17 +267,27 @@
           <span>Sektör Lideri:</span>
           <span class="text-emerald-400">GARAN / AKBNK</span>
         </div>
+        <div class="mt-2 text-[10px] text-emerald-400/80 group-hover:text-emerald-300 flex items-center justify-between transition-colors font-sans">
+          <span>Geçmiş grafik ve verileri gör</span>
+          <span class="font-mono text-xs">↗</span>
+        </div>
       </div>
 
       <!-- Gram Altın -->
-      <div class="glass-card rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group">
+      <div onclick="openIndexModal('ALTIN')" class="glass-card glass-card-hover rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden transition-all group cursor-pointer border border-slate-800/80 hover:border-amber-500/50 hover:shadow-amber-500/10" title="Gram Altın Geçmiş Veri & Grafiği için Tıklayın">
         <div class="flex items-center justify-between">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-lg font-display">Kıymetli Maden</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-lg font-display flex items-center gap-1.5">
+            Kıymetli Maden
+            <span class="text-[10px] text-amber-300/90 font-normal">📈 Grafik</span>
+          </span>
           <span id="altinBadge" class="text-[11px] font-bold font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">--</span>
         </div>
         <div class="mt-2 flex items-baseline justify-between">
           <div>
-            <h3 class="text-xs text-slate-400 font-medium">Gram Altın (24K)</h3>
+            <div class="flex items-center gap-1.5">
+              <h3 class="text-xs text-slate-400 font-medium group-hover:text-white transition-colors">Gram Altın (24K)</h3>
+              <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
             <div id="altinPrice" class="text-2xl font-black font-num tracking-tight text-amber-300 mt-0.5">--</div>
           </div>
           <div id="altinChange" class="text-right text-xs font-num font-semibold text-slate-400">--</div>
@@ -259,6 +295,10 @@
         <div class="mt-3 flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-2 font-mono">
           <span>Çeyrek: <strong id="ceyrekQuick" class="text-amber-400">--</strong></span>
           <span>Gümüş: <strong id="gumusQuick" class="text-slate-300">--</strong></span>
+        </div>
+        <div class="mt-2 text-[10px] text-amber-400/80 group-hover:text-amber-300 flex items-center justify-between transition-colors font-sans">
+          <span>Geçmiş grafik ve verileri gör</span>
+          <span class="font-mono text-xs">↗</span>
         </div>
       </div>
 
@@ -1956,42 +1996,99 @@
       return refreshMarketData({ silent: false });
     }
 
-    // Modal Operations
-    async function openStockModal(sym) {
-      const stock = globalData?.stocks?.[sym];
-      if (!stock) return;
+    // Modal Operations (Supports Stocks, Indices and Precious Metals)
+    let activeModalType = 'stock'; // 'stock' or 'index'
 
-      activeModalSymbol = sym;
+    async function openIndexModal(key) {
+      return openAssetModal(key, 'index');
+    }
+
+    async function openStockModal(sym) {
+      return openAssetModal(sym, 'stock');
+    }
+
+    async function openAssetModal(identifier, type = 'stock') {
+      activeModalSymbol = identifier;
+      activeModalType = type;
+
+      let item = null;
+      if (type === 'index') {
+        item = globalData?.indices?.[identifier];
+      } else {
+        item = globalData?.stocks?.[identifier];
+      }
+      if (!item) return;
+
       document.getElementById('stockModal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
-      const isPos = stock.change >= 0;
-      document.getElementById('modalSymbol').textContent = sym;
-      document.getElementById('modalName').textContent = stock.name || stock.shortName || sym;
-      document.getElementById('modalSector').textContent = stock.sector || 'BIST';
-      document.getElementById('modalPrice').textContent = `₺${formatNumber(stock.price)}`;
-      document.getElementById('modalChange').className = `text-sm font-semibold font-num ${isPos ? 'text-emerald-400' : 'text-rose-400'}`;
-      document.getElementById('modalChange').textContent = `${isPos ? '▲ +' : '▼ '}₺${formatNumber(stock.change)} (%${stock.changePercent.toFixed(2)})`;
+      const isIndex = type === 'index';
+      const isAltin = identifier === 'ALTIN';
+      const isPos = (item.change || 0) >= 0;
 
+      // Symbol and Name
+      document.getElementById('modalSymbol').textContent = isAltin ? 'GRAM ALTIN' : (item.symbol || identifier);
+      document.getElementById('modalName').textContent = item.name || item.desc || item.shortName || identifier;
+
+      // Category / Sector Badge
+      let sectorBadgeText = 'BIST Hisse';
+      if (isAltin) {
+        sectorBadgeText = 'Kıymetli Maden & Emtia (24K)';
+      } else if (isIndex) {
+        sectorBadgeText = item.desc || 'Borsa İstanbul Endeksi';
+      } else if (item.sector) {
+        sectorBadgeText = item.sector;
+      }
+      document.getElementById('modalSector').textContent = sectorBadgeText;
+
+      // Price Formatting with units
+      const prefix = (isIndex && !isAltin) ? '' : '₺';
+      const suffix = isAltin ? ' / gr' : (isIndex ? ' Puan' : '');
+      document.getElementById('modalPrice').textContent = `${prefix}${formatNumber(item.price)}${suffix}`;
+
+      // Change
+      document.getElementById('modalChange').className = `text-sm font-semibold font-num ${isPos ? 'text-emerald-400' : 'text-rose-400'}`;
+      document.getElementById('modalChange').textContent = `${isPos ? '▲ +' : '▼ '}${prefix}${formatNumber(item.change)} (%${(item.changePercent || 0).toFixed(2)})`;
+
+      // Badge
       const badge = document.getElementById('modalBadge');
       badge.className = `text-xs font-bold font-mono px-3 py-1 rounded-full ${isPos ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}`;
-      badge.textContent = `${isPos ? '+' : ''}${stock.changePercent.toFixed(2)}%`;
+      badge.textContent = `${isPos ? '+' : ''}${(item.changePercent || 0).toFixed(2)}%`;
 
-      document.getElementById('modalHigh52').textContent = `₺${formatNumber(stock.fiftyTwoWeekHigh)}`;
-      document.getElementById('modalLow52').textContent = `₺${formatNumber(stock.fiftyTwoWeekLow)}`;
-      document.getElementById('modalRsi').textContent = stock.rsi14 ? `${stock.rsi14.toFixed(1)}` : '-';
-      document.getElementById('modalVolume').textContent = formatVolume(stock.volume);
-      document.getElementById('modalDeepLink').href = `hisse.html?sembol=${sym}`;
+      // 52-Week High / Low
+      const histCloses = (item.history || []).map(h => typeof h.close === 'number' ? h.close : (typeof h === 'number' ? h : item.price));
+      const high52 = item.fiftyTwoWeekHigh || (histCloses.length > 0 ? Math.max(...histCloses) : item.price);
+      const low52 = item.fiftyTwoWeekLow || (histCloses.length > 0 ? Math.min(...histCloses) : item.price);
+      document.getElementById('modalHigh52').textContent = `${prefix}${formatNumber(high52)}${suffix}`;
+      document.getElementById('modalLow52').textContent = `${prefix}${formatNumber(low52)}${suffix}`;
 
+      // RSI & Volume
+      const rsiVal = item.rsi14 ?? item.rsi;
+      document.getElementById('modalRsi').textContent = rsiVal ? `${Number(rsiVal).toFixed(1)}` : '-';
+      document.getElementById('modalVolume').textContent = item.volume ? formatVolume(item.volume) : (isAltin ? 'Spot Piyasa' : '-');
+
+      // Deep Link
+      const deepLink = document.getElementById('modalDeepLink');
+      if (deepLink) {
+        deepLink.href = `hisse.html?sembol=${identifier}`;
+        const deepSpan = deepLink.querySelector('span');
+        if (deepSpan) deepSpan.textContent = isIndex ? 'Detaylı Analiz & Göstergeler' : 'Tam Detay Sayfası';
+      }
+
+      // Favorite button visibility
+      const favBtn = document.getElementById('modalFavBtn');
+      if (favBtn) {
+        favBtn.style.display = isIndex ? 'none' : 'inline-block';
+      }
       updateModalFavIcon();
 
-      // Lazy load granular history from data/history/[SYMBOL].json if not present
-      if (!stock.history || stock.history.length === 0) {
+      // Lazy load stock history if needed
+      if (!isIndex && (!item.history || item.history.length === 0)) {
         try {
-          const histRes = await fetch(`data/history/${sym}.json`);
+          const histRes = await fetch(`data/history/${identifier}.json`);
           if (histRes.ok) {
             const histData = await histRes.json();
-            stock.history = histData.history || [];
+            item.history = histData.history || [];
           }
         } catch (hErr) {
           console.warn('History dosyası yüklenirken hata:', hErr);
@@ -2007,13 +2104,13 @@
     }
 
     function toggleFavoriteCurrentModal() {
-      if (!activeModalSymbol) return;
+      if (!activeModalSymbol || activeModalType === 'index') return;
       toggleFavorite(activeModalSymbol);
       updateModalFavIcon();
     }
 
     function updateModalFavIcon() {
-      if (!activeModalSymbol) return;
+      if (!activeModalSymbol || activeModalType === 'index') return;
       const favs = getFavorites();
       const isFav = favs.includes(activeModalSymbol);
       const icon = document.getElementById('modalFavBtn');
@@ -2032,20 +2129,38 @@
     }
 
     function renderModalChart() {
-      const stock = globalData?.stocks?.[activeModalSymbol];
-      if (!stock || !stock.history || stock.history.length === 0) return;
+      let asset = null;
+      if (activeModalType === 'index') {
+        asset = globalData?.indices?.[activeModalSymbol];
+      } else {
+        asset = globalData?.stocks?.[activeModalSymbol];
+      }
+      if (!asset || !asset.history || asset.history.length === 0) return;
 
-      const sliceData = stock.history.slice(-modalCurrentDays);
+      const sliceData = asset.history.slice(-modalCurrentDays);
       const labels = sliceData.map(h => h.date);
-      const prices = sliceData.map(h => h.close);
-      const isPos = stock.change >= 0;
+      const prices = sliceData.map(h => typeof h.close === 'number' ? h.close : h);
+      const isPos = (asset.change || 0) >= 0;
+      const isAltin = activeModalSymbol === 'ALTIN';
+      const isIndex = activeModalType === 'index';
+      const unitStr = isAltin ? '₺/gr' : (isIndex ? 'Puan' : '₺');
+      const valPrefix = (isIndex && !isAltin) ? '' : '₺';
 
       const ctx = document.getElementById('modalChartCanvas').getContext('2d');
       if (modalChartInstance) modalChartInstance.destroy();
 
-      const color = isPos ? '#10b981' : '#f43f5e';
+      let color = isPos ? '#10b981' : '#f43f5e';
+      if (isAltin) color = '#f59e0b'; // Amber gold theme
+      else if (activeModalSymbol === 'XU030') color = isPos ? '#6366f1' : '#f43f5e'; // Indigo theme
+
       const gradient = ctx.createLinearGradient(0, 0, 0, 280);
-      gradient.addColorStop(0, isPos ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)');
+      if (isAltin) {
+        gradient.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
+      } else if (activeModalSymbol === 'XU030' && isPos) {
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.35)');
+      } else {
+        gradient.addColorStop(0, isPos ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)');
+      }
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       modalChartInstance = new Chart(ctx, {
@@ -2053,7 +2168,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: `${activeModalSymbol} Fiyat (₺)`,
+            label: `${activeModalSymbol} (${unitStr})`,
             data: prices,
             borderColor: color,
             backgroundColor: gradient,
@@ -2079,7 +2194,7 @@
               padding: 10,
               displayColors: false,
               callbacks: {
-                label: (ctx) => `₺${ctx.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2 })}`
+                label: (c) => `${valPrefix}${c.parsed.y.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${unitStr}`
               }
             }
           },
@@ -2093,7 +2208,7 @@
               ticks: { 
                 color: '#64748b',
                 font: { family: 'JetBrains Mono', size: 10 },
-                callback: (val) => '₺' + val
+                callback: (val) => `${valPrefix}${val}`
               }
             }
           }

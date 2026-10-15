@@ -230,6 +230,21 @@ async function calculateMetalsAndCurrencies(fetchedData) {
     const change = Number((gramPrice - prevGram).toFixed(2));
     const changePercent = prevGram > 0 ? Number(((change / prevGram) * 100).toFixed(2)) : 0;
 
+    const goldHistory = gcData.history.map((h, i) => {
+      const u = usdData.history[i]?.close || usdPrice;
+      return {
+        date: h.date,
+        close: Number(((h.close * u) / OUNCE_TO_GRAM).toFixed(2))
+      };
+    });
+    const goldCloses = goldHistory.map(h => h.close);
+    const goldHigh52 = goldCloses.length > 0 ? Math.max(...goldCloses) : gramPrice;
+    const goldLow52 = goldCloses.length > 0 ? Math.min(...goldCloses) : gramPrice;
+    const goldRsi = calculateRSI(goldCloses, 14);
+    const goldReturns = calculateReturns(goldHistory);
+    const goldDayHigh = Number((((gcData.dayHigh || goldPrice) * (usdData.dayHigh || usdPrice)) / OUNCE_TO_GRAM).toFixed(2));
+    const goldDayLow = Number((((gcData.dayLow || goldPrice) * (usdData.dayLow || usdPrice)) / OUNCE_TO_GRAM).toFixed(2));
+
     results['ALTIN'] = {
       name: 'Gram Altın (24K)',
       price: gramPrice,
@@ -237,13 +252,13 @@ async function calculateMetalsAndCurrencies(fetchedData) {
       change: change,
       changePercent: changePercent,
       unit: '₺/gr',
-      history: gcData.history.map((h, i) => {
-        const u = usdData.history[i]?.close || usdPrice;
-        return {
-          date: h.date,
-          close: Number(((h.close * u) / OUNCE_TO_GRAM).toFixed(2))
-        };
-      })
+      dayHigh: goldDayHigh,
+      dayLow: goldDayLow,
+      fiftyTwoWeekHigh: goldHigh52,
+      fiftyTwoWeekLow: goldLow52,
+      rsi14: goldRsi,
+      returns: goldReturns,
+      history: goldHistory
     };
 
     // Çeyrek Altın (1.754 gram, 22 Ayar ~ 1.635 x Gram 24K)
@@ -332,6 +347,8 @@ export async function fetchAllData() {
         prevClose: data.prevClose,
         dayHigh: data.dayHigh,
         dayLow: data.dayLow,
+        fiftyTwoWeekHigh: data.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: data.fiftyTwoWeekLow,
         rsi14: data.rsi14,
         sma20: data.sma20,
         returns: data.returns,
@@ -526,6 +543,9 @@ export async function fetchAllData() {
     }
   }
 
+  const completedAt = new Date();
+  output.updatedAt = completedAt.toISOString();
+  output.updatedAtFormatted = formatTimeTR(completedAt);
   fs.writeFileSync('./data.json', JSON.stringify(output, null, 2), 'utf-8');
   console.log(`\n🎉 data.json (${Object.keys(output.stocks).length} hisse + ${Object.keys(output.indices).length} endeks/emtia + ${Object.keys(output.funds).length} TEFAS fonu) başarıyla kaydedildi!\n`);
   return output;
